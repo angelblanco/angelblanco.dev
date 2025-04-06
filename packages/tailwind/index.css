@@ -1,0 +1,13 @@
+@import "tailwindcss" source("../../");
+
+@plugin "@tailwindcss/typography";
+
+@plugin "daisyui" {
+  themes: wireframe --default, black --prefersdark;
+}
+
+@theme {
+  --font-body: "Geist Sans", "sans-serif";
+  --font-sans: "Geist Sans", "sans-serif";
+  --font-mono: "Geist Mono", "monospace";
+}

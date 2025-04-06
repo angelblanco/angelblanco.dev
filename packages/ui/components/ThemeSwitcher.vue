@@ -1,0 +1,19 @@
+<script lang="ts" setup>
+import { SunIcon, MoonIcon } from '@heroicons/vue/24/outline'
+import { defineModel } from 'vue';
+
+const lightTheme = defineModel<boolean>('lightTheme', { required : true });
+</script>
+
+<template>
+  <button class="swap swap-rotate" @click="lightTheme = !lightTheme">
+    <SunIcon
+      class="h-10 w-10 fill-current"
+      :class="lightTheme ? 'swap-on' : 'swap-off'"
+    />
+    <MoonIcon
+      class="h-10 w-10 fill-current"
+      :class="lightTheme ? 'swap-off' : 'swap-on'"
+    />
+  </button>
+</template>

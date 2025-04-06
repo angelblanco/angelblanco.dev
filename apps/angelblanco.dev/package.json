@@ -1,0 +1,27 @@
+{
+  "name": "@angelblanco/web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@angelblanco/tsconfig": "workspace:*",
+    "@angelblanco/ui": "workspace:*",
+    "nuxt": "^3.16",
+    "typescript": "^5.8.3",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "@angelblanco/tailwind": "workspace:*",
+    "@nuxt/content": "^3.4.0",
+    "@pinia/nuxt": "^0.10.1",
+    "pinia": "^3.0.1"
+  }
+}
