@@ -15,6 +15,4 @@ const lightTheme = defineModel<boolean>('lightTheme', { required : true });
       :class="lightTheme ? 'swap-off' : 'swap-on'"
     />
   </label>
-
-  <button class="btn">Button</button>
 </template>

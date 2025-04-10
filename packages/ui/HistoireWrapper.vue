@@ -17,7 +17,7 @@ const hasWrapper = computed(() => {
 
 const availableThemes = ref(["wireframe", "black"]);
 
-const theme = useStorage<string>("histoire:theme", availableThemes[0]);
+const theme = useStorage<string>("histoire:theme", availableThemes.value[0]);
 
 watchEffect(() => {
   if (!availableThemes.value.includes(theme.value)) {
