@@ -6,4 +6,7 @@ export default defineConfig({
     HstVue(),
   ],
   setupFile: 'histoire-setup.ts',
+  viteNodeInlineDeps: [
+    /heroicons/,
+  ],
 })
