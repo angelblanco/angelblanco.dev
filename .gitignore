@@ -47,4 +47,4 @@ yarn-error.log*
 **/.vitepress/dist/**
 **/.vitepress/cache/**
 .aider*
-
+!.aiderignore

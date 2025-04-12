@@ -9,7 +9,7 @@
 
 ## Folder Structure
 - Place reusable components in the `packages/ui/components` folder.
-- The components in `package/ui/components` are preloaded without import with the preffix `Ui`. For example `UiButton` corresponds to `package/ui/components/Button.vue`.
+- The components in `package/ui/components` are auto imported. For example `UiButton` corresponds to `package/ui/components/UiButton.vue`.
 - Keep shared configurations in the `packages/tsconfig` and `packages/tailwind` folders.
 
 ## Vue Component Guidelines

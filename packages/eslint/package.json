@@ -1,12 +1,17 @@
 {
-  "name": "@angelblanco/eslint-config-custom",
+  "name": "@angelblanco/eslint",
+  "type": "module",
   "version": "0.0.0",
-  "main": "index.js",
   "private": true,
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
   "dependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "eslint": "^9.24.0",
-    "eslint-config-turbo": "latest"
+    "eslint-plugin-format": "^1.0.1"
   },
   "devDependencies": {
     "typescript": "^5.8.3"

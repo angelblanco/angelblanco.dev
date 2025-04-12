@@ -1,11 +1,7 @@
 {
-  "name": "@angelblanco/tsconfig",
+  "name": "@angelblanco/conventions",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "base.json",
-    "histoire.json"
-  ],
   "scripts": {
     "lint": "eslint",
     "lint:fix": "eslint --fix"

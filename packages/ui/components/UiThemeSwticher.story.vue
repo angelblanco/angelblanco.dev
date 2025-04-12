@@ -1,8 +1,8 @@
 <script setup>
-import ThemeSwitcher from "./ThemeSwitcher.vue";
-import { ref } from "vue";
+import { ref } from 'vue'
+import ThemeSwitcher from './UiThemeSwitcher.vue'
 
-const lightTheme = ref(true);
+const lightTheme = ref(true)
 </script>
 
 <template>

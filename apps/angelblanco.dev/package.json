@@ -11,17 +11,17 @@
     "lint": "eslint",
     "lint:fix": "eslint --fix"
   },
+  "dependencies": {
+    "@angelblanco/tailwind": "workspace:*",
+    "@nuxt/content": "^3.4.0",
+    "@pinia/nuxt": "^0.10.1",
+    "pinia": "^3.0.1"
+  },
   "devDependencies": {
     "@angelblanco/tsconfig": "workspace:*",
     "@angelblanco/ui": "workspace:*",
     "nuxt": "^3.16",
     "typescript": "^5.8.3",
     "vite": "^6.0.0"
-  },
-  "dependencies": {
-    "@angelblanco/tailwind": "workspace:*",
-    "@nuxt/content": "^3.4.0",
-    "@pinia/nuxt": "^0.10.1",
-    "pinia": "^3.0.1"
   }
 }

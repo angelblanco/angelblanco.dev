@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import NavBar from '../components/NavBar.vue'
+import { describe, expect, it } from 'vitest'
+import NavBar from '../components/UiNavBar.vue'
 
-describe('NavBar', () => {
+describe('uiNavBar', () => {
   it('renders logo slot', () => {
     const wrapper = mount(NavBar, {
       props: {

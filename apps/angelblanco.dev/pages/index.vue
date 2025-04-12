@@ -3,11 +3,13 @@ const { data: home } = await useAsyncData(() => queryCollection('content').path(
 
 useSeoMeta({
   title: home.value?.title,
-  description: home.value?.description
+  description: home.value?.description,
 })
 </script>
 
 <template>
   <ContentRenderer v-if="home" :value="home" />
-  <div v-else>Home not found</div>
+  <div v-else>
+    Home not found
+  </div>
 </template>

@@ -15,7 +15,7 @@
 - `conventions`: tips for aider and other LLMs to help code faster.
 - `packages`: shared packages for different tools
   - `tsconfig`: Base shared `tsconfig.json` configurations for TypeScript projects.
-  - `eslint-config-custom`: Custom ESLint configuration shared across the monorepo.
+  - `eslint`: Custom ESLint configuration shared across the monorepo.
   - `ui`: A shared UI library containing reusable Vue components and utilities.
   - `tailwind`: Shared Tailwind CSS configuration for consistent styling across projects.
 - `apps`: deployable applications

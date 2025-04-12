@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -34,8 +33,8 @@ const isOpen = ref(false)
     <!-- Hamburger -->
     <div class="block lg:hidden">
       <button
-        @click="isOpen = !isOpen"
         class="flex items-center px-3 py-2 border rounded text-gray-700 border-gray-400 hover:text-gray-900 hover:border-gray-600 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:border-gray-300"
+        @click="isOpen = !isOpen"
       >
         <svg class="fill-current h-3 w-3" viewBox="0 0 20 20">
           <path
@@ -47,8 +46,8 @@ const isOpen = ref(false)
 
     <!-- Menu -->
     <div
-      class="w-full flex-grow lg:flex lg:items-center lg:w-auto"
-      :class="{ hidden: !isOpen, block: isOpen, 'lg:block': true }"
+      class="w-full flex-grow lg:flex lg:items-center lg:w-auto lg:block"
+      :class="{ hidden: !isOpen, block: isOpen }"
     >
       <div class="text-sm lg:flex-grow">
         <a
@@ -69,7 +68,7 @@ const isOpen = ref(false)
           class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
         >
           <span v-if="item.icon">
-            <i :class="item.icon"></i>
+            <i :class="item.icon" />
           </span>
           <span v-else>
             {{ item.label }}
