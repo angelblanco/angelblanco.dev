@@ -106,6 +106,9 @@ importers:
       '@angelblanco/tailwind':
         specifier: workspace:*
         version: link:../tailwind
+      '@heroicons/vue':
+        specifier: ^2.2.0
+        version: 2.2.0(vue@3.5.13(typescript@5.8.3))
       '@vueuse/core':
         specifier: ^13.1.0
         version: 13.1.0(vue@3.5.13(typescript@5.8.3))
@@ -782,6 +785,11 @@ packages:
 
   '@fontsource/geist-sans@5.2.5':
     resolution: {integrity: sha512-anllOHyJbElRs9fV15TeDRqAeb1IKm4bSknPl6ZMoyPTx1BBy7logudcUwpNjmQLkzn4Q0JGQLRCUKJYoyST6A==}
+
+  '@heroicons/vue@2.2.0':
+    resolution: {integrity: sha512-G3dbSxoeEKqbi/DFalhRxJU4mTXJn7GwZ7ae8NuEQzd1bqdd0jAbdaBZlHPcvPD2xI1iGzNVB4k20Un2AguYPw==}
+    peerDependencies:
+      vue: '>= 3'
 
   '@histoire/app@0.17.17':
     resolution: {integrity: sha512-2i1V38o08V+eaR0d3L0/EA6AYG14xyQBJbyYv0Hz3r4sH3Elj1FoJiwolbCfTDmkOnSgwWTc7+JoCqkLIbxfhA==}
@@ -7206,6 +7214,10 @@ snapshots:
 
   '@fontsource/geist-sans@5.2.5': {}
 
+  '@heroicons/vue@2.2.0(vue@3.5.13(typescript@5.8.3))':
+    dependencies:
+      vue: 3.5.13(typescript@5.8.3)
+
   '@histoire/app@0.17.17(vite@5.4.17(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.39.0))':
     dependencies:
       '@histoire/controls': 0.17.17(vite@5.4.17(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.39.0))
@@ -8561,26 +8573,6 @@ snapshots:
       - vite
     optional: true
 
-  '@vitest/browser@3.1.1(playwright@1.51.1)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))(vitest@3.1.1)':
-    dependencies:
-      '@testing-library/dom': 10.4.0
-      '@testing-library/user-event': 14.6.1(@testing-library/dom@10.4.0)
-      '@vitest/mocker': 3.1.1(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))
-      '@vitest/utils': 3.1.1
-      magic-string: 0.30.17
-      sirv: 3.0.1
-      tinyrainbow: 2.0.0
-      vitest: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.0)(@vitest/browser@3.1.1)(jsdom@26.0.0)(lightningcss@1.29.2)(terser@5.39.0)
-      ws: 8.18.1
-    optionalDependencies:
-      playwright: 1.51.1
-    transitivePeerDependencies:
-      - bufferutil
-      - msw
-      - utf-8-validate
-      - vite
-    optional: true
-
   '@vitest/coverage-v8@3.1.1(@vitest/browser@3.1.1)(vitest@3.1.1)':
     dependencies:
       '@ampproject/remapping': 2.3.0
@@ -8623,15 +8615,6 @@ snapshots:
       magic-string: 0.30.17
     optionalDependencies:
       vite: 5.4.17(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.39.0)
-
-  '@vitest/mocker@3.1.1(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))':
-    dependencies:
-      '@vitest/spy': 3.1.1
-      estree-walker: 3.0.3
-      magic-string: 0.30.17
-    optionalDependencies:
-      vite: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1)
-    optional: true
 
   '@vitest/pretty-format@3.1.1':
     dependencies:
@@ -13881,7 +13864,7 @@ snapshots:
     optionalDependencies:
       '@types/debug': 4.1.12
       '@types/node': 22.14.0
-      '@vitest/browser': 3.1.1(playwright@1.51.1)(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))(vitest@3.1.1)
+      '@vitest/browser': 3.1.1(playwright@1.51.1)(vite@5.4.17(@types/node@22.14.0)(lightningcss@1.29.2)(terser@5.39.0))(vitest@3.1.1)
       jsdom: 26.0.0
     transitivePeerDependencies:
       - less
