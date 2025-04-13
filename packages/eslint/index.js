@@ -1,4 +1,4 @@
-import antfu from '@antfu/eslint-config'
+import antfu from '@antfu/eslint-config';
 
 export default antfu(
   {
@@ -9,9 +9,17 @@ export default antfu(
       html: true,
       markdown: true,
     },
-    stylistict: {
+    stylistic: {
+      semi: true,
       indent: 2,
-      semi: 'always',
     },
   },
-)
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/block-order': ['error', {
+        order: ['template', 'script', 'style'],
+      }],
+    },
+  },
+);

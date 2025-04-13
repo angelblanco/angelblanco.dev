@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const route = useRoute()
-const { tag } = route.params
+const route = useRoute();
+const { tag } = route.params;
 </script>
 
 <template>

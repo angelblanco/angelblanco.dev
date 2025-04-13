@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 interface MenuItem {
-  label: string
-  href: string
+  label: string;
+  href: string;
 }
 
 interface RightItem {
-  label?: string
-  href?: string
-  icon?: string
+  label?: string;
+  href?: string;
+  icon?: string;
 }
 
 const props = defineProps<{
-  logo?: string
-  menuItems?: MenuItem[]
-  rightItems?: RightItem[]
-}>()
+  logo?: string;
+  menuItems?: MenuItem[];
+  rightItems?: RightItem[];
+}>();
 
-const isOpen = ref(false)
+const isOpen = ref(false);
 </script>
 
 <template>

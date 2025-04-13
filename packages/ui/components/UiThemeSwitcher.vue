@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline'
+import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 
-const lightTheme = defineModel<boolean>('lightTheme', { required: true })
+const lightTheme = defineModel<boolean>('lightTheme', { required: true });
 </script>
 
 <template>

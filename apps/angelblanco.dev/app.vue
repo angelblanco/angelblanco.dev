@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@angelblanco/fonts'
+import '@angelblanco/fonts';
 </script>
 
 <template>

@@ -4,8 +4,8 @@
 
 @plugin "daisyui" {
   themes:
-    wireframe --default,
-    black --prefersdark;
+    lgith --default,
+    dark --prefersdark;
 }
 
 @theme {

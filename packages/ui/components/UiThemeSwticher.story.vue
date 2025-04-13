@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from 'vue'
-import ThemeSwitcher from './UiThemeSwitcher.vue'
+import useHistoireTheme from '../histoire/useHistoireTheme';
+import ThemeSwitcher from './UiThemeSwitcher.vue';
 
-const lightTheme = ref(true)
+const { toggleTheme, isLightThemeSelected } = useHistoireTheme();
 </script>
 
 <template>
-  <Story>
-    <ThemeSwitcher v-model:light-theme="lightTheme" />
+  <Story :meta="{ wrapper: true }">
+    <ThemeSwitcher :light-theme="isLightThemeSelected" @update:light-theme="toggleTheme()" />
   </Story>
 </template>
