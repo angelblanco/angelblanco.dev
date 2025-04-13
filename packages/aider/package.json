@@ -1,0 +1,18 @@
+{
+  "name": "@angelblanco/aider",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "bin": {
+    "aider": "./cli.js"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "inquirer": "^12.5.2"
+  }
+}
