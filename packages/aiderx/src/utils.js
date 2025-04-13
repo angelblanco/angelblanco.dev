@@ -86,3 +86,12 @@ export function buildShellCommand(command, args = []) {
   );
   return [command, ...escapedArgs].join(' ');
 }
+
+export function aiderCommand(program, command) {
+  return program
+    .command(command)
+    .option('-P', '--prettend', 'Print the command rather than executing it')
+    .option('-m', '--model <model>', 'Model to use')
+    .option('-w', '--writable', 'Files are added as writeable by default')
+    .option('-p', '--prompt <prompt>', 'Prompt to use');
+}

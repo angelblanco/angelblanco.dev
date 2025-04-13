@@ -1,12 +1,14 @@
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { buildShellCommand, findUiComponent, resolveConventionPath, resolveMonoRepoPath } from './utils';
+import { buildShellCommand, findUiComponent, resolveConventionPath, resolveMonoRepoPath } from './utils.js';
 
 export class Aider {
   constructor() {
     this.readFiles = [];
     this.writeFiles = [];
     this.prompt = '';
+    this.model = null;
+    this.prettend = false;
   }
 
   /**
@@ -30,8 +32,14 @@ export class Aider {
     }
   }
 
-  addConvention(conventioName) {
-    this.addFileIfExists(resolveConventionPath(conventioName), false);
+  setAiderOptionsFromCliOptions(options) {
+    this.prettend = options.prettend || false;
+    this.model = options.model || null;
+    this.prompt = options.prompt || '';
+  }
+
+  addConvention(conventioName, writeable = false) {
+    this.addFileIfExists(resolveConventionPath(conventioName), writeable);
   }
 
   setPrompt(prompt) {
@@ -50,19 +58,29 @@ export class Aider {
     this.prompt += `${prompt}\n`;
   }
 
-  async run(prettend = false) {
-    if (this.prompt === '') {
-      throw new Error('No prompt set');
+  async run() {
+    const args = [];
+
+    if (this.model) {
+      args.push(
+        '--model',
+        this.model,
+      );
     }
 
-    const args = [
-      '--message',
-      this.prompt,
-    ];
+    // If no prompt is passed aider will start interactively
+    if (this.prompt.length > 0) {
+      args.push(
+        '--message',
+        this.prompt,
+      );
+    }
 
     this.readFiles.forEach((file) => {
-      args.push('--read');
-      args.push(file);
+      args.push(
+        '--read',
+        file,
+      );
     });
 
     this.writeFiles.forEach((file) => {
@@ -71,13 +89,13 @@ export class Aider {
 
     const underlyingShellCommand = buildShellCommand('aider', args);
 
-    if (!prettend) {
+    if (!this.prettend) {
       console.log(`Running command:`);
     }
 
     console.log(underlyingShellCommand);
 
-    if (prettend) {
+    if (this.prettend) {
       return;
     }
 
@@ -98,6 +116,10 @@ export class Aider {
         }
       });
     });
+  }
+
+  addMonoRepoPath(path, writeable = null) {
+    this.addFileIfExists(resolveMonoRepoPath(path), writeable);
   }
 
   addFileIfExists(file, writeable = false) {
