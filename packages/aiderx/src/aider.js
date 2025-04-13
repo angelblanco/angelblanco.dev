@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { buildShellCommand, findUiComponent, resolveConventionPath, resolveMonoRepoPath } from './utils.js';
+import { buildShellCommand, findUiComponent, isDirectorySync, resolveConventionPath, resolveMonoRepoPath } from './utils.js';
 
 export class Aider {
   constructor() {
@@ -59,7 +59,10 @@ export class Aider {
   }
 
   async run() {
-    const args = [];
+    const args = [
+      '--gitignore',
+      '--subtree-only',
+    ];
 
     if (this.model) {
       args.push(
@@ -127,7 +130,15 @@ export class Aider {
       throw new Error(`File ${file} not found`);
     }
 
+    if (isDirectorySync(file)) {
+      throw new Error(`File ${file} is a directory and it will not be added. Use addDirectoryIfExists`);
+    }
+
     this.addFile(file, writeable);
+  }
+
+  addDirectoryIfExists(directory, writeable = false) {
+    
   }
 
   addFile(file, writeable = false) {

@@ -1,4 +1,4 @@
-import { existsSync, globSync } from 'node:fs';
+import { existsSync, globSync, statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -80,6 +80,16 @@ export function findUiComponent(component) {
   };
 }
 
+export function isDirectorySync(path) {
+  try {
+    const stats = statSync(path);
+    return stats.isDirectory();
+  }
+  catch {
+    return false;
+  }
+}
+
 export function buildShellCommand(command, args = []) {
   const escapedArgs = args.map(arg =>
     /[^\w/:=-]/.test(arg) ? `"${arg.replace(/(["\\$`])/g, '\\$1')}"` : arg,
@@ -90,8 +100,8 @@ export function buildShellCommand(command, args = []) {
 export function aiderCommand(program, command) {
   return program
     .command(command)
-    .option('-P', '--prettend', 'Print the command rather than executing it')
-    .option('-m', '--model <model>', 'Model to use')
-    .option('-w', '--writable', 'Files are added as writeable by default')
-    .option('-p', '--prompt <prompt>', 'Prompt to use');
+    .option('--prettend', 'Print the command rather than executing it')
+    .option('--model <model>', 'Model to use')
+    .option('--writable', 'Files are added as writeable by default')
+    .option('--prompt <prompt>', 'Prompt to use');
 }
