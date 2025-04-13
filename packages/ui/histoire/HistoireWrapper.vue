@@ -1,6 +1,24 @@
+<template>
+  <div v-if="!hasWrapper" :data-theme="theme">
+    <slot />
+  </div>
+  <div v-else class="space-y-2" :data-theme="theme">
+    <div class="p-4 flex justify-end">
+      <select v-model="theme" class="select">
+        <option v-for="option in availableThemes" :key="option" :value="option">
+          {{ option }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <slot />
+    </div>
+  </div>
+</template>
+
 <script lang="ts" setup>
 import type { Story, Variant } from 'histoire';
-import { computed, watchEffect } from 'vue';
+import { computed } from 'vue';
 import useHistoireTheme from './useHistoireTheme';
 
 declare module 'histoire' {
@@ -26,21 +44,3 @@ const { theme, availableThemes, verifyTheme, syncTheme } = useHistoireTheme();
 verifyTheme();
 syncTheme();
 </script>
-
-<template>
-  <div v-if="!hasWrapper" :data-theme="theme">
-    <slot />
-  </div>
-  <div v-else class="space-y-2" :data-theme="theme">
-    <div class="p-4 flex justify-end">
-      <select v-model="theme" class="select">
-        <option v-for="option in availableThemes" :key="option" :value="option">
-          {{ option }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <slot />
-    </div>
-  </div>
-</template>

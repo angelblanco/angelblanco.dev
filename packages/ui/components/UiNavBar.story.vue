@@ -1,3 +1,13 @@
+<template>
+  <Story>
+    <NavBar logo="#" :menu-items="menuItems" :right-items="rightItems">
+      <template #logo>
+        <span class="text-xl font-bold">MySite</span>
+      </template>
+    </NavBar>
+  </Story>
+</template>
+
 <script setup lang="ts">
 import NavBar from './UiNavBar.vue';
 
@@ -14,13 +24,3 @@ const rightItems = [
   { icon: 'i-heroicons-bell' },
 ];
 </script>
-
-<template>
-  <Story>
-    <NavBar logo="#" :menu-items="menuItems" :right-items="rightItems">
-      <template #logo>
-        <span class="text-xl font-bold">MySite</span>
-      </template>
-    </NavBar>
-  </Story>
-</template>

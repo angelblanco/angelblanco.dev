@@ -1,26 +1,3 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-
-interface MenuItem {
-  label: string;
-  href: string;
-}
-
-interface RightItem {
-  label?: string;
-  href?: string;
-  icon?: string;
-}
-
-const props = defineProps<{
-  logo?: string;
-  menuItems?: MenuItem[];
-  rightItems?: RightItem[];
-}>();
-
-const isOpen = ref(false);
-</script>
-
 <template>
   <nav class="font-sans flex items-center justify-between flex-wrap p-4 border-b border-gray-200 dark:border-gray-700">
     <!-- Logo -->
@@ -78,3 +55,26 @@ const isOpen = ref(false);
     </div>
   </nav>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+interface MenuItem {
+  label: string;
+  href: string;
+}
+
+interface RightItem {
+  label?: string;
+  href?: string;
+  icon?: string;
+}
+
+const props = defineProps<{
+  logo?: string;
+  menuItems?: MenuItem[];
+  rightItems?: RightItem[];
+}>();
+
+const isOpen = ref(false);
+</script>

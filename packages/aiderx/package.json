@@ -1,18 +1,23 @@
 {
-  "name": "@angelblanco/aider",
+  "name": "@angelblanco/aiderx",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "bin": {
-    "aider": "./cli.js"
+    "aiderx": "./src/cli.js"
   },
   "scripts": {
     "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint:fix": "eslint --fix",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "inquirer": "^12.5.2"
+  },
+  "devDependencies": {
+    "vitest": "^3.1.1"
   }
 }
