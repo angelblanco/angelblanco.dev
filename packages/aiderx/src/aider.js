@@ -61,10 +61,7 @@ export class Aider {
   }
 
   async run() {
-    const args = [
-      '--gitignore',
-      '--subtree-only',
-    ];
+    const args = [];
 
     if (this.model) {
       args.push(

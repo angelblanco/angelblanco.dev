@@ -91,13 +91,8 @@ export function findUiComponent(component) {
 }
 
 export function isDirectorySync(path) {
-  try {
-    const stats = statSync(path);
-    return stats.isDirectory();
-  }
-  catch {
-    return false;
-  }
+  const stats = statSync(path);
+  return stats.isDirectory();
 }
 
 export function buildShellCommand(command, args = []) {

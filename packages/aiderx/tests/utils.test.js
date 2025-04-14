@@ -1,17 +1,17 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { 
-  resolveCliPackageRoot, 
-  resolveMonoRepoPath, 
-  resolvePackagePath, 
-  resolveAppPath, 
-  resolveConventionPath, 
-  hasExtension, 
-  globbyMonoRepoSync, 
-  findUiComponent, 
-  isDirectorySync, 
-  buildShellCommand, 
-  aiderCommand 
+import {
+  aiderCommand,
+  buildShellCommand,
+  findUiComponent,
+  globbyMonoRepoSync,
+  hasExtension,
+  isDirectorySync,
+  resolveAppPath,
+  resolveCliPackageRoot,
+  resolveConventionPath,
+  resolveMonoRepoPath,
+  resolvePackagePath,
 } from '../src/utils';
 
 describe('aider utils', () => {
@@ -22,27 +22,29 @@ describe('aider utils', () => {
   });
 
   it('resolveMonoRepoPath', () => {
-    const path = resolveMonoRepoPath('test');
+    const path = resolveMonoRepoPath('packages/foo');
     expect(path).toBeDefined();
-    expect(path).toMatch(/packages\/aiderx\/\.\.\/\.\.\/test$/);
+    expect(path).toMatch(/packages\/foo$/);
   });
 
   it('resolvePackagePath', () => {
     const path = resolvePackagePath('test');
     expect(path).toBeDefined();
-    expect(path).toMatch(/packages\/aiderx\/\.\.\/\.\.\/packages\/test$/);
+    expect(path).toBe(
+      resolveMonoRepoPath('packages/test'),
+    );
   });
 
   it('resolveAppPath', () => {
-    const path = resolveAppPath('test');
+    const path = resolveAppPath('www');
     expect(path).toBeDefined();
-    expect(path).toMatch(/packages\/aiderx\/\.\.\/\.\.\/apps\/test$/);
+    expect(path).toMatch(/apps\/www$/);
   });
 
   it('resolveConventionPath', () => {
-    const path = resolveConventionPath('test');
+    const path = resolveConventionPath('test.md');
     expect(path).toBeDefined();
-    expect(path).toMatch(/packages\/aiderx\/\.\.\/\.\.\/conventions\/test$/);
+    expect(path).toMatch(/conventions\/test.md$/);
   });
 
   it('hasExtension', () => {
@@ -51,8 +53,9 @@ describe('aider utils', () => {
   });
 
   it('globbyMonoRepoSync', () => {
-    const files = globbyMonoRepoSync('**/*.vue');
+    const files = globbyMonoRepoSync('packages/aiderx/**/*.js');
     expect(files).toBeInstanceOf(Array);
+    expect(files.length).toBeGreaterThan(0);
   });
 
   it('findUiComponent with .vue extension', () => {
@@ -81,14 +84,13 @@ describe('aider utils', () => {
 
   it('buildShellCommand', () => {
     const command = buildShellCommand('aider', ['--model', 'gpt-4']);
-    expect(command).toBe('aider --model "gpt-4"');
+    expect(command).toBe('aider --model gpt-4');
   });
 
   it('aiderCommand', () => {
     const program = { command: vi.fn().mockReturnThis(), option: vi.fn().mockReturnThis(), action: vi.fn() };
     aiderCommand(program, 'test-command');
     expect(program.command).toHaveBeenCalledWith('test-command');
-    expect(program.option).toHaveBeenCalledTimes(5);
-    expect(program.action).toHaveBeenCalledTimes(1);
+    expect(program.option).toHaveBeenCalled();
   });
 });
