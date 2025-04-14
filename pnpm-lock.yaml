@@ -55,18 +55,6 @@ importers:
         specifier: ^6.0.0
         version: 6.2.5(@types/node@22.14.0)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1)
 
-  packages/aider:
-    dependencies:
-      chalk:
-        specifier: ^5.4.1
-        version: 5.4.1
-      commander:
-        specifier: ^13.1.0
-        version: 13.1.0
-      inquirer:
-        specifier: ^12.5.2
-        version: 12.5.2(@types/node@22.14.0)
-
   packages/aiderx:
     dependencies:
       chalk:

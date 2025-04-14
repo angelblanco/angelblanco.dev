@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { buildShellCommand, findUiComponent, isDirectorySync, resolveConventionPath, resolveMonoRepoPath } from './utils.js';
+import { buildShellCommand, findUiComponent, globbyMonoRepoSync, isDirectorySync, resolveConventionPath, resolveMonoRepoPath } from './utils.js';
 
 export class Aider {
   constructor() {
@@ -9,6 +9,7 @@ export class Aider {
     this.prompt = '';
     this.model = null;
     this.prettend = false;
+    this.debugging = false;
   }
 
   /**
@@ -36,6 +37,7 @@ export class Aider {
     this.prettend = options.prettend || false;
     this.model = options.model || null;
     this.prompt = options.prompt || '';
+    this.debugging = options.debug || false;
   }
 
   addConvention(conventioName, writeable = false) {
@@ -93,7 +95,7 @@ export class Aider {
     const underlyingShellCommand = buildShellCommand('aider', args);
 
     if (!this.prettend) {
-      console.log(`Running command:`);
+      this.debug(`Running command:`);
     }
 
     console.log(underlyingShellCommand);
@@ -121,8 +123,20 @@ export class Aider {
     });
   }
 
-  addMonoRepoPath(path, writeable = null) {
+  addMonoRepoPath(path, writeable = false) {
     this.addFileIfExists(resolveMonoRepoPath(path), writeable);
+  }
+
+  addMonoRepoGlob(patterns, writeable = false, globOptions = {}) {
+    const files = globbyMonoRepoSync(patterns, globOptions);
+
+    if (files.length === 0) {
+      throw new Error(`No files found for pattern ${patterns}`);
+    }
+
+    files.forEach((file) => {
+      this.addFile(file, writeable);
+    });
   }
 
   addFileIfExists(file, writeable = false) {
@@ -131,22 +145,26 @@ export class Aider {
     }
 
     if (isDirectorySync(file)) {
-      throw new Error(`File ${file} is a directory and it will not be added. Use addDirectoryIfExists`);
+      throw new Error(`File ${file} is a directory and it will not be added. Use addMonoRepoGlob instead`);
     }
 
     this.addFile(file, writeable);
   }
 
-  addDirectoryIfExists(directory, writeable = false) {
-    
-  }
-
   addFile(file, writeable = false) {
     if (writeable) {
+      this.debug(`Adding file ${file} as writeable`);
       this.writeFiles.push(file);
     }
     else {
+      this.debug(`Adding file ${file} as read only`);
       this.readFiles.push(file);
+    }
+  }
+
+  debug(...args) {
+    if (this.debugging) {
+      console.log(...args);
     }
   }
 }

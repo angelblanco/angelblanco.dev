@@ -1,6 +1,7 @@
-import { existsSync, globSync, statSync } from 'node:fs';
+import { existsSync, statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { globbySync } from 'globby';
 
 export function resolveCliPackageRoot(...paths) {
   return resolve(
@@ -30,6 +31,17 @@ export function hasExtension(fileName, extension) {
   return fileName.endsWith(extension);
 }
 
+export function globbyMonoRepoSync(patterns, options = {}) {
+  const defaultOptions = {
+    cwd: resolveMonoRepoPath(),
+    gitignore: true,
+    ignoreFiles: ['**/.gitignore', '**/.aiderignore'],
+    absolute: true,
+  };
+
+  return globbySync(patterns, { ...defaultOptions, ...options });
+}
+
 export function findUiComponent(component) {
   let file = null;
 
@@ -46,11 +58,10 @@ export function findUiComponent(component) {
     }
   }
   else {
-    const files = globSync(
+    const files = globbyMonoRepoSync(
       `packages/ui/components/${component}*.vue`,
       {
-        cwd: resolveMonoRepoPath(),
-        exclude: ['**/*.story.vue'],
+        ignore: ['**/*.story.vue'],
       },
     );
 
@@ -65,12 +76,11 @@ export function findUiComponent(component) {
     file = files[0];
   }
 
-  // Test file is tests/[componetnName].test.ts
-  // Story file is component/[componentName].story.vue
-
+  // Test file is tests/[component].test.ts
   const testFile = file.replace(/\.vue$/, '.test.ts')
     .replace('packages/ui/components/', 'packages/ui/tests');
 
+  // Story file is component/[component].story.vue
   const storyFile = file.replace(/\.vue$/, '.story.vue');
 
   return {
@@ -103,5 +113,6 @@ export function aiderCommand(program, command) {
     .option('--prettend', 'Print the command rather than executing it')
     .option('--model <model>', 'Model to use')
     .option('--writable', 'Files are added as writeable by default')
+    .option('--debug', 'Debug mode')
     .option('--prompt <prompt>', 'Prompt to use');
 }

@@ -33,7 +33,7 @@ aiderCommand(program, 'cli')
 
     aider.setAiderOptionsFromCliOptions(options);
     aider.addConvention('aiderx.md');
-    aider.addMonoRepoPath('packages/aiderx', options.writeable);
+    aider.addMonoRepoGlob('packages/aiderx/**/*', options.writeable);
 
     await aider.run();
   });
