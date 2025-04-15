@@ -8,9 +8,10 @@
         <p class="py-6">
           {{ props.description }}
         </p>
-        <button class="btn btn-primary">
-          {{ props.callToAction }}
-        </button>
+
+        <div class="flex gap-2 justify-center">
+          <slot name="callToAction" />
+        </div>
       </div>
     </div>
   </div>
@@ -20,6 +21,5 @@
 const props = defineProps<{
   title: string;
   description: string;
-  callToAction: string;
 }>();
 </script>
