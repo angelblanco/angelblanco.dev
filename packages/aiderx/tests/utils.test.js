@@ -7,7 +7,7 @@ import {
   globbyMonoRepoSync,
   hasExtension,
   isDirectorySync,
-  resolveAppPath,
+  resolveAppsPath,
   resolveCliPackageRoot,
   resolveConventionPath,
   resolveMonoRepoPath,
@@ -35,8 +35,8 @@ describe('aider utils', () => {
     );
   });
 
-  it('resolveAppPath', () => {
-    const path = resolveAppPath('www');
+  it('resolveAppsPath', () => {
+    const path = resolveAppsPath('www');
     expect(path).toBeDefined();
     expect(path).toMatch(/apps\/www$/);
   });
@@ -62,14 +62,12 @@ describe('aider utils', () => {
     const component = findUiComponent('UiHero.vue');
     expect(component.file).toBeDefined();
     expect(component.testFile).toBeDefined();
-    expect(component.storyFile).toBeDefined();
   });
 
   it('findUiComponent without extension', () => {
     const component = findUiComponent('UiHero');
     expect(component.file).toBeDefined();
     expect(component.testFile).toBeDefined();
-    expect(component.storyFile).toBeDefined();
   });
 
   it('isDirectorySync for directory', () => {

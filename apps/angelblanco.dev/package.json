@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@angelblanco/tsconfig": "workspace:*",
-    "@angelblanco/ui": "workspace:*",
     "nuxt": "^3.16",
     "typescript": "^5.8.3",
     "vite": "^6.0.0"

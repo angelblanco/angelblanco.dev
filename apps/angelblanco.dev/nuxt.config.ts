@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  modules: ['@angelblanco/ui', '@nuxt/content', '@pinia/nuxt'],
+  modules: ['@nuxt/content', '@pinia/nuxt'],
 
   nitro: {
     preset: 'netlify',

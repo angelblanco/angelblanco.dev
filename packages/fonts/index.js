@@ -1,2 +1,2 @@
 import '@fontsource/geist-mono';
-import '@fontsource/geist-sans';
+import '@fontsource-variable/inter';

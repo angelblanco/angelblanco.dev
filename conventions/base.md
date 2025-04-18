@@ -6,11 +6,12 @@
 - Prefer building **simple Vue components** instead of installing external libraries unless absolutely necessary.
 - Follow **TypeScript** best practices for type safety and maintainability.
 - Use **Tailwind CSS v4** for styling and avoid inline styles unless dynamic styling is required.
+- Use `daisyui` color names for styling `css` and common components like buttons. `<button class="btn btn-primary">Button</button>`.
 
 ## Folder Structure
 
-- Place reusable components in the `packages/ui/components` folder.
-- The components in `package/ui/components` are auto imported. For example `UiButton` corresponds to `package/ui/components/UiButton.vue`.
+- Place reusable components in the `apps/angelblanco.dev/components` folder.
+- Nuxt autoimports are enabled, components and composables don't need to be imported.
 - Keep shared configurations in the `packages/tsconfig` and `packages/tailwind` folders.
 
 ## Vue Component Guidelines

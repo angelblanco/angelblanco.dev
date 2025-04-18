@@ -19,8 +19,12 @@ export function resolvePackagePath(...paths) {
   return resolveMonoRepoPath('packages', ...paths);
 }
 
-export function resolveAppPath(...paths) {
+export function resolveAppsPath(...paths) {
   return resolveMonoRepoPath('apps', ...paths);
+}
+
+export function resolveMainAppPath(...paths) {
+  return resolveAppsPath('angelblanco.dev', ...paths);
 }
 
 export function resolveConventionPath(...paths) {
@@ -47,8 +51,10 @@ export function findUiComponent(component) {
 
   if (hasExtension(component, '.vue')) {
     const options = [
-      resolveAppPath(component),
-      resolvePackagePath('ui', 'components', component),
+      // Relative or absolute path to component
+      resolveMonoRepoPath(component),
+      // Base pasth on angelblanco.dev app
+      resolveMainAppPath('components', component),
     ];
 
     file = options.find(file => existsSync(file));
@@ -59,14 +65,14 @@ export function findUiComponent(component) {
   }
   else {
     const files = globbyMonoRepoSync(
-      `packages/ui/components/${component}*.vue`,
+      `apps/angelblanco.dev/components/${component}*.vue`,
       {
         ignore: ['**/*.story.vue'],
       },
     );
 
     if (files.length === 0) {
-      throw new Error(`Component ${component} not found in packages/ui/components`);
+      throw new Error(`Component ${component} not found in apps/angelblanco.dev/components`);
     }
 
     if (files.length > 1) {
@@ -78,15 +84,15 @@ export function findUiComponent(component) {
 
   // Test file is tests/[component].test.ts
   const testFile = file.replace(/\.vue$/, '.test.ts')
-    .replace('packages/ui/components/', 'packages/ui/tests');
+    .replace('apps/angelblanco.dev/components/', 'apps/angelblanco.dev/tests/components');
 
   // Story file is component/[component].story.vue
-  const storyFile = file.replace(/\.vue$/, '.story.vue');
+  // const storyFile = file.replace(/\.vue$/, '.story.vue');
 
   return {
     file,
     testFile,
-    storyFile,
+    // storyFile,
   };
 }
 

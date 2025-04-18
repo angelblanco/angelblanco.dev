@@ -19,17 +19,13 @@ export class Aider {
    *
    * @param {*} componentName The name of the component to be added
    */
-  addComponent(componentName, opts = { writeStory: true, writeTest: true, writeComponent: true, addTest: true, addStory: true }) {
-    const { file, testFile, storyFile } = findUiComponent(componentName);
+  addComponent(componentName, opts = { writeStory: true, writeTest: true, writeComponent: true, addTest: true }) {
+    const { file, testFile } = findUiComponent(componentName);
 
     this.addFile(file, opts.writeComponent);
 
     if (opts.addTest !== false) {
       this.addFile(testFile, opts.writeTest);
-    }
-
-    if (opts.addStory !== false) {
-      this.addFile(storyFile, opts.writeStory);
     }
   }
 
