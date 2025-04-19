@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UiNavBar locale="en" />
+    <UiNavBar />
     <slot />
     <UiFooter />
   </div>

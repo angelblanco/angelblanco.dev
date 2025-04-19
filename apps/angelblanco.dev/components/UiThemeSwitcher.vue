@@ -1,18 +1,35 @@
 <template>
-  <label class="swap swap-rotate" @click="lightTheme = !lightTheme">
-    <SunIcon
-      class="h-10 w-10 fill-current"
-      :class="lightTheme ? 'swap-on' : 'swap-off'"
-    />
-    <MoonIcon
-      class="h-10 w-10 fill-current"
-      :class="lightTheme ? 'swap-off' : 'swap-on'"
-    />
-  </label>
+  <ClientOnly>
+    <label class="swap swap-rotate btn btn-ghost btn-square" @click="toggleTheme">
+      <Icon
+        name="heroicons:sun"
+        class="fill-current"
+        :class="[lightTheme ? 'swap-on' : 'swap-off', props.iconSize]"
+      />
+      <Icon
+        name="heroicons:moon"
+        class="fill-current"
+        :class="[lightTheme ? 'swap-off' : 'swap-on', props.iconSize]"
+      />
+    </label>
+  </ClientOnly>
 </template>
 
 <script lang="ts" setup>
-import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
+const props = withDefaults(
+  defineProps<{
+    iconSize?: string;
+  }>(),
+  {
+    iconSize: 'size-8',
+  },
+);
 
-const lightTheme = defineModel<boolean>('lightTheme', { required: true });
+const colorMode = useColorMode();
+
+function toggleTheme() {
+  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light';
+}
+
+const lightTheme = computed(() => colorMode.value === 'light');
 </script>

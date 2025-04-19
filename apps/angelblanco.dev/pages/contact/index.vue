@@ -1,5 +1,5 @@
 <template>
   <div>
-    About en
+    Contact
   </div>
 </template>
