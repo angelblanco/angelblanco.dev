@@ -29,9 +29,6 @@ importers:
       '@angelblanco/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@iconify-json/codicon':
-        specifier: ^1.2.15
-        version: 1.2.15
       '@nuxt/content':
         specifier: ^3.4.0
         version: 3.4.0(magicast@0.3.5)(typescript@5.8.3)
@@ -45,7 +42,13 @@ importers:
       '@angelblanco/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
+      '@iconify-json/codicon':
+        specifier: ^1.2.15
+        version: 1.2.15
       '@iconify-json/heroicons':
+        specifier: ^1.2.2
+        version: 1.2.2
+      '@iconify-json/ic':
         specifier: ^1.2.2
         version: 1.2.2
       '@iconify-json/logos':
@@ -780,6 +783,9 @@ packages:
 
   '@iconify-json/heroicons@1.2.2':
     resolution: {integrity: sha512-qoW4pXr5kTTL6juEjgTs83OJIwpePu7q1tdtKVEdj+i0zyyVHgg/dd9grsXJQnpTpBt6/VwNjrXBvFjRsKPENg==}
+
+  '@iconify-json/ic@1.2.2':
+    resolution: {integrity: sha512-QmjwS3lYiOmVWgTCEOTFyGODaR/+689+ajep/VsrCcsUN0Gdle5PmIcibDsdmRyrOsW/E77G41UUijdbjQUofw==}
 
   '@iconify-json/logos@1.2.4':
     resolution: {integrity: sha512-XC4If5D/hbaZvUkTV8iaZuGlQCyG6CNOlaAaJaGa13V5QMYwYjgtKk3vPP8wz3wtTVNVEVk3LRx1fOJz+YnSMw==}
@@ -6711,6 +6717,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/heroicons@1.2.2':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/ic@1.2.2':
     dependencies:
       '@iconify/types': 2.0.0
 

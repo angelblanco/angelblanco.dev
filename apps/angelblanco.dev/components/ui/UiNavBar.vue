@@ -1,17 +1,17 @@
 <template>
   <div class="sticky top-0 z-30">
-    <nav class="navbar bg-base-100 border-b border-base-300 h-">
-      <div class="max-w-ui mx-auto gap-2 flex-1 flex items-center">
+    <nav class="bg-base-100">
+      <div class="p-4 max-w-ui mx-auto gap-2 flex-1 flex items-center">
         <div class="flex-grow md:flex-grow-0">
-          <NuxtLink to="/" class="btn btn-ghost text-lg lg:text-xl font-mono">
+          <NuxtLink to="/" class="btn btn-ghost p-2 text-lg lg:text-xl font-mono">
             angelblanco.dev
           </NuxtLink>
         </div>
 
-        <div class="hidden flex-1 md:flex gap-8 justify-center font-medium text-sm">
-          <NuxtLink v-for="menuEntry in menuEntries" :key="menuEntry.to" :to="menuEntry.to" class="hover:text-primary">
+        <div class="hidden flex-1 md:flex gap-8 justify-center font-semibold text-sm">
+          <NuxtLinkLocale v-for="menuEntry in menuEntries" :key="menuEntry.to" :to="menuEntry.to" class="hover:text-primary hover:bg-primary/5 rounded-field p-2">
             {{ menuEntry.label }}
-          </NuxtLink>
+          </NuxtLinkLocale>
         </div>
 
         <UiThemeSwitcher :icon-size="iconSize" />
@@ -29,7 +29,7 @@
   </div>
 
   <teleport v-if="isMenuOpen" to="body">
-    <div class="fixed inset-0 top-16 z-50 bg-base-200 md:hidden p-4 shadow-sm overflow-y-auto">
+    <div class="fixed inset-0 top-16 z-50 bg-base-200 md:hidden p-4 shadow-sm overflow-y-auto border-t border-base-300">
       <div class="divide-y divide-base-300">
         <NuxtLink v-for="menuEntry in menuEntries" :key="menuEntry.to" class="flex p-2 gap-2" :to="menuEntry.to">
           <Icon :name="menuEntry.icon" class="fill-current" :class="iconSize" />

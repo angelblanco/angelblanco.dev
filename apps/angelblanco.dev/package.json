@@ -13,13 +13,13 @@
   },
   "dependencies": {
     "@angelblanco/tailwind": "workspace:*",
-    "@iconify-json/codicon": "^1.2.15",
     "@nuxt/content": "^3.4.0",
     "@pinia/nuxt": "^0.10.1",
     "pinia": "^3.0.1"
   },
   "devDependencies": {
     "@angelblanco/tsconfig": "workspace:*",
+    "@iconify-json/codicon": "^1.2.15",
     "@iconify-json/heroicons": "^1.2.2",
     "@iconify-json/logos": "^1.2.4",
     "@nuxt/icon": "1.12.0",

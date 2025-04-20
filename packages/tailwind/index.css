@@ -2,10 +2,78 @@
 
 @plugin "@tailwindcss/typography";
 
-@plugin "daisyui" {
-  themes:
-    light --default,
-    dark --prefersdark;
+@plugin "daisyui";
+
+/* https://daisyui.com/theme-generator/#theme=eJx1k-tu4yAQhV8FWaq0KzUIhouhb0PscWPVMRHY2u5WffcluE3smvwzzHdm5szgj2p0Z6xeqqF_PU3Vc9X4wYdDbE64uT4clsDRRTxwxlLIvw3N6Vf6fiKMsN8_IVhB1pQZsWZUmWn8OOE43TjgiaOMaQJGUWPUWnEJ_dmFvze4zjAwQQRTVDFZgPcV7FXEpU0ioDWv16KICW_XNbTKNSQnQkkqmCniuypWZh9giJBAQW1krmnWbF3njhQQbji1HPbs3kXWMKkJt0AVbKyPOE_BDfctLs0wtQwVRAHeO4BFJJNIU7Fpqh87f28_Z-dpYwKo1vwn-GADTCeFFMn3dgNzMhzjPbtddmwJVzytixfgfQW9VFBJBNSKzXT-uDD24-sNNtkoN5YYSSXYAvto_HVNpKJabF4phuDDvX-Ws1tOIL0DrnfkPnd-ccwCAZ02_DX44Np-junFDdhMOX-aigp4Xke7Hoe2HDr692vg-zb2__BRshwrpTr60OKV5pf3fNHiZTpdoXwafR_x69Ri5-YhmZrCjM_VJWCHIaZf5a166dwQ8fM_ydNOlQ */
+@plugin "daisyui/theme" {
+  name: 'light';
+  default: true;
+  prefersdark: false;
+  color-scheme: 'light';
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0 0);
+  --color-base-300: oklch(95% 0 0);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(71% 0.203 305.504);
+  --color-primary-content: oklch(29% 0.149 302.717);
+  --color-secondary: oklch(65% 0.241 354.308);
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(77% 0.152 181.912);
+  --color-accent-content: oklch(27% 0.046 192.524);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(79% 0.209 151.711);
+  --color-success-content: oklch(26% 0.065 152.934);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(27% 0.077 45.635);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(25% 0.092 26.042);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/* https://daisyui.com/theme-generator/#theme=eJx1lNuOmzAQhl_FQqrUShvLMz7v2zhgGrQEIhvUbau-ex2zS2BNLpn5_jmbv9Xgrr56rRoX3qqXqh77MZxiffFb6-m02M8u-hMwljzjW19fvgP_RhhlaAgqoMrij680bmiETHORaEGVkgXNt7ReaE5QKmqEKeh6HCY_TKvCmqxgSFBoarjdKm6hu7rwe4V1LgYZJ5xJKpk4gIsMaO8iEDaJkGrQW1H0CW-2OZTMOQQQLgXlzBziZR_ic6pcIEW5k7m63rI6TwkkEjBALWDJll0skxWKgEUqcdf64OcpuH6FuV6XJi3VnB_AZQdq2QTPm5ZiV1U3tOOj_twrKIIc00nAV_DJCphKCsFT4_sVzKnjGB_R7bJkS0BC2hccwGWGpXglkwip5bvx_HJh6IafK2ww128sMYIKtAfss_lrTYSkiu-egQ9hDI_6WY5ugWA6BFAFWcbOJ8dsegMqrfhj8ME13RzTyfW-nnL8NBUZ_HXrbTvfN8eu8_h-d3xaY_fHPwuWfUehzmNo_J2G23s2NP42Xe5Q_hrGLvqPr8a3bu5TU63ro3-pbsG3PsT8N3qdwuz__QfTu1Ow */
+@plugin "daisyui/theme" {
+  name: 'dark';
+  default: false;
+  prefersdark: true;
+  color-scheme: 'dark';
+  --color-base-100: oklch(13% 0.028 261.692);
+  --color-base-200: oklch(21% 0.034 264.665);
+  --color-base-300: oklch(27% 0.033 256.848);
+  --color-base-content: oklch(98% 0.002 247.839);
+  --color-primary: oklch(71% 0.203 305.504);
+  --color-primary-content: oklch(29% 0.149 302.717);
+  --color-secondary: oklch(65% 0.241 354.308);
+  --color-secondary-content: oklch(94% 0.028 342.258);
+  --color-accent: oklch(77% 0.152 181.912);
+  --color-accent-content: oklch(27% 0.046 192.524);
+  --color-neutral: oklch(37% 0.034 259.733);
+  --color-neutral-content: oklch(96% 0.003 264.542);
+  --color-info: oklch(74% 0.16 232.661);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(79% 0.209 151.711);
+  --color-success-content: oklch(26% 0.065 152.934);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(27% 0.077 45.635);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(25% 0.092 26.042);
+  --radius-selector: 0.25rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
 }
 
 @theme {
@@ -14,5 +82,5 @@
   --font-mono: 'Geist Mono', 'monospace';
 
   /* Controlls the max-width of UI elements */
-  --container-ui: 80rem;
+  --container-ui: 60rem;
 }
