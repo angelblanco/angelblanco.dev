@@ -5,5 +5,9 @@
   "files": [
     "base.json",
     "histoire.json"
-  ]
+  ],
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  }
 }
