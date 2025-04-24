@@ -1,7 +1,7 @@
 <template>
   <UiHero
-    title="Angel Blanco"
-    description="👋 I am a software engineer and open source enthusiast."
+    title="Ángel Blanco"
+    description="👋 I am a software engineer."
   />
 </template>
 
