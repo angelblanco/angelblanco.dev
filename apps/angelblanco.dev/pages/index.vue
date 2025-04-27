@@ -1,10 +1,4 @@
 <template>
-  <UiHero
-    title="Ángel Blanco"
-    description="👋 I am a software engineer."
-  />
+  <HomeHero />
+  <HomeTech />
 </template>
-
-<script setup lang="ts">
-
-</script>

@@ -1,6 +1,14 @@
 {
   "Me": "Me",
+  "About Me": "About Me",
   "Blog": "Blog",
   "Projects": "Projects",
-  "Contact": "Contact"
+  "Contact": "Contact",
+  "Hello.": "Hello.",
+  "My name is": "My name is",
+  "I'm a": "I'm a",
+  "Software Engineer": "Software Engenieer",
+  "Personal website of": "Personal website of",
+  "Hosted and OpenSourced with": "Hosted and OpenSourced with",
+  "on GitHub": "on GitHub"
 }

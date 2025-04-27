@@ -15,6 +15,7 @@
         </div>
 
         <UiThemeSwitcher :icon-size="iconSize" />
+        <UiLocaleSwitcher :icon-size="iconSize" />
 
         <NuxtLink class="inline-flex btn btn-ghost btn-square" to="https://github.com/angelblanco/angelblanco.dev" target="_blank">
           <Icon name="codicon:github-alt" class="fill-current" :class="iconSize" />
@@ -55,7 +56,7 @@ interface MenuEntry {
   icon: string;
 }
 
-const menuEntries: MenuEntry[] = [
+const menuEntries = computed<MenuEntry[]>(() => [
   {
     to: '/blog',
     label: t('Blog'),
@@ -72,11 +73,6 @@ const menuEntries: MenuEntry[] = [
     label: t('Me'),
     icon: 'heroicons:identification',
   },
-  {
-    to: '/contact',
-    label: t('Contact'),
-    icon: 'heroicons:qr-code',
-  },
-];
+]);
 </script>
 ☺

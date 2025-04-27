@@ -2,29 +2,31 @@ interface SocialEntry {
   name: string;
   url: string;
   icon: string;
-  logo: string;
 }
 
-export default function useSocials(): { socials: SocialEntry[] } {
+interface SocialsComposable {
+  socials: SocialEntry[];
+  repoUrl: string;
+}
+
+export default function useSocials(): SocialsComposable {
   return {
+    repoUrl: 'https://github.com/angelblanco/angelblanco.dev',
     socials: [
       {
         name: 'GitHub',
         url: 'https://github.com/angelblanco',
-        icon: 'codicon:github-inverted',
-        logo: 'logos:github-icon',
+        icon: 'simple-icons:github',
       },
       {
         name: 'X.com',
         url: 'https://x.com/angelblancodev',
-        icon: 'codicon:twitter',
-        logo: 'logos:x',
+        icon: 'simple-icons:x',
       },
       {
         name: 'LinkedIn',
         url: 'https://www.linkedin.com/in/angelblanco-dev',
-        icon: 'logos:linkedin-icon',
-        logo: 'logos:linkedin-icon',
+        icon: 'simple-icons:linkedin',
       },
     ],
   };
