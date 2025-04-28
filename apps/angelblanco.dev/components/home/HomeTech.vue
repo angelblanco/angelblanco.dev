@@ -10,16 +10,14 @@ justify-center"
 
   <div class="max-w-2xl mx-auto text-pretty leading-relaxed">
     <p class="mb-8">
-      I'm a passionate <span class="font-extrabold gradient-text-alt2">Web</span> enthusiast. As a professional, I enjoy <span
-        class="font-bold gradient-text-alt"
-      >Team Management</span> as well as coding interactive web applications. With over 8 years in the
-      hospitality industry, I've designed <span class="font-extrabold gradient-text">Big Data</span> multi-tenant architectures and faced all
-      the challenges of scaling from a startup to a growth-stage company.
+      I'm a passionate <span class="font-extrabold gradient-text-alt2">Web</span> enthusiast with {{ hospitalityYears }}+ years in the hospitality industry.
+      I specialize in <span class="font-bold gradient-text-alt">team leadership</span> and building scalable web applications.
+      My experience includes designing <span class="font-extrabold gradient-text">Big Data</span> architectures and navigating the
+      challenges of scaling from startup to growth-stage.
     </p>
 
     <p>
-      Through the years, I've collaborated with many <span class="gradient-text-alt2 font-extrabold">awesome people</span> and
-      technologies.
+      I've collaborated with talented professionals and cutting-edge technologies to deliver impactful solutions.
     </p>
   </div>
 
@@ -69,6 +67,16 @@ cursor-pointer"
 const { technologies: entries, types } = useTechList();
 
 const selectedType = ref<TechType | null>(null);
+
+function calculateExperience() {
+  return new Date().getFullYear() - 2016;
+}
+
+const hospitalityYears = ref(calculateExperience());
+
+onMounted(() => {
+  hospitalityYears.value = calculateExperience();
+});
 
 function selectType(type: TechType) {
   if (selectedType.value === type) {
