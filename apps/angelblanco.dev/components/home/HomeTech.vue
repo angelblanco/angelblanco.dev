@@ -4,20 +4,17 @@
       class="max-w-ui overflow-hidden mx-auto text-4xl font-bold tracking-wide p-8 flex flex-col lg:flex-row flex-wrap items-center gap-4
 justify-center"
     >
-      Engineer Manager <Icon name="heroicons:arrow-path" class="size-12 animate-spin-slow text-base-content" /> Full Stack Developer
+      {{ $t('HomeTech.engineerManager') }} <Icon name="heroicons:arrow-path" class="size-12 animate-spin-slow text-base-content" /> {{ $t('HomeTech.fullStackDeveloper') }}
     </p>
   </div>
 
   <div class="max-w-2xl mx-auto text-pretty leading-relaxed">
     <p class="mb-8">
-      I'm a passionate <span class="font-extrabold gradient-text-alt2">Web</span> enthusiast with {{ hospitalityYears }}+ years in the hospitality industry.
-      I specialize in <span class="font-bold gradient-text-alt">team leadership</span> and building scalable web applications.
-      My experience includes designing <span class="font-extrabold gradient-text">Big Data</span> architectures and navigating the
-      challenges of scaling from startup to growth-stage.
+      {{ $t('HomeTech.paragraph1Start') }}<span class="font-extrabold gradient-text-alt2">{{ $t('HomeTech.web') }}</span>{{ $t('HomeTech.paragraph1Middle') }}<span class="font-bold gradient-text-alt">{{ $t('HomeTech.teamLeadership') }}</span>{{ $t('HomeTech.paragraph1End') }}<span class="font-extrabold gradient-text">{{ $t('HomeTech.bigData') }}</span>{{ $t('HomeTech.paragraph1End2') }}
     </p>
 
     <p>
-      I've collaborated with talented professionals and cutting-edge technologies to deliver impactful solutions.
+      {{ $t('HomeTech.paragraph2') }}
     </p>
   </div>
 

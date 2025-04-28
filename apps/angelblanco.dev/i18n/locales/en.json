@@ -7,8 +7,20 @@
   "Hello.": "Hello.",
   "My name is": "My name is",
   "I'm a": "I'm a",
-  "Software Engineer": "Software Engenieer",
+  "Software Engineer": "Software Engineer",
   "Personal website of": "Personal website of",
   "Hosted and OpenSourced with": "Hosted and OpenSourced with",
-  "on GitHub": "on GitHub"
+  "on GitHub": "on GitHub",
+  "HomeTech": {
+    "engineerManager": "Engineer Manager",
+    "fullStackDeveloper": "Full Stack Developer",
+    "paragraph1Start": "I'm a passionate ",
+    "web": "Web",
+    "paragraph1Middle": " enthusiast with ",
+    "teamLeadership": "team leadership",
+    "paragraph1End": " and building scalable web applications. My experience includes designing ",
+    "bigData": "Big Data",
+    "paragraph1End2": " architectures and navigating the challenges of scaling from startup to growth-stage.",
+    "paragraph2": "I've collaborated with talented professionals and cutting-edge technologies to deliver impactful solutions."
+  }
 }
