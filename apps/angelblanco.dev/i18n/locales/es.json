@@ -5,22 +5,10 @@
   "Projects": "Proyectos",
   "Contact": "Contacto",
   "Hello.": "Hola.",
-  "My name is": "Me llamo",
   "I'm a": "Soy",
+  "My name is": "Me llamo",
   "Software Engineer": "Ingeniero Informático",
   "Personal website of": "Página personal de",
   "Hosted and OpenSourced with": "Código OpenSource disponible con",
-  "on GitHub": "en GitHub",
-  "HomeTech": {
-    "engineerManager": "Ingeniero Manager",
-    "fullStackDeveloper": "Desarrollador Full Stack",
-    "paragraph1Start": "Soy un entusiasta de ",
-    "web": "Web",
-    "paragraph1Middle": " con ",
-    "teamLeadership": "liderazgo de equipos",
-    "paragraph1End": " y en la construcción de aplicaciones web escalables. Mi experiencia incluye el diseño de ",
-    "bigData": "Big Data",
-    "paragraph1End2": " arquitecturas y la navegación de los desafíos de escalar desde una startup hasta una etapa de crecimiento.",
-    "paragraph2": "He colaborado con profesionales talentosos y tecnologías de vanguardia para entregar soluciones impactantes."
-  }
+  "on GitHub": "en GitHub"
 }
