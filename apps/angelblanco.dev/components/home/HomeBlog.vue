@@ -27,7 +27,7 @@
   </div>
 
   <div class="max-w-ui mx-auto lg:border border-base-300 divide-y divide-base-300 mb-16">
-    <div v-for="article in articles" :key="article" class="p-3 flex gap-4 items-center">
+    <div v-for="article in articles" :key="article" class="p-3 flex gap-4 items-center hover:bg-base-200 cursor-pointer">
       <div class="flex-1">
         <div class="font-bold text-sm">
           {{ article }}
