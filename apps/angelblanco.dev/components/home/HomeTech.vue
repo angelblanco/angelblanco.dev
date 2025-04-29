@@ -8,7 +8,7 @@ justify-center"
     </p>
   </div>
 
-  <div class="max-w-2xl mx-auto text-pretty leading-relaxed">
+  <div class="max-w-ui mx-auto text-pretty leading-relaxed">
     <p class="mb-8">
       {{ $t('HomeTech.paragraph1Start') }}<span class="font-extrabold gradient-text-alt2">{{ $t('HomeTech.web') }}</span>{{ $t('HomeTech.paragraph1Middle') }}<span class="font-bold gradient-text-alt">{{ $t('HomeTech.teamLeadership') }}</span>{{ $t('HomeTech.paragraph1End') }}<span class="font-extrabold gradient-text">{{ $t('HomeTech.bigData') }}</span>{{ $t('HomeTech.paragraph1End2') }}
     </p>

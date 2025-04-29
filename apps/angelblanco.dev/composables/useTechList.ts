@@ -116,6 +116,11 @@ export default function useTechList(): TechList {
       type: TechType.Tools,
     },
     {
+      title: 'Figma',
+      icon: 'simple-icons:figma',
+      type: TechType.Tools,
+    },
+    {
       title: 'VSCode',
       icon: 'simple-icons:visualstudiocode',
       type: TechType.Tools,
