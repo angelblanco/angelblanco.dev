@@ -10,7 +10,17 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
+    '@nuxtjs/mdc',
   ],
+
+  mdc: {
+    components: {
+      prose: false,
+      map: {
+        strong: 'ProseCustomStrong',
+      },
+    },
+  },
 
   nitro: {
     preset: 'netlify',
@@ -41,8 +51,8 @@ export default defineNuxtConfig({
 
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', file: 'en.json' },
-      { code: 'es', language: 'es-ES', file: 'es.json' },
+      { code: 'en', language: 'en-US', file: 'en.yaml' },
+      { code: 'es', language: 'es-ES', file: 'es.yaml' },
     ],
     defaultLocale: 'en',
     bundle: {

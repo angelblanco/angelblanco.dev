@@ -5,15 +5,6 @@
   >
     <div class="max-w-[80rem]">
       <HomeHeroCard />
-
-      <div class="flex gap-6 justify-center w-full max-w-[200px] mx-auto">
-        <NuxtLinkLocale to="/about" class="btn btn-neutral btn-block">
-          {{ $t('About Me') }}
-        </NuxtLinkLocale>
-        <NuxtLinkLocale to="/blog" class="btn btn-primary btn-block">
-          {{ $t('Blog') }}
-        </NuxtLinkLocale>
-      </div>
     </div>
   </HomeHeroVortex>
 </template>
