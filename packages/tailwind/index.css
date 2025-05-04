@@ -94,16 +94,30 @@
   animation: spin 3s linear infinite;
 }
 
-.gradient-text {
+@utility gradient-text {
   @apply bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary;
 }
-.gradient-text-alt {
+@utility gradient-text-alt {
   @apply bg-clip-text text-transparent bg-gradient-to-br from-info to-accent;
 }
 
-.gradient-text-alt2 {
+@utility gradient-text-alt2 {
   @apply bg-clip-text text-transparent bg-gradient-to-br from-warning to-error;
 }
+
+.md-bold-styled .strong-child-1 {
+  @apply gradient-text;
+}
+
+.md-bold-styled .strong-child-2 {
+  @apply gradient-text-alt;
+}
+
+.md-bold-styled .strong-child-3 {
+  @apply gradient-text-alt2;
+}
+
+
 /* https://daisyui.com/theme-generator/#theme=eJx1lOtu4yAQhV8FWVqplRrEDBdD34bYeGPVsSOw1XZX--5LoE3s4vz0zHeGOTPgv9Voz656rVrr36qXqpmGyR9Cc3Lr6OGQ40cb3AEYi5npbWhOTyB-EUYZkwS1pBr5808aVzRCplWmtSxovqbrO60o42XtZhpnN843hdFZgQRFTTU3a8XF92frP29wnZpBxglnkkomduDiBDRXEQgTRUhrqNei4CLers9QMp0hgHApKGd6Fy995KmiJlwgRbmR2aZZs3WaEkgkoIEawJItXeTJCkXAIJW4sT66ZfZ2uME8w8Dz0pjcgUsHKm8iipSgUmy66sduuvefvEJcMkeqFPwEH6yAqagQPBrfrmCJjkO4Vzd5yYaAhLgv2IHLE3LzSkYRUsM343m3fuzH3zdYY-pfG6IFFWh22Efzr2siJFV8M1Hn_eTv_bNU3QDBeBFAFWRZO105ZuIbiI_me_Detv0S4pUbXDOn-nEq0rvzOtv1bmj3U8fp45r4job-j3tULOX2Sh0n37orDZePFGjdZT5dofQ1Tn1wX1-t6-wyRFOdHYJ7qS7edc6H9Dd6nf3i_v0HrYhTpQ */
 
 /* @plugin "daisyui/theme" { */
