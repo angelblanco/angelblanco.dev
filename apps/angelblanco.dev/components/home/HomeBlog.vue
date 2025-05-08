@@ -47,7 +47,7 @@
   <div class="max-w-ui mx-auto flex lg:justify-end">
     <NuxtLinkLocale
       to="/blog"
-      class="font-medium tracking-wide text-sm text-base-content/80 px-2 lg:p-0 mb-16 text-primary hover:underline"
+      class="font-medium tracking-wide text-sm px-2 lg:p-0 mb-16 text-primary hover:underline"
     >
       Ver más
     </NuxtLinkLocale>

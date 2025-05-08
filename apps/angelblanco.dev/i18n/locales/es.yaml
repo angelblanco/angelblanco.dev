@@ -10,3 +10,21 @@ Software Engineer: Ingeniero Informático
 Personal website of: Página personal de
 Hosted and OpenSourced with: Código OpenSource disponible con
 on GitHub: en GitHub
+homeResumeTitle: Engeineer Manager - Full Stack Architect
+homeResumeMd: "\
+  Soy un **ingeniero informático** con más de 8 años de experiencia en el sector tecnológico-turístico. Me he especializado en el **liderazgo de equipos** y en el desarrollo de productos web.
+  \n\n
+  Tengo experiencia en el **diseño de arquitecturas** orientadas a Big Data y en el acompañamiento de equipos técnicos a lo largo de su carrera profesional.
+  \n\n
+  He colaborado con equipos internacionales, liderando proyectos tanto en inglés como en español. Mis dos pilares fundamentales son el **testing automatizado** y el **desarrollo ágil**, y me esfuerzo por facilitar su adopción dentro de los equipos que lidero.
+  \n\n
+  Disfruto programando en **TypeScript** y **PHP**, siendo **Vue** y **Laravel** mis frameworks preferidos. En el ámbito de la infraestructura, diseño soluciones escalables para entornos basados en **Kubernetes**, integrando bases de datos SQL y NoSQL como **MongoDB**, **PostgreSQL** y **Redis**.
+  \n\n
+  Me gusta probar tecnologías open-source, y en mi tiempo libre disfruto de tocar la guitarra, la carpintería y la electrónica.
+  \n\n
+  No dudes en ponerte en contacto conmigo o en revisar el código de esta web.
+  \n\n
+  ¡Gracias por tu tiempo!"
+
+homeTechStackTitle: Mis preferencias tecnológicas
+homeCaption: ¡Sí, ese soy yo!

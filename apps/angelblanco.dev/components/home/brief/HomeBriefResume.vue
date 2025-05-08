@@ -19,7 +19,7 @@
         <div>
           <div class="h-64 md:w-auto bg-base-300 w-full" alt="Ángel Blanco" />
           <div class="text-center p-2 text-base-content/80 text-sm">
-            Yep, that's me.
+            {{ $t('homeCaption') }}
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-ui mx-auto mb-10 text-base-content/85">
     <p class="max-w-ui mx-auto text-4xl lg:text-5xl tracking-tighter mb-4 flex flex-wrap gap-4">
-      {{ $t('homeTechStackTitle')}}
+      {{ $t('homeTechStackTitle') }}
     </p>
     <div class="flex flex-wrap text-xs gap-4 mb-8">
       <button
