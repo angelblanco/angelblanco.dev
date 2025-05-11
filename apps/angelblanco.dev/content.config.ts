@@ -2,16 +2,10 @@ import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
 export default defineContentConfig({
   collections: {
-    content: defineCollection({
-      type: 'page',
-      source: '**/*.md',
-    }),
-
     blog: defineCollection({
       type: 'page',
-      source: 'blog/*.md',
+      source: 'blog/**/*.md',
       schema: z.object({
-        id: z.number().int(),
         title: z.string().min(10),
         intro: z.string().min(50).max(200),
         share_tweet: z.string(),

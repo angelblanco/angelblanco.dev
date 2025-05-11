@@ -35,6 +35,7 @@ export default defineNuxtConfig({
   },
 
   colorMode: {
+    classSuffix: '',
     dataValue: 'theme',
   },
 
@@ -71,4 +72,17 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+           theme: {
+            default: 'github-light',
+            dark: 'github-dark',
+          }
+        }
+      }
+    }
+  }
 });
