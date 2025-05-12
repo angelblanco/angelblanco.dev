@@ -17,7 +17,7 @@ Building my web again, means a technical-rebuild and a brain-rebuild. It's almos
 - Find cool frontend libraries and trends.
 - Learn VIM motions and get a fully functional [Neovim](https://neovim.io/) setup.
 
-```typescript
+```js [file.js]{2} meta-info=val
 const hello = {};
 
 const b = 2+3;
