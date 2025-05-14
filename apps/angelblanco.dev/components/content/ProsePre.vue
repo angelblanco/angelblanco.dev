@@ -29,7 +29,6 @@
 
 <script setup lang="ts">
 import { useClipboard } from '@vueuse/core';
-import { computed, ref } from 'vue';
 
 interface CodeBlockProps {
   code?: string;

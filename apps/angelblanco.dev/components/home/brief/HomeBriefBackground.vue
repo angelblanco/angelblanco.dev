@@ -17,8 +17,6 @@
 
 <script lang="ts" setup>
 import { cn } from '@/lib/utils';
-import { computed, defineProps } from 'vue';
-
 interface GridPatternProps {
   width?: number;
   height?: number;
