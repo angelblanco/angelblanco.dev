@@ -15,9 +15,9 @@
           <a :href="githubSocial.url" class="btn">{{ githubSocial.name }}</a>
         </div>
       </div>
-      <div class="md:col-span-2 flex justify-center md:block order-first md:order-last">
-        <div>
-          <div class="h-64 md:w-auto bg-base-300 w-full" alt="Ángel Blanco" />
+      <div class="md:col-span-2 order-first md:order-last flex flex-col items-center">
+        <div class="shadow-2xl border-8 bg-base-200 border-base-200">
+          <img src="~/assets/images/ablanco_alt_2.webp" alt="Ángel Blanco" class="w-full max-w-84 md:max-w-full">
           <div class="text-center p-2 text-base-content/80 text-sm">
             {{ $t('homeCaption') }}
           </div>
