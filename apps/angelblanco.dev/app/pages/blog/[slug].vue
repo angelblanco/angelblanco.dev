@@ -8,6 +8,10 @@
       Created on: {{ currentPost.date }}
     </div>
 
+    <div v-if="hasAlterntiveVersion" class="text-xs">
+      TODO: link to alternative version
+    </div>
+
     <div class="prose max-w-none lg:prose-lg">
       <ContentRenderer v-if="currentPost" :value="currentPost" />
     </div>
@@ -19,17 +23,18 @@ const route = useRoute();
 
 const { slug } = route.params;
 const { locale } = useI18n();
+const hasAlterntiveVersion = ref(false);
 
 const { data: esPost } = await useAsyncData(() => queryCollection('blog').path(`/blog/es/${slug}`).first());
 const { data: enPost } = await useAsyncData(() => queryCollection('blog').path(`/blog/en/${slug}`).first());
 
 let currentPost = enPost;
 let isCurrentLocale = locale.value === 'en';
-let hasAlterntiveVersion = isCurrentLocale && esPost;
+hasAlterntiveVersion.value = isCurrentLocale && !!esPost;
 if (locale.value === 'es' || !enPost) {
   currentPost = esPost;
   isCurrentLocale = locale.value === 'es';
-  hasAlterntiveVersion = isCurrentLocale && enPost;
+  hasAlterntiveVersion.value = isCurrentLocale && !!enPost;
 }
 
 useSeoMeta({

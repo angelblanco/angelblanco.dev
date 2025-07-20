@@ -17,11 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { cn } from '@/lib/utils';
 import { templateRef } from '@vueuse/core';
 import { Motion } from 'motion-v';
 import { createNoise3D } from 'simplex-noise';
 import { onMounted, onUnmounted } from 'vue';
+import { cn } from '@/lib/utils';
 
 interface VortexProps {
   class?: string;

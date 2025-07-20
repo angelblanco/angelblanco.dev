@@ -20,10 +20,10 @@ Building my web again, means a technical-rebuild and a brain-rebuild. It's almos
 ```js [file.js]{2} meta-info=val
 const hello = {};
 
-const b = 2+3;
+const b = 2 + 3;
 
-function () {
-  wow
+function wow() {
+  const wow = 2;
 }
 ```
 
