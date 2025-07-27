@@ -23,7 +23,7 @@
     "@angelblanco/eslint": "workspace:*",
     "@release-it/conventional-changelog": "^10.0.1",
     "@types/node": "^22.16.5",
-    "eslint": "^9.31.0",
+    "eslint": "^9.32.0",
     "release-it": "^19.0.4",
     "turbo": "^2.5.5"
   },
