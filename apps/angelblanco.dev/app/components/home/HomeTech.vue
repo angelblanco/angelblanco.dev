@@ -17,7 +17,7 @@
     <div class="flex flex-wrap gap-4 items-center">
       <div
         v-for="(entry, index) in entries" :key="entry.title" class="border border-base-300 p-4 transition hover:border-primary hover:drop-shadow hover:drop-shadow-primary bg-base-100/90 group
-cursor-pointer" :class="selectedType && selectedType !== entry.type ? 'opacity-45' : ''"
+cursor-pointer" :class="selectedType && selectedType !== entry.type ? 'opacity-45 blur-xs' : ''"
         @click="selectType(entry.type)"
       >
         <div class="flex gap-4 items-center">

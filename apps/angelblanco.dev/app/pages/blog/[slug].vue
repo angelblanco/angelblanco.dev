@@ -1,45 +1,49 @@
 <template>
-  <UiPageNotFound v-if="!currentPost" />
+  <UiPageNotFound v-if="!page.post" />
   <div v-else class="min-h-screen-content mx-auto max-w-ui p-4">
-    <h1 class="tracking-tight font-medium text-5xl mt-5 text-pretty">
-      {{ currentPost.title }}
-    </h1>
-    <div class="mb-10 mt-4 text-sm">
-      Created on: {{ currentPost.date }}
-    </div>
-
-    <div v-if="hasAlterntiveVersion" class="text-xs">
-      TODO: link to alternative version
-    </div>
+    <BlogHeader :post="page.post" :alternative-locale="page.alternativeLocale" />
 
     <div class="prose max-w-none lg:prose-lg">
-      <ContentRenderer v-if="currentPost" :value="currentPost" />
+      <ContentRenderer v-if="page.post" :value="page.post" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { BlogCollectionItem } from '@nuxt/content';
+
 const route = useRoute();
 
 const { slug } = route.params;
 const { locale } = useI18n();
-const hasAlterntiveVersion = ref(false);
 
 const { data: esPost } = await useAsyncData(() => queryCollection('blog').path(`/blog/es/${slug}`).first());
 const { data: enPost } = await useAsyncData(() => queryCollection('blog').path(`/blog/en/${slug}`).first());
 
-let currentPost = enPost;
-let isCurrentLocale = locale.value === 'en';
-hasAlterntiveVersion.value = isCurrentLocale && !!esPost;
-if (locale.value === 'es' || !enPost) {
-  currentPost = esPost;
-  isCurrentLocale = locale.value === 'es';
-  hasAlterntiveVersion.value = isCurrentLocale && !!enPost;
-}
+const page = computed<{
+  post: BlogCollectionItem | null;
+  alternativeLocale: 'es' | 'en' | null;
+}>(() => {
+  let post = locale.value === 'en' ? enPost.value ?? null : esPost.value ?? null;
+
+  let alternativePost: BlogCollectionItem | null = locale.value === 'es' ? esPost.value ?? null : enPost.value ?? null;
+
+  if (!post && alternativePost) {
+    post = alternativePost;
+    alternativePost = null;
+  }
+
+  const alternativeLocale = alternativePost ? (locale.value === 'en' ? 'es' : 'en') : null;
+
+  return {
+    post: post ?? null,
+    alternativeLocale,
+  };
+});
 
 useSeoMeta({
-  title: currentPost.value?.title,
-  description: currentPost.value?.description,
-  ogImage: currentPost.value?.image,
+  title: page.value.post?.title,
+  description: page.value.post?.description,
+  ogImage: page.value.post?.image,
 });
 </script>

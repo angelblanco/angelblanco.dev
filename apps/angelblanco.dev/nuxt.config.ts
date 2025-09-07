@@ -61,6 +61,10 @@ export default defineNuxtConfig({
     },
   },
 
+  experimental: {
+    componentIslands: true, // For MDC translation to work
+  },
+
   app: {
     head: {
       link: [

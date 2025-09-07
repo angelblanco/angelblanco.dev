@@ -1,7 +1,7 @@
 export enum TechType {
-  Db = 'db',
-  Language = 'lang',
-  Framework = 'framework',
+  Db = 'dbs',
+  Language = 'langs',
+  Framework = 'frameworks',
   Testing = 'testing',
   DevOps = 'devops',
   Tools = 'tools',
