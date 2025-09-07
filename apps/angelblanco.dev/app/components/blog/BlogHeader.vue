@@ -7,6 +7,8 @@
       {{ createdAt }} - {{ $t('blogAuthoredBy') }}
     </div>
 
+    <BlogToc v-if="props.post.body.toc" :toc="props.post.body.toc" />
+
     <div v-if="props.alternativeLocale">
       <SwitchLocalePathLink :locale="props.alternativeLocale">
         {{ $t('blogAlternativeLink') }} <Icon name="i-heroicons:language" class="size-5" />
@@ -16,8 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { BlogCollectionItem } from '@nuxt/content';
-
 const props = defineProps<{
   post: BlogCollectionItem;
   alternativeLocale?: 'es' | 'en' | null;

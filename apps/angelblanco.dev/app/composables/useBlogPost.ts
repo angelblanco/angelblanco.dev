@@ -1,35 +1,26 @@
-import { useI18n } from '#i18n';
+import type { BlogEnCollectionItem } from '@nuxt/content';
 
-export default async function useBlogPost(slug: string) {
-  const { locale } = useI18n();
+export type BlogCollectionItem = BlogEnCollectionItem;
 
-  const { data: esContent } = await useAsyncData(
-    `${slug}_es`,
-    () => queryCollection('blog').path(`/blog/es/${slug}`).first(),
-    {
-      deep: true,
-    },
-  );
-  const { data: enContent } = await useAsyncData(
-    `${slug}_en`,
-    () => queryCollection('blog').path(`/blog/en/${slug}`).first(),
-    {
-      deep: true,
-    },
-  );
+export default function useBlogPost(path: string) {
+  const { queryBlogCollection, queryAlternativeBlogCollection, blogCollection, alternativeBlogCollection } = useBlog();
+  const { alternativeLocale } = useLocale();
 
-  let postContent = enContent;
-  let isCurrentLocale = locale.value === 'en';
-  let hasAlterntiveVersion = isCurrentLocale && esContent;
-  if (locale.value === 'es' || !enContent) {
-    postContent = esContent;
-    isCurrentLocale = locale.value === 'es';
-    hasAlterntiveVersion = isCurrentLocale && enContent;
+  const post = ref<BlogCollectionItem>();
+  const alternativePost = ref<BlogCollectionItem>();
+
+  async function loadPost() {
+    const { data: dataPost } = await useAsyncData(`${blogCollection}${path}`, () => queryBlogCollection().path(path).first());
+    post.value = dataPost.value ?? undefined;
+
+    const { data: dataAlternativePost } = await useAsyncData(alternativeBlogCollection + path, () => queryAlternativeBlogCollection().path(path).first());
+    alternativePost.value = dataAlternativePost.value ?? undefined;
   }
 
   return {
-    postContent,
-    isCurrentLocale,
-    hasAlterntiveVersion,
+    loadPost,
+    post,
+    alternativePost,
+    alternativeLocale: computed(() => alternativePost ? alternativeLocale.value : null),
   };
 }

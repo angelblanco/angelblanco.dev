@@ -56,9 +56,6 @@ export default defineNuxtConfig({
       { code: 'es', language: 'es-ES', file: 'es.yaml' },
     ],
     defaultLocale: 'en',
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
   },
 
   experimental: {

@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { templateRef } from '@vueuse/core';
 import { Motion } from 'motion-v';
 import { createNoise3D } from 'simplex-noise';
 import { onMounted, onUnmounted } from 'vue';
@@ -61,8 +60,8 @@ const particleProps = shallowRef<Float32Array | null>(null);
 const center = ref<[number, number]>([0, 0]);
 const ctx = shallowRef<CanvasRenderingContext2D | null>(null);
 
-const canvasRef = templateRef<HTMLCanvasElement | null>('canvasRef');
-const containerRef = templateRef<HTMLElement | null>('containerRef');
+const canvasRef = useTemplateRef<HTMLCanvasElement | null>('canvasRef');
+const containerRef = useTemplateRef<HTMLElement | null>('containerRef');
 const { base100: backgroundColor } = useAppColors();
 
 const particleCache = {
@@ -129,18 +128,18 @@ function updateParticle(i: number) {
     return;
 
   const canvas = canvasRef.value;
-  const props = particleProps.value;
+  const particlePropsValue = particleProps.value;
   const context = ctx.value;
 
-  particleCache.x = props[i];
-  particleCache.y = props[i + 1];
-  particleCache.vx = props[i + 2];
-  particleCache.vy = props[i + 3];
-  particleCache.life = props[i + 4];
-  particleCache.ttl = props[i + 5];
-  particleCache.speed = props[i + 6];
-  particleCache.radius = props[i + 7];
-  particleCache.hue = props[i + 8];
+  particleCache.x = particlePropsValue[i] ?? 0;
+  particleCache.y = particlePropsValue[i + 1] ?? 0;
+  particleCache.vx = particlePropsValue[i + 2] ?? 0;
+  particleCache.vy = particlePropsValue[i + 3] ?? 0;
+  particleCache.life = particlePropsValue[i + 4] ?? 0;
+  particleCache.ttl = particlePropsValue[i + 5] ?? 0;
+  particleCache.speed = particlePropsValue[i + 6] ?? 0;
+  particleCache.radius = particlePropsValue[i + 7] ?? 0;
+  particleCache.hue = particlePropsValue[i + 8] ?? 0;
 
   const n
     = noise3D(particleCache.x * X_OFF, particleCache.y * Y_OFF, tick.value * Z_OFF)
@@ -165,11 +164,11 @@ function updateParticle(i: number) {
   context.stroke();
   context.restore();
 
-  props[i] = nextX;
-  props[i + 1] = nextY;
-  props[i + 2] = nextVx;
-  props[i + 3] = nextVy;
-  props[i + 4] = particleCache.life + 1;
+  particlePropsValue[i] = nextX;
+  particlePropsValue[i + 1] = nextY;
+  particlePropsValue[i + 2] = nextVx;
+  particlePropsValue[i + 3] = nextVy;
+  particlePropsValue[i + 4] = particleCache.life + 1;
 
   if (
     nextX > canvas.width

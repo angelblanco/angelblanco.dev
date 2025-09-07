@@ -3,7 +3,7 @@ title: 'Rebuilding my dev portfolio in 2025'
 date: '2025-05-11'
 ---
 
-On 2020, the day after Vue 3 was realeased, I started coding my first webpage with Svelte and Sapper (now renamed as Svelte Kit). The following years and months were a total madness in Vue ecosystem: many existing repos went legacy, the migration from Vue 2 to Vue 3 was a bing pain, and I wasn't really sure if the framework was going to survive or not. At that time, it made sense.
+On 2020, the day after Vue 3 was realeased, I started coding my first webpage with Svelte and Sapper (now renamed as Svelte Kit). The following years and months were a total madness in Vue ecosystem: many existing repos went legacy, the migration from Vue 2 to Vue 3 was a bing pain, and I wasn't really sure if the framework was going to survive or not. At that time, it made sense to go on and try Svelte.
 
 But 5 years are gone, and now the Vue 3 ecosystem is **amazing**, composition API, Typescript and tooling are robust and AI is about to take all developer jobs in the planet. So after the first release of [angelblanco.dev](https://angelblanco.dev) it's time to rebuild my own page from scratch.
 
@@ -52,7 +52,7 @@ hello(); // EOF
 
 I choose `pnpm` over `yarn` mainly to try a different package manager. I don't really fell any remarkable advantage of one over another for most scenarios.
 
-During development, when CI wasn't done I experimented a couple of inconsistencies when working with two different computers, even when I have a lock file. This things had happened to me using `yarn` over the years, so it's not a big call!
+During development, when CI wasn't done I experimented a couple of inconsistencies when working with two different computers, even when I have a lock file. Similar problems had happened to me using `yarn` over the years, so it's not a big call!
 
 ### Tailwind and DaisyUI over Bulma CSS or others
 
@@ -60,23 +60,23 @@ Tailwind 4 is brand new, and DaisyUI already supports it. The decission was a no
 
 - DaisyUI adds the theming and let me opt-in to certain components.
 - I want to have full control of the UI of my page and create custom variations without forcing myself to use premade CSS or think about other people variables.
-- I want to have certain utilities like buttons, swaps, etc, premade.
+- I also want to have the choice to opt-in for certain pre-made utilities that will do the trick in most scenarios like buttons, swaps, etc.
 
-Back in 2020, I choose Bulma CSS, an awesome CSS framework, but right now styling without TailwindCSS makes me slower and reduced the amount of time given to my creative process.
+Back in 2020, I choose Bulma CSS, an awesome CSS framework, but right now styling without TailwindCSS makes me slower at coding, reducing the amount of time given to my creative process.
 
 ### Why not Svelte Kit?
 
-I really like Svelte, it's fast, is simple and many of the ideas of this framework where then merged with into Vue and viceversa. However the amount of already made plugins for nuxt and the ease of development (once you have everything installed and configured) cannot be easily achieved.
+I really like Svelte, it's fast, it's simple and many of the ideas of the framework where then merged into Vue and viceversa. However the amount of already made plugins for nuxt and the ease of development (once you have everything installed and configured) cannot be easily achieved.
 
 One clear example about this is [Nuxt Content](https://content.nuxt.com/), with Svelte, to achieve a similar thing you will probably need to code this logic into your server by your own. I learned a lot doing that on the first version, however i don't relly want to mantain that on my spare time, because that will stop me from actually writing posts in the blog.
 
 ### Why Nuxt?
 
-I mainly code with [Vue](https://vuejs.org/), [Typescript](https://www.typescriptlang.org/) and [Laravel](https://laravel.com/) at my job. Altough I've tested Nuxt several times, I've never completed a whole project going live. It's time to learn.
+I mainly code with [Vue](https://vuejs.org/), [Typescript](https://www.typescriptlang.org/) and [Laravel](https://laravel.com/) at my job. Altough I've tested Nuxt several times, I've never completed a whole project. It's time to learn.
 
 ## Did AI help in the creation of this page?
 
-Yes, of course! But it also stole a lot of time on interaction and context switching.
+Yes, of course! But it also stole a lot of time. I love [Aider](https://aider.chat/) and have spent quite sometime trying to make it work in my own development process. However, I set up the pilars for developing onto this project myself.
 
 ## What's next?
 
