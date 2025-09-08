@@ -26,7 +26,7 @@ const { data: posts } = await useAsyncData(
   route.path,
   () => {
     return queryBlogCollection()
-      // .select('path', 'title', 'description', 'date', 'id')
+      .select('path', 'title', 'description', 'date', 'id')
       .order('date', 'DESC')
       .all();
   },

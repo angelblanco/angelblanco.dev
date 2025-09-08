@@ -35,5 +35,6 @@ export default function useSocials() {
     getSocialByName(name: SocialName): SocialEntry {
       return socials.find(s => s.name === name) as SocialEntry;
     },
+    githubUrl: socials.find(v => v.name === SocialName.GitHub)?.url ?? '',
   };
 }

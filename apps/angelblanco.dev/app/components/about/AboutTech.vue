@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-ui mx-auto mb-10 text-base-content/85">
     <p class="max-w-ui mx-auto text-4xl lg:text-5xl tracking-tighter mb-4 flex flex-wrap gap-4">
-      {{ $t('homeTechStackTitle') }}
+      {{ $t('aboutTechStackTitle') }}
     </p>
     <div class="flex flex-wrap text-xs gap-4 mb-8">
       <button
@@ -16,7 +16,7 @@
 
     <div class="flex flex-wrap gap-4 items-center">
       <div
-        v-for="(entry, index) in entries" :key="entry.title" class="border border-base-300 p-4 transition hover:border-primary hover:drop-shadow hover:drop-shadow-primary bg-base-100/90 group
+        v-for="(entry, index) in entries" :key="entry.title" class="border border-base-300 p-4 transition hover:border-primary hover:drop-shadow hover:drop-shadow-primary hover:opacity-100 hover:blur-none bg-base-100/90 group
 cursor-pointer" :class="selectedType && selectedType !== entry.type ? 'opacity-45 blur-xs' : ''"
         @click="selectType(entry.type)"
       >

@@ -1,6 +1,8 @@
 ---
 title: 'Rebuilding my dev portfolio in 2025'
-date: '2025-05-11'
+date: '2025-10-01'
+tags: ['nuxt', 'vue', 'svelte']
+post_id: 1
 ---
 
 On 2020, the day after Vue 3 was realeased, I started coding my first webpage with Svelte and Sapper (now renamed as Svelte Kit). The following years and months were a total madness in Vue ecosystem: many existing repos went legacy, the migration from Vue 2 to Vue 3 was a bing pain, and I wasn't really sure if the framework was going to survive or not. At that time, it made sense to go on and try Svelte.

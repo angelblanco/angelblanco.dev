@@ -8,7 +8,7 @@ export enum TechType {
 };
 
 export interface TechEntry {
-  title: string;
+  title: TechName;
   icon: string;
   type: TechType;
 }
@@ -18,120 +18,152 @@ export interface TechList {
   types: TechType[];
 }
 
+export enum TechName {
+  Vue = 'Vue',
+  Nuxt = 'Nuxt',
+  Laravel = 'Laravel',
+  NodeJS = 'NodeJS',
+  Tailwind = 'Tailwind CSS',
+  Typescript = 'Typescript',
+  PHP = 'PHP',
+  Javascript = 'Javascript',
+  Vitest = 'Vitest',
+  Playwright = 'Playwright',
+  MongoDB = 'MongoDB',
+  Postgresql = 'Postgresql',
+  Redis = 'Redis',
+  RabbitMQ = 'RabbitMQ',
+  Docker = 'Docker',
+  Jenkins = 'Jenkins',
+  GithubActions = 'Github Actions',
+  Grafana = 'Grafana',
+  Jira = 'Jira',
+  Figma = 'Figma',
+  VSCode = 'VSCode',
+  PHPStorm = 'PHPStorm',
+  NeoVIM = 'NeoVIM',
+  Linux = 'Linux',
+}
+
 export default function useTechList(): TechList {
   const technologies: TechEntry[] = [
     {
-      title: 'Vue',
+      title: TechName.Vue,
       icon: 'simple-icons:vuedotjs',
       type: TechType.Framework,
     },
     {
-      title: 'Nuxt',
+      title: TechName.Nuxt,
       icon: 'simple-icons:nuxtdotjs',
       type: TechType.Framework,
     },
     {
-      title: 'Laravel',
+      title: TechName.Laravel,
       icon: 'simple-icons:laravel',
       type: TechType.Framework,
     },
     {
-      title: 'NodeJS',
+      title: TechName.NodeJS,
       icon: 'simple-icons:nodedotjs',
       type: TechType.Framework,
     },
     {
-      title: 'Tailwind CSS',
+      title: TechName.Tailwind,
       icon: 'simple-icons:tailwindcss',
       type: TechType.Framework,
     },
     {
-      title: 'Typescript',
+      title: TechName.Typescript,
       icon: 'simple-icons:typescript',
       type: TechType.Language,
     },
     {
-      title: 'PHP',
+      title: TechName.PHP,
       icon: 'simple-icons:php',
       type: TechType.Language,
     },
     {
-      title: 'Javascript',
+      title: TechName.Javascript,
       icon: 'simple-icons:javascript',
       type: TechType.Language,
     },
     {
-      title: 'Vitest',
+      title: TechName.Vitest,
       icon: 'simple-icons:vitest',
       type: TechType.Testing,
     },
     {
-      title: 'Playwright',
+      title: TechName.Playwright,
       icon: 'simple-icons:playwright',
       type: TechType.Testing,
     },
     {
-      title: 'MongoDB',
+      title: TechName.MongoDB,
       icon: 'simple-icons:mongodb',
       type: TechType.Db,
     },
     {
-      title: 'Postgresql',
+      title: TechName.Postgresql,
       icon: 'simple-icons:postgresql',
       type: TechType.Db,
     },
     {
-      title: 'Redis',
+      title: TechName.Redis,
       icon: 'simple-icons:redis',
       type: TechType.Db,
     },
     {
-      title: 'RabbitMQ',
+      title: TechName.RabbitMQ,
       icon: 'simple-icons:rabbitmq',
       type: TechType.Db,
     },
     {
-      title: 'Docker',
+      title: TechName.Linux,
+      icon: 'simple-icons:linux',
+      type: TechType.DevOps,
+    },
+    {
+      title: TechName.Docker,
       icon: 'simple-icons:docker',
       type: TechType.DevOps,
     },
     {
-      title: 'Jenkins',
+      title: TechName.Jenkins,
       icon: 'simple-icons:jenkins',
       type: TechType.DevOps,
     },
     {
-      title: 'Github Actions',
+      title: TechName.GithubActions,
       icon: 'simple-icons:githubactions',
       type: TechType.DevOps,
     },
     {
-      title: 'Grafana',
+      title: TechName.Grafana,
       icon: 'simple-icons:grafana',
       type: TechType.DevOps,
     },
     {
-      title: 'Jira',
+      title: TechName.Jira,
       icon: 'simple-icons:jira',
       type: TechType.Tools,
     },
     {
-      title: 'Figma',
+      title: TechName.Figma,
       icon: 'simple-icons:figma',
       type: TechType.Tools,
     },
     {
-      title: 'VSCode',
+      title: TechName.VSCode,
       icon: 'simple-icons:visualstudiocode',
       type: TechType.Tools,
     },
     {
-      title: 'PHPStorm',
+      title: TechName.PHPStorm,
       icon: 'simple-icons:phpstorm',
       type: TechType.Tools,
     },
     {
-      title: 'NeoVIM',
+      title: TechName.NeoVIM,
       icon: 'simple-icons:neovim',
       type: TechType.Tools,
     },

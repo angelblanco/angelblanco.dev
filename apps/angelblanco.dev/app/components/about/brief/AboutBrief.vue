@@ -1,13 +1,12 @@
 <template>
   <div class="relative w-full overflow-hidden">
-    <HomeBriefBackground
+    <AboutBriefBackground
       :squares="squares"
       class-name="z-0 skew-y-12 [mask-image:radial-gradient(400px_circle_at_center,white,transparent)] "
     />
 
-    <!-- Contenido por delante -->
     <div class="relative z-1">
-      <HomeBriefResume />
+      <AboutBriefResume />
     </div>
   </div>
 </template>

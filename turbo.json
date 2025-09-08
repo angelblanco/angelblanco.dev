@@ -6,11 +6,10 @@
       "outputs": [
         "dist/**",
         ".output/**",
-        ".histoire/**",
         "**/.vitepress/dist/**"
       ]
     },
-    "generate" : {
+    "generate": {
       "dependsOn": ["^generate"],
       "outputs": [
         "dist/**",
@@ -21,6 +20,9 @@
       "outputs": []
     },
     "lint:fix": {
+      "outputs": []
+    },
+    "typecheck": {
       "outputs": []
     },
     "dev": {

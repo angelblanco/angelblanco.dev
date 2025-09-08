@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-10 mr-5 lg:m-0">
+  <div v-if="latestPost" class="ml-10 mr-5 lg:m-0">
     <div class="max-w-ui mx-auto mb-15 lg:hover:scale-105 transition relative cursor-pointer">
       <div class="absolute shadow-lg top-2 right-2 -bottom-2 -left-2 bg-primary z-2" />
       <div class="absolute shadow-lg top-4 right-4 -bottom-4 -left-4 bg-secondary z-1" />
@@ -9,14 +9,14 @@
       >
         <div class="flex-1">
           <div class="text-lg font-bold">
-            La mejor configuración de eslint para 2025
+            {{ latestPost.title }}
           </div>
           <div class="text-xs text-base-content/70">
-            29 Abril 2025 17:30
+            {{ dayjs(latestPost.date).format('LL') }}
           </div>
 
-          <div class="font-mono text-xs font-medium mt-2">
-            #vue #typescript #js
+          <div class="font-mono text-xs font-medium mt-2 flex gap-1 flex-wrap">
+            <span v-for="tag in latestPost.tags" :key="tag">#{{ tag }}</span>
           </div>
         </div>
         <Icon name="heroicons:chevron-right" class="size-6 flex-none" />
@@ -25,20 +25,20 @@
   </div>
 
   <div class="max-w-ui mx-auto font-medium tracking-wide text-sm text-base-content/80 px-2 lg:p-0 mb-2">
-    Otras entradas...
+    {{ $t('Other entries') }}...
   </div>
 
-  <div class="max-w-ui mx-auto lg:border border-base-300 divide-y divide-base-300 mb-4">
+  <div v-if="otherPosts" class="max-w-ui mx-auto lg:border border-base-300 divide-y divide-base-300 mb-4">
     <div
-      v-for="article in articles" :key="article"
+      v-for="post in otherPosts" :key="post.id"
       class="p-3 flex gap-4 items-center hover:bg-base-200 cursor-pointer"
     >
       <div class="flex-1">
         <div class="font-bold text-sm">
-          {{ article }}
+          {{ post.title }}
         </div>
         <div class="text-xs text-base-content/70">
-          29 Abril 2025 17:30
+          {{ dayjs(post.date).format('LL') }}
         </div>
       </div>
       <Icon name="heroicons:chevron-right" class="size-4 flex-none" />
@@ -49,17 +49,30 @@
       to="/blog"
       class="font-medium tracking-wide text-sm px-2 lg:p-0 text-primary hover:underline"
     >
-      Ver más
+      {{ $t('Show more') }}
     </NuxtLinkLocale>
   </div>
 </template>
 
 <script lang="ts" setup>
-const articles = [
-  'Laravel testing avanzado',
-  'Manejo de fechas en Typescript explicado',
-  'Scripting Aider',
-  'PHPUnit vs Pest',
-  'Vue 3 - Composition API',
-];
+const route = useRoute();
+const { queryBlogCollection } = useBlog();
+
+const MAX_OTHER_POSTS_COUNT = 8;
+
+function queryHomeBlog() {
+  return queryBlogCollection()
+    .select('path', 'title', 'description', 'date', 'id', 'tags', 'post_id')
+    .order('post_id', 'DESC');
+}
+
+const { data: latestPost } = await useAsyncData(
+  `${route.path}` + `_latest`,
+  () => queryHomeBlog().first(),
+);
+
+const { data: otherPosts } = await useAsyncData(
+  `${route.path}_other`,
+  () => queryHomeBlog().skip(1).limit(MAX_OTHER_POSTS_COUNT).all(),
+);
 </script>

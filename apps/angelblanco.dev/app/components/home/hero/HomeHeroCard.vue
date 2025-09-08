@@ -6,14 +6,17 @@
       <h1 class="text-5xl lg:text-8xl font-mono font-bold tracking-tight mb-6">
         {{ $t('Hello.') }}
       </h1>
-      <p class="text-balance lg:text-xl mb-1">
-        {{ $t('My name is') }} Ángel Blanco.
-      </p>
-      <p class="text-balance lg:text-xl mb-2">
-        {{ $t("I'm a") }} <span
-          class="font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary"
-        >{{ $t('Software Engineer') }}</span>
-      </p>
+
+      <NuxtLinkLocale to="/about" class="block">
+        <p class="text-balance lg:text-xl mb-1">
+          {{ $t('My name is') }} {{ $t('Author') }}.
+        </p>
+        <p class="text-balance lg:text-xl mb-2">
+          {{ $t("I'm a") }} <span
+            class="font-bold bg-clip-text text-transparent bg-gradient-to-br from-primary to-secondary"
+          >{{ $t('Software Engineer') }}</span>
+        </p>
+      </NuxtLinkLocale>
     </div>
 
     <NuxtLinkLocale to="/about">

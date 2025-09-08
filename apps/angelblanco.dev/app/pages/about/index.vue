@@ -1,5 +1,4 @@
 <template>
-  <div>
-    About
-  </div>
+  <AboutBrief />
+  <AboutTech />
 </template>
