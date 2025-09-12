@@ -4,7 +4,7 @@
       On this page
     </div>
 
-    <div class="border px-2 ">
+    <div class="border border-base-content px-2">
       <BlogTocLink v-for="(link, i) in toc.links" :key="i" :toc-link="link" />
     </div>
   </div>

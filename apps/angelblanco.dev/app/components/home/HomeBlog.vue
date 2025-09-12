@@ -1,5 +1,5 @@
 <template>
-  <div v-if="latestPost" class="ml-10 mr-5 lg:m-0">
+  <NuxtLinkLocale v-if="latestPost" :to="latestPost.path" class="ml-10 mr-5 lg:m-0">
     <div class="max-w-ui mx-auto mb-15 lg:hover:scale-105 transition relative cursor-pointer">
       <div class="absolute shadow-lg top-2 right-2 -bottom-2 -left-2 bg-primary z-2" />
       <div class="absolute shadow-lg top-4 right-4 -bottom-4 -left-4 bg-secondary z-1" />
@@ -22,15 +22,16 @@
         <Icon name="heroicons:chevron-right" class="size-6 flex-none" />
       </div>
     </div>
-  </div>
+  </NuxtLinkLocale>
 
   <div class="max-w-ui mx-auto font-medium tracking-wide text-sm text-base-content/80 px-2 lg:p-0 mb-2">
     {{ $t('Other entries') }}...
   </div>
 
   <div v-if="otherPosts" class="max-w-ui mx-auto lg:border border-base-300 divide-y divide-base-300 mb-4">
-    <div
-      v-for="post in otherPosts" :key="post.id"
+    <NuxtLinkLocale
+      v-for="post in otherPosts"
+      :key="post.id" :to="post.path"
       class="p-3 flex gap-4 items-center hover:bg-base-200 cursor-pointer"
     >
       <div class="flex-1">
@@ -42,7 +43,7 @@
         </div>
       </div>
       <Icon name="heroicons:chevron-right" class="size-4 flex-none" />
-    </div>
+    </NuxtLinkLocale>
   </div>
   <div class="max-w-ui mx-auto flex lg:justify-end">
     <NuxtLinkLocale

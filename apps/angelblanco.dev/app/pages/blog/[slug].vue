@@ -12,9 +12,7 @@
 <script lang="ts" setup>
 const route = useRoute();
 
-const { post, alternativeLocale, loadPost } = useBlogPost(route.path);
-
-loadPost();
+const { post, alternativeLocale } = useBlogPost(route.path);
 
 useSeoMeta({
   title: post.value?.title,

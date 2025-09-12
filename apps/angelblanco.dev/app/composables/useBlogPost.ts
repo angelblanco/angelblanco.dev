@@ -6,21 +6,25 @@ export default function useBlogPost(path: string) {
   const { queryBlogCollection, queryAlternativeBlogCollection, blogCollection, alternativeBlogCollection } = useBlog();
   const { alternativeLocale } = useLocale();
 
-  const post = ref<BlogCollectionItem>();
-  const alternativePost = ref<BlogCollectionItem>();
+  // Main post
+  const { data: post, pending: postPending, error: postError } = useAsyncData(
+    `${blogCollection}-${path}`,
+    () => queryBlogCollection().path(path).first(),
+  );
 
-  async function loadPost() {
-    const { data: dataPost } = await useAsyncData(`${blogCollection}${path}`, () => queryBlogCollection().path(path).first());
-    post.value = dataPost.value ?? undefined;
-
-    const { data: dataAlternativePost } = await useAsyncData(alternativeBlogCollection + path, () => queryAlternativeBlogCollection().path(path).first());
-    alternativePost.value = dataAlternativePost.value ?? undefined;
-  }
+  // Alternative post
+  const { data: alternativePost, pending: altPending, error: altError } = useAsyncData(
+    `${alternativeBlogCollection}-${path}`,
+    () => queryAlternativeBlogCollection().path(path).first(),
+  );
 
   return {
-    loadPost,
     post,
     alternativePost,
-    alternativeLocale: computed(() => alternativePost ? alternativeLocale.value : null),
+    postPending,
+    postError,
+    altPending,
+    altError,
+    alternativeLocale: computed(() => alternativePost.value ? alternativeLocale.value : null),
   };
 }

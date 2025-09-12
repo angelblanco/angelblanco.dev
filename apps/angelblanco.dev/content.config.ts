@@ -8,6 +8,7 @@ export function blogSchema() {
     image: z.string(),
     date: z.string().date(),
     post_id: z.number(),
+    toc: z.boolean(),
   });
 }
 
