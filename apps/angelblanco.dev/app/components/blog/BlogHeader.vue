@@ -10,7 +10,7 @@
     </div>
 
     <div v-if="props.alternativeLocale" class="mb-4 text-secondary">
-      <SwitchLocalePathLink class="flex gap-1 items-center font-bold text-xs bg-secondary/10 p-1" :locale="props.alternativeLocale">
+      <SwitchLocalePathLink class="flex gap-1 items-center font-bold dark:font-medium text-xs bg-secondary/10 p-1" :locale="props.alternativeLocale">
         <Icon name="i-heroicons:language" class="size-4" /> <span>{{ $t('blogAlternativeLink') }}</span>
       </SwitchLocalePathLink>
     </div>

@@ -167,3 +167,5 @@
   --tw-prose-pre-code: unset;
   --tw-prose-pre-bg: unset;
 }
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
