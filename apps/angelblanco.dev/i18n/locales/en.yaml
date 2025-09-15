@@ -3,6 +3,7 @@ Me: Me
 About Me: About Me
 Blog: Blog
 Projects: Projects
+ProjectsSubTitle: Here you can find a selection of projects I've worked on throughout my career.
 Contact: Contact
 Hello.: Hello.
 My name is: My name is
@@ -38,3 +39,4 @@ Show more: Show more
 angelBlancoDevDescription: The repository of this own web page. You can check the complete source code or fork the repo if you want to create your own portfolio.
 kickstartNvimDescription: My personal Neovim configuration, along with scripts to set up a fresh Ubuntu installation. The setup covers environments for Node.js, PHP & Laravel, Go, Rust, and other essential CLI utilities.
 beonxDescription: BEONx is a Spanish tech company founded in 2012. I have contributed to its technological growth since 2016, joining during its startup phase and helping it scale into a successful scale-up. Currently, I lead a team of 10 engineers, overseeing both the application and the platform architecture.
+since: since

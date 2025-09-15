@@ -1,17 +1,19 @@
 <template>
   <div class="min-h-screen-content mx-auto max-w-ui p-4">
-    <div v-for="post in posts" :key="post.id">
-      <NuxtLink class="block" :to="post.path">
-        <div class="text-2xl font-bold text-pretty">
-          {{ post.title }}
-        </div>
-        <div class="text-xs mb-1">
-          {{ post.date }}
-        </div>
-      </NuxtLink>
+    <div class="space-y-24">
+      <div v-for="post in posts" :key="post.id">
+        <NuxtLink class="block" :to="post.path">
+          <div class="text-4xl font-bold text-pretty tracking-tight">
+            {{ post.title }}
+          </div>
+          <div class="text-sm mb-3 opacity-75">
+            {{ dayjs(post.date).format('LL') }}
+          </div>
+        </NuxtLink>
 
-      <div class="text-sm text-pretty mb-4">
-        {{ post.description }}
+        <div class="text-pretty text-lg mb-4 leading-8">
+          {{ post.description }}
+        </div>
       </div>
     </div>
   </div>

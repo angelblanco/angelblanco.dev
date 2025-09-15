@@ -9,10 +9,8 @@
         <MDC :value="$t('aboutResumeMd')" class="md-bold-styled md:col-span-3 space-y-3" />
 
         <div class="grid grid-cols-2 gap-4 mt-4">
-          <NuxtLinkLocale to="/about" class="btn">
-            {{ $t('About Me') }}
-          </NuxtLinkLocale>
           <a :href="githubSocial.url" class="btn">{{ githubSocial.name }}</a>
+          <a :href="linkedinSocial.url" class="btn">{{ linkedinSocial.name }}</a>
         </div>
       </div>
       <div class="md:col-span-2 order-first md:order-last flex flex-col items-center">
@@ -31,6 +29,7 @@
 const { getSocialByName } = useSocials();
 
 const githubSocial = getSocialByName(SocialName.GitHub);
+const linkedinSocial = getSocialByName(SocialName.LinkedIn);
 
 function calculateExperience() {
   return new Date().getFullYear() - 2016;

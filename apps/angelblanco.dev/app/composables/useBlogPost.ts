@@ -8,13 +8,13 @@ export default function useBlogPost(path: string) {
 
   // Main post
   const { data: post, pending: postPending, error: postError } = useAsyncData(
-    `${blogCollection}-${path}`,
+    `${blogCollection.value}-${path}`,
     () => queryBlogCollection().path(path).first(),
   );
 
   // Alternative post
   const { data: alternativePost, pending: altPending, error: altError } = useAsyncData(
-    `${alternativeBlogCollection}-${path}`,
+    `${alternativeBlogCollection.value}-${path}`,
     () => queryAlternativeBlogCollection().path(path).first(),
   );
 
