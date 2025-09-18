@@ -1,0 +1,4 @@
+<template>
+  <AboutBrief />
+  <AboutTech />
+</template>

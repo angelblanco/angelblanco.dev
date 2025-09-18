@@ -1,7 +1,9 @@
+Author: Ángel Blanco
 Me: Sobre mí
 About Me: Sobre mí
 Blog: Blog
 Projects: Proyectos
+ProjectsSubTitle: Aquí puedes encontrar una selección de proyectos en los que he trabajado a lo largo de los años..
 Contact: Contacto
 Hello.: Hola.
 I'm a: Soy
@@ -10,8 +12,8 @@ Software Engineer: Ingeniero Informático
 Personal website of: Página personal de
 Hosted and OpenSourced with: Código OpenSource disponible con
 on GitHub: en GitHub
-homeResumeTitle: Engeineer Manager - Full Stack Architect
-homeResumeMd: "\
+aboutResumeTitle: Engeineer Manager - Full Stack Architect
+aboutResumeMd: "\
   Soy un **ingeniero informático** con más de 8 años de experiencia en el sector tecnológico-turístico. Me he especializado en el **liderazgo de equipos** y en el desarrollo de productos web.
   \n\n
   Tengo experiencia en el **diseño de arquitecturas** orientadas a Big Data y en el acompañamiento de equipos técnicos a lo largo de su carrera profesional.
@@ -26,8 +28,16 @@ homeResumeMd: "\
   \n\n
   ¡Gracias por tu tiempo!"
 
-homeTechStackTitle: Mis preferencias tecnológicas
-homeCaption: ¡Sí, ese soy yo!
+aboutTechStackTitle: Mis preferencias tecnológicas
+aboutCaption: ¡Sí, ese soy yo!
 Whoops: Upsss!
 Page not found: Vaya, parece que la página que estás buscando no existe.
 Go Home: Volver a la página principal
+blogAlternativeLink: You can also check this article in English.
+blogAuthoredBy: escrito por Ángel L. Blanco
+Other entries: Otras entradas
+Show more: Mostrar más
+angelBlancoDevDescription: Repositorio que alberga esta página web. Puedes consultar el código fuente completo o crear un fork para desarrollar tu propio portafolio.
+kickstartNvimDescription: Mi configuración personal de Neovim, junto con una serie de scripts para preparar una instalación de Ubuntu de forma rápida y eficiente. Los scripts incluyen todo lo necesario para trabajar con Node.js, PHP & Laravel, Go, Rust y otras utilidades de CLI.
+beonxDescription: BEONx es una empresa tecnológica española fundada en 2012. He participado activamente en su crecimiento desde 2016, cuando era una startup, contribuyendo a su evolución hasta convertirse en una scaleup. Actualmente, gestiono un equipo de 10 ingenieros y soy responsable tanto de la aplicación como de la arquitectura de la plataforma.
+since: desde
