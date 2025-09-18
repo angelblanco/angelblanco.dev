@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/mdc',
+    '@nuxtjs/seo',
   ],
 
   mdc: {
@@ -51,6 +52,7 @@ export default defineNuxtConfig({
   },
 
   i18n: {
+    baseUrl: 'https://angelblanco.dev',
     locales: [
       { code: 'en', language: 'en-US', file: 'en.yaml' },
       { code: 'es', language: 'es-ES', file: 'es.yaml' },
@@ -85,5 +87,11 @@ export default defineNuxtConfig({
         },
       },
     },
+  },
+
+  site: {
+    url: 'https://angelblanco.dev',
+    name: 'Ángel Blanco',
+    description: 'Personal full-stack engineering blog and portfolio',
   },
 });
