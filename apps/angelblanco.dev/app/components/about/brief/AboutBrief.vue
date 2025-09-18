@@ -6,7 +6,7 @@
     />
 
     <div class="relative z-1">
-      <AboutBriefResume />
+      <AboutBriefResume :locale="locale" />
     </div>
   </div>
 </template>
@@ -26,4 +26,6 @@ const squares: [number, number][] = [
   [10, 15],
   [15, 10],
 ];
+
+const { locale } = useI18n();
 </script>

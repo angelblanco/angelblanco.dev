@@ -1,11 +1,13 @@
 ---
-title: 'Rebuilding my dev portfolio in 2025'
+title: 'Rebuilding my dev portfolio in 2025 with Nuxt'
 date: '2025-10-01'
 tags: ['nuxt', 'vue', 'svelte']
 post_id: 1
 ---
 
-On 2020, the day after Vue 3 was realeased, I started coding my first webpage with Svelte and Sapper (now renamed as Svelte Kit). The following years and months were a total madness in Vue ecosystem: many existing repos went legacy, the migration from Vue 2 to Vue 3 was a bing pain, and I wasn't really sure if the framework was going to survive or not. At that time, it made sense to go on and try Svelte.
+It's 2025 and I've rebuilt my personal webpage with Nuxt 4.
+
+The first version started on 2020, the day after Vue 3 was realeased. I started coding my first webpage with Svelte and Sapper (now renamed as Svelte Kit). The following years and months were a total madness in Vue ecosystem: many existing repos went legacy, the migration from Vue 2 to Vue 3 was a bing pain, and I wasn't really sure if the framework was going to survive or not. At that time, it made sense to go on and try Svelte.
 
 But 5 years are gone, and now the Vue 3 ecosystem is **amazing**, composition API, Typescript and tooling are robust and AI is about to take all developer jobs in the planet. So after the first release of [angelblanco.dev](https://angelblanco.dev) it's time to rebuild my own page from scratch.
 
