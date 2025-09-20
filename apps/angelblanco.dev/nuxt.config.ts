@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/mdc',
-    '@nuxtjs/seo',
   ],
 
   mdc: {
@@ -66,6 +65,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      title: 'Ángel Blanco',
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
@@ -87,11 +87,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  },
-
-  site: {
-    url: 'https://angelblanco.dev',
-    name: 'Ángel Blanco',
-    description: 'Personal full-stack engineering blog and portfolio',
   },
 });
