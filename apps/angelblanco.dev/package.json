@@ -37,9 +37,11 @@
     "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/i18n": "10.1.0",
     "@nuxtjs/mdc": "0.17.4",
+    "@nuxtjs/seo": "3.2.2",
     "@vueuse/core": "^13.9.0",
     "@vueuse/nuxt": "^13.9.0",
     "nuxt": "^4.1.2",
+    "nuxt-schema-org": "5.0.9",
     "typescript": "^5.9.2",
     "vite": "^7.1.6"
   }

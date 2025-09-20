@@ -75,4 +75,3 @@ const menuEntries = computed<MenuEntry[]>(() => [
   },
 ]);
 </script>
-☺

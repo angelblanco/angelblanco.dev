@@ -4,7 +4,7 @@
       {{ $t('Projects') }}
     </div>
     <div class="border-b border-base-300 pb-4 mb-8">
-      {{ $t('ProjectsSubTitle') }}
+      {{ $t('ProjectsDescription') }}
     </div>
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -33,8 +33,12 @@
 
 <script lang="ts" setup>
 const { projectRepos, showLicense, prettyUrl } = useProjectRepos();
-
 const { t } = useI18n();
+
+useLocalizedSeo({
+  title: 'Projects',
+  description: 'ProjectsDescription',
+});
 
 function formatRepoDates(repo: ProjectRepo) {
   return repo.to
