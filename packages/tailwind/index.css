@@ -121,43 +121,6 @@
   min-height: calc(100dvh - 8.75rem);
 }
 
-/* https://daisyui.com/theme-generator/#theme=eJx1lOtu4yAQhV8FWVqplRrEDBdD34bYeGPVsSOw1XZX--5LoE3s4vz0zHeGOTPgv9Voz656rVrr36qXqpmGyR9Cc3Lr6OGQ40cb3AEYi5npbWhOTyB-EUYZkwS1pBr5808aVzRCplWmtSxovqbrO60o42XtZhpnN843hdFZgQRFTTU3a8XF92frP29wnZpBxglnkkomduDiBDRXEQgTRUhrqNei4CLers9QMp0hgHApKGd6Fy995KmiJlwgRbmR2aZZs3WaEkgkoIEawJItXeTJCkXAIJW4sT66ZfZ2uME8w8Dz0pjcgUsHKm8iipSgUmy66sduuvefvEJcMkeqFPwEH6yAqagQPBrfrmCJjkO4Vzd5yYaAhLgv2IHLE3LzSkYRUsM343m3fuzH3zdYY-pfG6IFFWh22Efzr2siJFV8M1Hn_eTv_bNU3QDBeBFAFWRZO105ZuIbiI_me_Detv0S4pUbXDOn-nEq0rvzOtv1bmj3U8fp45r4job-j3tULOX2Sh0n37orDZePFGjdZT5dofQ1Tn1wX1-t6-wyRFOdHYJ7qS7edc6H9Dd6nf3i_v0HrYhTpQ */
-
-/* @plugin "daisyui/theme" { */
-/*   name: "dark"; */
-/*   default: false; */
-/*   prefersdark: true; */
-/*   color-scheme: "dark"; */
-/*   --color-base-100: oklch(14% 0.005 285.823); */
-/*   --color-base-200: oklch(21% 0.006 285.885); */
-/*   --color-base-300: oklch(27% 0.006 286.033); */
-/*   --color-base-content: oklch(98% 0.002 247.839); */
-/*   --color-primary: oklch(71% 0.203 305.504); */
-/*   --color-primary-content: oklch(29% 0.149 302.717); */
-/*   --color-secondary: oklch(65% 0.241 354.308); */
-/*   --color-secondary-content: oklch(94% 0.028 342.258); */
-/*   --color-accent: oklch(77% 0.152 181.912); */
-/*   --color-accent-content: oklch(27% 0.046 192.524); */
-/*   --color-neutral: oklch(37% 0.013 285.805); */
-/*   --color-neutral-content: oklch(96% 0.003 264.542); */
-/*   --color-info: oklch(74% 0.16 232.661); */
-/*   --color-info-content: oklch(29% 0.066 243.157); */
-/*   --color-success: oklch(79% 0.209 151.711); */
-/*   --color-success-content: oklch(26% 0.065 152.934); */
-/*   --color-warning: oklch(82% 0.189 84.429); */
-/*   --color-warning-content: oklch(27% 0.077 45.635); */
-/*   --color-error: oklch(70% 0.191 22.216); */
-/*   --color-error-content: oklch(25% 0.092 26.042); */
-/*   --radius-selector: 0.25rem; */
-/*   --radius-field: 0.25rem; */
-/*   --radius-box: 0rem; */
-/*   --size-selector: 0.25rem; */
-/*   --size-field: 0.25rem; */
-/*   --border: 1px; */
-/*   --depth: 0; */
-/*   --noise: 0; */
-/* } */
-
 .prose a {
   @apply no-underline hover:gradient-text;
 }
@@ -166,6 +129,11 @@
   --tw-prose-code: unset;
   --tw-prose-pre-code: unset;
   --tw-prose-pre-bg: unset;
+}
+
+/* Navbar scroll to content compensation */
+:target {
+  scroll-margin-top: 120px;
 }
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
