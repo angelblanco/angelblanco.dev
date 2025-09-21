@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     '@nuxt/content',
     '@nuxtjs/mdc',
+    '@nuxt/test-utils/module',
   ],
 
   app: {
