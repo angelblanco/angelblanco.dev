@@ -14,6 +14,7 @@ const route = useRoute();
 
 const { post, alternativeLocale } = useBlogPost(route.path);
 
-useHead(post.value?.head || {});
+// TODO: Check
+// useHead(post.value?.head || {});
 useSeoMeta(post.value?.seo || {});
 </script>
