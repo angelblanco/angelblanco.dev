@@ -9,13 +9,13 @@
         </div>
 
         <div class="hidden flex-1 md:flex gap-8 justify-center font-semibold text-sm">
-          <NuxtLinkLocale v-for="menuEntry in menuEntries" :key="menuEntry.to" :to="menuEntry.to" class="hover:text-primary hover:bg-primary/5 rounded-field p-2">
+          <NuxtLinkLocale v-for="menuEntry in menuEntries" :key="menuEntry.to" :to="menuEntry.to" class="hover:text-primary hover:bg-primary/5 rounded-field p-2" active-class="text-primary">
             {{ menuEntry.label }}
           </NuxtLinkLocale>
         </div>
 
         <UiThemeSwitcher :icon-size="iconSize" />
-        <UiLocaleSwitcher :icon-size="iconSize" />
+        <UiLocaleSwitcher :icon-size="iconSize" @click="closeMenu()" />
 
         <NuxtLink class="inline-flex btn btn-ghost btn-square" to="https://github.com/angelblanco/angelblanco.dev" target="_blank">
           <Icon name="codicon:github-alt" class="fill-current" :class="iconSize" />
@@ -30,12 +30,14 @@
   </div>
 
   <teleport v-if="isMenuOpen" to="body">
-    <div class="fixed inset-0 top-16 z-50 bg-base-200 md:hidden p-4 shadow-sm overflow-y-auto border-t border-base-300">
+    <div class="fixed inset-0 top-16 z-50 bg-base-100 md:hidden shadow-sm overflow-y-auto border-t border-base-300 ">
       <div class="divide-y divide-base-300">
-        <NuxtLink v-for="menuEntry in menuEntries" :key="menuEntry.to" class="flex p-2 gap-2" :to="menuEntry.to">
-          <Icon :name="menuEntry.icon" class="fill-current" :class="iconSize" />
-          <span>{{ menuEntry.label }}</span>
-        </NuxtLink>
+        <div v-for="menuEntry in menuEntries" :key="menuEntry.to" class="py-2">
+          <NuxtLink class="flex p-4 gap-2 rounded hover:bg-primary/10 hover:text-primary-content dark:hover:text-primary font-medium" :to="menuEntry.to" active-class="text-primary" @click="closeMenu()">
+            <Icon :name="menuEntry.icon" class="fill-current" :class="iconSize" />
+            <span>{{ menuEntry.label }}</span>
+          </NuxtLink>
+        </div>
       </div>
     </div>
   </teleport>
@@ -50,6 +52,10 @@ function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
 }
 
+function closeMenu() {
+  isMenuOpen.value = false;
+}
+
 interface MenuEntry {
   to: string;
   label: string;
@@ -60,19 +66,18 @@ const menuEntries = computed<MenuEntry[]>(() => [
   {
     to: '/blog',
     label: t('Blog'),
-    icon: 'heroicons:book-open',
+    icon: 'heroicons:document-text',
   },
   {
     to: '/projects',
     label: t('Projects'),
-    icon: 'heroicons:code-bracket',
+    icon: 'heroicons:computer-desktop',
   },
 
   {
     to: '/about',
     label: t('Me'),
-    icon: 'heroicons:identification',
+    icon: 'heroicons:user',
   },
 ]);
 </script>
-☺

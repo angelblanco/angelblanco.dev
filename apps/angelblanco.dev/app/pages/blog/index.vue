@@ -22,6 +22,11 @@
 <script lang="ts" setup>
 const route = useRoute();
 
+useLocalizedSeo({
+  title: 'Blog',
+  description: 'BlogDescription',
+});
+
 const { queryBlogCollection } = useBlog();
 
 const { data: posts } = await useAsyncData(

@@ -29,12 +29,14 @@ export default function useSocials() {
     },
   ];
 
+  function getSocialByName(name: SocialName): SocialEntry {
+    return socials.find(s => s.name === name) as SocialEntry;
+  }
+
   return {
     repoUrl: 'https://github.com/angelblanco/angelblanco.dev',
     socials,
-    getSocialByName(name: SocialName): SocialEntry {
-      return socials.find(s => s.name === name) as SocialEntry;
-    },
-    githubUrl: socials.find(v => v.name === SocialName.GitHub)?.url ?? '',
+    getSocialByName,
+    githubUrl: getSocialByName(SocialName.GitHub).url,
   };
 }

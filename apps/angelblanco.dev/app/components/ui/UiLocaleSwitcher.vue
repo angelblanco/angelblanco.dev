@@ -1,11 +1,11 @@
 <template>
   <div class="relative">
     <ClientOnly>
-      <button class="btn btn-ghost btn-square" :class="isOpen ? 'btn-active' : ''" @click="isOpen = true">
+      <button class="btn btn-ghost btn-square" :class="isOpen ? 'btn-active' : ''" @click="handleClick">
         <Icon
           name="heroicons:language"
           class="fill-current"
-          :class="props.iconSize"
+          :class="iconSize"
         />
       </button>
     </ClientOnly>
@@ -22,16 +22,18 @@
 <script lang="ts" setup>
 import { OnClickOutside } from '@vueuse/components';
 
-const props = withDefaults(
-  defineProps<{
-    iconSize?: string;
-  }>(),
-  {
-    iconSize: 'size-8',
-  },
-);
+const { iconSize = 'size-8' } = defineProps<{
+  iconSize?: string;
+}>();
+
+const emit = defineEmits<{ click: [] }>();
 
 const isOpen = ref(false);
+
+function handleClick() {
+  isOpen.value = true;
+  emit('click');
+}
 
 const options: { locale: 'en' | 'es'; title: string }[] = [
   { locale: 'en', title: 'EN' },

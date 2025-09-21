@@ -1,20 +1,17 @@
 # Aiderx Command Development and Testing Guidelines
 
 - **Adding New Commands:**
-
   - Define the command using `aiderCommand` from `utils.js`.
   - Specify the command name, description, and arguments.
   - Implement the command action function to perform the desired operations.
 
 - **Testing Commands:**
-
   - Write tests for new commands in the `tests` directory.
   - Use `vitest` for writing and running tests.
   - Ensure each command is tested for expected behavior and edge cases.
   - Aim for 100% test coverage.
 
 - **Writing Tests:**
-
   - File names should follow the pattern `<function-name>.test.js` or `<module-name>.test.js`.
   - Use `describe` blocks to group related tests.
   - Use `it` blocks to define individual test cases.
@@ -38,14 +35,12 @@
   ```
 
 - **Running Tests:**
-
   - Use the following command to run tests:
     ```bash
     pnpm test
     ```
 
 - **Code Style:**
-
   - Follow the existing code style and conventions.
   - Use `eslint` to lint your code:
     ```bash
@@ -53,7 +48,6 @@
     ```
 
 - **Dependencies:**
-
   - Add new dependencies to `package.json` as needed.
   - Install dependencies using:
     ```bash
@@ -78,14 +72,12 @@
   ```
 
 - **Running Tests:**
-
   - Use the following command to run tests:
     ```bash
     pnpm test
     ```
 
 - **Code Style:**
-
   - Follow the existing code style and conventions.
   - Use `eslint` to lint your code:
     ```bash
@@ -93,7 +85,6 @@
     ```
 
 - **Dependencies:**
-
   - Add new dependencies to `package.json` as needed.
   - Install dependencies using:
     ```bash

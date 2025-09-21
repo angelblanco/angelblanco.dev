@@ -22,13 +22,17 @@ Building my web again, means a technical-rebuild and a brain-rebuild. It's almos
 - Learn VIM motions and get a fully functional [Neovim](https://neovim.io/) setup.
 
 ```js [file.js]{2} meta-info=val
-const hello = {};
+const name = 'Ángel';
+const surname = 'Blanco';
 
-const b = 2 + 3;
-
-function wow() {
-  const wow = 2;
+function greet() {
+  console.log({
+    name,
+    surname
+  });
 }
+
+greet();
 ```
 
 ```vue

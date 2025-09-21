@@ -1,32 +1,69 @@
 import tailwindcss from '@tailwindcss/vite';
+import { definePerson } from 'nuxt-schema-org/schema';
+import useSocials from './app/composables/useSocials';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/content',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/icon',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
+    '@nuxtjs/seo',
+    'nuxt-schema-org',
+    '@nuxt/content',
     '@nuxtjs/mdc',
   ],
 
-  mdc: {
-    components: {
-      prose: false,
-      map: {
-        strong: 'ProseCustomStrong',
-      },
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+        { rel: 'manifest', href: '/site.webmanifest' },
+      ],
     },
   },
 
-  nitro: {
-    preset: 'netlify',
+  seo: {
+    meta: {
+      themeColor: [
+        { content: '#030712', media: '(prefers-color-scheme: dark)' },
+        { content: 'white', media: '(prefers-color-scheme: light)' },
+      ],
+      twitterCreator: '@angelblancodev',
+      colorScheme: 'dark light',
+    },
   },
 
-  compatibilityDate: '2025-04-05',
+  i18n: {
+    baseUrl: 'https://angelblanco.dev',
+    locales: [
+      { code: 'en', language: 'en-US', file: 'en.yaml' },
+      { code: 'es', language: 'es-ES', file: 'es.yaml' },
+    ],
+    defaultLocale: 'en',
+  },
+
+  schemaOrg: {
+    identity: definePerson({
+      name: 'Ángel Blanco',
+      image: '/ablanco_2025_profile.webp',
+      description: 'Software engineer',
+      url: 'angelblanco.dev',
+      sameAs: useSocials().socials.map(s => s.url),
+    }),
+  },
+
+  nitro: {
+    preset: 'github_pages',
+  },
+
+  compatibilityDate: '2025-09-20',
 
   css: ['~/assets/css/main.css'],
 
@@ -50,40 +87,30 @@ export default defineNuxtConfig({
     },
   },
 
-  i18n: {
-    locales: [
-      { code: 'en', language: 'en-US', file: 'en.yaml' },
-      { code: 'es', language: 'es-ES', file: 'es.yaml' },
-    ],
-    defaultLocale: 'en',
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          theme: {
+            default: 'catppuccin-latte',
+            dark: 'catppuccin-mocha',
+          },
+        },
+      },
+    },
+  },
+
+  mdc: {
+    components: {
+      prose: false,
+      map: {
+        strong: 'ProseCustomStrong',
+      },
+    },
   },
 
   experimental: {
     componentIslands: true, // For MDC translation to work
   },
 
-  app: {
-    head: {
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
-        { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
-        { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
-        { rel: 'manifest', href: '/site.webmanifest' },
-      ],
-    },
-  },
-
-  content: {
-    build: {
-      markdown: {
-        highlight: {
-          theme: {
-            default: 'github-light',
-            dark: 'github-dark',
-          },
-        },
-      },
-    },
-  },
 });

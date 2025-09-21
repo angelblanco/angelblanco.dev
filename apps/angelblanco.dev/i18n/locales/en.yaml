@@ -1,9 +1,14 @@
+nuxtSiteConfig:
+  name: Ángel Blanco
+  description: Personal full-stack engineering blog and portfolio
 Author: Ángel Blanco
 Me: Me
-About Me: About Me
+About: About Me
+AboutDescription: My profesional carrer and interests
 Blog: Blog
+BlogDescription: Latest blog entries of the full-stack engineering blog
 Projects: Projects
-ProjectsSubTitle: Here you can find a selection of projects I've worked on throughout my career.
+ProjectsDescription: Here you can find a selection of projects I've worked on throughout my career.
 Contact: Contact
 Hello.: Hello.
 My name is: My name is
