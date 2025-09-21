@@ -4,26 +4,21 @@
       <Icon
         name="heroicons:sun"
         class="fill-current"
-        :class="[lightTheme ? 'swap-on' : 'swap-off', props.iconSize]"
+        :class="[lightTheme ? 'swap-on' : 'swap-off', iconSize]"
       />
       <Icon
         name="heroicons:moon"
         class="fill-current"
-        :class="[lightTheme ? 'swap-off' : 'swap-on', props.iconSize]"
+        :class="[lightTheme ? 'swap-off' : 'swap-on', iconSize]"
       />
     </label>
   </ClientOnly>
 </template>
 
 <script lang="ts" setup>
-const props = withDefaults(
-  defineProps<{
-    iconSize?: string;
-  }>(),
-  {
-    iconSize: 'size-8',
-  },
-);
+const { iconSize = 'size-8' } = defineProps<{
+  iconSize?: string;
+}>();
 
 const colorMode = useColorMode();
 

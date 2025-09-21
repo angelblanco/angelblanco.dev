@@ -28,7 +28,7 @@ export function resolveMainAppPath(...paths) {
 }
 
 export function resolveConventionPath(...paths) {
-  return resolveMonoRepoPath('conventions', ...paths);
+  return resolvePackagePath('conventions', ...paths);
 }
 
 export function hasExtension(fileName, extension) {

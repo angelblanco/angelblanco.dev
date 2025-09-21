@@ -3,10 +3,10 @@
     <div class="hero-content text-center">
       <div class="max-w-md">
         <h1 class="text-5xl font-bold">
-          {{ props.title }}
+          {{ title }}
         </h1>
         <p class="py-6">
-          {{ props.description }}
+          {{ description }}
         </p>
 
         <div class="flex gap-2 justify-center">
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+const { title, description } = defineProps<{
   title: string;
   description: string;
 }>();

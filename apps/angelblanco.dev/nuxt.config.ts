@@ -11,10 +11,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
-    '@nuxtjs/mdc',
     '@nuxtjs/seo',
     'nuxt-schema-org',
     '@nuxt/content',
+    '@nuxtjs/mdc',
   ],
 
   app: {
@@ -52,7 +52,7 @@ export default defineNuxtConfig({
   schemaOrg: {
     identity: definePerson({
       name: 'Ángel Blanco',
-      image: '/ablanco_alt_1.webp',
+      image: '/ablanco_2025_profile.webp',
       description: 'Software engineer',
       url: 'angelblanco.dev',
       sameAs: useSocials().socials.map(s => s.url),
@@ -60,7 +60,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    preset: 'github_pages',
   },
 
   compatibilityDate: '2025-09-20',
@@ -92,8 +92,8 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: {
-            default: 'github-light',
-            dark: 'github-dark',
+            default: 'catppuccin-latte',
+            dark: 'catppuccin-mocha',
           },
         },
       },

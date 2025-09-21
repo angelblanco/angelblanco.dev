@@ -27,9 +27,6 @@ interface GridPatternProps {
   strokeDasharray?: string;
   className?: string;
 }
-
-const props = defineProps<GridPatternProps>();
-
 const {
   width = 40,
   height = 40,
@@ -38,7 +35,7 @@ const {
   strokeDasharray = '0',
   squares,
   className,
-} = props;
+} = defineProps<GridPatternProps>();
 
 const patternPath = computed(() => `M.5 ${height}V.5H${width}`);
 const svgClass = computed(() =>
