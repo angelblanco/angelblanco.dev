@@ -84,6 +84,9 @@ importers:
       '@iconify-json/heroicons':
         specifier: ^1.2.3
         version: 1.2.3
+      '@iconify-json/heroicons-outline':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@nuxt/icon':
         specifier: 2.0.0
         version: 2.0.0(magicast@0.3.5)(vite@7.1.6(@types/node@24.3.0)(jiti@2.5.1)(lightningcss@1.30.1)(terser@5.44.0)(yaml@2.8.1))(vue@3.5.21(typescript@5.9.2))
@@ -722,6 +725,9 @@ packages:
 
   '@iconify-json/codicon@1.2.30':
     resolution: {integrity: sha512-45Qsu3ok07kPx066kYQOSyb2abSS+Yej4SmKRLRho3srVf76v79/JqeVvm/n1HuYuXBS8pL4HAGMvLIY5opHmQ==}
+
+  '@iconify-json/heroicons-outline@1.2.1':
+    resolution: {integrity: sha512-QNYV4/KsW8Ww9a3B+hxDntS5BwLLbErKpL1V3MkvB8X+ZVTX5VLxjlj8rAEih+GCDWzaiZJOrdO/pagvsuBkXg==}
 
   '@iconify-json/heroicons@1.2.3':
     resolution: {integrity: sha512-n+vmCEgTesRsOpp5AB5ILB6srsgsYK+bieoQBNlafvoEhjVXLq8nIGN4B0v/s4DUfa0dOrjwE/cKJgIKdJXOEg==}
@@ -7642,6 +7648,10 @@ snapshots:
   '@hutson/parse-repository-url@5.0.0': {}
 
   '@iconify-json/codicon@1.2.30':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/heroicons-outline@1.2.1':
     dependencies:
       '@iconify/types': 2.0.0
 

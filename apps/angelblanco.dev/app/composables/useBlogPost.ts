@@ -1,4 +1,5 @@
 import type { BlogEnCollectionItem } from '@nuxt/content';
+
 export type BlogCollectionItem = BlogEnCollectionItem;
 
 export default function useBlogPost(path: string) {
