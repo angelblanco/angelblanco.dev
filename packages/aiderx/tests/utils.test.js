@@ -12,7 +12,7 @@ import {
   resolveConventionPath,
   resolveMonoRepoPath,
   resolvePackagePath,
-} from '../src/utils';
+} from '../src/utils.js';
 
 describe('aider utils', () => {
   it('cliRepoDir', () => {
