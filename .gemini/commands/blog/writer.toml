@@ -21,7 +21,7 @@ Your task is to write or refine a blog post based on the provided slug and descr
     ```yaml
     ---
     title: string (min 10 characters)
-    share_tweet: string (optional, a short sentence for sharing on Twitter)
+    share_tweet: (optional) URL to an existing tweet that share's the post.
     tags: [string] (min 1 tag)
     image: string (optional, path to a relevant image, e.g., /images/blog/post-name/hero.webp)
     date: 'YYYY-MM-DD'
@@ -38,6 +38,7 @@ Your task is to write or refine a blog post based on the provided slug and descr
     *   **Language Sync:**
         *   The core ideas and structure must be the same across both English and Spanish posts.
         *   The Spanish post is NOT a literal translation. It should be a natural, idiomatic adaptation for a tech audience from Spain, using Castilian Spanish (español de España). 
+        *   Write markdown titles with normal casing. Do NOT use "#Title Case".
     *   **Technical Content:**
         *   All code blocks must be written in English in both posts.
         *   In the Spanish post, comments within code blocks MUST be translated to Spanish.
