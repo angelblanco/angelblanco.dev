@@ -10,7 +10,7 @@ export function composablesCommand(program) {
       const composableFiles = globbyMonoRepoSync('apps/angelblanco.dev/app/composables/use*.ts');
 
       // Find all test files to see which composables already have tests
-      const testFiles = globbyMonoRepoSync('apps/angelblanco.dev/tests/composables/use*.test.ts');
+      const testFiles = globbyMonoRepoSync('apps/angelblanco.dev/test/composables/use*.test.ts');
 
       // Extract composable names
       const composableNames = composableFiles.map((file) => {

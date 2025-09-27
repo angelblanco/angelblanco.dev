@@ -1,4 +1,4 @@
-import { existsSync, statSync } from 'node:fs';
+import { statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { globbySync } from 'globby';
@@ -47,44 +47,27 @@ export function globbyMonoRepoSync(patterns, options = {}) {
 }
 
 export function findUiComponent(component) {
-  let file = null;
+  const componentName = component.replace(/\.vue$/, '');
+  const files = globbyMonoRepoSync(
+    `apps/angelblanco.dev/app/components/**/${componentName}*.vue`,
+    {
+      ignore: ['**/*.story.vue'],
+    },
+  );
 
-  if (hasExtension(component, '.vue')) {
-    const options = [
-      // Relative or absolute path to component
-      resolveMonoRepoPath(component),
-      // Base pasth on angelblanco.dev app
-      resolveMainAppPath('components', component),
-    ];
-
-    file = options.find(file => existsSync(file));
-
-    if (!file) {
-      throw new Error(`Component ${component} not found`);
-    }
+  if (files.length === 0) {
+    throw new Error(`Component ${component} not found in apps/angelblanco.dev/components`);
   }
-  else {
-    const files = globbyMonoRepoSync(
-      `apps/angelblanco.dev/components/${component}*.vue`,
-      {
-        ignore: ['**/*.story.vue'],
-      },
-    );
 
-    if (files.length === 0) {
-      throw new Error(`Component ${component} not found in apps/angelblanco.dev/components`);
-    }
-
-    if (files.length > 1) {
-      throw new Error(`Component ${component} found in multiple files, please be more specific: ${files.join(', ')}`);
-    }
-
-    file = files[0];
+  if (files.length > 1) {
+    throw new Error(`Component ${component} found in multiple files, please be more specific: ${files.join(', ')}`);
   }
+
+  const file = files[0];
 
   // Test file is tests/[component].test.ts
   const testFile = file.replace(/\.vue$/, '.test.ts')
-    .replace('apps/angelblanco.dev/components/', 'apps/angelblanco.dev/tests/components');
+    .replace('apps/angelblanco.dev/app/components/', 'apps/angelblanco.dev/test/components/');
 
   // Story file is component/[component].story.vue
   // const storyFile = file.replace(/\.vue$/, '.story.vue');
