@@ -1,91 +1,54 @@
 ---
-title: 'Rebuilding my dev portfolio in 2025 with Nuxt'
-date: '2025-10-01'
-tags: ['nuxt', 'vue', 'svelte']
+title: "From Svelte to Nuxt: Rebuilding My Portfolio in 2025"
+date: '2025-09-27'
+tags: ['nuxt', 'vue', 'svelte', 'turborepo', 'tailwindcss', 'daisyui']
 post_id: 1
+toc: true
+share_tweet: "I've rebuilt my portfolio, moving from Svelte to a modern Nuxt, Tailwind CSS, and Turborepo stack. Here's a deep dive into the why and how."
 ---
 
-It's 2025 and I've rebuilt my personal webpage with Nuxt 4.
+It's 2025, and I've just rolled out a complete rebuild of my personal website. I've migrated from a [Svelte](https://svelte.dev/)/Sapper stack to a modern setup featuring [Nuxt](https://nuxt.com/), [Tailwind CSS](https://tailwindcss.com/), and a [Turborepo](https://turbo.build/repo). This wasn't just a cosmetic update; it was a strategic decision driven by five years of evolution in the frontend landscape and a desire to align my personal projects with my daily professional workflow.
 
-The first version started on 2020, the day after Vue 3 was realeased. I started coding my first webpage with Svelte and Sapper (now renamed as Svelte Kit). The following years and months were a total madness in Vue ecosystem: many existing repos went legacy, the migration from Vue 2 to Vue 3 was a bing pain, and I wasn't really sure if the framework was going to survive or not. At that time, it made sense to go on and try Svelte.
+## The 2020 Decision: Why Svelte?
 
-But 5 years are gone, and now the Vue 3 ecosystem is **amazing**, composition API, Typescript and tooling are robust and AI is about to take all developer jobs in the planet. So after the first release of [angelblanco.dev](https://angelblanco.dev) it's time to rebuild my own page from scratch.
+Back in 2020, when I built the first version of this site, the Vue ecosystem was in a state of massive flux. Vue 3 had just been released, but the tooling was immature, and Nuxt wasn't yet ready for it. The migration path from Vue 2 was uncertain, and frankly, the future felt a bit shaky.
 
-## Rebuliding goals
+At that time, Svelte and its companion framework, Sapper, offered a compelling alternative. It was fast, simple, and provided a stable, forward-thinking developer experience. It was the right choice for its time.
 
-Building my web again, means a technical-rebuild and a brain-rebuild. It's almost like a brain game.
+## The Tipping Point: Ecosystem vs. DIY
 
-- Include a dark mode.
-- Evalaute different AI tools without worrying about time comsumption, quality of output, privacy, etc.
-- Experiment with monrepos, and the [turborepo tool](https://turborepo.com/).
-- Find cool frontend libraries and trends.
-- Learn VIM motions and get a fully functional [Neovim](https://neovim.io/) setup.
+Fast forward five years, and the tables have turned dramatically. While Svelte is still a fantastic framework, the Nuxt ecosystem has blossomed into a powerhouse. This was the primary driver for my migration.
 
-```js [file.js]{2} meta-info=val
-const name = 'Ángel';
-const surname = 'Blanco';
+With my old Sapper site, I had to build many features from scratch: SEO meta-tag generation, content management for the blog, and image optimization. While I learned a lot, maintaining that custom code became a chore. Furthermore, the migration from Sapper to SvelteKit proved to be a significant undertaking that I simply didn't have the spare time to manage.
 
-function greet() {
-  console.log({
-    name,
-    surname
-  });
-}
+Nuxt, on the other hand, offers a rich ecosystem of modules that handle these concerns out of the box:
 
-greet();
-```
+- **[@nuxt/content](https://content.nuxt.com/):** For effortless, file-based content management.
+- **[@nuxt/seo](https://nuxt.com/modules/seo):** For robust SEO and metadata handling.
+- **[@nuxt/image](https://image.nuxt.com/):** For best-in-class image optimization.
 
-```vue
-<template>
-  <div>
-    Hello
-  </div>
-</template>
+This mature tooling allows me to focus on what matters most: creating content, not reinventing the wheel.
 
-<script lang="ts" setup>
-const a = 123;
+## Aligning with My Daily Workflow
 
-function hello() {
-  // hello comment
-  console.log('hello');
-}
+My day job is centered around Vue 3, TypeScript, and the Composition API. It makes perfect sense for my personal platform to be built with the same technologies I use and love professionally. Working with Nuxt feels natural, simple, and incredibly powerful, allowing me to leverage my existing expertise.
 
-hello(); // EOF
-</script>
-```
+## A Quick Look at the New Stack
 
-## Choices
+- **[Nuxt](https://nuxt.com/):** The core of the application, providing a streamlined and powerful Vue-based framework.
+- **[Tailwind CSS](https://tailwindcss.com/):** For utility-first styling, enabling rapid and consistent UI development.
+- **[Turborepo](https://turbo.build/repo):** To manage the monorepo structure, which keeps the main app, shared configurations, and internal tools organized.
 
-### Pnpm over Yarn or Npm
+### From Bulma to Tailwind CSS & DaisyUI
 
-I choose `pnpm` over `yarn` mainly to try a different package manager. I don't really fell any remarkable advantage of one over another for most scenarios.
+In the previous version of my site, I used [Bulma](https://bulma.io/), and it's a truly great CSS library. However, my day-to-day workflow is deeply rooted in Tailwind CSS. I've found that using a predefined set of utilities from a framework I don't use daily was restricting my creativity.
 
-During development, when CI wasn't done I experimented a couple of inconsistencies when working with two different computers, even when I have a lock file. Similar problems had happened to me using `yarn` over the years, so it's not a big call!
+Because I use Tailwind every single day, I've started to "think" in Tailwind when it comes to styling. The live-reload capabilities and the utility-first approach have become second nature. For this rebuild, I've paired it with [DaisyUI](https://daisyui.com/), which offers the best of both worlds. It allows me to opt-in for pre-styled components when I'm feeling lazy but lets me opt-out and go fully custom without sacrificing any of Tailwind's benefits. Plus, it comes with a fantastic theme system designed specifically for Tailwind.
 
-### Tailwind and DaisyUI over Bulma CSS or others
+## The Role of AI in Development
 
-Tailwind 4 is brand new, and DaisyUI already supports it. The decission was a no-brainer. Once it's setup the experience is great, however, good luck with LLMs trying to assist you on the migration to Tailwind 4.
+This rebuild was also an opportunity to experiment with the latest generation of AI coding assistants. I tried tools like the [**Gemini CLI**](https://ai.google.dev/docs/gemini_cli_quickstart), [**Aider**](https://github.com/paul-gauthier/aider), and [**GitHub Copilot**](https://github.com/features/copilot) throughout the process. Some days, they felt like superpowers, and others, they felt like a flu, but I plan to dive deeper into that experience in future posts.
 
-- DaisyUI adds the theming and let me opt-in to certain components.
-- I want to have full control of the UI of my page and create custom variations without forcing myself to use premade CSS or think about other people variables.
-- I also want to have the choice to opt-in for certain pre-made utilities that will do the trick in most scenarios like buttons, swaps, etc.
+## What's Next?
 
-Back in 2020, I choose Bulma CSS, an awesome CSS framework, but right now styling without TailwindCSS makes me slower at coding, reducing the amount of time given to my creative process.
-
-### Why not Svelte Kit?
-
-I really like Svelte, it's fast, it's simple and many of the ideas of the framework where then merged into Vue and viceversa. However the amount of already made plugins for nuxt and the ease of development (once you have everything installed and configured) cannot be easily achieved.
-
-One clear example about this is [Nuxt Content](https://content.nuxt.com/), with Svelte, to achieve a similar thing you will probably need to code this logic into your server by your own. I learned a lot doing that on the first version, however i don't relly want to mantain that on my spare time, because that will stop me from actually writing posts in the blog.
-
-### Why Nuxt?
-
-I mainly code with [Vue](https://vuejs.org/), [Typescript](https://www.typescriptlang.org/) and [Laravel](https://laravel.com/) at my job. Altough I've tested Nuxt several times, I've never completed a whole project. It's time to learn.
-
-## Did AI help in the creation of this page?
-
-Yes, of course! But it also stole a lot of time. I love [Aider](https://aider.chat/) and have spent quite sometime trying to make it work in my own development process. However, I set up the pilars for developing onto this project myself.
-
-## What's next?
-
-I'm planning to document
+This new site is a foundation. I'm excited to start writing more, sharing what I learn, and continuing to explore the incredible tools available to developers today. Stay tuned.

@@ -1,4 +1,4 @@
-description = "Asks the model to create or improve a blog post in angelblanco.dev."
+description = "Asks the model to write a blog post in angelblanco.dev."
 
 prompt = """
 You are an expert copywriter and full-stack engineer creating a blog post for angelblanco.dev. Your audience is other tech full-stack developers.
@@ -33,10 +33,12 @@ Your task is to write or refine a blog post based on the provided slug and descr
     ```
 
 3.  **Content Generation Rules:**
-    *   **Audience & Tone:** Write for full-stack developers. The tone should be professional, informative, and engaging.
+    *   **Audience:** Write for full-stack developers.
+    *   **Tone:** The tone should be professional yet approachable and engaging, not like a dry user manual. Imagine a friendly and knowledgeable content creator who communicates complex ideas clearly and can bring a smile to the reader's face. Feel free to add a touch of humor where appropriate.
+    *   **SEO & Linking:** To improve SEO and provide value to the reader, you MUST include external links to relevant, high-authority sources. When you mention a technology, framework, or tool (e.g., Nuxt, Tailwind CSS, Turborepo), link to its official website or documentation.
     *   **Language Sync:**
         *   The core ideas and structure must be the same across both English and Spanish posts.
-        *   The Spanish post is NOT a literal translation. It should be a natural, idiomatic adaptation for a Spanish-speaking tech audience.
+        *   The Spanish post is NOT a literal translation. It should be a natural, idiomatic adaptation for a tech audience from Spain, using Castilian Spanish (español de España). 
     *   **Technical Content:**
         *   All code blocks must be written in English in both posts.
         *   In the Spanish post, comments within code blocks MUST be translated to Spanish.
