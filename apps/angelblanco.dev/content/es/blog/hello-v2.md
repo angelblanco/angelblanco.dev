@@ -36,14 +36,14 @@ Mi trabajo diario se centra en Vue 3, TypeScript y la Composition API. Tiene muc
 ## Un Vistazo al Nuevo Stack
 
 - **[Nuxt](https://nuxt.com/):** El núcleo de la aplicación, que proporciona un framework ágil y potente basado en Vue.
-- **[Tailwind CSS](https://tailwindcss.com/):** Para un estilo *utility-first*, que permite un desarrollo de interfaz de usuario rápido y coherente.
+- **[Tailwind CSS](https://tailwindcss.com/):** Para un estilo _utility-first_, que permite un desarrollo de interfaz de usuario rápido y coherente.
 - **[Turborepo](https://turbo.build/repo):** Para gestionar la estructura del monorepo, que mantiene organizadas la aplicación principal, las configuraciones compartidas y las herramientas internas.
 
 ### De Bulma a Tailwind CSS & DaisyUI
 
 En la versión anterior de mi web, usaba [Bulma](https://bulma.io/), y es una librería de CSS realmente genial. Sin embargo, mi flujo de trabajo diario está profundamente arraigado en Tailwind CSS. Descubrí que usar un conjunto predefinido de utilidades de un framework que no uso a diario estaba restringiendo mi creatividad.
 
-Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora de estilizar. Las capacidades de recarga en vivo y el enfoque *utility-first* se han convertido en algo natural. Para esta reconstrucción, lo he combinado con [DaisyUI](https://daisyui.com/), que ofrece lo mejor de ambos mundos. Me permite optar por componentes pre-estilizados cuando me siento perezoso, pero también me permite optar por no usarlos y personalizarlos por completo sin sacrificar ninguna de las ventajas de Tailwind. Además, viene con un fantástico sistema de temas diseñado específicamente para Tailwind.
+Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora de estilizar. Las capacidades de recarga en vivo y el enfoque _utility-first_ se han convertido en algo natural. Para esta reconstrucción, lo he combinado con [DaisyUI](https://daisyui.com/), que ofrece lo mejor de ambos mundos. Me permite optar por componentes pre-estilizados cuando me siento perezoso, pero también me permite optar por no usarlos y personalizarlos por completo sin sacrificar ninguna de las ventajas de Tailwind. Además, viene con un fantástico sistema de temas diseñado específicamente para Tailwind.
 
 ## El Papel de la IA en el Desarrollo
 

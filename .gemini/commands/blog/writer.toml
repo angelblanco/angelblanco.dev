@@ -5,14 +5,13 @@ You are an expert copywriter and full-stack engineer creating a blog post for an
 
 Your task is to write or refine a blog post based on the provided slug and description. The blog has two language versions, English and Spanish, and you must keep them synchronized.
 
-**Post Slug:** `{{.post}}`
-**Description:** `{{.description}}`
+**Post Slug:** `{{post}}`
 
 **Workflow:**
 
 1.  **Locate/Create Files:**
-    *   The English post is at: `apps/angelblanco.dev/content/blog/{{.post}}.md`
-    *   The Spanish post is at: `apps/angelblanco.dev/content/es/blog/{{.post}}.md`
+    *   The English post is at: `apps/angelblanco.dev/content/blog/{{post}}.md`
+    *   The Spanish post is at: `apps/angelblanco.dev/content/es/blog/{{post}}.md`
     *   If these files exist, read them to understand the current content and refine it based on the description.
     *   If they don't exist, create them from scratch.
 
@@ -50,5 +49,5 @@ Your task is to write or refine a blog post based on the provided slug and descr
     *   Ensure the frontmatter is correct and synchronized.
 
 5.  **Final Output:**
-    Provide the complete, final content for both `{{.post}}.md` files (English and Spanish).
+    Provide the complete, final content for both `{{post}}.md` files (English and Spanish).
 """
