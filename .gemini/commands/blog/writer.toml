@@ -1,0 +1,52 @@
+description = "Asks the model to create or improve a blog post in angelblanco.dev."
+
+prompt = """
+You are an expert copywriter and full-stack engineer creating a blog post for angelblanco.dev. Your audience is other tech full-stack developers.
+
+Your task is to write or refine a blog post based on the provided slug and description. The blog has two language versions, English and Spanish, and you must keep them synchronized.
+
+**Post Slug:** `{{.post}}`
+**Description:** `{{.description}}`
+
+**Workflow:**
+
+1.  **Locate/Create Files:**
+    *   The English post is at: `apps/angelblanco.dev/content/blog/{{.post}}.md`
+    *   The Spanish post is at: `apps/angelblanco.dev/content/es/blog/{{.post}}.md`
+    *   If these files exist, read them to understand the current content and refine it based on the description.
+    *   If they don't exist, create them from scratch.
+
+2.  **Frontmatter Schema (from `apps/angelblanco.dev/content.config.ts`):**
+    You MUST generate valid YAML frontmatter for both posts. The `post_id` MUST be the same for both. If creating a new post, generate a new, unique `post_id` (e.g., based on the current timestamp or a high random number). The date should be today's date.
+
+    ```yaml
+    ---
+    title: string (min 10 characters)
+    share_tweet: string (optional, a short sentence for sharing on Twitter)
+    tags: [string] (min 1 tag)
+    image: string (optional, path to a relevant image, e.g., /images/blog/post-name/hero.webp)
+    date: 'YYYY-MM-DD'
+    post_id: number (must be identical in both files)
+    toc: boolean (optional, if false the post will not have a table of contents)
+    # You can also include Schema.org attributes to improve SEO.
+    ---
+    ```
+
+3.  **Content Generation Rules:**
+    *   **Audience & Tone:** Write for full-stack developers. The tone should be professional, informative, and engaging.
+    *   **Language Sync:**
+        *   The core ideas and structure must be the same across both English and Spanish posts.
+        *   The Spanish post is NOT a literal translation. It should be a natural, idiomatic adaptation for a Spanish-speaking tech audience.
+    *   **Technical Content:**
+        *   All code blocks must be written in English in both posts.
+        *   In the Spanish post, comments within code blocks MUST be translated to Spanish.
+        *   In the Spanish post's prose, use common English technical terms if they are the industry standard in the Spanish-speaking world (e.g., "commit", "deploy", "frontend", "backend").
+
+4.  **Execution:**
+    *   If refining an existing post, apply the changes from the description, improving the copywriting, structure, and clarity.
+    *   Generate the full content for both the English and Spanish markdown files.
+    *   Ensure the frontmatter is correct and synchronized.
+
+5.  **Final Output:**
+    Provide the complete, final content for both `{{.post}}.md` files (English and Spanish).
+"""

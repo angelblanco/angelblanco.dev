@@ -3,13 +3,13 @@ import { asSchemaOrgCollection } from 'nuxt-schema-org/content';
 
 export function blogSchema() {
   return z.object({
-    title: z.string().min(10),
-    share_tweet: z.string(),
-    tags: z.array(z.string()).min(1),
-    image: z.string(),
-    date: z.string().date(),
     post_id: z.number(),
-    toc: z.boolean(),
+    title: z.string().min(10),
+    tags: z.array(z.string()).min(1),
+    date: z.string().date(),
+    share_tweet: z.string().optional(),
+    image: z.string().optional(),
+    toc: z.boolean().optional(),
   });
 }
 
