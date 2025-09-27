@@ -24,7 +24,7 @@ Nuxt ahora mismo, por otro lado, ofrece una cantidad de módulos oficiales que s
 
 - **[@nuxt/content](https://content.nuxt.com/):** Para gestionar el contenido desde archivos, sin complicaciones.
 - **[@nuxt/seo](https://nuxt.com/modules/seo):** Para un control robusto del SEO y los metadatos, donde sin configurar nada, tienes una configuración por defecto suficiente para la mayoría de casos.
-- **[@nuxt/icons](https://icons.nuxt.com/):** Para usar todos los iconos que quieras, de manera optimizada.
+- **[@nuxt/icons](https://nuxt.com/modules/icon):** Para usar todos los iconos que quieras, de manera optimizada.
 
 Creo que estas herramientas me permitirán centrarme en lo que de verdad importa: crear contenido.
 
@@ -47,7 +47,7 @@ Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora 
 
 ## El papel de la IA en el desarrollo
 
-Esta reconstrucción también está siendo una oportunidad para experimentar con la última generación de asistentes de código basados en IA. He probado (demasiadas) herramientas cómo [**Gemini CLI**](https://ai.google.dev/docs/gemini_cli_quickstart), [**Aider**](https://github.com/paul-gauthier/aider) y [**GitHub Copilot**](https://github.com/features/copilot) durante todo el proceso. Usandolas, algunos días me he sentido con superpoderes y otros, como si tuviera la gripe. Si cumplo mi objetivo, de empezar a escribir, te contaré más acerca de cada una de ellas en nada.
+Esta reconstrucción también está siendo una oportunidad para experimentar con la última generación de asistentes de código basados en IA. He probado (demasiadas) herramientas cómo [**Gemini CLI**](https://github.com/google-gemini/gemini-cli), [**Aider**](https://github.com/paul-gauthier/aider) y [**GitHub Copilot**](https://github.com/features/copilot) durante todo el proceso. Usandolas, algunos días me he sentido con superpoderes y otros, como si tuviera la gripe. Si cumplo mi objetivo, de empezar a escribir, te contaré más acerca de cada una de ellas en nada.
 
 ## ¿Y ahora qué?
 

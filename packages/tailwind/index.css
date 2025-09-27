@@ -88,6 +88,7 @@
 
   /* Controlls the max-width of UI elements */
   --container-ui: 60rem;
+  --container-post: 45rem;
 }
 
 .animate-spin-slow {
@@ -122,6 +123,15 @@
 }
 
 .prose a {
+  @apply decoration-primary underline-offset-7 hover:decoration-3 transition-all;
+}
+
+.prose h1 a,
+.prose h2 a,
+.prose h3 a,
+.prose h4 a,
+.prose h5 a,
+.prose h6 a {
   @apply no-underline hover:gradient-text;
 }
 

@@ -1,9 +1,9 @@
 <template>
   <UiPageNotFound v-if="!post" />
-  <div v-else class="min-h-screen-content mx-auto max-w-ui p-4">
+  <div v-else class="min-h-screen-content mx-auto max-w-post p-4">
     <BlogHeader :post="post" :alternative-locale="alternativeLocale" />
 
-    <div class="prose max-w-none lg:prose-lg">
+    <div class="prose max-w-none">
       <ContentRenderer :value="post" />
     </div>
   </div>

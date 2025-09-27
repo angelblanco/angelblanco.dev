@@ -25,7 +25,7 @@ Nuxt, on the other hand, offers a rich ecosystem of modules that handle these co
 - **[@nuxt/content](https://content.nuxt.com/):** For effortless, file-based content management.
 - **[@nuxt/seo](https://nuxt.com/modules/seo):** For robust SEO and metadata handling, with sensible defaults that work out of the box.
 - **[@nuxt/image](https://image.nuxt.com/):** For best-in-class image optimization.
-- **[@nuxt/icons](https://icons.nuxt.com/):** For using any icon set you want in an optimized way.
+- **[@nuxt/icons](https://nuxt.com/modules/icon):** For using any icon set you want in an optimized way.
 
 This mature tooling allows me to focus on what matters most: creating content.
 
@@ -48,7 +48,7 @@ Because I use Tailwind every single day, I've started to "think" in Tailwind whe
 
 ## The role of AI in development
 
-This rebuild was also an opportunity to experiment with the latest generation of AI coding assistants. I've tried (too many) tools like the [**Gemini CLI**](https://ai.google.dev/docs/gemini_cli_quickstart), [**Aider**](https://github.com/paul-gauthier/aider), and [**GitHub Copilot**](https://github.com/features/copilot) throughout the process. Some days, they felt like superpowers, and others, they felt like a flu. If I stick to my goal of writing more, I'll tell you more about each of them soon.
+This rebuild was also an opportunity to experiment with the latest generation of AI coding assistants. I've tried (too many) tools like the [**Gemini CLI**](https://github.com/google-gemini/gemini-cli), [**Aider**](https://github.com/paul-gauthier/aider), and [**GitHub Copilot**](https://github.com/features/copilot) throughout the process. Some days, they felt like superpowers, and others, they felt like a flu. If I stick to my goal of writing more, I'll tell you more about each of them soon.
 
 ## What's next?
 
