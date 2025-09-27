@@ -31,7 +31,7 @@ Creo que estas herramientas me permitirán centrarme en lo que de verdad importa
 
 ## Alineación con Mi Flujo de Trabajo Diario
 
-En mi día a día trabajo con Vue 3, TypeScript y Composition API. Tiene todo el sentido que mi plataforma personal esté construida con las mismas tecnologías que uso y con las que disfruto profesionalmente. Trabajar con Nuxt me ha resultado muy sencillo (una vez entiendes su filosofía) e increíblemente potente.
+En mi trabajo usamos Vue 3 con TypeScript y Composition API así cómo Tailwind. Tiene todo el sentido que mi plataforma personal esté construida con las mismas tecnologías que uso y con las que disfruto profesionalmente. Trabajar con Nuxt me ha resultado muy sencillo (una vez entiendes su filosofía) e increíblemente potente.
 
 ## El Nuevo Stack de Un Vistazo
 
@@ -44,7 +44,7 @@ En mi día a día trabajo con Vue 3, TypeScript y Composition API. Tiene todo el
 
 En la versión anterior de mi web, usaba [Bulma](https://bulma.io/), que es una librería CSS fantástica. Sin embargo, mi día a día gira en torno a Tailwind CSS y pivotar entre el template y el css a día de hoy me parece el doble de trabajo, ya que rara vez en un componente `.vue` o `.svelte` vas a reutilizar las clases.
 
-Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora de maquetar. La recarga en caliente y el enfoque _utility-first_ son ya parte de mi forma de trabajar, una vez que piensas así es muy díficil volver atrás. Además, lo he combinado con [DaisyUI](https://daisyui.com/), que ofrece lo mejor de ambos mundos. Me permite usar componentes ya listos cuando no me quiero complicar, pero también me da la libertad de no usarlos y crear algo totalmente a medida sin sacrificar ninguna de las ventajas de Tailwind. Además, viene con un genial sistema de temas diseñado específicamente para Tailwind y siguiendo su guía puedes tener tantos temas cómo quieras en tu página web.
+Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora de maquetar. El live reload de Vite + el enfoque _utility-first_ son parte de mi forma de trabajar, una vez que piensas así es muy díficil volver atrás. Además, lo he combinado con [DaisyUI](https://daisyui.com/), que ofrece lo mejor de ambos mundos. Me permite usar componentes ya listos cuando no me quiero complicar, pero también me da la libertad de no usarlos y crear algo totalmente a medida sin sacrificar ninguna de las ventajas de Tailwind. Además, viene con un genial sistema de temas diseñado específicamente para Tailwind y siguiendo su guía puedes tener tantos temas cómo quieras en tu página web.
 
 ## El Papel de la IA en el Desarrollo
 

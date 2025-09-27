@@ -49,5 +49,5 @@ Your task is to write or refine a blog post based on the provided slug and descr
     *   Ensure the frontmatter is correct and synchronized.
 
 5.  **Final Output:**
-    Provide the complete, final content for both `{{post}}.md` files (English and Spanish).
+    Write the complete, final content for both `{{post}}.md` files (English and Spanish). {{ args }}
 """
