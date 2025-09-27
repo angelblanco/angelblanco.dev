@@ -4,51 +4,56 @@ date: '2025-09-27'
 tags: ['nuxt', 'vue', 'svelte', 'turborepo', 'tailwindcss', 'daisyui']
 post_id: 1
 toc: true
-share_tweet: "He reconstruido mi portfolio, pasando de Svelte a un stack moderno con Nuxt, Tailwind CSS y Turborepo. Aquí te cuento el porqué y el cómo."
+share_tweet: "He reconstruido mi portfolio, pasando de Svelte a un stack moderno con Nuxt, Tailwind CSS y Turborepo. Te cuento los motivos y el proceso."
 ---
 
-Estamos en 2025 y acabo de lanzar una reconstrucción completa de mi web personal. He migrado de un stack basado en [Svelte / Kit (Sapper)](https://svelte.dev/) a una configuración moderna con [Nuxt](https://nuxt.com/), [Tailwind CSS](https://tailwindcss.com/) y un [Turborepo](https://turbo.build/repo). No ha sido solo un cambio estético; ha sido una decisión estratégica, impulsada por cinco años de evolución en el panorama frontend y el deseo de alinear mis proyectos personales con mi flujo de trabajo profesional diario.
+Estamos en 2025 y acabo de lanzar una reconstrucción completa de mi web personal. He migrado de un stack basado en [Svelte / Kit (Sapper)](https://svelte.dev/) a un stack moderno con [Nuxt](https://nuxt.com/), [Tailwind CSS](https://tailwindcss.com/) y un [Turborepo](https://turbo.build/repo). No ha sido solo un cambio estético; ha sido un cambio total, impulsada por cinco años de evolución en el panorama frontend y el deseo de alinear mis proyectos personales con mi trabajo diario.
 
 ## La Decisión de 2020: ¿Por Qué Svelte?
 
-En 2020, cuando construí la primera versión de esta web, el ecosistema de Vue se encontraba en un estado de cambio masivo. Vue 3 acababa de ser lanzado, pero las herramientas eran inmaduras y Nuxt aún no estaba listo. El camino de migración desde Vue 2 era incierto y, francamente, el futuro parecía un poco inestable.
+En 2020, cuando construí la primera versión de esta web, el ecosistema de Vue estaba en plena transición. Vue 3 estaba en pruebas, y se lanzó justo cuando yo ya había acabado mi página web. Los primeros dos años de Vue 3 fueron un dolor y Nuxt 3 no tuvo soporte total, hasta Noviembre de 2022. El camino de migración desde Vue 2 era incierto y, francamente, el futuro parecía algo inestable.
 
-En ese momento, Svelte y su framework compañero, Sapper, ofrecían una alternativa convincente. Era rápido, sencillo y proporcionaba una experiencia de desarrollo estable y con visión de futuro. Fue la elección correcta para su momento.
+En el 2020 Svelte y Sapper, su framework de aplicaciones, ofrecían una alternativa muy atractiva. Era rápido, sencillo y proporcionaba una experiencia de desarrollo estable y con proyección de futuro. Fue la decisión acertada en aquel momento.
 
 ## El Punto de Inflexión: Ecosistema vs. DIY
 
-Cinco años después, las tornas han cambiado drásticamente. Aunque Svelte sigue siendo un framework fantástico, el ecosistema de Nuxt ha florecido hasta convertirse en una potencia. Este fue el principal motor de mi migración.
+Cinco años después, la situación ha cambiado radicalmente. Aunque Svelte sigue siendo un framework fantástico, el ecosistema de Nuxt es una maravilla.
 
-Con mi antiguo sitio de Sapper, tuve que construir muchas funcionalidades desde cero: generación de metaetiquetas para SEO, gestión de contenido para el blog y optimización de imágenes. Aunque aprendí mucho, mantener ese código personalizado se convirtió en una tarea pesada. Además, la migración de Sapper a SvelteKit resultó ser una empresa importante que simplemente no tuve el tiempo libre para gestionar.
+Con mi antiguo sitio en Sapper, tuve que construir desde cero muchas funcionalidades: generación de metaetiquetas para SEO, gestión de contenido para el blog y optimización de imágenes. Aunque aprendí mucho, mantener ese código a medida se convirtió en un engorro. Además, la migración de Sapper a SvelteKit resultó ser una tarea de una envergadura para la que, simplemente, no tenía tiempo.
 
-Nuxt, por otro lado, ofrece un rico ecosistema de módulos que se encargan de estos problemas de fábrica:
+Nuxt ahora mismo, por otro lado, ofrece una cantidad de módulos oficiales que solucionan la mayoría de las necesidades para construir una página cómo esta:
 
-- **[@nuxt/content](https://content.nuxt.com/):** Para una gestión de contenidos basada en archivos y sin esfuerzo.
-- **[@nuxt/seo](https://nuxt.com/modules/seo):** Para un manejo robusto de SEO y metadatos.
-- **[@nuxt/image](https://image.nuxt.com/):** Para una optimización de imágenes de primera clase.
+- **[@nuxt/content](https://content.nuxt.com/):** Para gestionar el contenido desde archivos, sin complicaciones.
+- **[@nuxt/seo](https://nuxt.com/modules/seo):** Para un control robusto del SEO y los metadatos, donde sin configurar nada, tienes una configuración por defecto suficiente para la mayoría de casos.
+- **[@nuxt/icons](https://icons.nuxt.com/):** Para usar todos los iconos que quieras, de manera optimizada.
 
-Estas herramientas maduras me permiten centrarme en lo que más importa: crear contenido, no reinventar la rueda.
+Creo que estas herramientas me permitirán centrarme en lo que de verdad importa: crear contenido.
 
 ## Alineación con Mi Flujo de Trabajo Diario
 
-Mi trabajo diario se centra en Vue 3, TypeScript y la Composition API. Tiene mucho sentido que mi plataforma personal esté construida con las mismas tecnologías que uso y amo profesionalmente. Trabajar con Nuxt me resulta natural, sencillo e increíblemente potente, lo que me permite aprovechar mi experiencia existente.
+En mi día a día trabajo con Vue 3, TypeScript y Composition API. Tiene todo el sentido que mi plataforma personal esté construida con las mismas tecnologías que uso y con las que disfruto profesionalmente. Trabajar con Nuxt me ha resultado muy sencillo (una vez entiendes su filosofía) e increíblemente potente.
 
-## Un Vistazo al Nuevo Stack
+## El Nuevo Stack de Un Vistazo
 
-- **[Nuxt](https://nuxt.com/):** El núcleo de la aplicación, que proporciona un framework ágil y potente basado en Vue.
-- **[Tailwind CSS](https://tailwindcss.com/):** Para un estilo _utility-first_, que permite un desarrollo de interfaz de usuario rápido y coherente.
-- **[Turborepo](https://turbo.build/repo):** Para gestionar la estructura del monorepo, que mantiene organizadas la aplicación principal, las configuraciones compartidas y las herramientas internas.
+- **[Nuxt](https://nuxt.com/):** El núcleo de la aplicación, que proporciona un framework potente y optimizado basado en Vue.
+- **[Tailwind CSS](https://tailwindcss.com/):** Para todo lo relacionado con el CSS.
+- **[DaisyUI](https://daisyui.com/):** Cómo framework para definir el tema claro/oscuro de la aplicación.
+- **[Turborepo](https://turbo.build/repo):** Para organizar la estructura del monorepo, manteniendo la app principal, configuraciones y herramientas internas en un único lugar.
 
 ### De Bulma a Tailwind CSS & DaisyUI
 
-En la versión anterior de mi web, usaba [Bulma](https://bulma.io/), y es una librería de CSS realmente genial. Sin embargo, mi flujo de trabajo diario está profundamente arraigado en Tailwind CSS. Descubrí que usar un conjunto predefinido de utilidades de un framework que no uso a diario estaba restringiendo mi creatividad.
+En la versión anterior de mi web, usaba [Bulma](https://bulma.io/), que es una librería CSS fantástica. Sin embargo, mi día a día gira en torno a Tailwind CSS y pivotar entre el template y el css a día de hoy me parece el doble de trabajo, ya que rara vez en un componente `.vue` o `.svelte` vas a reutilizar las clases.
 
-Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora de estilizar. Las capacidades de recarga en vivo y el enfoque _utility-first_ se han convertido en algo natural. Para esta reconstrucción, lo he combinado con [DaisyUI](https://daisyui.com/), que ofrece lo mejor de ambos mundos. Me permite optar por componentes pre-estilizados cuando me siento perezoso, pero también me permite optar por no usarlos y personalizarlos por completo sin sacrificar ninguna de las ventajas de Tailwind. Además, viene con un fantástico sistema de temas diseñado específicamente para Tailwind.
+Como uso Tailwind todos los días, he empezado a "pensar" en Tailwind a la hora de maquetar. La recarga en caliente y el enfoque _utility-first_ son ya parte de mi forma de trabajar, una vez que piensas así es muy díficil volver atrás. Además, lo he combinado con [DaisyUI](https://daisyui.com/), que ofrece lo mejor de ambos mundos. Me permite usar componentes ya listos cuando no me quiero complicar, pero también me da la libertad de no usarlos y crear algo totalmente a medida sin sacrificar ninguna de las ventajas de Tailwind. Además, viene con un genial sistema de temas diseñado específicamente para Tailwind y siguiendo su guía puedes tener tantos temas cómo quieras en tu página web.
 
 ## El Papel de la IA en el Desarrollo
 
-Esta reconstrucción también fue una oportunidad para experimentar con la última generación de asistentes de codificación de IA. Probé herramientas como [**Gemini CLI**](https://ai.google.dev/docs/gemini_cli_quickstart), [**Aider**](https://github.com/paul-gauthier/aider) y [**GitHub Copilot**](https://github.com/features/copilot) durante todo el proceso. Algunos días, se sentían como superpoderes y otros, como una gripe, pero planeo profundizar en esa experiencia en futuras publicaciones.
+Esta reconstrucción también está siendo una oportunidad para experimentar con la última generación de asistentes de código basados en IA. He probado (demasiadas) herramientas cómo [**Gemini CLI**](https://ai.google.dev/docs/gemini_cli_quickstart), [**Aider**](https://github.com/paul-gauthier/aider) y [**GitHub Copilot**](https://github.com/features/copilot) durante todo el proceso. Usandolas, algunos días me he sentido con superpoderes y otros, como si tuviera la gripe. Si cumplo mi objetivo, de empezar a escribir, te contaré más acerca de cada una de ellas en nada.
 
-## ¿Qué Sigue?
+## ¿Y ahora qué?
 
-Esta nueva web es una base. Estoy emocionado por empezar a escribir más, compartir lo que aprendo y seguir explorando las increíbles herramientas disponibles para los desarrolladores hoy en día. ¡Estad atentos!
+Tengo ganas de empezar a escribir más, compartir algunas ideas que llevo pensando mucho tiempo y quizás incluso empezar a contribuir el algún proyecto open source.
+
+Muchas gracias por llegar hasta el final,
+
+¡Nos vemos!
