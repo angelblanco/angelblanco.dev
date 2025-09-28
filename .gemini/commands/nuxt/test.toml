@@ -25,6 +25,7 @@ Your task is to generate the content for a new test file based on the provided i
       - Use `describe`, `it`, and `expect` from `vitest`.
       - If testing a composable, you can call it directly in your test.
       - If testing a component, you can use `@nuxt/test-utils` to mount it.
+      -  Mocking is discouraged. Since the full Nuxt environment is available, most tests require little to no mocking. Keep mocks minimal to avoid unnecessary complexity.
 
     - **For `unit` tests (Utilities):**
       - These are for simple functions that don't depend on the Nuxt environment.

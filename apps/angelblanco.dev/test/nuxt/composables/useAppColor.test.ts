@@ -1,8 +1,8 @@
-// import { useAppColors } from '#imports';
-import { expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-it('changes color', () => {
-  const appColor = useAppColors();
-
-  expect(appColor.base100.value).toBeDefined();
+describe('composables: useAppColors', () => {
+  it('should return light color by default', () => {
+    const { base100 } = useAppColors();
+    expect(base100.value).toBe('oklch(100% 0 0)');
+  });
 });

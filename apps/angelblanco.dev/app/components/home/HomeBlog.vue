@@ -24,7 +24,7 @@
     </div>
   </NuxtLinkLocale>
 
-  <div class="max-w-ui mx-auto font-medium tracking-wide text-sm text-base-content/80 px-2 lg:p-0 mb-2">
+  <div v-if="otherPosts && otherPosts.length > 0" class="max-w-ui mx-auto font-medium tracking-wide text-sm text-base-content/80 px-2 lg:p-0 mb-2">
     {{ $t('Other entries') }}...
   </div>
 

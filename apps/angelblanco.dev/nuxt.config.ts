@@ -18,6 +18,12 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
   ],
 
+  typescript: {
+    tsConfig: {
+      include: ['../test/**/*'],
+    },
+  },
+
   app: {
     head: {
       link: [
