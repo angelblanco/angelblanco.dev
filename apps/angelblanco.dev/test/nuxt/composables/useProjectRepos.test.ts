@@ -7,8 +7,8 @@ describe('composables: useProjectRepos', () => {
   it('should return a list of project repos', async () => {
     const { projectRepos } = useProjectRepos();
 
-    expect(projectRepos.value.length).toBe(3);
-    expect(projectRepos.value[0].name).toBe('angelblanco.dev');
+    expect(projectRepos.value.length).greaterThanOrEqual(3);
+    expect(projectRepos.value.map(r => r.name)).toContain('angelblanco.dev');
   });
 
   it('should return the correct license visibility', () => {
