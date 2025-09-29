@@ -44,6 +44,7 @@ This project has a set of well-defined conventions that I will strictly follow. 
 - **[Base Conventions](./packages/conventions/base.md):** These are the foundational guidelines for the entire monorepo, covering topics like folder structure, component design, TypeScript usage, and Tailwind CSS v4 best practices.
 - **[Application Conventions (`apps/angelblanco.dev`)](./packages/conventions/app.md):** These are specific rules for developing within the main Nuxt application, including component organization and the use of installed Nuxt modules.
 - **[Internal CLI (`aiderx`) Conventions](./packages/conventions/aiderx.md):** These guidelines cover the development and testing of the internal `aiderx` command-line tool.
+- **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit, component, and end-to-end testing strategies.
 
 ## My Workflow
 
