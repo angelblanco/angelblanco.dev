@@ -3,6 +3,7 @@ nuxtSiteConfig:
   description: Personal full-stack engineering blog and portfolio
 Author: Ángel Blanco
 Me: Me
+License: License
 About: About Me
 AboutDescription: My profesional carrer and interests
 Blog: Blog

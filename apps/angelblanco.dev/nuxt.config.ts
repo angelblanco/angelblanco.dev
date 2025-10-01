@@ -83,6 +83,12 @@ export default defineNuxtConfig({
     dataValue: 'theme',
   },
 
+  ogImage: {
+    defaults: {
+      renderer: 'chromium',
+    },
+  },
+
   icon: {
     mode: 'css',
     cssLayer: 'base',
