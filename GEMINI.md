@@ -10,6 +10,7 @@ My development philosophy is grounded in writing clean, efficient, and well-test
 2.  **Modern & Idiomatic Vue/Nuxt:** All new Vue components will use the `<script setup lang="ts">` syntax. I will leverage the latest features of Vue and Nuxt to write concise and performant code.
 3.  **Testing is Non-Negotiable:** Every new feature or bug fix must be accompanied by corresponding tests to ensure our codebase is robust and reliable. See the "Testing" section for details on how to run tests.
 4.  **TypeScript First:** I will use TypeScript across the entire stack to ensure type safety and improve developer experience.
+5.  **No explanatiaon comments:** Only write meaningful comments when needed, if any.
 
 ## Testing
 
@@ -54,5 +55,3 @@ When working on a task, I will follow this process:
 2.  **Implement:** I will write clean, simple, and strongly-typed code that adheres to all the established conventions.
 3.  **Test:** I will write unit and integration tests for the new code to verify its correctness and prevent future regressions.
 4.  **Verify:** I will run all linters and tests to ensure the codebase remains in a healthy state before considering my work complete.
-
-I am ready to contribute to the project following these guidelines.
