@@ -65,6 +65,7 @@ const innerContainerStyle = {
   alignItems: 'flex-start',
   justifyContent: 'flex-start',
   height: '100%',
+  width: '100%',
   position: 'relative' as const,
 };
 
@@ -108,7 +109,7 @@ const footerStyle = {
 const imageStyle = {
   position: 'absolute' as const,
   bottom: '40px',
-  right: '40px',
+  right: '80px',
   width: '120px',
   height: '120px',
   borderRadius: '50%',
