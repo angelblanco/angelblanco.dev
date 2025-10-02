@@ -40,7 +40,7 @@ The frontend side of my day job is centered around Vue 3 with composition API an
 - **[DaisyUI](https://daisyui.com/):** As a component library to define the light/dark theme of the application.
 - **[Turborepo](https://turbo.build/repo):** To manage the monorepo structure, which keeps the main app, shared configurations, and internal tools organized.
 
-### From Bulma to Tailwind CSS & DaisyUI
+## From Bulma to Tailwind CSS & DaisyUI
 
 In the previous version of my site, I used [Bulma](https://bulma.io/), and it's a truly great CSS library. However, my day-to-day workflow is deeply rooted in Tailwind CSS. Pivoting between the template and a separate CSS file now feels like double the work, as you rarely reuse classes in a `.vue` or `.svelte` component.
 

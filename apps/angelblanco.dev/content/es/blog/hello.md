@@ -39,7 +39,7 @@ En mi trabajo usamos Vue 3 con TypeScript y Composition API así cómo Tailwind.
 - **[DaisyUI](https://daisyui.com/):** Cómo framework para definir el tema claro/oscuro de la aplicación.
 - **[Turborepo](https://turbo.build/repo):** Para organizar la estructura del monorepo, manteniendo la app principal, configuraciones y herramientas internas en un único lugar.
 
-### De Bulma a Tailwind CSS & DaisyUI
+## De Bulma a Tailwind CSS & DaisyUI
 
 En la versión anterior de mi web, usaba [Bulma](https://bulma.io/), que es una librería CSS fantástica. Sin embargo, mi día a día gira en torno a Tailwind CSS y pivotar entre el template y el css a día de hoy me parece el doble de trabajo, ya que rara vez en un componente `.vue` o `.svelte` vas a reutilizar las clases.
 
