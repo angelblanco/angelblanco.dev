@@ -14,10 +14,12 @@
           angelblanco.dev
         </p>
       </div>
+
+      <!-- TODO: image not working with prerendering investigate later -->
       <img
+        v-if="false"
         src="/ablanco_2025_profile.webp"
         :style="imageStyle"
-        alt="Angel Blanco Profile"
       >
     </div>
   </div>

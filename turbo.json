@@ -3,11 +3,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [
-        "dist/**",
-        ".output/**",
-        "**/.vitepress/dist/**"
-      ]
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".nuxt/**", ".output/**", "dist/**"]
     },
     "generate": {
       "dependsOn": ["^generate"],
@@ -26,10 +23,15 @@
       "outputs": []
     },
     "dev": {
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "test": {
       "outputs": []
+    },
+    "cleanup": {
+      "cache": false,
+      "persistent": true
     }
   }
 }

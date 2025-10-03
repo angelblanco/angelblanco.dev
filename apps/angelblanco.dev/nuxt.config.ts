@@ -87,6 +87,14 @@ export default defineNuxtConfig({
     defaults: {
       renderer: 'chromium',
     },
+    compatibility: {
+      dev: {
+        chromium: 'playwright',
+      },
+      prerender: {
+        chromium: 'playwright',
+      },
+    },
   },
 
   icon: {
