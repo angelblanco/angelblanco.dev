@@ -18,13 +18,15 @@
     "lint": "turbo run lint --parallel",
     "lint:fix": "turbo run lint:fix --parallel",
     "test": "turbo run test",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@angelblanco/eslint": "workspace:*",
     "@release-it/conventional-changelog": "^10.0.1",
     "@types/node": "^22.16.5",
     "eslint": "^9.36.0",
+    "husky": "^9.1.7",
     "release-it": "^19.0.5",
     "turbo": "^2.5.8"
   },
