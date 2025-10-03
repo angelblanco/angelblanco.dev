@@ -15,7 +15,14 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     '@nuxt/content',
     '@nuxtjs/mdc',
+    '@nuxt/test-utils/module',
   ],
+
+  typescript: {
+    tsConfig: {
+      include: ['../test/**/*'],
+    },
+  },
 
   app: {
     head: {
@@ -74,6 +81,20 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
     dataValue: 'theme',
+  },
+
+  ogImage: {
+    defaults: {
+      renderer: 'chromium',
+    },
+    compatibility: {
+      dev: {
+        chromium: 'playwright',
+      },
+      prerender: {
+        chromium: 'playwright',
+      },
+    },
   },
 
   icon: {

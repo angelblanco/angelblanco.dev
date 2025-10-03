@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen-content mx-auto max-w-ui p-4">
+  <div class="min-h-screen-content mx-auto max-w-post p-4">
     <div class="space-y-24">
       <div v-for="post in posts" :key="post.id">
-        <NuxtLink class="block" :to="post.path">
-          <div class="text-4xl font-bold text-pretty tracking-tight">
+        <NuxtLink class="block group transition" :to="post.path">
+          <div class="text-4xl font-bold text-pretty tracking-tight group-hover:gradient-text">
             {{ post.title }}
           </div>
           <div class="text-sm mb-3 opacity-75">

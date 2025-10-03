@@ -2,6 +2,8 @@ nuxtSiteConfig:
   name: Ángel Blanco
   description: Blog de ingeniería informática full stack y portfolio personal
 Author: Ángel Blanco
+Me: Sobre mí
+License: Licencia
 About: Sobre mí
 AboutDescription: Mi carrera profesional y mis intereses
 Blog: Blog

@@ -3,11 +3,12 @@ name: CI
 on:
   push:
     branches:
-      - none
-  # - master
-  #   tags:
-  #     - '*'
-  # pull_request:
+      - master
+    tags:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -20,7 +21,7 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Cache turbo build setup
+      - name: Cache Turbo Build
         uses: actions/cache@v4
         with:
           path: .turbo
@@ -28,21 +29,28 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: pnpm/action-setup@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
 
-      - name: Setup Node.js environment
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
 
-      - name: Install dependencies
+      - name: Install
         run: pnpm install
+
+      - name: Install playwright
+        run: pnpm exec playwright install --with-deps --only-shell
+        working-directory: apps/angelblanco.dev
 
       - name: Lint
         run: pnpm lint
 
-      - name: Typescript check
+      - name: Type check
         run: pnpm typecheck
 
       - name: Test

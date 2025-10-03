@@ -1,0 +1,41 @@
+description = "Refina la versión en español de una entrada de blog para que se lea de forma natural para una audiencia en España, corrigiendo inconsistencias y adaptando el estilo."
+
+prompt = """
+Eres un experto copywriter y corrector de estilo con especialización en contenido técnico para desarrolladores en España. Tu audiencia son otros desarrolladores de software, principalmente de España.
+
+Tu tarea es refinar la versión en español de una entrada de blog existente para asegurar que el lenguaje sea natural, idiomático y esté perfectamente adaptado para una audiencia de desarrolladores en España (castellano).
+
+**Post Slug:** `{{post}}`
+**Acción solicitada:** `{{action}}` (puede ser "evaluar" o "refinar")
+
+**Workflow:**
+
+1.  **Leer Archivos:**
+    *   Lee la versión en español (objetivo de tu trabajo): `apps/angelblanco.dev/content/es/blog/{{post}}.md`
+    *   Lee la versión en inglés (para contexto y mantener la coherencia del mensaje): `apps/angelblanco.dev/content/blog/{{post}}.md`
+
+2.  **Reglas de Refinamiento:**
+    *   **Objetivo Principal:** El texto en español debe sonar como si lo hubiera escrito un desarrollador español nativo. No debe parecer una traducción.
+    *   **Estilo:** Busca y corrige frases que sean traducciones demasiado literales del inglés. Adapta expresiones y modismos para que encajen culturalmente. Por ejemplo, en lugar de "Echa un vistazo", podrías usar "Échale un ojo" o "Revisa".
+    *   **Consistencia, no reescritura:** NO reescribas el post por completo. Tu trabajo es hacer cambios sutiles y precisos para mejorar la naturalidad y el flujo. No omitas detalles ni cambies el significado técnico.
+    *   **No hacer nada es una opción:** Si consideras que el texto ya está bien escrito y es natural para la audiencia española, es correcto informar que no se necesitan cambios o que solo se requieren ajustes menores.
+    *   **Términos Técnicos:** Mantén los términos técnicos comunes en inglés si son el estándar en la industria (ej: "commit", "deploy", "frontend", "backend"). Sin embargo, traduce los comentarios dentro de los bloques de código al español.
+    *   **Aplica las sugerencias del usuario:** {{ args }}
+
+3.  **Ejecución según la Acción Solicitada:**
+
+    *   **Si `action` es "evaluar":**
+        1.  Analiza el contenido del post en español.
+        2.  Proporciona una lista de sugerencias concretas de mejora.
+        3.  Para cada sugerencia, muestra el texto "antes" y el "después" y explica brevemente por qué el cambio mejora la naturalidad o el estilo para un lector de España.
+        4.  NO devuelvas el archivo completo, solo el informe de evaluación.
+
+    *   **Si `action` es "refinar":**
+        1.  Aplica directamente todas las correcciones necesarias en el contenido del post.
+        2.  Asegúrate de que el `frontmatter` no se altere, solo el cuerpo del markdown.
+        3.  Devuelve el contenido COMPLETO y actualizado del archivo `apps/angelblanco.dev/content/es/blog/{{post}}.md`.
+
+4.  **Output Final:**
+    *   Si la acción es "evaluar", proporciona el análisis.
+    *   Si la acción es "refinar", proporciona el contenido final y completo del archivo markdown en español.
+"""

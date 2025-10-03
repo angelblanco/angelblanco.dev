@@ -3,7 +3,7 @@
     <nav class="bg-base-100">
       <div class="p-4 max-w-ui mx-auto gap-2 flex-1 flex items-center">
         <div class="flex-grow md:flex-grow-0">
-          <NuxtLink to="/" class="btn btn-ghost p-2 text-lg lg:text-xl font-mono">
+          <NuxtLink data-testid="ui-navbar-link" to="/" class="btn btn-ghost p-2 text-lg lg:text-xl font-mono">
             angelblanco.dev
           </NuxtLink>
         </div>

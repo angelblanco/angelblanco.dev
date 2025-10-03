@@ -1,6 +1,6 @@
 <template>
   <div v-if="toc.links.length > 0" class="p-4 border border-primary/40 bg-primary/5">
-    <div class="font-bold text-lg pb-4 font-mono text-primary-content tracking-wide dark:text-base-content dark:font-medium">
+    <div class="font-bold pb-4 font-mono text-primary-content tracking-wide dark:text-base-content dark:font-medium">
       On this page
     </div>
 

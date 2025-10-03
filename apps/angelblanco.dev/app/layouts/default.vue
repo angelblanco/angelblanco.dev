@@ -5,3 +5,7 @@
     <UiFooter />
   </div>
 </template>
+
+<script lang="ts" setup>
+defineOgImageComponent('PortfolioOgImage');
+</script>
