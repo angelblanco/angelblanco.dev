@@ -14,4 +14,6 @@ The server is running at http://localhost:3000, so the page to test must be buil
 @{packages/conventions/playwright.md}
 
 **User Instructions:** 
+
+{{args}}
 """
