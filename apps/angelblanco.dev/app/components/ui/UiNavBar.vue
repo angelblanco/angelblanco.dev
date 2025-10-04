@@ -1,6 +1,6 @@
 <template>
   <div class="sticky top-0 z-30">
-    <nav id="ui-nav-bar" class="bg-base-100">
+    <nav id="ui-nav-bar" class="bg-base-100" :data-is-open="isMenuOpen ? 'true' : 'false'">
       <div class="p-4 max-w-ui mx-auto gap-2 flex-1 flex items-center">
         <div class="flex-grow md:flex-grow-0">
           <NuxtLink data-testid="ui-navbar-link" to="/" class="btn btn-ghost p-2 text-lg lg:text-xl font-mono">

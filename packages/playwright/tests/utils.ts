@@ -68,16 +68,27 @@ export async function expectSeoIsConfigured(page: Page) {
   await expectMetaName(page, 'twitter:image');
 }
 
-export async function ensureNavbarIsOpen(page: Page, isMobile: boolean) {
+export async function ensureNavbarIsOpen(page: Page, isMobile: boolean, ensureOpen: boolean = true) {
   if (!isMobile)
     return;
 
-  const mobileMenu = page.locator('#ui-nav-bar-menu');
-  const isMenuVisible = await mobileMenu.isVisible();
+  const navBar = page.locator('#ui-nav-bar');
 
-  if (!isMenuVisible) {
+  await expect(navBar).toBeVisible();
+
+  const isOpen = await navBar.getAttribute('data-is-open') === 'true';
+
+  const mobileMenu = page.locator('#ui-nav-bar-menu');
+
+  if ((!isOpen && ensureOpen) || (isOpen && !ensureOpen)) {
     await page.locator('#ui-navbar-toggle').click();
-    await expect(mobileMenu).toBeVisible();
+  }
+
+  if (ensureOpen) {
+    expect(mobileMenu).toBeVisible();
+  }
+  else {
+    expect(mobileMenu).toBeHidden();
   }
 }
 

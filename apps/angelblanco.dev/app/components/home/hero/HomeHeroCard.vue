@@ -19,7 +19,7 @@
       </NuxtLinkLocale>
     </div>
 
-    <NuxtLinkLocale to="/about">
+    <NuxtLinkLocale to="/about" class="flex-shrink-0">
       <img src="~/assets/images/ablanco.webp" alt="Me" class="size-24 md:size-42 lg:size-64 rotate-15 shadow-lg transition hover:rotate-0">
     </NuxtLinkLocale>
   </div>

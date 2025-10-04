@@ -1,16 +1,11 @@
 # Invoked via: /git:commit
-description = "Writes a commit message that starts with an emoji and meaningful, detailed, message based on current diff file content from latest commit"
+description = "Execute a git commit -am command with message that starts with an emoji and meaningful, detailed, message based on current diff file content from latest commit"
 prompt = """
 
-Add all working files to git just in case the user forgot it
-!{git add .}
-
-Please generate a Conventional Commit message based on the following git diff.
+Please generate a git commit -am command with Conventional Commit message based on the following git diff.
 The commit message should start with an emoji and be detailed and meaningful.
 
 ```diff
 !{git diff --staged}
 ```
-
-Now execute your suggested git command with the command passed with single quotes to avoid unexpected shell injections.
 """
