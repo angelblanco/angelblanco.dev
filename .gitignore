@@ -51,3 +51,10 @@ yarn-error.log*
 **/.vitepress/cache/**
 .aider*
 !.aiderignore
+
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+.cache/
+.auth/

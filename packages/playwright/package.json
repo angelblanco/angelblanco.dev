@@ -9,9 +9,10 @@
   "main": "index.js",
   "scripts": {
     "test:e2e": "playwright test",
+    "test:e2e:fresh": "playwright test --update-snapshots",
     "start:server": "bash runServer.sh",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix"
+    "lint": "eslint --ignore-pattern playwright-report --ignore-pattern test-results",
+    "lint:fix": "eslint --ignore-pattern playwright-report --ignore-pattern test-results --fix"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
