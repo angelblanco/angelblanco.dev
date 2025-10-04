@@ -12,5 +12,5 @@ The commit message should start with an emoji and be detailed and meaningful.
 !{git diff --staged}
 ```
 
-Now execute your suggested git command.
+Now execute your suggested git command with the command passed with single quotes to avoid unexpected shell injections.
 """

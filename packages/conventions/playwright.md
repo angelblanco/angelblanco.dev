@@ -64,7 +64,8 @@ By inspecting elements, simulating user interactions, and observing the applicat
 2.  **Use Best Practices:** Leverage the latest Playwright features and APIs. Use web-first assertions and locators.
 3.  **DRY (Don't Repeat Yourself):** Do not write the same test logic multiple times. Use loops or parameterized tests to cover different locales or scenarios.
 4.  **No Superfluous Comments:** Code should be self-explanatory. Only add comments for complex logic that cannot be simplified.
-5.  **File Naming:** Test files should be named `[page-name].spec.ts`. For example, tests for the home page are in `home.spec.ts`.
+5.  **File Naming:** Test files should be named `[page-name].spec.ts`.
+6.  **Use screenshots:** Visually comparing screenshots ensure that we have not broken page styling.
 
 ### Example: Testing a Page Title (DRY approach)
 
@@ -81,6 +82,7 @@ for (const locale of locales) {
   test(`has correct title for locale: ${locale.code}`, async ({ page }) => {
     await page.goto(locale.path);
     await expect(page).toHaveTitle(new RegExp(locale.title));
+    await expect(page).toHaveScreenshot('home.png');
   });
 }
 ```
@@ -95,6 +97,7 @@ for (const locale of locales) {
     - Write a concise test that covers both English and Spanish locales, using a loop or parameterized test structure.
     - Use locators and web-first assertions.
 3.  **Run and Verify:**
-    - Execute the tests using `pnpm test:e2e` from within the `packages/playwright` directory.
+    - Execute the tests using `pnpm run test:e2e` from within the `packages/playwright` directory. If you have changed or added screenshots, run it with `--update-snapshots`.
+    - If the test run fails, do not try to fix it right away, let the user decide if you need to fix it or not.
 
-By following these guidelines, I will ensure our E2E test suite is clean, efficient, and provides comprehensive coverage for our application.
+By following these guidelines, ensure our E2E test suite is clean, efficient, and provides comprehensive coverage for our application.
