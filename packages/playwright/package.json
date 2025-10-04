@@ -1,0 +1,20 @@
+{
+  "name": "@angelblanco/playwright",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.18.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "start:server": "bash runServer.sh",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@types/node": "^22.16.5"
+  }
+}
