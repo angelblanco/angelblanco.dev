@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  workflow_dispatch: # Allows manual triggering
+  push:
+    branches:
+      - master
+
+jobs:
+  env:
+    NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'production' }}
+
+    steps:
+      - name: Setup Node Project
+        uses: ./.github/actions/setup-node-project
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./apps/angelblanco.dev/.output/public
