@@ -23,7 +23,7 @@ export function localizedPath(locale: Locale, path?: string) {
     return locale.path;
   }
 
-  return `${trimEnd(locale.path)}/${trimStart(path, '/')}`;
+  return `${trimEnd(locale.path, '/')}/${trimStart(path, '/')}`;
 }
 
 export async function expectTheme(page: Page, theme: Theme) {
@@ -66,4 +66,21 @@ export async function expectSeoIsConfigured(page: Page) {
   await expectMetaProperty(page, 'og:url');
   await expectMetaName(page, 'twitter:card');
   await expectMetaName(page, 'twitter:image');
+}
+
+export async function ensureNavbarIsOpen(page: Page, isMobile: boolean) {
+  if (!isMobile)
+    return;
+
+  const mobileMenu = page.locator('#ui-nav-bar-menu');
+  const isMenuVisible = await mobileMenu.isVisible();
+
+  if (!isMenuVisible) {
+    await page.locator('#ui-navbar-toggle').click();
+    await expect(mobileMenu).toBeVisible();
+  }
+}
+
+export function getLocalizedTranslations<Translations>(locale: Locale, translationsRecord: Record<LocaleCode, Translations>): Translations {
+  return translationsRecord[locale.code];
 }

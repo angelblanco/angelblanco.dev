@@ -1,53 +1,48 @@
 import { expect, test } from '@playwright/test';
-import { ensureTheme, expectTheme, locales } from './utils';
+import { ensureNavbarIsOpen, ensureTheme, expectTheme, getLocalizedTranslations, locales, localizedPath } from './utils';
+
+const NAVBAR_EXPECTED_TRANS = {
+  en: {
+    blog: 'Blog',
+    projects: 'Projects',
+    about: 'Me',
+  },
+  es: {
+    blog: 'Blog',
+    projects: 'Proyectos',
+    about: 'Sobre mí',
+  },
+};
 
 for (const locale of locales) {
-  // TODO:
-  // test(`navbar navigates correctly for locale: ${locale.code} with translated set`, async ({
-  //   page,
-  //   isMobile,
-  // }) => {
-  //   await page.goto(locale.path);
+  test(`navbar navigates correctly for locale: ${locale.code} with translated set`, async ({
+    page,
+  }) => {
+    await page.goto(locale.path);
 
-  //   const blogLinkName = 'Blog';
-  //   const projectsLinkName = locale.code === 'es' ? 'Proyectos' : 'Projects';
-  //   const aboutLinkName = locale.code === 'es' ? 'Sobre mí' : 'Me';
+    const viewportSize = page.viewportSize();
+    const mustHaveToggle = (viewportSize?.width || 0) < 767;
+    const trans = getLocalizedTranslations(locale, NAVBAR_EXPECTED_TRANS);
 
-  //   const blogPath = locale.code === 'es' ? '/es/blog' : '/blog';
-  //   const projectsPath = locale.code === 'es' ? '/es/projects' : '/projects';
-  //   const aboutPath = locale.code === 'es' ? '/es/about' : '/about';
+    const getLink = (name: string) => {
+      const parentLocator = mustHaveToggle ? page.locator('#ui-nav-bar-menu') : page.locator('nav');
+      return parentLocator.getByRole('link', { name });
+    };
 
-  //   const getLink = (name: string) => {
-  //     if (isMobile)
-  //       return page.locator('.fixed.inset-0').getByRole('link', { name, exact: true });
+    await ensureNavbarIsOpen(page, mustHaveToggle);
+    await getLink(trans.blog).click();
+    await page.waitForURL(localizedPath(locale, '/blog'));
 
-  //     return page.locator('nav').getByRole('link', { name, exact: true });
-  //   };
+    await page.goto(locale.path);
+    await ensureNavbarIsOpen(page, mustHaveToggle);
+    await getLink(trans.projects).click();
+    await page.waitForURL(localizedPath(locale, '/projects'));
 
-  //   async function openMobileMenu() {
-  //     if (isMobile) {
-  //       const menuButton = page.getByRole('button', {
-  //         name: /open|close/i,
-  //       });
-  //       if (await menuButton.isVisible())
-  //         await menuButton.click();
-  //     }
-  //   }
-
-  //   await openMobileMenu();
-  //   await getLink(blogLinkName).click();
-  //   await page.waitForURL(new RegExp(`.*${blogPath}`));
-
-  //   await page.goto(locale.path);
-  //   await openMobileMenu();
-  //   await getLink(projectsLinkName).click();
-  //   await page.waitForURL(new RegExp(`.*${projectsPath}`));
-
-  //   await page.goto(locale.path);
-  //   await openMobileMenu();
-  //   await getLink(aboutLinkName).click();
-  //   await page.waitForURL(new RegExp(`.*${aboutPath}`));
-  // });
+    await page.goto(locale.path);
+    await ensureNavbarIsOpen(page, mustHaveToggle);
+    await getLink(trans.about).click();
+    await page.waitForURL(localizedPath(locale, '/about'));
+  });
 
   test(`theme switcher works in locale: ${locale.code}`, async ({ page }) => {
     await page.goto(locale.path);

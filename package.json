@@ -13,7 +13,6 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "generate": "turbo run generate",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint --parallel",
     "lint:fix": "turbo run lint:fix --parallel",
@@ -21,8 +20,10 @@
     "typecheck": "turbo run typecheck",
     "cleanup": "turbo run cleanup",
     "prepare": "husky",
+    "preview": "pnpm build && npx serve apps/angelblanco.dev/.output/public",
     "fresh": "bash ./fresh.sh",
-    "ai:commit": "gemini -m gemini-2.5-flash --prompt-interactive \"/git:commit\""
+    "ai:flash": "gemini -m gemini-2.5-flash",
+    "ai:commit": "pnpm ai:flash --prompt-interactive \"/git:commit\""
   },
   "devDependencies": {
     "@angelblanco/eslint": "workspace:*",

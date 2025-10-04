@@ -33,10 +33,10 @@
     <div id="ui-nav-bar-menu" class="fixed inset-0 top-16 z-50 bg-base-100 md:hidden shadow-sm overflow-y-auto border-t border-base-300 ">
       <div class="divide-y divide-base-300">
         <div v-for="menuEntry in menuEntries" :key="menuEntry.to" class="py-2">
-          <NuxtLink class="flex p-4 gap-2 rounded hover:bg-primary/10 hover:text-primary-content dark:hover:text-primary font-medium" :to="menuEntry.to" active-class="text-primary" @click="closeMenu()">
+          <NuxtLinkLocale class="flex p-4 gap-2 rounded hover:bg-primary/10 hover:text-primary-content dark:hover:text-primary font-medium" :to="menuEntry.to" active-class="text-primary" @click="closeMenu()">
             <Icon :name="menuEntry.icon" class="fill-current" :class="iconSize" />
             <span>{{ menuEntry.label }}</span>
-          </NuxtLink>
+          </NuxtLinkLocale>
         </div>
       </div>
     </div>
