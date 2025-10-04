@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <label class="swap swap-rotate btn btn-ghost btn-square" @click="toggleTheme">
+    <label id="theme-switcher" class="swap swap-rotate btn btn-ghost btn-square" @click="toggleTheme">
       <Icon
         name="heroicons:sun"
         class="fill-current"

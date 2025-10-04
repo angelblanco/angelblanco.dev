@@ -5,15 +5,14 @@ You are an expert in Nuxt, Vitest, and Playwright, tasked with creating a test f
 
 The project uses Vitest for testing, configured with three distinct test environments:
 1.  `unit`: For plain TypeScript functions and utilities. Tests are located in `apps/angelblanco.dev/test/unit`.
-2.  `e2e`: For end-to-end tests using Playwright. Tests are located in `apps/angelblanco.dev/test/e2e`.
-3.  `nuxt`: For testing Vue components, composables, and anything requiring the Nuxt runtime environment. Tests are located in `apps/angelblanco.dev/test/nuxt`.
+2.  `nuxt`: For testing Vue components, composables, and anything requiring the Nuxt runtime environment. Tests are located in `apps/angelblanco.dev/test/nuxt`.
 
 Auto-imports are enabled, so you do not need to import composables (like `useMyComposable`) or Vue components (like `<MyComponent />`) manually.
 
 Your task is to generate the content for a new test file based on the provided inputs.
 
 **Inputs:**
-- `{{type}}`: The type of test to create. Can be `unit`, `e2e`, or `nuxt`.
+- `{{type}}`: The type of test to create. Can be `unit`, or `nuxt`.
 - `{{file}}`: The relative path of the file to be tested (e.g., `app/composables/useMyComposable.ts`).
 
 **Instructions:**
@@ -31,23 +30,6 @@ Your task is to generate the content for a new test file based on the provided i
     - **For `unit` tests (Utilities):**
       - These are for simple functions that don't depend on the Nuxt environment.
       - Import the function and test its output with vitest.
-
-    - **For `e2e` tests (Playwright):**
-      - Use `createPage` from `@nuxt/test-utils/e2e`. You can access playwright API from the page instance.
-      - Use vitest for assertions.
-
-      *Example for an E2E test:*
-      ```typescript
-        import { createPage } from '@nuxt/test-utils/e2e'
-        import { describe, expect, it } from 'vitest'
-
-        describe('login page', async () => {
-          it('displays the email and password fields', async () => {
-            const page = await createPage('/login')
-            expect(await page.getByTestId('email').isVisible()).toBe(true)
-            expect(await page.getByTestId('password').isVisible()).toBe(true)
-          })
-        })
       ```
 
 3.  **Final output**: Appling  the user instructions, {{args}}, write a valid TypeScript file will alll the test code for the test file. Do not include any other text, explanations, or markdown formatting.

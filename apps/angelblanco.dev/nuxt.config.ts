@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxtjs/mdc',
     '@nuxt/test-utils/module',
+    '@nuxt/scripts',
   ],
 
   typescript: {
@@ -126,6 +127,22 @@ export default defineNuxtConfig({
       prose: false,
       map: {
         strong: 'ProseCustomStrong',
+      },
+    },
+  },
+
+  scripts: {
+    registry: {
+      googleAnalytics: true,
+    },
+  },
+
+  runtimeConfig: {
+    public: {
+      scripts: {
+        googleAnalytics: {
+          id: '',
+        },
       },
     },
   },

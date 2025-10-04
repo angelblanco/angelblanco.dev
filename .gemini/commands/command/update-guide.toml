@@ -1,0 +1,25 @@
+description = "Updates the local gemini-commands.md guide from the official documentation."
+prompt = """
+# Task: Update Gemini Commands Guide
+
+You will update the local ``packages/conventions/gemini-commands.md` guide with the latest information from the official documentation.
+
+## Instructions
+
+1.  **Read Local Guide:**
+    -   Read the content of the file `packages/conventions/gemini-commands.md`.
+
+2.  **Extract URL:**
+    -   Find the URL pointing to the official documentation within the local guide.
+
+3.  **Fetch Official Documentation:**
+    -   Use the `web_fetch` tool to get the latest content from the extracted URL.
+
+4.  **Analyze and Compare:**
+    -   Compare the content of the local guide with the official documentation you just fetched.
+    -   Identify any new sections, features, or changes in the official documentation that are missing from the local guide.
+
+5.  **Update Local Guide:**
+    -   Use the `write_file` or `replace` tool to update `packages/conventions/gemini-commands.md`.
+    -   Integrate the new information seamlessly, maintaining the existing structure and formatting. Ensure the source URL is preserved. Do not rewrite the guide if it's not necessary.
+"""

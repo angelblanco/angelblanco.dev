@@ -21,4 +21,4 @@
   - `eslint`: Custom ESLint configuration shared across the monorepo.
   - `fonts`: Defines a CSS for font management with the required fonts as dependencies.
   - `tailwind`: Tailwind 4 CSS file with daysi ui integration.
-- `.gemini`
+  - `playwright`: E2E tests with different browser integrations.
