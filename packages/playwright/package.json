@@ -10,12 +10,17 @@
   "scripts": {
     "test:e2e": "playwright test",
     "test:e2e:fresh": "playwright test --update-snapshots",
+    "test:e2e:html": "playwright test --reporter=html",
     "start:server": "bash runServer.sh",
     "lint": "eslint --ignore-pattern playwright-report --ignore-pattern test-results",
     "lint:fix": "eslint --ignore-pattern playwright-report --ignore-pattern test-results --fix"
   },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
+    "@types/lodash": "^4.17.20",
     "@types/node": "^22.16.5"
   }
 }
