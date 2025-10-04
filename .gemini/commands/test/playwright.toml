@@ -1,0 +1,15 @@
+# Invoked via: /test:playwright "user instructions"
+description = "Creates or updates a Playwright test by following the established conventions."
+prompt = """
+# Task: Create or Update a Playwright Test
+
+You are an expert Nuxt and Playwright engineer. Your task is to create or update a Playwright test based on the user's instructions.
+
+**You must strictly follow the project's Playwright testing conventions.**
+
+## Playwright Testing Conventions
+
+@{packages/conventions/playwright.md}
+
+**User Instructions:** 
+"""

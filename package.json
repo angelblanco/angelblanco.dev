@@ -21,7 +21,8 @@
     "typecheck": "turbo run typecheck",
     "cleanup": "turbo run cleanup",
     "prepare": "husky",
-    "fresh": "bash ./fresh.sh"
+    "fresh": "bash ./fresh.sh",
+    "ia:commit": "gemini -m gemini-2.5-flash"
   },
   "devDependencies": {
     "@angelblanco/eslint": "workspace:*",
