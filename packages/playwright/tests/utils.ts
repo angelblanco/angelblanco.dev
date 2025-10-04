@@ -46,3 +46,24 @@ export async function hideCanvas(page: Page) {
   });
   await expect(page.locator('canvas')).toHaveCSS('display', 'none');
 }
+
+async function expectMetaProperty(page: Page, property: string) {
+  const locator = page.locator(`meta[property='${property}']`);
+  await expect(locator).toHaveAttribute('content', /.+/);
+}
+
+async function expectMetaName(page: Page, name: string) {
+  const locator = page.locator(`meta[name='${name}']`);
+  await expect(locator).toHaveAttribute('content', /.+/);
+}
+
+export async function expectSeoIsConfigured(page: Page) {
+  await expect(page).toHaveTitle(/.+/);
+  await expectMetaName(page, 'description');
+  await expectMetaProperty(page, 'og:title');
+  await expectMetaProperty(page, 'og:description');
+  await expectMetaProperty(page, 'og:image');
+  await expectMetaProperty(page, 'og:url');
+  await expectMetaName(page, 'twitter:card');
+  await expectMetaName(page, 'twitter:image');
+}

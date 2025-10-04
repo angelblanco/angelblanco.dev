@@ -1,5 +1,11 @@
 import { expect, test } from '@playwright/test';
-import { ensureTheme, hideCanvas, locales, themes } from './utils';
+import {
+  ensureTheme,
+  expectSeoIsConfigured,
+  hideCanvas,
+  locales,
+  themes,
+} from './utils';
 
 for (const locale of locales) {
   for (const theme of themes) {
@@ -7,8 +13,8 @@ for (const locale of locales) {
       await page.goto(locale.path);
 
       await ensureTheme(page, theme);
-
       await expect(page).toHaveTitle(/Ángel Blanco/);
+      await expectSeoIsConfigured(page);
 
       // Hides canvas animation on home
       await hideCanvas(page);
