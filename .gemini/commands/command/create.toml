@@ -1,0 +1,32 @@
+# Invoked via: /command:create <name> <instructions>
+description = "Creates a new Gemini command following the guide."
+prompt = """
+# Task: Create a new Gemini Command
+
+You will create a new Gemini command based on the user's input.
+
+**Reference Guide:** Before starting, read the guide at `packages/conventions/gemini-commands.md`.
+
+**User Input:** The user's raw command is appended below.
+
+## Instructions
+
+1.  **Parse Input:**
+    -   From the user's command, identify the `<name>` and `<instructions>`.
+    -   Example: `/command:create my:new:command "This is a test"`
+        -   `<name>` is `my:new:command`
+        -   `<instructions>` is `This is a test`
+    -  From the <instructions> generate a meaningful command description
+
+2.  **Construct File Path:**
+    -   Convert the `<name>` to a file path: replace `:` with `/`.
+    -   The final path will be `.gemini/commands/<converted-name>.toml`.
+    -   Example: `.gemini/commands/my/new/command.toml`
+
+3.  **Generate Command Content:**
+    -   Create the TOML content for the new file. Use the provided name and generate the description.
+    -   Include a invoked via first line comment.
+
+4.  **Create the File:**
+    -   Use the `write_file` tool to save the generated content to the constructed file path.
+"""
