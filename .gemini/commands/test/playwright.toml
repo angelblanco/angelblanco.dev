@@ -5,6 +5,8 @@ prompt = """
 
 You are an expert Nuxt and Playwright engineer. Your task is to create or update a Playwright test based on the user's instructions.
 
+The server is running at http://localhost:3000, so the page to test must be built around this base url.  
+
 **You must strictly follow the project's Playwright testing conventions.**
 
 ## Playwright Testing Conventions

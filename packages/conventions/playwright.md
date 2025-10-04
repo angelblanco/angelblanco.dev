@@ -16,19 +16,47 @@ Our application supports multiple languages. It is **critical** that all E2E tes
   - **English (en):** The default locale, accessible at the root path (`/`).
   - **Spanish (es):** Accessible at the `/es` path prefix (e.g., `/es/about`).
 
-- **Finding Translations:**
-  When writing assertions against text content, you **must** retrieve the correct translations from the application's i18n files:
-  - **English:** `apps/angelblanco.dev/i18n/locales/en.yaml`
-  - **Spanish:** `apps/angelblanco.dev/i18n/locales/es.yaml`
-
-  Do not hardcode translated strings directly in the tests.
-
 ## Dynamic Content and Structure
 
 To write effective tests, you need to understand the structure of the page you are testing.
 
 - **Route Structure:** The application's routes are defined by the file structure within `apps/angelblanco.dev/app/pages/`. For example, a file at `app/pages/about/index.vue` corresponds to the `/about` route.
 - **Component Analysis:** If you need to understand the specific components used on a page, you can find them in `apps/angelblanco.dev/app/components/`. This is useful for creating targeted selectors or understanding the page's DOM structure.
+
+### Theme Switching
+
+The application's theme can be toggled between light and dark modes by interacting with the theme switcher component.
+
+- **Selector:** The theme switcher is a `label` element with the ID `#theme-switcher`.
+- **Action:** A single click on this element will toggle the theme.
+
+```typescript
+// Toggle the theme
+await page.click('#theme-switcher');
+```
+
+### Locale Switching
+
+The locale (language) can be changed via the locale switcher component, which is a dropdown menu.
+
+- **Selector:** The main button for the dropdown has the ID `#locale-switcher`. The language options within the dropdown have a `data-lang` attribute (e.g., `[data-lang="es"]`).
+- **Action:**
+  1. Click the `#locale-switcher` button to open the dropdown.
+  2. Click the desired language option using its `data-lang` attribute.
+
+```typescript
+// Open the locale switcher dropdown
+await page.click('#locale-switcher');
+
+// Select the Spanish locale
+await page.click('[data-lang="es"]');
+```
+
+### Advanced Analysis with Chrome DevTools
+
+For complex test scenarios, it is highly recommended to use the Chrome DevTools to analyze the page. This allows for a deeper understanding of the DOM structure, component behavior, and network requests.
+
+By inspecting elements, simulating user interactions, and observing the application's state, the coding agent can craft more precise and resilient Playwright tests. This is particularly useful for dynamic components or when debugging test failures. This includes taking pictures and simulating different scenarios to ensure full coverage.
 
 ## Test Authoring Guidelines
 
@@ -62,13 +90,11 @@ for (const locale of locales) {
 1.  **Analyze the Target Page:**
     - Identify the route by checking the `apps/angelblanco.dev/app/pages/` directory, maybe with the `tree` command.
     - Review the components used on the page (`apps/angelblanco.dev/app/components/`).
-2.  **Gather Translations:**
-    - Open `en.yaml` and `es.yaml` to find the text content you need to assert against.
-3.  **Write the Test:**
+2.  **Write the Test:**
     - Create or open the relevant `*.spec.ts` file in `packages/playwright/tests/`.
     - Write a concise test that covers both English and Spanish locales, using a loop or parameterized test structure.
     - Use locators and web-first assertions.
-4.  **Run and Verify:**
+3.  **Run and Verify:**
     - Execute the tests using `pnpm test:e2e` from within the `packages/playwright` directory.
 
 By following these guidelines, I will ensure our E2E test suite is clean, efficient, and provides comprehensive coverage for our application.
