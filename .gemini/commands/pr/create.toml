@@ -10,7 +10,7 @@ Follow these steps:
     Current Branch: !{git rev-parse --abbrev-ref HEAD}
 
 2.  **Identify Unmerged Commits:** List all commits on the current branch that are not present in the 'master' branch.
-    Unmerged Commits: !{git log master..HEAD --pretty=format:'%h %s'}
+    Unmerged Commits: !{git log master..HEAD}
 
 3.  **Summarize Changes and Resolve Contradictions:**
     Based on the 'Unmerged Commits' above, generate a comprehensive summary of the changes. Pay close attention to potential contradictions between commit messages, prioritizing the latest commit messages for accuracy.
@@ -23,5 +23,11 @@ Follow these steps:
 
 6.  **Create Pull Request using `gh cli`:**
     Use the `gh pr create` command to create the Pull Request. The command should look like this:
-    `gh pr create --base master --head <current-branch> --title '<generated-title>' --body '<generated-description>'`
+    ```
+    gh pr create --base master --head <current-branch> --title '<generated-title>' --body '
+      <generated-description line 1>
+      <generated-description line 2>
+      
+      <generated-description line N>'
+    ```
 """
