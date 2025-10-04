@@ -8,15 +8,13 @@ on:
       - completed
     branches:
       - master
+env:
+  NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 
 jobs:
-  env:
-    NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
-
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'production' }}
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run && github.event.workflow_run.conclusion == 'success') }}
 
     steps:
