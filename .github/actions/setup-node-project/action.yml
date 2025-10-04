@@ -4,10 +4,6 @@ description: 'Composite action for setting up a node project with pnpm, caching,
 runs:
   using: composite
   steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
 
     - name: Cache Turbo Build
       uses: actions/cache@v4
