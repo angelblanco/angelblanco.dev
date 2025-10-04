@@ -1,0 +1,27 @@
+
+# Invoked via: /pr:create
+description = "Creates a GitHub Pull Request from the current branch to master, summarizing unmerged commits, resolving contradictions, and formatting the PR title and description in Conventional Commit style using `gh cli`."
+prompt = """
+You are an expert software engineer and a git specialist. Your task is to create a GitHub Pull Request based on the current branch's unmerged commits into the 'master' branch.
+
+Follow these steps:
+
+1.  **Identify Current Branch:** Determine the name of the current branch.
+    Current Branch: !{git rev-parse --abbrev-ref HEAD}
+
+2.  **Identify Unmerged Commits:** List all commits on the current branch that are not present in the 'master' branch.
+    Unmerged Commits: !{git log master..HEAD --pretty=format:'%h %s'}
+
+3.  **Summarize Changes and Resolve Contradictions:**
+    Based on the 'Unmerged Commits' above, generate a comprehensive summary of the changes. Pay close attention to potential contradictions between commit messages, prioritizing the latest commit messages for accuracy.
+
+4.  **Generate PR Title:**
+    Create a concise and descriptive Pull Request title. It must start with an appropriate emoji (e.g., ✨, 🐛, 🚀, 🎨, ♻️, 📝, etc.) followed by a Conventional Commit type (e.g., feat, fix, chore, docs, style, refactor, perf, test, build, ci, revert).
+
+5.  **Generate PR Description:**
+    Create an extensive and meaningful Pull Request description following the Conventional Commit specification. Include a detailed explanation of the changes, the motivation behind them, and any relevant context.
+
+6.  **Create Pull Request using `gh cli`:**
+    Use the `gh pr create` command to create the Pull Request. The command should look like this:
+    `gh pr create --base master --head <current-branch> --title '<generated-title>' --body '<generated-description>'`
+"""
