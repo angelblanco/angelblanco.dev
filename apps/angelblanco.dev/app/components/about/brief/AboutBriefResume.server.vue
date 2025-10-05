@@ -1,6 +1,6 @@
 <template>
-  <div class="p-4 my-32">
-    <p class="max-w-ui mx-auto text-4xl lg:text-5xl tracking-tighter mb-8 flex flex-wrap gap-4">
+  <div class="p-4 my-6 lg:my-32">
+    <p class="max-w-ui mx-auto font-semibold text-pretty text-3xl md:text-4xl lg:text-5xlmb-8 flex flex-wrap gap-4 mb-4">
       {{ $t('aboutResumeTitle') }}
     </p>
 
@@ -9,8 +9,8 @@
         <MDC :value="mdResume" class="md-bold-styled md:col-span-3 space-y-3" />
 
         <div class="grid grid-cols-2 gap-4 mt-4">
-          <a :href="githubSocial.url" class="btn">{{ githubSocial.name }}</a>
-          <a :href="linkedinSocial.url" class="btn">{{ linkedinSocial.name }}</a>
+          <a :href="githubSocial.url" class="btn btn-neutral">{{ githubSocial.name }}</a>
+          <a :href="linkedinSocial.url" class="btn btn-neutral">{{ linkedinSocial.name }}</a>
         </div>
       </div>
       <div class="md:col-span-2 order-first md:order-last flex flex-col items-center">

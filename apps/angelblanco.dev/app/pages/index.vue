@@ -1,7 +1,9 @@
 <template>
-  <HomeHero />
-  <HomeBlog />
-  <div class="mb-32" />
+  <div class="min-h-screen-content">
+    <HomeHero />
+    <HomeBlog />
+    <div class="mb-32" />
+  </div>
 </template>
 
 <script lang="ts" setup>
