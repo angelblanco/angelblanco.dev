@@ -119,7 +119,7 @@
 }
 
 @utility min-h-screen-content {
-  min-height: calc(100dvh - 8.75rem);
+  min-height: calc(100dvh - 8.5rem);
 }
 
 .prose a {

@@ -3,7 +3,7 @@
     <nav id="ui-nav-bar" class="bg-base-100" :data-is-open="isMenuOpen ? 'true' : 'false'">
       <div class="p-4 max-w-ui mx-auto gap-2 flex-1 flex items-center">
         <div class="flex-grow md:flex-grow-0">
-          <NuxtLink data-testid="ui-navbar-link" to="/" class="btn btn-ghost p-2 text-lg lg:text-xl font-mono">
+          <NuxtLink data-testid="ui-navbar-link" to="/" class="btn btn-ghost p-2 text-lg lg:text-xl font-mono" @click="closeMenu()">
             angelblanco.dev
           </NuxtLink>
         </div>
@@ -14,7 +14,7 @@
           </NuxtLinkLocale>
         </div>
 
-        <UiThemeSwitcher :icon-size="iconSize" />
+        <UiThemeSwitcher :icon-size="iconSize" @click="closeMenu()" />
         <UiLocaleSwitcher :icon-size="iconSize" @click="closeMenu()" />
 
         <NuxtLink class="inline-flex btn btn-ghost btn-square" to="https://github.com/angelblanco/angelblanco.dev" target="_blank">

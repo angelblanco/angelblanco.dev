@@ -1,16 +1,17 @@
 <template>
   <nav class="flex bg-base-100 border-t border-base-300">
     <div class="max-w-ui mx-auto gap-2 flex-1 flex items-center">
-      <div class="text-sm border-r border-base-300 p-3">
+      <div class="text-xs md:text-sm border-r border-base-300 p-3">
         <div class="tracking-wide">
-          <span>{{ $t('Personal website of') }}</span>
+          <span class="mr-1">{{ t('Personal website of') }} </span>
           <NuxtLinkLocale to="/about" class="font-semibold hover:text-primary">
-            Ángel Blanco
+            {{ t('Author') }}
           </NuxtLinkLocale>
         </div>
-        <a :href="repoUrl" target="_blank" class="flex items-center gap-1 font-light mt-1 text-xs hover:text-primary group">
-          {{ $t('Hosted and OpenSourced with') }} <Icon name="heroicons:heart-solid" class="text-red-500 size-4 group-hover:text-primary" />
-          {{ $t('on GitHub') }}
+        <a :href="repoUrl" target="_blank" class="block items-center gap-1 font-light mt-1 text-xs hover:text-primary group">
+          <span>{{ t('Hosted and OpenSourced with') }}</span>
+          <Icon name="heroicons:heart-solid" class="text-red-500 size-4 group-hover:text-primary inline-flex align-middle mx-1.5" />
+          <span>{{ t('on GitHub') }}</span>
         </a>
       </div>
 
@@ -25,4 +26,5 @@
 
 <script lang="ts" setup>
 const { socials, repoUrl } = useSocials();
+const { t } = useI18n();
 </script>

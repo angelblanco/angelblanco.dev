@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="tracking-tight font-bold text-5xl mt-5 text-pretty">
+    <h1 class="tracking-tight font-bold text-2xl md:text-3xl lg:text-5xl mt-5 text-pretty">
       {{ post.title }}
     </h1>
     <div class="mb-2 mt-2 text-sm font-medium ">
