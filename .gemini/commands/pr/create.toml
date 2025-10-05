@@ -22,8 +22,9 @@ Follow these steps:
     Create an extensive and meaningful Pull Request description following the Conventional Commit specification. Include a detailed explanation of the changes, the motivation behind them, and any relevant context.
 
 6.  **Create Pull Request using `gh cli`:**
-    First, write the generated description to a file named `pr-body.txt`.
+    First, write the generated description to a file named `pr-body.txt` in the root of the repo.
     Then, use the `gh pr create` command to create the Pull Request. The command should look like this:
+
     ```
     gh pr create --base master --head <current-branch> --title '<generated-title>' --body-file ./pr-body.txt
     ```

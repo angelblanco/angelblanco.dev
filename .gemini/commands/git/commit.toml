@@ -8,6 +8,6 @@ Please generate a Conventional Commit message based on the following git diff.
 ```
 
 The commit message should start with an emoji and be detailed and meaningful.
-Save the commit message to a file named `git-commit-message.txt`.
+Save the commit message to a file named `./git-commit-message.txt` in the root of the repo.
 Finally, run `git commit -a -F ./git-commit-message.txt` to create the commit.
 """
