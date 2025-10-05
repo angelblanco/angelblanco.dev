@@ -21,6 +21,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Cache Turbo Build
+        uses: actions/cache@v4
+        with:
+          path: /..turbo
+          key: ${{ runner.os }}-turbo-deploy-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-deploy
+
       - name: Setup Node Project
         uses: ./.github/actions/setup-node-project
 
@@ -33,11 +41,14 @@ jobs:
           path: ./apps/angelblanco.dev/.output/public
 
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
