@@ -1,5 +1,6 @@
 <template>
-  <UiPageNotFound v-if="!post" />
+  <UiPageLoader v-if="postPending || altPending" class=" mx-auto max-w-post" />
+  <UiPageNotFound v-else-if="!post" />
   <div v-else class="min-h-screen-content mx-auto max-w-post p-4">
     <BlogHeader :post="post" :alternative-locale="alternativeLocale" />
 
@@ -12,7 +13,8 @@
 <script lang="ts" setup>
 const route = useRoute();
 
-const { post, alternativeLocale } = useBlogPost(route.path);
+const path = computed(() => route.path);
+const { post, postPending, altPending, alternativeLocale } = useBlogPost(path);
 
 useHead({
   title: () => post.value?.title,
