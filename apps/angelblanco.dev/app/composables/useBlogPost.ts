@@ -2,20 +2,20 @@ import type { BlogEnCollectionItem } from '@nuxt/content';
 
 export type BlogCollectionItem = BlogEnCollectionItem;
 
-export default function useBlogPost(path: string) {
+export default function useBlogPost(path: Ref<string>) {
   const { queryBlogCollection, queryAlternativeBlogCollection, blogCollection, alternativeBlogCollection } = useBlog();
-  const { alternativeLocale } = useLocale();
+  const { alternativeLocale, locale } = useLocale();
 
   // Main post
   const { data: post, pending: postPending, error: postError } = useAsyncData(
-    `${blogCollection.value}-${path}`,
-    () => queryBlogCollection().path(path).first(),
+    `${locale.value}-main-${blogCollection.value}-${path.value}`,
+    () => queryBlogCollection().path(path.value).first(),
   );
 
   // Alternative post
   const { data: alternativePost, pending: altPending, error: altError } = useAsyncData(
-    `${alternativeBlogCollection.value}-${path}`,
-    () => queryAlternativeBlogCollection().path(path).first(),
+    `${locale.value}-alternative-${alternativeBlogCollection.value}-${path.value}`,
+    () => queryAlternativeBlogCollection().path(path.value).first(),
   );
 
   return {
