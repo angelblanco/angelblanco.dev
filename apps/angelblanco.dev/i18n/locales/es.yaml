@@ -55,6 +55,6 @@ beonxDescription: |
 angelBlancoV1Description: |
   La primera versión de mi página web, hecha con Svelte + Sapper  y más tarde, actualizada a las primeras versiones de Svelte Kit.
   Contiene un plugin de rollup que gestiona el SSR de los ficheros markdown.
-  Implementa una serie de utilidades para gestionar el SEO, incluyendo generación de imágenes open graph con Playwright y generación automática del sitemap.
+  Implementé una serie de utilidades para gestionar el SEO, incluyendo generación de imágenes open graph con Playwright y generación automática del sitemap.
 sinceDate: desde
 toDate: a

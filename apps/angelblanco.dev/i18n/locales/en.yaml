@@ -21,13 +21,13 @@ on GitHub: on GitHub
 On this page: On this page
 aboutResumeTitle: Engineering Manager - Full Stack Architect
 aboutResumeMd: "\
-  I'm a **web engineer** with over 8 years of experience in the hospitality industry, specializing in **team leadership** and building web applications from the ground up.
+  I'm a **web engineer** with over 8 years of experience in the tech-tourism industry, specializing in **team leadership** and building web applications from the ground up.
   \n\n
-  My expertise includes **architecting Big Data solutions** and scaling tech teams from startup to growth-stage.
+  My expertise includes **architecting Big Data solutions**, mentoring and scaling tech teams from startup to growth-stage.
   \n\n
-  Working closely with international teams, I’ve been part of building a development culture that values **testing** and **agility**, while supporting the company’s transition from startup to scale-up.
+  I have collaborated with international teams, leading projects in both English and Spanish. My two fundamental pillars are **automated testing** and **agile development**, and I strive to facilitate their adoption within the teams I lead.
   \n\n
-  Skilled in **TypeScript** and **PHP**, I’ve been using **Vue** and **Laravel** since 2016. I build and maintain applications ready for deployment in Kubernetes, using multitenant SQL and NoSQL databases like **MongoDB** and **PostgreSQL**.
+  Skilled in **TypeScript** and **PHP**, I’ve been using **Vue** and **Laravel** since 2016. I build and maintain applications ready for deployment in Kubernetes, using multitenant SQL and NoSQL databases like **MongoDB**, **PostgreSQL**, and **Redis**.
   \n\n
   I'm always exploring new open-source technologies and enjoy creative hobbies like playing guitar, woodworking, and electronics.
   \n\n
@@ -43,9 +43,16 @@ blogAlternativeLink: También puedes ver este artículo en castellano
 blogAuthoredBy: by Ángel L. Blanco
 Other entries: Other entries
 Show more: Show more
-angelBlancoDevDescription: The repository for this website. You can check the complete source code or fork the repo if you want to create your own portfolio.
+angelBlancoDevDescription: |
+  The repository for this website. You can check the complete source code or fork the repo to develop your own portfolio.
+  It includes a complete Turborepo setup with Nuxt.js, ready to be deployed to your own domain using GitHub Actions.
 kickstartNvimDescription: My personal Neovim configuration, along with scripts to set up a fresh Ubuntu installation. The setup covers environments for Node.js, PHP & Laravel, Go, Rust, and other essential CLI utilities.
-beonxDescription: BEONx is a Spanish tech company founded in 2012. I have contributed to its technological growth since 2016, joining during its startup phase and helping it scale into a successful scale-up. Currently, I lead a team of 10 engineers, overseeing both the application and the platform architecture.
-angelBlancoV1Description: The first iteration of my webpage, built with Svelte + Sapper and later updated to early versions of Svelte Kit. It features a custom Rollup plugin for being able to render markdown with SSR and an SEO engine built from scratch, including opengraph image generation with Playwright and automatic sitemap generation.
+beonxDescription: |
+  BEONx is a Spanish tech company founded in 2012. I have contributed to its technological growth since 2016, joining during its startup phase and helping it scale into a successful scale-up.
+  Currently, I lead a team of 10 engineers, overseeing both the application and the platform architecture.
+angelBlancoV1Description: |
+  The first iteration of my webpage, built with Svelte + Sapper and later updated to early versions of Svelte Kit.
+  It features a custom Rollup plugin for being able to render markdown with SSR.
+  A SEO engine was built from scratch, including opengraph image generation with Playwright and automatic sitemap generation.
 sinceDate: since
 toDate: to

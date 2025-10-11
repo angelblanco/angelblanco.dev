@@ -16,20 +16,7 @@ Your task is to write or refine a blog post based on the provided slug and descr
     *   If they don't exist, create them from scratch.
 
 2.  **Frontmatter Schema (from `apps/angelblanco.dev/content.config.ts`):**
-    You MUST generate valid YAML frontmatter for both posts. The `post_id` MUST be the same for both. If creating a new post, generate a new, unique `post_id` (e.g., based on the current timestamp or a high random number). The date should be today's date.
-
-    ```yaml
-    ---
-    title: string (min 10 characters)
-    share_tweet: (optional) URL to an existing tweet that share's the post.
-    tags: [string] (min 1 tag)
-    image: string (optional, path to a relevant image, e.g., /images/blog/post-name/hero.webp)
-    date: 'YYYY-MM-DD'
-    post_id: number (must be identical in both files)
-    toc: boolean (optional, if false the post will not have a table of contents)
-    # You can also include Schema.org attributes to improve SEO.
-    ---
-    ```
+    You MUST generate valid YAML frontmatter for both posts. The date should be today's date.
 
 3.  **Content Generation Rules:**
     *   **Audience:** Write for full-stack developers.
@@ -50,5 +37,8 @@ Your task is to write or refine a blog post based on the provided slug and descr
     *   Ensure the frontmatter is correct and synchronized.
 
 5.  **Final Output:**
-    Write the complete, final content for both `{{post}}.md` files (English and Spanish). {{ args }}
+    Write the complete, final content for both `{{post}}.md` files (English and Spanish).
+    
+    
+{{ args }}
 """

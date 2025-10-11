@@ -22,7 +22,7 @@ The blog has two language versions: English and Spanish. You will be given the c
         *   Rewrite sentences for style or clarity if they are grammatically correct.
         *   Add or remove content.
         *   Change the structure or order of paragraphs.
-        *   Modify the frontmatter (`--- ... ---`) block, unless there is a clear typo inside a string value. Do not change dates, IDs, or tags.
+        *   Modify the frontmatter (`--- ... ---`) block, unless there is a clear typo inside a string value. Do not change dates, or tags.
         *   Alter code blocks (` ``` `).
 
 3.  **Language-Specific Instructions:**
