@@ -11,7 +11,7 @@ export interface ProjectRepo {
   url: string;
   from: string;
   to: string | null;
-  description: string;
+  description: string[];
   technologies: TechEntry[];
   license: ProjectLicense;
 }
@@ -30,20 +30,24 @@ export default function useProjectRepos() {
     return technologies.filter(t => names.includes(t.title));
   }
 
+  function description(trans: string): string[] {
+    return t(trans).split('\n');
+  }
+
   const projectRepos = computed<ProjectRepo[]>(() => ([
     {
       name: 'angelblanco.dev',
       url: repoUrl('angelblanco.dev'),
-      description: t('angelBlancoDevDescription'),
+      description: description('angelBlancoDevDescription'),
       technologies: techEntries([TechName.Nuxt, TechName.Vue, TechName.Tailwind]),
       license: ProjectLicense.MIT,
-      from: '2020',
+      from: '2025',
       to: null,
     },
     {
       name: 'BEONx',
       url: 'https://beonx.com',
-      description: t('beonxDescription'),
+      description: description('beonxDescription'),
       technologies: techEntries([
         TechName.Laravel,
         TechName.Vue,
@@ -64,11 +68,20 @@ export default function useProjectRepos() {
     {
       name: 'kickstart.nvim',
       url: repoUrl('kickstart.nvim'),
-      description: t('kickstartNvimDescription'),
+      description: description('kickstartNvimDescription'),
       technologies: techEntries([TechName.NeoVIM, TechName.Linux]),
       license: ProjectLicense.MIT,
       from: '2023',
       to: null,
+    },
+    {
+      name: 'v1.angelblanco.dev',
+      url: repoUrl('v1.angelblanco.dev'),
+      description: description('angelBlancoV1Description'),
+      technologies: techEntries([TechName.Svelte, TechName.Javascript]),
+      license: ProjectLicense.MIT,
+      from: '2020',
+      to: '2023',
     },
   ]));
 

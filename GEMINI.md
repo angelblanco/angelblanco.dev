@@ -31,7 +31,6 @@ pnpm test:coverage
 This is a Turborepo monorepo. Here is a brief overview of the packages and applications:
 
 - **`apps/angelblanco.dev`**: The main Nuxt application, which is my personal website and blog.
-- **`packages/aiderx`**: An internal CLI tool to automate common development tasks.
 - **`packages/conventions`**: Contains markdown documents outlining the conventions for this monorepo.
 - **`packages/eslint`**: A shared ESLint configuration for ensuring consistent code style.
 - **`packages/fonts`**: A package for managing and importing the fonts used in the project.
@@ -44,7 +43,6 @@ This project has a set of well-defined conventions that I will strictly follow. 
 
 - **[Base Conventions](./packages/conventions/base.md):** These are the foundational guidelines for the entire monorepo, covering topics like folder structure, component design, TypeScript usage, and Tailwind CSS v4 best practices.
 - **[Application Conventions (`apps/angelblanco.dev`)](./packages/conventions/app.md):** These are specific rules for developing within the main Nuxt application, including component organization and the use of installed Nuxt modules.
-- **[Internal CLI (`aiderx`) Conventions](./packages/conventions/aiderx.md):** These guidelines cover the development and testing of the internal `aiderx` command-line tool.
 - **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit, component, and end-to-end testing strategies.
 
 ## My Workflow

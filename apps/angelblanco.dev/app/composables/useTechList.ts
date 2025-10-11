@@ -43,6 +43,7 @@ export enum TechName {
   PHPStorm = 'PHPStorm',
   NeoVIM = 'NeoVIM',
   Linux = 'Linux',
+  Svelte = 'Svelte',
 }
 
 export default function useTechList(): TechList {
@@ -53,13 +54,18 @@ export default function useTechList(): TechList {
       type: TechType.Framework,
     },
     {
-      title: TechName.Nuxt,
-      icon: 'simple-icons:nuxtdotjs',
-      type: TechType.Framework,
+      title: TechName.Typescript,
+      icon: 'simple-icons:typescript',
+      type: TechType.Language,
     },
     {
       title: TechName.Laravel,
       icon: 'simple-icons:laravel',
+      type: TechType.Framework,
+    },
+    {
+      title: TechName.Nuxt,
+      icon: 'simple-icons:nuxtdotjs',
       type: TechType.Framework,
     },
     {
@@ -73,9 +79,9 @@ export default function useTechList(): TechList {
       type: TechType.Framework,
     },
     {
-      title: TechName.Typescript,
-      icon: 'simple-icons:typescript',
-      type: TechType.Language,
+      title: TechName.Svelte,
+      icon: 'simple-icons:svelte',
+      type: TechType.Framework,
     },
     {
       title: TechName.PHP,

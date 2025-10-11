@@ -9,7 +9,7 @@
           </NuxtLinkLocale>
         </div>
         <a :href="repoUrl" target="_blank" class="block items-center gap-1 font-light mt-1 text-xs hover:text-primary group">
-          <span>{{ t('Hosted and OpenSourced with') }}</span>
+          <span>{{ t('Hosted and Open Source with') }}</span>
           <Icon name="heroicons:heart-solid" class="text-red-500 size-4 group-hover:text-primary inline-flex align-middle mx-1.5" />
           <span>{{ t('on GitHub') }}</span>
         </a>

@@ -16,8 +16,8 @@
         <div class="flex gap-4 flex-wrap py-2">
           <Icon v-for="tech in repo.technologies" :key="tech.icon" :name="tech.icon" :title="tech.title" class="size-4 text-base-content opacity-80" />
         </div>
-        <div class="mb-3">
-          {{ repo.description }}
+        <div v-for="(line, i) in repo.description" :key="i" class="mb-3">
+          {{ line }}
         </div>
 
         <div class="font-mono">
@@ -42,7 +42,7 @@ useLocalizedSeo({
 
 function formatRepoDates(repo: ProjectRepo) {
   return repo.to
-    ? `${repo.from} ${t('to')} ${repo.to}`
-    : `${t('since')} ${repo.from}`;
+    ? `${repo.from} ${t('toDate')} ${repo.to}`
+    : `${t('sinceDate')} ${repo.from}`;
 }
 </script>
