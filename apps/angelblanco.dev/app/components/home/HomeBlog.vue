@@ -65,8 +65,8 @@ const MAX_OTHER_POSTS_COUNT = 8;
 
 function queryHomeBlog() {
   return queryBlogCollection()
-    .select('path', 'title', 'description', 'date', 'id', 'tags', 'post_id')
-    .order('post_id', 'DESC');
+    .select('path', 'title', 'description', 'date', 'id', 'tags')
+    .order('date', 'DESC');
 }
 
 const { data: latestPost } = await useAsyncData(

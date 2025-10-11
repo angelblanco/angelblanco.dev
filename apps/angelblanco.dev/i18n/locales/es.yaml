@@ -7,19 +7,20 @@ License: Licencia
 About: Sobre mí
 AboutDescription: Mi carrera profesional y mis intereses
 Blog: Blog
-BlogDescription: Últimas entradas del blog de ingenería informática full-stack
+BlogDescription: Últimas entradas del blog de ingeniería informática full-stack
 Projects: Proyectos
-ProjectsDescription: Aquí puedes encontrar una selección de proyectos en los que he trabajado a lo largo de los años..
+ProjectsDescription: Aquí puedes encontrar una selección de proyectos en los que he trabajado a lo largo de los años.
 Contact: Contacto
 Hello.: Hola.
 I'm a: Soy
 My name is: Me llamo
 Software Engineer: Ingeniero Informático
 Personal website of: Página personal de
-Hosted and OpenSourced with: Código OpenSource disponible con
+Hosted and Open Source with: Código OpenSource disponible con
 on GitHub: en GitHub
 On this page: En esta página
-aboutResumeTitle: Engeineer Manager - Full Stack Architect
+# Keep this in English as requested by the user.
+aboutResumeTitle: Engineer Manager - Full Stack Architect
 aboutResumeMd: "\
   Soy un **ingeniero informático** con más de 8 años de experiencia en el sector tecnológico-turístico. Me he especializado en el **liderazgo de equipos** y en el desarrollo de productos web.
   \n\n
@@ -44,7 +45,16 @@ blogAlternativeLink: You can also check this article in English.
 blogAuthoredBy: escrito por Ángel L. Blanco
 Other entries: Otras entradas
 Show more: Mostrar más
-angelBlancoDevDescription: Repositorio que alberga esta página web. Puedes consultar el código fuente completo o crear un fork para desarrollar tu propio portafolio.
+angelBlancoDevDescription: |
+  Repositorio que alberga esta página web. Puedes consultar el código fuente completo o crear un fork para desarrollar tu propio portfolio.
+  Incluye turborepo completo con Nuxt JS preparado para ser desplegado en Github Actions en tu propio dominio.
 kickstartNvimDescription: Mi configuración personal de Neovim, junto con una serie de scripts para preparar una instalación de Ubuntu de forma rápida y eficiente. Los scripts incluyen todo lo necesario para trabajar con Node.js, PHP & Laravel, Go, Rust y otras utilidades de CLI.
-beonxDescription: BEONx es una empresa tecnológica española fundada en 2012. He participado activamente en su crecimiento desde 2016, cuando era una startup, contribuyendo a su evolución hasta convertirse en una scaleup. Actualmente, gestiono un equipo de 10 ingenieros y soy responsable tanto de la aplicación como de la arquitectura de la plataforma.
-since: desde
+beonxDescription: |
+  BEONx es una empresa tecnológica española fundada en 2012. He participado activamente en su crecimiento desde 2016, cuando era una startup, contribuyendo a su evolución hasta convertirse en una scaleup.
+  Actualmente, gestiono un equipo de 10 ingenieros y soy responsable tanto de la aplicación como de la arquitectura de la plataforma.
+angelBlancoV1Description: |
+  La primera versión de mi página web, hecha con Svelte + Sapper  y más tarde, actualizada a las primeras versiones de Svelte Kit.
+  Contiene un plugin de rollup que gestiona el SSR de los ficheros markdown.
+  Implementé una serie de utilidades para gestionar el SEO, incluyendo generación de imágenes open graph con Playwright y generación automática del sitemap.
+sinceDate: desde
+toDate: a

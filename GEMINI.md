@@ -31,7 +31,6 @@ pnpm test:coverage
 This is a Turborepo monorepo. Here is a brief overview of the packages and applications:
 
 - **`apps/angelblanco.dev`**: The main Nuxt application, which is my personal website and blog.
-- **`packages/aiderx`**: An internal CLI tool to automate common development tasks.
 - **`packages/conventions`**: Contains markdown documents outlining the conventions for this monorepo.
 - **`packages/eslint`**: A shared ESLint configuration for ensuring consistent code style.
 - **`packages/fonts`**: A package for managing and importing the fonts used in the project.
@@ -43,9 +42,49 @@ This is a Turborepo monorepo. Here is a brief overview of the packages and appli
 This project has a set of well-defined conventions that I will strictly follow. For detailed information, please refer to the documents in the `packages/conventions/` directory.
 
 - **[Base Conventions](./packages/conventions/base.md):** These are the foundational guidelines for the entire monorepo, covering topics like folder structure, component design, TypeScript usage, and Tailwind CSS v4 best practices.
-- **[Application Conventions (`apps/angelblanco.dev`)](./packages/conventions/app.md):** These are specific rules for developing within the main Nuxt application, including component organization and the use of installed Nuxt modules.
-- **[Internal CLI (`aiderx`) Conventions](./packages/conventions/aiderx.md):** These guidelines cover the development and testing of the internal `aiderx` command-line tool.
-- **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit, component, and end-to-end testing strategies.
+- **[Application Conventions (`apps/angelblanco.dev`)](./packages/conventions/app.md):** These are specific rules for developing within the main Nuxt application. This includes component organization, use of installed Nuxt modules, and managing translations.
+  - **Translation Files:** When working with i18n, the translation files are located at:
+    - **English:** `apps/angelblanco.dev/i18n/locales/en.yaml`
+    - **Spanish:** `apps/angelblanco.dev/i18n/locales/es.yaml`
+- **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit and component testing strategies.
+- **[Playwright E2E Testing Conventions](./packages/conventions/playwright.md):** This guide covers the standards for writing Playwright E2E tests, emphasizing iteration over all locales and themes and the use of shared utility functions.
+- **[Gemini Commands Conventions](./packages/conventions/gemini-commands.md):** This document explains how to create custom, project-specific commands using `.toml` files located in the `.gemini/commands/` directory.
+
+**Note:** When a new convention file is added to the `packages/conventions` directory, I must add a short summary of it to this section.
+
+## Blog Post Conventions
+
+When writing or editing blog posts, I will adhere to the following guidelines, derived from the project's command configurations.
+
+### General Rules
+
+- **Audience:** The target audience is full-stack developers.
+- **Tone:** Professional yet approachable and engaging. The content should be clear, and a touch of humor is welcome.
+- **SEO & Linking:** I must include relevant external links to high-authority sources, such as the official documentation for any mentioned technologies (e.g., Nuxt, Tailwind CSS).
+- **Titles:** Markdown titles must use sentence case, not title case (e.g., `# My new blog post` instead of `# My New Blog Post`).
+
+### Language Synchronization (English & Spanish)
+
+- **Core Concepts:** The main ideas and structure must be consistent across both English and Spanish versions.
+- **Spanish Adaptation:** The Spanish post is not a literal translation. It must be an idiomatic adaptation for a tech audience from Spain (Castilian Spanish).
+- **Technical Terms:**
+  - Code blocks (`...`) must be identical in both posts and written in English.
+  - Comments within code blocks in the Spanish post must be translated to Spanish.
+  - Common English technical terms (e.g., "commit", "deploy", "frontend") should be kept in English within the Spanish prose, as they are the industry standard.
+
+### Frontmatter
+
+I must generate valid YAML frontmatter for both posts.
+
+```yaml
+---
+title: string (min 10 characters)
+tags: string[] (min 1 tag)
+image: string (optional, path to a relevant image, e.g., /images/blog/post-name/hero.webp)
+date: YYYY-MM-DD
+toc: boolean (optional, if false the post will not have a table of contents)
+---
+```
 
 ## My Workflow
 
