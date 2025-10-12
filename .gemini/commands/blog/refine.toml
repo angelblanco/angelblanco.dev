@@ -26,13 +26,16 @@ The blog has two language versions: English and Spanish. You will be given the c
         *   Alter code blocks (` ``` `).
 
 3.  **Language-Specific Instructions:**
-    *   **English:** Apply standard English (US) proofreading rules. {{ args }}
-    *   **Spanish:** Apply standard Castilian Spanish (español de España es-ES) proofreading rules. {{ args }}
+    *   **English:** Apply standard English (US) proofreading rules.
+    *   **Spanish:** Apply standard Castilian Spanish (español de España es-ES) proofreading rules.
 
 4.  **Execution:**
     *   Carefully read the content for both language versions.
     *   Apply only the necessary corrections as defined above.
     *   Preserve the original frontmatter and code blocks.
+
+5. **Other instructions:**
+{{ args }}
 
 5.  **Final Output:**
     Modify the blog posts for both the English and Spanish markdown files. If no changes are needed for a file, tell the user that the post are fine and no changes are needed.

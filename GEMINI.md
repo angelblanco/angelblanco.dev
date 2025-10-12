@@ -46,45 +46,12 @@ This project has a set of well-defined conventions that I will strictly follow. 
   - **Translation Files:** When working with i18n, the translation files are located at:
     - **English:** `apps/angelblanco.dev/i18n/locales/en.yaml`
     - **Spanish:** `apps/angelblanco.dev/i18n/locales/es.yaml`
+- **[Blog Post Conventions](./packages/conventions/blog.md):** This guide covers the standards for writing and editing blog posts, including tone, style, language synchronization, and how to use `automd` to embed file content.
 - **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit and component testing strategies.
 - **[Playwright E2E Testing Conventions](./packages/conventions/playwright.md):** This guide covers the standards for writing Playwright E2E tests, emphasizing iteration over all locales and themes and the use of shared utility functions.
 - **[Gemini Commands Conventions](./packages/conventions/gemini-commands.md):** This document explains how to create custom, project-specific commands using `.toml` files located in the `.gemini/commands/` directory.
 
 **Note:** When a new convention file is added to the `packages/conventions` directory, I must add a short summary of it to this section.
-
-## Blog Post Conventions
-
-When writing or editing blog posts, I will adhere to the following guidelines, derived from the project's command configurations.
-
-### General Rules
-
-- **Audience:** The target audience is full-stack developers.
-- **Tone:** Professional yet approachable and engaging. The content should be clear, and a touch of humor is welcome.
-- **SEO & Linking:** I must include relevant external links to high-authority sources, such as the official documentation for any mentioned technologies (e.g., Nuxt, Tailwind CSS).
-- **Titles:** Markdown titles must use sentence case, not title case (e.g., `# My new blog post` instead of `# My New Blog Post`).
-
-### Language Synchronization (English & Spanish)
-
-- **Core Concepts:** The main ideas and structure must be consistent across both English and Spanish versions.
-- **Spanish Adaptation:** The Spanish post is not a literal translation. It must be an idiomatic adaptation for a tech audience from Spain (Castilian Spanish).
-- **Technical Terms:**
-  - Code blocks (`...`) must be identical in both posts and written in English.
-  - Comments within code blocks in the Spanish post must be translated to Spanish.
-  - Common English technical terms (e.g., "commit", "deploy", "frontend") should be kept in English within the Spanish prose, as they are the industry standard.
-
-### Frontmatter
-
-I must generate valid YAML frontmatter for both posts.
-
-```yaml
----
-title: string (min 10 characters)
-tags: string[] (min 1 tag)
-image: string (optional, path to a relevant image, e.g., /images/blog/post-name/hero.webp)
-date: YYYY-MM-DD
-toc: boolean (optional, if false the post will not have a table of contents)
----
-```
 
 ## My Workflow
 
