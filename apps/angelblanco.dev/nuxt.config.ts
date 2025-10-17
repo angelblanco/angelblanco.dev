@@ -48,6 +48,10 @@ export default defineNuxtConfig({
     },
   },
 
+  site: {
+    trailingSlash: true,
+  },
+
   i18n: {
     baseUrl: 'https://angelblanco.dev',
     locales: [
