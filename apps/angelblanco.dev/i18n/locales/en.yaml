@@ -47,6 +47,9 @@ angelBlancoDevDescription: |
   The repository for this website. You can check the complete source code or fork the repo to develop your own portfolio.
   It includes a complete Turborepo setup with Nuxt.js, ready to be deployed to your own domain using GitHub Actions.
 kickstartNvimDescription: My personal Neovim configuration, along with scripts to set up a fresh Ubuntu installation. The setup covers environments for Node.js, PHP & Laravel, Go, Rust, and other essential CLI utilities.
+eslintConfigDescription: |
+  My shareable ESLint configuration built on top of antfu/eslint-config. Features my personal defaults for Vue and TypeScript project.
+  Published as an npm package.
 beonxDescription: |
   BEONx is a Spanish tech company founded in 2012. I have contributed to its technological growth since 2016, joining during its startup phase and helping it scale into a successful scale-up.
   Currently, I lead a team of 10 engineers, overseeing both the application and the platform architecture.

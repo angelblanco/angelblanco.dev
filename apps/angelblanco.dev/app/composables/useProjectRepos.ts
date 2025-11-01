@@ -75,6 +75,15 @@ export default function useProjectRepos() {
       to: null,
     },
     {
+      name: 'eslint-config',
+      url: repoUrl('eslint-config'),
+      description: description('eslintConfigDescription'),
+      technologies: techEntries([TechName.Typescript, TechName.Vue]),
+      license: ProjectLicense.MIT,
+      from: '2025',
+      to: null,
+    },
+    {
       name: 'v1.angelblanco.dev',
       url: repoUrl('v1.angelblanco.dev'),
       description: description('angelBlancoV1Description'),
