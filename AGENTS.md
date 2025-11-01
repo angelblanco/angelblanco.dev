@@ -46,10 +46,10 @@ This project has a set of well-defined conventions that I will strictly follow. 
   - **Translation Files:** When working with i18n, the translation files are located at:
     - **English:** `apps/angelblanco.dev/i18n/locales/en.yaml`
     - **Spanish:** `apps/angelblanco.dev/i18n/locales/es.yaml`
-- **[Blog Post Conventions](./packages/conventions/blog.md):** This guide covers the standards for writing and editing blog posts, including tone, style, language synchronization, and how to use `automd` to embed file content.
+- **[Blog Post Conventions](./packages/conventions/blog.md):** This guide covers the standards for writing and editing blog posts, including tone, style, language synchronization, SEO best practices, bilingual content requirements, and how to use `automd` to embed file content.
+- **[Contributing Conventions](./packages/conventions/contributing.md):** This document outlines the conventions for contributing to the monorepo, including commit message standards, pull request guidelines, and git workflow best practices.
 - **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit and component testing strategies.
-- **[Playwright E2E Testing Conventions](./packages/conventions/playwright.md):** This guide covers the standards for writing Playwright E2E tests, emphasizing iteration over all locales and themes and the use of shared utility functions.
-- **[Gemini Commands Conventions](./packages/conventions/gemini-commands.md):** This document explains how to create custom, project-specific commands using `.toml` files located in the `.gemini/commands/` directory.
+- **[Playwright E2E Testing Conventions](./packages/conventions/playwright-testing.md):** This guide covers the standards for writing Playwright E2E tests, emphasizing iteration over all locales and themes and the use of shared utility functions.
 
 **Note:** When a new convention file is added to the `packages/conventions` directory, I must add a short summary of it to this section.
 
