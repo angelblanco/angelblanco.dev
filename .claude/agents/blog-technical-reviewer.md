@@ -111,7 +111,7 @@ Verify these requirements from packages/conventions/blog.md:
 
 - Writing style or tone (that's for blog-engagement-reviewer)
 - SEO issues (that's for blog-seo-optimizer)
-- Translation inconsistencies (that's for blog-translation-consistency)
+- Translation inconsistencies (that's for blog-spanish-writer)
 - Minor typos in prose (already fixed by blog-typo-fixer)
 
 ## Important Notes

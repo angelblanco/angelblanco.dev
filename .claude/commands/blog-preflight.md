@@ -83,7 +83,7 @@ IMPORTANT: You MUST invoke these agents in parallel using a single message with 
 **Action**:
 
 ```
-Run the blog-translation-consistency agent on EN/ES blog post pairs.
+Run the blog-spanish-writer agent on EN/ES blog post pairs.
 This must check both language versions together for consistency.
 ```
 
