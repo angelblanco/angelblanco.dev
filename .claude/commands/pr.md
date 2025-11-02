@@ -7,7 +7,9 @@ allowed-tools: Bash(git *), Bash(gh *), Bash(pnpm *)
 
 **Unstaged changes**: !`git diff --stat`
 
-**Branch status**: !`git fetch origin && git status`
+**Branch status**:
+`git fetch origin`
+!`git status`
 
 If unstaged changes exist: Review and ask user if they should be committed or were forgotten. ABORT if user needs to commit them first.
 
