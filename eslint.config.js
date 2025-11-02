@@ -1,3 +1,3 @@
-import eslintConfig from '@angelblanco/eslint';
+import eslintConfig from '@angelblanco/eslint-config';
 
 export default eslintConfig();

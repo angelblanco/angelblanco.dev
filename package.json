@@ -26,11 +26,11 @@
     "ai:commit": "pnpm ai:flash --prompt-interactive \"/git:commit\""
   },
   "devDependencies": {
-    "@angelblanco/eslint": "workspace:*",
-    "@types/node": "^24.8.1",
-    "eslint": "^9.38.0",
+    "@angelblanco/eslint-config": "^0.0.1",
+    "@types/node": "^24.9.2",
+    "eslint": "^9.39.0",
     "husky": "^9.1.7",
-    "turbo": "^2.5.8"
+    "turbo": "^2.6.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

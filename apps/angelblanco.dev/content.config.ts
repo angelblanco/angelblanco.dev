@@ -6,6 +6,7 @@ export function blogSchema() {
     title: z.string().min(10),
     tags: z.array(z.string()).min(1),
     date: z.string().date(),
+    updatedAt: z.string().date().optional(),
     image: z.string().optional(),
     toc: z.boolean().optional(),
   });
