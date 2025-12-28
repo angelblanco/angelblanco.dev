@@ -19,8 +19,8 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.1",
-    "@types/lodash": "^4.17.20",
+    "@playwright/test": "^1.57.0",
+    "@types/lodash": "^4.17.21",
     "@types/node": "^24.9.2"
   }
 }

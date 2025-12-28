@@ -28,9 +28,9 @@
   "devDependencies": {
     "@angelblanco/eslint-config": "^0.0.1",
     "@types/node": "^24.9.2",
-    "eslint": "^9.39.0",
+    "eslint": "^9.39.2",
     "husky": "^9.1.7",
-    "turbo": "^2.6.0"
+    "turbo": "^2.7.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -6,7 +6,7 @@ export default function useColors() {
     darkColor: string,
   ) {
     return computed(() => {
-      return colorMode.value === 'dark' ? darkColor : ligthColor;
+      return colorMode.preference === 'dark' ? darkColor : ligthColor;
     });
   }
 

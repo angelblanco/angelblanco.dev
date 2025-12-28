@@ -23,8 +23,8 @@ const { iconSize = 'size-8' } = defineProps<{
 const colorMode = useColorMode();
 
 function toggleTheme() {
-  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light';
+  colorMode.preference = colorMode.preference === 'light' ? 'dark' : 'light';
 }
 
-const lightTheme = computed(() => colorMode.value === 'light');
+const lightTheme = computed(() => colorMode.preference === 'light');
 </script>
