@@ -80,7 +80,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      // @ts-expect-error some akward type error is happening in current version, check in the future
+      tailwindcss(),
+    ],
   },
 
   colorMode: {
