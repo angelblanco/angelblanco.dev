@@ -16,11 +16,11 @@
     "lint:fix": "eslint --ignore-pattern playwright-report --ignore-pattern test-results --fix"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.23"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.1",
-    "@types/lodash": "^4.17.20",
+    "@playwright/test": "^1.58.2",
+    "@types/lodash": "^4.17.23",
     "@types/node": "^24.9.2"
   }
 }
