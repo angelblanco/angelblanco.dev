@@ -1,7 +1,6 @@
 ---
 description: Run comprehensive blog post quality checks using specialized agents in interactive checkpoints
 allowed-tools: Bash(git *), Read, Task
-model: sonnet
 ---
 
 You are orchestrating a comprehensive blog post quality assurance workflow. Your goal is to systematically review all modified blog posts in the current branch using specialized agents, with interactive checkpoints for user review.
