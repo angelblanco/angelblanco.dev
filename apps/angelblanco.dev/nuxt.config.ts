@@ -124,6 +124,7 @@ export default defineNuxtConfig({
             default: 'catppuccin-latte',
             dark: 'catppuccin-mocha',
           },
+          langs: ['json', 'js', 'ts', 'html', 'css', 'vue', 'shell', 'mdc', 'md', 'yaml', 'php'],
         },
       },
     },
