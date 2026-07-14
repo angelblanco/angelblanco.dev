@@ -20,13 +20,13 @@ Hosted and Open Source with: Código OpenSource disponible con
 on GitHub: en GitHub
 On this page: En esta página
 # Keep this in English as requested by the user.
-aboutResumeTitle: Engineer Manager - Full Stack Architect
+aboutResumeTitle: VP of Engineering - Full Stack Architect
 aboutResumeMd: "\
-  Soy un **ingeniero informático** con más de 8 años de experiencia en el sector tecnológico-turístico. Me he especializado en el **liderazgo de equipos** y en el desarrollo de productos web.
+  Soy un **ingeniero informático** con más de 10 años de experiencia en el sector tecnológico-turístico. Me he especializado en el **liderazgo de equipos** y en el desarrollo de productos web.
   \n\n
-  Tengo experiencia en el **diseño de arquitecturas** orientadas a Big Data y en el acompañamiento de equipos técnicos a lo largo de su carrera profesional.
+  Tengo experiencia en el **diseño de arquitecturas** orientadas a IA y Big Data, así como en el acompañamiento de equipos técnicos a lo largo de su carrera profesional.
   \n\n
-  He colaborado con equipos internacionales, liderando proyectos tanto en inglés como en español. Mis dos pilares fundamentales son el **testing automatizado** y el **desarrollo ágil**, y me esfuerzo por facilitar su adopción dentro de los equipos que lidero.
+  He colaborado con equipos internacionales, liderando proyectos tanto en inglés como en español. Mis dos pilares fundamentales son el **testing automatizado** y el **desarrollo ágil** asistido con IA, y me esfuerzo por facilitar su adopción dentro de los equipos que lidero.
   \n\n
   Disfruto programando en **TypeScript** y **PHP**, siendo **Vue** y **Laravel** mis frameworks preferidos. En el ámbito de la infraestructura, diseño soluciones escalables para entornos basados en **Kubernetes**, integrando bases de datos SQL y NoSQL como **MongoDB**, **PostgreSQL** y **Redis**.
   \n\n
@@ -38,7 +38,7 @@ aboutResumeMd: "\
 
 aboutTechStackTitle: Mis preferencias tecnológicas
 aboutCaption: ¡Sí, ese soy yo!
-Whoops: Upsss!
+Whoops: ¡Upsss!
 Page not found: Vaya, parece que la página que estás buscando no existe.
 Go Home: Volver a la página principal
 blogAlternativeLink: You can also check this article in English.
@@ -57,7 +57,7 @@ beonxDescription: |
   BEONx es una empresa tecnológica española fundada en 2012. He participado activamente en su crecimiento desde 2016, cuando era una startup, contribuyendo a su evolución hasta convertirse en una scaleup.
   Actualmente, gestiono un equipo de 10 ingenieros y soy responsable tanto de la aplicación como de la arquitectura de la plataforma.
 angelBlancoV1Description: |
-  La primera versión de mi página web, hecha con Svelte + Sapper  y más tarde, actualizada a las primeras versiones de Svelte Kit.
+  La primera versión de mi página web, hecha con Svelte + Sapper y más tarde actualizada a las primeras versiones de Svelte Kit.
   Contiene un plugin de rollup que gestiona el SSR de los ficheros markdown.
   Implementé una serie de utilidades para gestionar el SEO, incluyendo generación de imágenes open graph con Playwright y generación automática del sitemap.
 sinceDate: desde
