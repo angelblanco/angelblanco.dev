@@ -52,7 +52,7 @@ eslintConfigDescription: |
   Published as an npm package.
 beonxDescription: |
   BEONx is a Spanish tech company founded in 2012. I have contributed to its technological growth since 2016, joining during its startup phase and helping it scale into a successful scale-up.
-  Currently, I lead a team of 10 engineers, overseeing both the application and the platform architecture.
+  As VP, I lead the engineering teams of the company, overseeing both the application, integrations, and the platform architecture.
 angelBlancoV1Description: |
   The first iteration of my webpage, built with Svelte + Sapper and later updated to early versions of Svelte Kit.
   It features a custom Rollup plugin for being able to render markdown with SSR.

@@ -13,9 +13,9 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint --parallel",
-    "lint:fix": "turbo run lint:fix --parallel",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "cleanup": "turbo run cleanup",
@@ -26,11 +26,11 @@
     "ai:commit": "pnpm ai:flash --prompt-interactive \"/git:commit\""
   },
   "devDependencies": {
-    "@angelblanco/eslint-config": "^1.0.0",
-    "@types/node": "^24.9.2",
-    "eslint": "^10.0.0",
+    "@angelblanco/eslint-config": "^2.0.0",
+    "@types/node": "^26.3.0",
+    "eslint": "^10.9.1",
     "husky": "^9.1.7",
-    "turbo": "^2.8.7"
+    "turbo": "^2.10.12"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
