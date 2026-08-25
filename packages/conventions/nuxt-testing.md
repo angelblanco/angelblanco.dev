@@ -42,8 +42,8 @@ For tests in the `nuxt` suite, we have access to powerful helpers:
 - **`mountSuspended`**: Use this to mount components within the Nuxt test environment. It correctly handles components with an `async setup` and ensures all Nuxt injections are available.
 
   ```typescript
-  import { MyComponent } from '#components';
   import { mountSuspended } from '@nuxt/test-utils/runtime';
+  import { MyComponent } from '#components';
 
   test('can mount my component', async () => {
     const wrapper = await mountSuspended(MyComponent);

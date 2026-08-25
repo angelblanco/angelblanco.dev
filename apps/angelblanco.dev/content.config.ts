@@ -1,5 +1,5 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
-import { asSchemaOrgCollection } from 'nuxt-schema-org/content';
+import { defineSchemaOrgSchema } from 'nuxt-schema-org/content';
 
 export function blogSchema() {
   return z.object({
@@ -9,16 +9,17 @@ export function blogSchema() {
     updatedAt: z.string().date().optional(),
     image: z.string().optional(),
     toc: z.boolean().optional(),
+    schemaOrg: defineSchemaOrgSchema(),
   });
 }
 
 function defineBlogCollection(source: string) {
   return defineCollection(
-    asSchemaOrgCollection({
+    {
       type: 'page',
       source,
       schema: blogSchema(),
-    }),
+    },
   );
 }
 
