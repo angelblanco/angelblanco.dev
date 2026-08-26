@@ -7,5 +7,5 @@
 </template>
 
 <script lang="ts" setup>
-defineOgImageComponent('PortfolioOgImage');
+defineOgImage('PortfolioOgImage');
 </script>

@@ -92,14 +92,6 @@ export default defineNuxtConfig({
 
   ogImage: {
     zeroRuntime: true,
-    compatibility: {
-      dev: {
-        browser: 'playwright',
-      },
-      prerender: {
-        browser: 'playwright',
-      },
-    },
   },
 
   icon: {
