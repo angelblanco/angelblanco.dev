@@ -1,7 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import { mockI18n } from '../test-utils';
-
-mockI18n();
 
 describe('composables: useBlog', async () => {
   const { setLocale } = useI18n();

@@ -91,7 +91,18 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    zeroRuntime: true,
+    debug: true,
+    buildCache: {
+      base: '.cache/og-image',
+    },
+    compatibility: {
+      dev: {
+        browser: 'playwright',
+      },
+      prerender: {
+        browser: 'playwright',
+      },
+    },
   },
 
   icon: {

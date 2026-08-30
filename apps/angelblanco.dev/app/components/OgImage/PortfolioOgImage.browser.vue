@@ -15,10 +15,9 @@
         </p>
       </div>
 
-      <!-- TODO: image not working with prerendering investigate later -->
       <img
-        v-if="false"
-        src="/ablanco_2025_profile.webp"
+        :src="profileImage"
+        alt=""
         :style="imageStyle"
       >
     </div>
@@ -27,6 +26,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import profileImage from '~/assets/images/ablanco-profile-og.webp?inline';
 
 const props = defineProps<{
   title?: string;
