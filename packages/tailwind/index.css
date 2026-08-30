@@ -2,7 +2,9 @@
 
 @plugin "@tailwindcss/typography";
 
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: false;
+}
 
 /* https://daisyui.com/theme-generator/#theme=eJx1k-tu4yAQhV8FWaq0KzUIhouhb0PscWPVMRHY2u5WffcluE3smvwzzHdm5szgj2p0Z6xeqqF_PU3Vc9X4wYdDbE64uT4clsDRRTxwxlLIvw3N6Vf6fiKMsN8_IVhB1pQZsWZUmWn8OOE43TjgiaOMaQJGUWPUWnEJ_dmFvze4zjAwQQRTVDFZgPcV7FXEpU0ioDWv16KICW_XNbTKNSQnQkkqmCniuypWZh9giJBAQW1krmnWbF3njhQQbji1HPbs3kXWMKkJt0AVbKyPOE_BDfctLs0wtQwVRAHeO4BFJJNIU7Fpqh87f28_Z-dpYwKo1vwn-GADTCeFFMn3dgNzMhzjPbtddmwJVzytixfgfQW9VFBJBNSKzXT-uDD24-sNNtkoN5YYSSXYAvto_HVNpKJabF4phuDDvX-Ws1tOIL0DrnfkPnd-ccwCAZ02_DX44Np-junFDdhMOX-aigp4Xke7Hoe2HDr692vg-zb2__BRshwrpTr60OKV5pf3fNHiZTpdoXwafR_x69Ri5-YhmZrCjM_VJWCHIaZf5a166dwQ8fM_ydNOlQ */
 @plugin "daisyui/theme" {

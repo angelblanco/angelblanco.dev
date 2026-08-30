@@ -91,7 +91,6 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    debug: true,
     buildCache: {
       base: '.cache/og-image',
     },

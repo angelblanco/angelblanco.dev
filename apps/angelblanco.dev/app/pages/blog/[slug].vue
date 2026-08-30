@@ -1,6 +1,5 @@
 <template>
-  <UiPageLoader v-if="postPending || altPending" class=" mx-auto max-w-post" />
-  <UiPageNotFound v-else-if="!post" />
+  <UiPageNotFound v-if="!post" />
   <div v-else class="min-h-screen-content mx-auto max-w-post p-4">
     <BlogHeader :post="post" :alternative-locale="alternativeLocale" />
 
@@ -12,16 +11,33 @@
 
 <script lang="ts" setup>
 const route = useRoute();
+const { locale, alternativeLocale: otherLocale } = useLocale();
+const {
+  blogCollection,
+  alternativeBlogCollection,
+  queryBlogCollection,
+  queryAlternativeBlogCollection,
+} = useBlog();
 
-const path = computed(() => route.path);
-const { post, postPending, altPending, alternativeLocale } = useBlogPost(path);
+const [{ data: post }, { data: alternativePost }] = await Promise.all([
+  useAsyncData(
+    `${locale.value}-main-${blogCollection.value}-${route.path}`,
+    () => queryBlogCollection().path(route.path).first(),
+  ),
+  useAsyncData(
+    `${locale.value}-alternative-${alternativeBlogCollection.value}-${route.path}`,
+    () => queryAlternativeBlogCollection().path(route.path).first(),
+  ),
+]);
 
-useHead({
-  title: () => post.value?.title,
+const alternativeLocale = computed(() => alternativePost.value ? otherLocale.value : null);
+
+useLocalizedSeo({
+  title: computed(() => post.value?.title),
+  description: computed(() => post.value?.description),
 });
 
 useSeoMeta({
-  description: () => post.value?.description,
   ...post.value?.seo || {},
 });
 </script>
