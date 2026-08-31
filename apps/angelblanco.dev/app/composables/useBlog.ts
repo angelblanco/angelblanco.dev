@@ -1,4 +1,8 @@
+import type { BlogEnCollectionItem } from '@nuxt/content';
+
 type BlogCollections = 'blog_es' | 'blog_en';
+
+export type BlogCollectionItem = BlogEnCollectionItem;
 
 export default function useBlog() {
   const { locale, alternativeLocale } = useLocale();

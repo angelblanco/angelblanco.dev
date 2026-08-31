@@ -81,7 +81,6 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [
-      // @ts-expect-error some akward type error is happening in current version, check in the future
       tailwindcss(),
     ],
   },
@@ -92,15 +91,15 @@ export default defineNuxtConfig({
   },
 
   ogImage: {
-    defaults: {
-      renderer: 'chromium',
+    buildCache: {
+      base: '.cache/og-image',
     },
     compatibility: {
       dev: {
-        chromium: 'playwright',
+        browser: 'playwright',
       },
       prerender: {
-        chromium: 'playwright',
+        browser: 'playwright',
       },
     },
   },
@@ -141,17 +140,7 @@ export default defineNuxtConfig({
 
   scripts: {
     registry: {
-      googleAnalytics: true,
-    },
-  },
-
-  runtimeConfig: {
-    public: {
-      scripts: {
-        googleAnalytics: {
-          id: '',
-        },
-      },
+      trigger: 'onNuxtReady',
     },
   },
 

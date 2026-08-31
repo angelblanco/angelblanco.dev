@@ -1,6 +1,6 @@
 nuxtSiteConfig:
   name: Ángel Blanco
-  description: Personal full-stack engineering blog and portfolio
+  description: Personal full-stack engineering blog
 Author: Ángel Blanco
 Me: Me
 License: License
@@ -19,13 +19,13 @@ Personal website of: Personal website of
 Hosted and Open Source with: Hosted and Open Source with
 on GitHub: on GitHub
 On this page: On this page
-aboutResumeTitle: Engineering Manager - Full Stack Architect
+aboutResumeTitle: VP of Engineering - Full Stack Architect
 aboutResumeMd: "\
-  I'm a **web engineer** with over 8 years of experience in the tech-tourism industry, specializing in **team leadership** and building web applications from the ground up.
+  I'm a **web engineer** with over 10 years of experience in the tech-tourism industry, specializing in **team leadership** and building web applications from the ground up.
   \n\n
-  My expertise includes **architecting Big Data solutions**, mentoring and scaling tech teams from startup to growth-stage.
+  My expertise includes **architecting AI and Big Data solutions**, mentoring and scaling tech teams from startup to growth-stage.
   \n\n
-  I have collaborated with international teams, leading projects in both English and Spanish. My two fundamental pillars are **automated testing** and **agile development**, and I strive to facilitate their adoption within the teams I lead.
+  I have collaborated with international teams, leading projects in both English and Spanish. My two fundamental pillars are **automated testing** and **agile development** assisted with AI, and I strive to facilitate their adoption within the teams I lead.
   \n\n
   Skilled in **TypeScript** and **PHP**, I’ve been using **Vue** and **Laravel** since 2016. I build and maintain applications ready for deployment in Kubernetes, using multitenant SQL and NoSQL databases like **MongoDB**, **PostgreSQL**, and **Redis**.
   \n\n
@@ -48,11 +48,11 @@ angelBlancoDevDescription: |
   It includes a complete Turborepo setup with Nuxt.js, ready to be deployed to your own domain using GitHub Actions.
 kickstartNvimDescription: My personal Neovim configuration, along with scripts to set up a fresh Ubuntu installation. The setup covers environments for Node.js, PHP & Laravel, Go, Rust, and other essential CLI utilities.
 eslintConfigDescription: |
-  My shareable ESLint configuration built on top of antfu/eslint-config. Features my personal defaults for Vue and TypeScript project.
+  My shareable ESLint configuration built on top of antfu/eslint-config. Features my personal defaults for Vue and TypeScript projects.
   Published as an npm package.
 beonxDescription: |
   BEONx is a Spanish tech company founded in 2012. I have contributed to its technological growth since 2016, joining during its startup phase and helping it scale into a successful scale-up.
-  Currently, I lead a team of 10 engineers, overseeing both the application and the platform architecture.
+  As VP, I lead the engineering teams of the company, overseeing both the application, integrations, and the platform architecture.
 angelBlancoV1Description: |
   The first iteration of my webpage, built with Svelte + Sapper and later updated to early versions of Svelte Kit.
   It features a custom Rollup plugin for being able to render markdown with SSR.
