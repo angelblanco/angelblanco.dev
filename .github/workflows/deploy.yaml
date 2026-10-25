@@ -14,17 +14,17 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     if: ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run && github.event.workflow_run.conclusion == 'success') }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Cache Turbo Build
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
-          path: /..turbo
+          path: .turbo
           key: ${{ runner.os }}-turbo-deploy-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-turbo-deploy
@@ -36,9 +36,10 @@ jobs:
         run: pnpm build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./apps/angelblanco.dev/.output/public
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -48,8 +49,8 @@ jobs:
     permissions:
       pages: write
       id-token: write
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
