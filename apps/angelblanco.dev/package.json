@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "node ../../packages/cli/src/index.ts port-guard NUXT_PORT --default 3000 && nuxt dev --strictPort",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxt typecheck",
