@@ -51,7 +51,7 @@ This project has a set of well-defined conventions that I will strictly follow. 
 - **[Contributing Conventions](./packages/conventions/contributing.md):** This document outlines the conventions for contributing to the monorepo, including commit message standards, pull request guidelines, and git workflow best practices.
 - **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit and component testing strategies.
 - **[Playwright E2E Testing Conventions](./packages/conventions/playwright-testing.md):** This guide covers the standards for writing Playwright E2E tests, emphasizing iteration over all locales and themes and the use of shared utility functions.
-- **[Git Worktree Conventions](./packages/conventions/worktrees.md):** This guide explains how to create, list and remove nested git worktrees with `pnpm worktree`, how each worktree gets its own dev and E2E ports, and how port conflicts are prevented.
+- **[Git Worktree Conventions](./packages/conventions/worktrees.md):** This guide explains how to create, list and remove nested git worktrees with `pnpm worktree`, how each worktree gets its own dev and E2E ports through `.env` files, and how port conflicts are handled.
 
 **Note:** When a new convention file is added to the `packages/conventions` directory, I must add a short summary of it to this section.
 
@@ -61,7 +61,8 @@ Worktrees are nested in `.claude/worktrees/<name>` and managed only through `pnp
 
 - **Create:** `pnpm worktree setup <name>` creates the worktree on branch `<name>` from `master`, assigns its ports and installs dependencies. Then work inside `.claude/worktrees/<name>`.
 - **Adopt:** If a worktree was created another way (for example with your built-in worktree tool), run `pnpm worktree setup <name>` from the main checkout before running `pnpm dev` or E2E tests in it.
-- **Ports:** Never hardcode or override ports. The main checkout uses `3000` (dev) and `4000` (E2E); each worktree gets `3000+N` and `4000+N`, stored in `.claude/worktrees/worktrees.json` and in its `apps/angelblanco.dev/.env`. Check them with `pnpm worktree list`.
+- **Env files:** Every checkout needs `apps/angelblanco.dev/.env` and `packages/playwright/.env` (same content, with `NUXT_PORT` and `E2E_PORT`). E2E tests fail on purpose without them; run `pnpm worktree env` to generate them.
+- **Ports:** Never hardcode or override ports. The main checkout uses `3000` (dev) and `4000` (E2E); each worktree gets `3000+N` and `4000+N`, stored in `.claude/worktrees/worktrees.json` and in its `.env` files. Check them with `pnpm worktree list`.
 - **Remove:** `pnpm worktree remove <name>` (add `-d` to delete the branch). Never delete the folder by hand; if it happens, run `pnpm worktree prune`.
 
 ## My Workflow

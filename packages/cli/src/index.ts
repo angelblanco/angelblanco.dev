@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import { Command } from 'commander';
-import { listWorktrees, pruneRegistry, removeWorktreeEntry, setupWorktree } from './worktree/commands.ts';
-import { guardPort } from './worktree/guard.ts';
+import { listWorktrees, pruneRegistry, removeWorktreeEntry, setupWorktree, syncEnv } from './worktree/commands.ts';
 
 const program = new Command('ab').description('angelblanco.dev monorepo tooling');
 const worktree = program.command('worktree').description(`Manage git worktrees nested in .claude/worktrees`);
@@ -20,6 +19,15 @@ worktree
     console.log(`\nWorktree "${entry.name}" ready at ${entry.path} (branch ${entry.branch})`);
     console.log(`  dev: http://localhost:${entry.ports.dev}`);
     console.log(`  e2e: http://localhost:${entry.ports.e2e}`);
+  });
+
+worktree
+  .command('env')
+  .description('Write the .env files of the current checkout (main or registered worktree)')
+  .action(() => {
+    const { name, ports } = syncEnv(process.cwd());
+
+    console.log(`Wrote .env files for ${name}: NUXT_PORT=${ports.dev} E2E_PORT=${ports.e2e}`);
   });
 
 worktree
@@ -66,15 +74,6 @@ worktree
     const removed = await pruneRegistry(process.cwd());
 
     console.log(removed.length ? `Pruned: ${removed.join(', ')}` : 'Nothing to prune.');
-  });
-
-program
-  .command('port-guard')
-  .description('Fail unless the port in <key> (read from ./.env or the environment) is free')
-  .argument('<key>', 'environment variable holding the port, e.g. NUXT_PORT')
-  .requiredOption('--default <port>', 'port used when <key> is not set', Number)
-  .action(async (key: string, options: { default: number }) => {
-    await guardPort({ cwd: process.cwd(), key, fallback: options.default });
   });
 
 try {

@@ -3,8 +3,8 @@ import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync,
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { listWorktrees, pruneRegistry, registryFile, removeWorktreeEntry, setupWorktree } from '../src/worktree/commands.ts';
-import { APP_ENV_FILE } from '../src/worktree/env.ts';
+import { listWorktrees, pruneRegistry, registryFile, removeWorktreeEntry, setupWorktree, syncEnv } from '../src/worktree/commands.ts';
+import { ENV_FILES } from '../src/worktree/env.ts';
 import { readRegistry } from '../src/worktree/registry.ts';
 
 let root: string;
@@ -37,7 +37,8 @@ describe('setupWorktree', () => {
     expect(entry).toMatchObject({ name: 'feature-a', branch: 'feature-a', slot: 1, ports: { dev: 3001, e2e: 4001 } });
     expect(git(path, 'branch', '--show-current')).toBe('feature-a');
     expect(readRegistry(registryFile(root)).worktrees['feature-a']).toEqual(entry);
-    expect(readFileSync(join(path, APP_ENV_FILE), 'utf8')).toBe('NUXT_PORT=3001\nE2E_PORT=4001\n');
+    for (const file of ENV_FILES)
+      expect(readFileSync(join(path, file), 'utf8')).toBe('NUXT_PORT=3001\nE2E_PORT=4001\n');
   });
 
   it('assigns incremental slots', async () => {
@@ -91,6 +92,31 @@ describe('setupWorktree', () => {
 
     await expect(setup('plain')).rejects.toThrow('is not a git worktree');
     expect(readRegistry(registryFile(root)).worktrees).toEqual({});
+  });
+});
+
+describe('syncEnv', () => {
+  it('writes the base ports in the main checkout', () => {
+    expect(syncEnv(root)).toEqual({ name: 'the main checkout', ports: { dev: 3000, e2e: 4000 } });
+
+    for (const file of ENV_FILES)
+      expect(readFileSync(join(root, file), 'utf8')).toBe('NUXT_PORT=3000\nE2E_PORT=4000\n');
+  });
+
+  it('restores the registered ports of a worktree, also from a subfolder', async () => {
+    await setup('a');
+    await setup('b');
+    const path = join(root, '.claude/worktrees/b');
+    rmSync(join(path, ENV_FILES[1]!));
+
+    expect(syncEnv(join(path, 'packages'))).toEqual({ name: 'worktree "b"', ports: { dev: 3002, e2e: 4002 } });
+    expect(readFileSync(join(path, ENV_FILES[1]!), 'utf8')).toBe('NUXT_PORT=3002\nE2E_PORT=4002\n');
+  });
+
+  it('fails in a worktree that is not registered', () => {
+    git(root, 'worktree', 'add', '--quiet', '-b', 'loose', join(root, '.claude/worktrees/loose'));
+
+    expect(() => syncEnv(join(root, '.claude/worktrees/loose'))).toThrow('is not a registered worktree');
   });
 });
 

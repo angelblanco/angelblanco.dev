@@ -5,6 +5,7 @@ This document explains how to work on several branches of the monorepo at the sa
 ## TL;DR
 
 ```bash
+pnpm worktree env                       # once in the main checkout: write its .env files (3000/4000)
 pnpm worktree setup my-feature          # create .claude/worktrees/my-feature on a new branch from master
 cd .claude/worktrees/my-feature
 pnpm dev                                # http://localhost:<dev port of the worktree>
@@ -17,7 +18,8 @@ pnpm worktree remove my-feature -d      # delete the worktree and its branch, re
 1. **Always create worktrees with `pnpm worktree setup`.** Never run `git worktree add` by hand. If a worktree was created another way (for example by a coding agent), run `pnpm worktree setup <name>` on it to register it.
 2. **Worktrees live in `.claude/worktrees/<name>`.** The folder is git-ignored, so worktrees are never committed, linted or picked up by the main checkout.
 3. **Each worktree owns its ports.** Never hardcode ports or override `NUXT_PORT`/`E2E_PORT` manually; the registry assigns them.
-4. **Remove worktrees with `pnpm worktree remove`.** Deleting the folder by hand leaves a stale registry entry; clean it with `pnpm worktree prune`.
+4. **Every checkout needs its `.env` files.** Playwright fails on purpose when `packages/playwright/.env` or `E2E_PORT` is missing. Run `pnpm worktree env` to (re)generate them.
+5. **Remove worktrees with `pnpm worktree remove`.** Deleting the folder by hand leaves a stale registry entry; clean it with `pnpm worktree prune`.
 
 ## How it works
 
@@ -57,17 +59,25 @@ Each worktree gets an incremental **slot** `N`:
 
 - `setup` picks the lowest slot that is not registered and whose two ports are free right now.
 - Slots released by `remove` are reused.
-- The ports are written to `apps/angelblanco.dev/.env` of the worktree (`NUXT_PORT`, `E2E_PORT`). Nuxt reads that file natively and the Playwright config loads it.
-
-### Conflict protection
-
-- **Dev server:** `pnpm dev` runs `port-guard` before `nuxt dev --strictPort`. If the port is taken it fails and names its owner, e.g. `Port 3001 (NUXT_PORT) is already in use. It belongs to worktree "my-feature".` The guard is needed because Nuxt binds with `SO_REUSEPORT`, so `--strictPort` alone would let two servers share a port silently, and without it Nuxt jumps to a port owned by another worktree.
-- **E2E server:** `runServer.sh` serves the build with `serve --no-port-switching`, so it fails instead of moving to another port.
 
 ### Environment files
 
-- `setup` copies the root `.env` of the main checkout into the worktree if the worktree has none.
-- `apps/angelblanco.dev/.env` keeps any existing values and only rewrites `NUXT_PORT` and `E2E_PORT`. Running `setup` again regenerates them if they are lost.
+The ports reach each tool through a `.env` file next to its `package.json`. Both files always have the same content:
+
+| File                        | Read by                                                                           |
+| --------------------------- | --------------------------------------------------------------------------------- |
+| `apps/angelblanco.dev/.env` | `nuxt dev`, natively (`NUXT_PORT`)                                                |
+| `packages/playwright/.env`  | `playwright.config.ts` with `process.loadEnvFile` and `runServer.sh` (`E2E_PORT`) |
+
+- `setup` writes them for a new worktree and `pnpm worktree env` rewrites them for the checkout you are in: base ports in the main checkout, registered ports in a worktree.
+- Existing values of `apps/angelblanco.dev/.env` are kept; only `NUXT_PORT` and `E2E_PORT` are rewritten, and the Playwright copy is overwritten with the same content.
+- A new worktree inherits the main checkout `apps/angelblanco.dev/.env` and root `.env` (e.g. `NUXT_OG_IMAGE_SECRET`).
+- There are no fallback ports: if a file or variable is missing, Playwright and `runServer.sh` fail with a message pointing to `pnpm worktree env`.
+
+### Port conflicts
+
+- **Dev server:** `pnpm dev` is plain `nuxt dev`. If its port is unexpectedly busy, Nuxt warns (`Port 3001 is in use, using port 3005 instead`) and moves to another free port. Check the owner with `pnpm worktree list`.
+- **E2E server:** `runServer.sh` serves the build with `serve --no-port-switching`, so it fails instead of moving to another port.
 
 ### Caches
 
@@ -81,6 +91,7 @@ Each worktree gets an incremental **slot** `N`:
 | `--branch <branch>`           | Use another branch name, e.g. `feat/blog-search`. Existing branches are checked out.                                                                           |
 | `--base <ref>`                | Start the new branch from another ref instead of `master`.                                                                                                     |
 | `--no-install`                | Skip `pnpm install`.                                                                                                                                           |
+| `pnpm worktree env`           | Rewrite the `.env` files of the current checkout (main or registered worktree).                                                                                |
 | `pnpm worktree list`          | Show every worktree with its branch, ports, whether they are running and whether its folder still exists.                                                      |
 | `pnpm worktree remove <name>` | Remove the worktree and release its slot. Fails if it has uncommitted changes.                                                                                 |
 | `-d, --delete-branch`         | Also delete its branch (only if merged).                                                                                                                       |

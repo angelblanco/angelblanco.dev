@@ -1,11 +1,11 @@
-import type { PortChecker } from './ports.ts';
+import type { PortChecker, Ports } from './ports.ts';
 import type { WorktreeEntry } from './registry.ts';
 import { spawnSync } from 'node:child_process';
 import { existsSync, realpathSync } from 'node:fs';
 import { join } from 'node:path';
-import { writeWorktreeEnv } from './env.ts';
+import { writeEnvFiles } from './env.ts';
 import { addWorktree, currentBranch, deleteBranch, mainRepoRoot, pruneWorktrees, removeWorktree, topLevel } from './git.ts';
-import { findFreeSlot, isPortFree, portsForSlot } from './ports.ts';
+import { BASE_PORTS, findFreeSlot, isPortFree, portsForSlot } from './ports.ts';
 import { readRegistry, withRegistry } from './registry.ts';
 
 export const WORKTREES_DIR = '.claude/worktrees';
@@ -73,7 +73,7 @@ export async function setupWorktree(name: string, options: SetupOptions): Promis
     return created;
   });
 
-  writeWorktreeEnv(root, path, entry.ports);
+  writeEnvFiles(root, path, entry.ports);
 
   if (options.install) {
     const result = spawnSync('pnpm', ['install'], { cwd: path, stdio: 'inherit' });
@@ -83,6 +83,25 @@ export async function setupWorktree(name: string, options: SetupOptions): Promis
   }
 
   return entry;
+}
+
+export function syncEnv(cwd: string): { name: string; ports: Ports } {
+  const root = realpathSync(mainRepoRoot(cwd));
+  const checkout = realpathSync(topLevel(cwd));
+
+  if (checkout === root) {
+    writeEnvFiles(root, root, BASE_PORTS);
+    return { name: 'the main checkout', ports: BASE_PORTS };
+  }
+
+  const entry = Object.values(readRegistry(registryFile(root)).worktrees)
+    .find(worktree => existsSync(join(root, worktree.path)) && realpathSync(join(root, worktree.path)) === checkout);
+
+  if (!entry)
+    throw new Error(`${checkout} is not a registered worktree. Run \`pnpm worktree setup <name>\` from the main checkout.`);
+
+  writeEnvFiles(root, checkout, entry.ports);
+  return { name: `worktree "${entry.name}"`, ports: entry.ports };
 }
 
 export async function listWorktrees(cwd: string, isFree: PortChecker = isPortFree): Promise<WorktreeStatus[]> {

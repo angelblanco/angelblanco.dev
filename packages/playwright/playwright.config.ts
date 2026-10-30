@@ -3,14 +3,17 @@ import { resolve } from 'node:path';
 import process from 'node:process';
 import { defineConfig, devices } from '@playwright/test';
 
-// Worktrees get their E2E_PORT from the .env written by `pnpm worktree setup`.
-const appEnvFile = resolve(__dirname, '../../apps/angelblanco.dev/.env');
+const envFile = resolve(__dirname, '.env');
 
-if (existsSync(appEnvFile))
-  process.loadEnvFile(appEnvFile);
+if (!existsSync(envFile))
+  throw new Error('Missing packages/playwright/.env. Run `pnpm worktree env`.');
 
-const port = Number(process.env.E2E_PORT ?? 4000);
-const baseURL = `http://localhost:${port}`;
+process.loadEnvFile(envFile);
+
+if (!process.env.E2E_PORT)
+  throw new Error('E2E_PORT is missing in packages/playwright/.env. Run `pnpm worktree env`.');
+
+const baseURL = `http://localhost:${process.env.E2E_PORT}`;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -66,7 +69,6 @@ export default defineConfig({
   webServer: {
     command: 'pnpm run start:server',
     url: baseURL,
-    env: { E2E_PORT: String(port) },
     reuseExistingServer: !process.env.CI,
   },
 });
