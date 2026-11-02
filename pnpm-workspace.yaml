@@ -6,3 +6,4 @@ allowBuilds:
   better-sqlite3: true
   esbuild: true
   sharp: true
+  '@angelblanco/eslint-config@git+https://github.com/angelblanco/eslint-config.git': true

@@ -1,7 +1,7 @@
 <template>
   <UiCenterContainer>
-    <div class="flex flex-col items-center justify-center space-y-4 p-4 min-h-screen-content">
-      <h1 class="text-6xl font-bold tracking-tight gradient-text">
+    <div class="flex min-h-screen-content flex-col items-center justify-center space-y-4 p-4">
+      <h1 class="gradient-text text-6xl font-bold tracking-tight">
         {{ $t('Whoops') }}
       </h1>
       <p class="mt-4 text-lg">

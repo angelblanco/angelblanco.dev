@@ -1,10 +1,10 @@
 <template>
-  <div v-if="toc.links.length > 0" class="p-4 border border-primary/40 bg-primary/5">
-    <div class="font-bold pb-4 text-sm md:text-base font-mono text-primary-content tracking-wide dark:text-base-content dark:font-medium">
+  <div v-if="toc.links.length > 0" class="border border-primary/40 bg-primary/5 p-4">
+    <div class="pb-4 font-mono text-sm font-bold tracking-wide text-primary-content md:text-base dark:font-medium dark:text-base-content">
       {{ t('On this page') }}
     </div>
 
-    <div class="border-primary/40 border p-2 lg:p-4 bg-base-100">
+    <div class="border border-primary/40 bg-base-100 p-2 lg:p-4">
       <BlogTocLink v-for="(link, i) in toc.links" :key="i" :toc-link="link" first-level :not-first-in-group="i !== 0" />
     </div>
   </div>

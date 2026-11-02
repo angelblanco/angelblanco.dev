@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <label id="theme-switcher" class="swap swap-rotate btn btn-ghost btn-square" @click="toggleTheme">
+    <label id="theme-switcher" class="btn swap btn-square swap-rotate btn-ghost" @click="toggleTheme">
       <Icon
         name="heroicons:sun"
         class="fill-current"
@@ -23,7 +23,9 @@ const { iconSize = 'size-8' } = defineProps<{
 const colorMode = useColorMode();
 
 function toggleTheme() {
-  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light';
+  colorMode.preference = colorMode.value === 'light'
+    ? 'dark'
+    : 'light';
 }
 
 const lightTheme = computed(() => colorMode.value === 'light');

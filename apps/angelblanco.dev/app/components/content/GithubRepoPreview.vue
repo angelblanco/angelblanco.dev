@@ -3,19 +3,19 @@
     :href="githubUrl"
     target="_blank"
     rel="noopener noreferrer"
-    class="block no-underline decoration-none border overflow-hidden bg-base-100 border-base-content/10 text-base-content mb-4 rounded group hover:border-base-content/30 transition-colors"
+    class="decoration-none group mb-4 block overflow-hidden rounded border border-base-content/10 bg-base-100 text-base-content no-underline transition-colors hover:border-base-content/30"
   >
     <div class="p-4">
       <div class="flex items-start gap-3">
-        <Icon name="mdi:github" class="size-8 flex-shrink-0 text-base-content/80" />
-        <div class="flex-1 min-w-0">
-          <div class="font-semibold text-base-content group-hover:text-primary transition-colors">
+        <Icon name="mdi:github" class="size-8 shrink-0 text-base-content/80" />
+        <div class="min-w-0 flex-1">
+          <div class="font-semibold text-base-content transition-colors group-hover:text-primary">
             {{ repoName }}
           </div>
-          <div v-if="description" class="text-sm text-base-content/70 mt-1">
+          <div v-if="description" class="mt-1 text-sm text-base-content/70">
             {{ description }}
           </div>
-          <div class="text-xs text-base-content/50 mt-2 flex items-center gap-1">
+          <div class="mt-2 flex items-center gap-1 text-xs text-base-content/50">
             <Icon name="heroicons-outline:link" class="size-3" />
             github.com/{{ repo }}
           </div>

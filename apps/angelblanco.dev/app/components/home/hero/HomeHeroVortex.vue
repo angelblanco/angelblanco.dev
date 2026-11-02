@@ -1,5 +1,5 @@
 <template>
-  <div :class="cn('relative h-full w-full overflow-hidden', props.containerClass)">
+  <div :class="cn('relative size-full overflow-hidden', props.containerClass)">
     <Motion
       ref="containerRef"
       as="div"

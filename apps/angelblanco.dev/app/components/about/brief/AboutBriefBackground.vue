@@ -40,7 +40,7 @@ const {
 const patternPath = computed(() => `M.5 ${height}V.5H${width}`);
 const svgClass = computed(() =>
   cn(
-    'pointer-events-none absolute inset-0 h-full w-full fill-base-300 stroke-base-300',
+    'pointer-events-none absolute inset-0 size-full fill-base-300 stroke-base-300',
     className,
   ),
 );

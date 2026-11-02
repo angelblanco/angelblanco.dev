@@ -1,19 +1,19 @@
 <template>
-  <div class="min-h-screen-content mx-auto max-w-ui p-4">
-    <div class="text-4xl font-bold mb-2">
+  <div class="mx-auto min-h-screen-content max-w-ui p-4">
+    <div class="mb-2 text-4xl font-bold">
       {{ $t('Projects') }}
     </div>
-    <div class="border-b border-base-300 pb-4 mb-8">
+    <div class="mb-8 border-b border-base-300 pb-4">
       {{ $t('ProjectsDescription') }}
     </div>
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-      <div v-for="repo in projectRepos" :key="repo.name" class="border p-4 border-base-300 bg-base-100">
+      <div v-for="repo in projectRepos" :key="repo.name" class="border border-base-300 bg-base-100 p-4">
         <div class="flex flex-wrap gap-2">
-          <a class="hover:text-primary font-bold text-2xl" :href="repo.url" target="_blank">{{ repo.name }}</a>
-          <span class="text-sm tracking-wide opacity-60 self-end mb-1">{{ formatRepoDates(repo) }}</span>
+          <a class="text-2xl font-bold hover:text-primary" :href="repo.url" target="_blank">{{ repo.name }}</a>
+          <span class="mb-1 self-end text-sm tracking-wide opacity-60">{{ formatRepoDates(repo) }}</span>
         </div>
-        <div class="flex gap-4 flex-wrap py-2">
+        <div class="flex flex-wrap gap-4 py-2">
           <Icon v-for="tech in repo.technologies" :key="tech.icon" :name="tech.icon" :title="tech.title" class="size-4 text-base-content opacity-80" />
         </div>
         <div v-for="(line, i) in repo.description" :key="i" class="mb-3">

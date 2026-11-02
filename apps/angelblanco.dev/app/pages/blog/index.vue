@@ -1,17 +1,17 @@
 <template>
-  <div class="min-h-screen-content mx-auto max-w-post p-4">
+  <div class="mx-auto min-h-screen-content max-w-post p-4">
     <div class="space-y-24">
       <div v-for="post in posts" :key="post.id">
-        <NuxtLink class="block group transition" :to="post.path">
-          <div class="text-4xl font-bold text-pretty tracking-tight group-hover:gradient-text">
+        <NuxtLink class="group block transition" :to="post.path">
+          <div class="text-4xl font-bold tracking-tight text-pretty group-hover:gradient-text">
             {{ post.title }}
           </div>
-          <div class="text-sm mb-3 opacity-75">
+          <div class="mb-3 text-sm opacity-75">
             {{ dayjs(post.date).format('LL') }}
           </div>
         </NuxtLink>
 
-        <div class="text-pretty text-lg mb-4 leading-8">
+        <div class="mb-4 text-lg leading-8 text-pretty">
           {{ post.description }}
         </div>
       </div>

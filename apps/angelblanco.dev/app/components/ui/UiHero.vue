@@ -1,5 +1,5 @@
 <template>
-  <div class="hero bg-base-100 min-h-lvh">
+  <div class="hero min-h-lvh bg-base-100">
     <div class="hero-content text-center">
       <div class="max-w-md">
         <h1 class="text-5xl font-bold">
@@ -9,7 +9,7 @@
           {{ description }}
         </p>
 
-        <div class="flex gap-2 justify-center">
+        <div class="flex justify-center gap-2">
           <slot name="callToAction" />
         </div>
       </div>

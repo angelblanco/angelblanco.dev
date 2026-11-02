@@ -25,7 +25,9 @@ for (const locale of locales) {
     const trans = getLocalizedTranslations(locale, NAVBAR_EXPECTED_TRANS);
 
     const getLink = (name: string) => {
-      const parentLocator = mustHaveToggle ? page.locator('#ui-nav-bar-menu') : page.locator('nav');
+      const parentLocator = mustHaveToggle
+        ? page.locator('#ui-nav-bar-menu')
+        : page.locator('nav');
       return parentLocator.getByRole('link', { name });
     };
 

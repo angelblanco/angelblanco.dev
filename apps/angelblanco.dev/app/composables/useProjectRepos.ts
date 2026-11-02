@@ -23,7 +23,9 @@ export default function useProjectRepos() {
   const { technologies } = useTechList();
 
   function repoUrl(url: string) {
-    return url.startsWith('http') ? url : `${githubUrl}/${url}`;
+    return url.startsWith('http')
+      ? url
+      : `${githubUrl}/${url}`;
   }
 
   function techEntries(names: TechName[]): TechEntry[] {
