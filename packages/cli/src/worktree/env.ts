@@ -22,8 +22,15 @@ export function writeEnvFiles(root: string, checkoutPath: string, ports: Ports):
     copyFileSync(join(root, ROOT_ENV_FILE), rootEnv);
 
   const [appEnv] = ENV_FILES;
-  const source = existsSync(join(checkoutPath, appEnv!)) ? checkoutPath : root;
-  const content = [...unmanagedLines(join(source, appEnv!)), `NUXT_PORT=${ports.dev}`, `E2E_PORT=${ports.e2e}`, ''].join('\n');
+  const source = existsSync(join(checkoutPath, appEnv!))
+    ? checkoutPath
+    : root;
+  const content = [
+    ...unmanagedLines(join(source, appEnv!)),
+    `NUXT_PORT=${ports.dev}`,
+    `E2E_PORT=${ports.e2e}`,
+    '',
+  ].join('\n');
 
   for (const file of ENV_FILES) {
     mkdirSync(dirname(join(checkoutPath, file)), { recursive: true });

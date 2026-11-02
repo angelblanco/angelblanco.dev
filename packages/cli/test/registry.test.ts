@@ -32,7 +32,11 @@ describe('registry', () => {
   });
 
   it('round-trips through disk, creating parent folders', () => {
-    const registry: Registry = { worktrees: { foo: entry('foo', 1) } };
+    const registry: Registry = {
+      worktrees: {
+        foo: entry('foo', 1),
+      },
+    };
     writeRegistry(file, registry);
 
     expect(readRegistry(file)).toEqual(registry);
