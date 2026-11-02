@@ -26,7 +26,7 @@
     "ai:commit": "pnpm ai:flash --prompt-interactive \"/git:commit\""
   },
   "devDependencies": {
-    "@angelblanco/eslint-config": "github:angelblanco/eslint-config#3.x",
+    "@angelblanco/eslint-config": "^3.0.0",
     "@types/node": "^26.6.5",
     "eslint": "^10.13.0",
     "eslint-plugin-format": "^2.0.1",
