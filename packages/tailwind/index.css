@@ -108,16 +108,16 @@
   @apply bg-clip-text text-transparent bg-gradient-to-br from-warning to-error;
 }
 
-.md-bold-styled .strong-child-1 {
-  @apply gradient-text;
-}
-
-.md-bold-styled .strong-child-2 {
-  @apply gradient-text-alt;
-}
-
-.md-bold-styled .strong-child-3 {
-  @apply gradient-text-alt2;
+@utility md-bold-styled {
+  & .strong-child-1 {
+    @apply gradient-text;
+  }
+  & .strong-child-2 {
+    @apply gradient-text-alt;
+  }
+  & .strong-child-3 {
+    @apply gradient-text-alt2;
+  }
 }
 
 @utility min-h-screen-content {

@@ -6,7 +6,7 @@
         <div class="absolute top-4 right-4 -bottom-4 -left-4 z-1 bg-secondary shadow-lg" />
         <div class="absolute top-6 right-6 -bottom-6 -left-6 z-0 bg-info shadow-lg" />
         <div
-          class="cursor:pointer relative z-10 flex items-center border border-base-300 bg-base-200 p-4 shadow-lg  hover:shadow"
+          class="relative z-10 flex items-center border border-base-300 bg-base-200 p-4 shadow-lg hover:shadow"
         >
           <div class="flex-1">
             <div class="text-lg font-bold">

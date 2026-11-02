@@ -3,7 +3,7 @@
     :href="githubUrl"
     target="_blank"
     rel="noopener noreferrer"
-    class="decoration-none group mb-4 block overflow-hidden rounded border border-base-content/10 bg-base-100 text-base-content no-underline transition-colors hover:border-base-content/30"
+    class="group mb-4 block overflow-hidden rounded border border-base-content/10 bg-base-100 text-base-content no-underline transition-colors hover:border-base-content/30"
   >
     <div class="p-4">
       <div class="flex items-start gap-3">

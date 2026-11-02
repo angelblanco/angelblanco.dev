@@ -1,12 +1,12 @@
 <template>
   <div class="my-6 p-4 lg:my-32">
-    <p class="lg:text-5xlmb-8 mx-auto mb-4 flex max-w-ui flex-wrap gap-4 text-3xl font-semibold text-pretty md:text-4xl">
+    <p class="mx-auto mb-4 flex max-w-ui flex-wrap gap-4 text-3xl font-semibold text-pretty md:text-4xl">
       {{ $t('aboutResumeTitle') }}
     </p>
 
     <div class="mx-auto grid max-w-ui grid-cols-1 gap-8 leading-relaxed text-pretty md:grid-cols-5">
       <div class="md:col-span-3">
-        <MDC :value="mdResume" class="md-bold-styled space-y-3 md:col-span-3" />
+        <MDC :value="mdResume" class="space-y-3 md-bold-styled md:col-span-3" />
 
         <div class="mt-4 grid grid-cols-2 gap-4">
           <a :href="githubSocial.url" class="btn btn-neutral">{{ githubSocial.name }}</a>
