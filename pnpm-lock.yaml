@@ -168,7 +168,7 @@ importers:
     devDependencies:
       '@angelblanco/eslint-config':
         specifier: github:angelblanco/eslint-config#3.x
-        version: https://codeload.github.com/angelblanco/eslint-config/tar.gz/07ac0b16e51b7aa80fb8bdbe11f2b4a79fa82e07(@typescript-eslint/typescript-estree@8.72.1(supports-color@10.2.2)(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(@vue/compiler-sfc@3.5.44)(eslint-plugin-format@2.0.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint-plugin-tailwindcss@4.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@26.6.5)(happy-dom@20.11.6)(jsdom@26.0.0(supports-color@10.2.2))(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(yaml@2.9.0)))
+        version: https://codeload.github.com/angelblanco/eslint-config/tar.gz/3497347f392eb15c2d98a729eee30f7e104c8e4a(@typescript-eslint/typescript-estree@8.72.1(supports-color@10.2.2)(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(@vue/compiler-sfc@3.5.44)(eslint-plugin-format@2.0.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint-plugin-tailwindcss@4.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@26.6.5)(happy-dom@20.11.6)(jsdom@26.0.0(supports-color@10.2.2))(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(yaml@2.9.0)))
       '@types/node':
         specifier: ^26.6.5
         version: 26.6.5
@@ -367,8 +367,8 @@ importers:
 
 packages:
 
-  '@angelblanco/eslint-config@https://codeload.github.com/angelblanco/eslint-config/tar.gz/07ac0b16e51b7aa80fb8bdbe11f2b4a79fa82e07':
-    resolution: {gitHosted: true, integrity: sha512-RoNceq3RXWa2VrPQDZmOQNR4RLPnweiSLsIcXDeGuR4aORCpP+NWTD0n55LXkFK8HY6spkzycTc8TlHAASLzZQ==, tarball: https://codeload.github.com/angelblanco/eslint-config/tar.gz/07ac0b16e51b7aa80fb8bdbe11f2b4a79fa82e07}
+  '@angelblanco/eslint-config@https://codeload.github.com/angelblanco/eslint-config/tar.gz/3497347f392eb15c2d98a729eee30f7e104c8e4a':
+    resolution: {gitHosted: true, integrity: sha512-2m8YjdYiOfOzEW0In5qp+vgpUZry2EDIdzCRhWCxHn1skGK6hadTchZTyWvwIdvILRXjg+ED1MEjfKLsJp12KA==, tarball: https://codeload.github.com/angelblanco/eslint-config/tar.gz/3497347f392eb15c2d98a729eee30f7e104c8e4a}
     version: 3.0.0
     peerDependencies:
       eslint-plugin-tailwindcss: ^4.4.0
@@ -8651,10 +8651,9 @@ packages:
 
 snapshots:
 
-  '@angelblanco/eslint-config@https://codeload.github.com/angelblanco/eslint-config/tar.gz/07ac0b16e51b7aa80fb8bdbe11f2b4a79fa82e07(@typescript-eslint/typescript-estree@8.72.1(supports-color@10.2.2)(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(@vue/compiler-sfc@3.5.44)(eslint-plugin-format@2.0.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint-plugin-tailwindcss@4.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@26.6.5)(happy-dom@20.11.6)(jsdom@26.0.0(supports-color@10.2.2))(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(yaml@2.9.0)))':
+  '@angelblanco/eslint-config@https://codeload.github.com/angelblanco/eslint-config/tar.gz/3497347f392eb15c2d98a729eee30f7e104c8e4a(@typescript-eslint/typescript-estree@8.72.1(supports-color@10.2.2)(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(@vue/compiler-sfc@3.5.44)(eslint-plugin-format@2.0.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint-plugin-tailwindcss@4.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@5.9.3))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@26.6.5)(happy-dom@20.11.6)(jsdom@26.0.0(supports-color@10.2.2))(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(yaml@2.9.0)))':
     dependencies:
       '@antfu/eslint-config': 10.0.0(@typescript-eslint/typescript-estree@8.72.1(supports-color@10.2.2)(typescript@5.9.3))(@typescript-eslint/utils@8.72.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@5.9.3))(@vue/compiler-sfc@3.5.44)(eslint-plugin-format@2.0.1(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2)))(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@26.6.5)(happy-dom@20.11.6)(jsdom@26.0.0(supports-color@10.2.2))(vite@8.3.5(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(yaml@2.9.0)))
-      local-pkg: 1.2.1
     optionalDependencies:
       eslint-plugin-tailwindcss: 4.4.0(eslint@10.13.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(tailwindcss@4.3.3)(typescript@5.9.3)
     transitivePeerDependencies:
