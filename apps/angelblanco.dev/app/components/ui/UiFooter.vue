@@ -1,22 +1,22 @@
 <template>
-  <nav class="flex bg-base-100 border-t border-base-300">
-    <div class="max-w-ui mx-auto gap-2 flex-1 flex items-center">
-      <div class="text-xs md:text-sm border-r border-base-300 p-3">
+  <nav class="flex border-t border-base-300 bg-base-100">
+    <div class="mx-auto flex max-w-ui flex-1 items-center gap-2">
+      <div class="border-r border-base-300 p-3 text-xs md:text-sm">
         <div class="tracking-wide">
           <span class="mr-1">{{ t('Personal website of') }} </span>
           <NuxtLinkLocale to="/about" class="font-semibold hover:text-primary">
             {{ t('Author') }}
           </NuxtLinkLocale>
         </div>
-        <a :href="repoUrl" target="_blank" class="block items-center gap-1 font-light mt-1 text-xs hover:text-primary group">
+        <a :href="repoUrl" target="_blank" class="group mt-1 block items-center gap-1 text-xs font-light hover:text-primary">
           <span>{{ t('Hosted and Open Source with') }}</span>
-          <Icon name="heroicons:heart-solid" class="text-red-500 size-4 group-hover:text-primary inline-flex align-middle mx-1.5" />
+          <Icon name="heroicons:heart-solid" class="mx-1.5 inline-flex size-4 align-middle text-red-500 group-hover:text-primary" />
           <span>{{ t('on GitHub') }}</span>
         </a>
       </div>
 
-      <div class="flex ml-auto gap-4 p-3">
-        <a v-for="social in socials" :key="social.name" class="btn btn-ghost btn-square btn-sm" :href="social.url" __target="blank" :title="social.name">
+      <div class="ml-auto flex gap-4 p-3">
+        <a v-for="social in socials" :key="social.name" class="btn btn-square btn-ghost btn-sm" :href="social.url" __target="blank" :title="social.name">
           <Icon :name="social.icon" class="size-6" />
         </a>
       </div>

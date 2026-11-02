@@ -1,18 +1,18 @@
 <template>
-  <div class="border overflow-hidden bg-base-100 border-base-content/10 text-base-content mb-4 rounded group">
+  <div class="group mb-4 overflow-hidden rounded border border-base-content/10 bg-base-100 text-base-content">
     <!-- Header -->
     <div
       v-if="showHeader"
-      class="flex items-center justify-between p-2 bg-base-200 border-b border-base-content/10"
+      class="flex items-center justify-between border-b border-base-content/10 bg-base-200 p-2"
     >
-      <div class="flex gap-2 items-center text-base-content/80 h-8">
+      <div class="flex h-8 items-center gap-2 text-base-content/80">
         <Icon v-if="languageIcon" :name="languageIcon" class="size-5" />
-        <span v-if="filename" class="text-sm tracking-wider font-medium">{{ filename }}</span>
+        <span v-if="filename" class="text-sm font-medium tracking-wider">{{ filename }}</span>
       </div>
 
       <!-- Copy Button -->
       <button
-        v-if="isCopyable" class="group-hover:flex hidden btn-sm transition btn btn-square border border-base-content/10 items-center gap-1" :class="{
+        v-if="isCopyable" class="btn hidden btn-square items-center gap-1 border border-base-content/10 transition btn-sm group-hover:flex" :class="{
           'btn-success': copiedState === 'success',
           'btn-error': copiedState === 'error',
         }" @click="doCopy"
@@ -25,12 +25,12 @@
     </div>
 
     <div class="relative">
-      <div v-if="!showHeader" class="absolute right-2 top-2 transition">
-        <div class="text-sm font-mono text-base-content/70 group-hover:hidden p-2">
+      <div v-if="!showHeader" class="absolute top-2 right-2 transition">
+        <div class="p-2 font-mono text-sm text-base-content/70 group-hover:hidden">
           {{ language }}
         </div>
         <button
-          v-if="isCopyable" class="group-hover:flex hidden btn-sm transition btn btn-square items-center gap-1" :class="{
+          v-if="isCopyable" class="btn hidden btn-square items-center gap-1 transition btn-sm group-hover:flex" :class="{
             'btn-success': copiedState === 'success',
             'btn-error': copiedState === 'error',
           }" @click="doCopy"
@@ -41,7 +41,7 @@
           />
         </button>
       </div>
-      <pre :class="cls" class="p-6! m-0! bg-base-100 !leading-5.5 !rounded-none"><slot /></pre>
+      <pre :class="cls" class="m-0! rounded-none! bg-base-100 p-6! leading-5.5!"><slot /></pre>
     </div>
   </div>
 </template>
@@ -91,7 +91,9 @@ const languageIcon = computed<string | null>(() => {
     php: 'vscode-icons:file-type-php',
   };
 
-  return props.language ? map[props.language] ?? null : null;
+  return props.language
+    ? map[props.language] ?? null
+    : null;
 });
 </script>
 

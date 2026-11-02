@@ -12,11 +12,22 @@ let root: string;
 const alwaysFree = async () => true;
 
 function git(cwd: string, ...args: string[]): string {
-  return execFileSync('git', ['-c', 'user.name=test', '-c', 'user.email=test@example.com', ...args], { cwd, encoding: 'utf8' }).trim();
+  return execFileSync('git', [
+    '-c',
+    'user.name=test',
+    '-c',
+    'user.email=test@example.com',
+    ...args,
+  ], { cwd, encoding: 'utf8' }).trim();
 }
 
 function setup(name: string, cwd = root) {
-  return setupWorktree(name, { cwd, base: 'master', install: false, isFree: alwaysFree });
+  return setupWorktree(name, {
+    cwd,
+    base: 'master',
+    install: false,
+    isFree: alwaysFree,
+  });
 }
 
 beforeEach(() => {
@@ -34,7 +45,12 @@ describe('setupWorktree', () => {
     const entry = await setup('feature-a');
     const path = join(root, '.claude/worktrees/feature-a');
 
-    expect(entry).toMatchObject({ name: 'feature-a', branch: 'feature-a', slot: 1, ports: { dev: 3001, e2e: 4001 } });
+    expect(entry).toMatchObject({
+      name: 'feature-a',
+      branch: 'feature-a',
+      slot: 1,
+      ports: { dev: 3001, e2e: 4001 },
+    });
     expect(git(path, 'branch', '--show-current')).toBe('feature-a');
     expect(readRegistry(registryFile(root)).worktrees['feature-a']).toEqual(entry);
     for (const file of ENV_FILES)
@@ -78,7 +94,13 @@ describe('setupWorktree', () => {
   it('checks out an existing branch with --branch', async () => {
     git(root, 'branch', 'feat/existing');
 
-    expect(await setupWorktree('existing', { cwd: root, base: 'master', branch: 'feat/existing', install: false, isFree: alwaysFree }))
+    expect(await setupWorktree('existing', {
+      cwd: root,
+      base: 'master',
+      branch: 'feat/existing',
+      install: false,
+      isFree: alwaysFree,
+    }))
       .toMatchObject({ branch: 'feat/existing' });
   });
 
@@ -97,7 +119,10 @@ describe('setupWorktree', () => {
 
 describe('syncEnv', () => {
   it('writes the base ports in the main checkout', () => {
-    expect(syncEnv(root)).toEqual({ name: 'the main checkout', ports: { dev: 3000, e2e: 4000 } });
+    expect(syncEnv(root)).toEqual({
+      name: 'the main checkout',
+      ports: { dev: 3000, e2e: 4000 },
+    });
 
     for (const file of ENV_FILES)
       expect(readFileSync(join(root, file), 'utf8')).toBe('NUXT_PORT=3000\nE2E_PORT=4000\n');
@@ -109,7 +134,10 @@ describe('syncEnv', () => {
     const path = join(root, '.claude/worktrees/b');
     rmSync(join(path, ENV_FILES[1]!));
 
-    expect(syncEnv(join(path, 'packages'))).toEqual({ name: 'worktree "b"', ports: { dev: 3002, e2e: 4002 } });
+    expect(syncEnv(join(path, 'packages'))).toEqual({
+      name: 'worktree "b"',
+      ports: { dev: 3002, e2e: 4002 },
+    });
     expect(readFileSync(join(path, ENV_FILES[1]!), 'utf8')).toBe('NUXT_PORT=3002\nE2E_PORT=4002\n');
   });
 
@@ -155,7 +183,10 @@ describe('listWorktrees and pruneRegistry', () => {
     rmSync(join(root, '.claude/worktrees/a'), { recursive: true, force: true });
 
     const listed = await listWorktrees(root, alwaysFree);
-    expect(listed.map(({ name, exists }) => ({ name, exists }))).toEqual([{ name: 'a', exists: false }, { name: 'b', exists: true }]);
+    expect(listed.map(({ name, exists }) => ({ name, exists }))).toEqual([
+      { name: 'a', exists: false },
+      { name: 'b', exists: true },
+    ]);
 
     expect(await pruneRegistry(root)).toEqual(['a']);
     expect(Object.keys(readRegistry(registryFile(root)).worktrees)).toEqual(['b']);

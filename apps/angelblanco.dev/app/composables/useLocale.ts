@@ -3,6 +3,8 @@ export function useLocale() {
 
   return {
     locale,
-    alternativeLocale: computed<'es' | 'en'>(() => locale.value === 'es' ? 'en' : 'es'),
+    alternativeLocale: computed<'es' | 'en'>(() => locale.value === 'es'
+      ? 'en'
+      : 'es'),
   };
 }

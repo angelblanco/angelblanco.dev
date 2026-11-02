@@ -14,7 +14,10 @@ worktree
   .option('--base <ref>', 'ref the new branch starts from', 'master')
   .option('--no-install', 'skip pnpm install')
   .action(async (name: string, options: { branch?: string; base: string; install: boolean }) => {
-    const entry = await setupWorktree(name, { cwd: process.cwd(), ...options });
+    const entry = await setupWorktree(name, {
+      cwd: process.cwd(),
+      ...options,
+    });
 
     console.log(`\nWorktree "${entry.name}" ready at ${entry.path} (branch ${entry.branch})`);
     console.log(`  dev: http://localhost:${entry.ports.dev}`);
@@ -73,7 +76,9 @@ worktree
   .action(async () => {
     const removed = await pruneRegistry(process.cwd());
 
-    console.log(removed.length ? `Pruned: ${removed.join(', ')}` : 'Nothing to prune.');
+    console.log(removed.length
+      ? `Pruned: ${removed.join(', ')}`
+      : 'Nothing to prune.');
   });
 
 try {

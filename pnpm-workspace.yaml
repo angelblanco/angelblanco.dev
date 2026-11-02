@@ -6,3 +6,5 @@ allowBuilds:
   better-sqlite3: true
   esbuild: true
   sharp: true
+minimumReleaseAgeExclude:
+  - '@angelblanco/eslint-config@3.0.0'

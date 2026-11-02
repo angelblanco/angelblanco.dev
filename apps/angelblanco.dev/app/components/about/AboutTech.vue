@@ -1,13 +1,13 @@
 <template>
-  <div class="max-w-ui mx-auto mb-10">
+  <div class="mx-auto mb-10 max-w-ui">
     <div class="p-4">
-      <p class="max-w-ui mx-auto  font-semibold text-3xl md:text-4xl lg:text-5xl tracking-tighter mb-4 flex flex-wrap gap-4">
+      <p class="mx-auto mb-4  flex max-w-ui flex-wrap gap-4 text-3xl font-semibold tracking-tighter md:text-4xl lg:text-5xl">
         {{ $t('aboutTechStackTitle') }}
       </p>
-      <div class="flex flex-wrap text-xs gap-2 lg:gap-4 mb-4 lg:mb-8">
+      <div class="mb-4 flex flex-wrap gap-2 text-xs lg:mb-8 lg:gap-4">
         <button
           v-for="type in types" :key="type"
-          class="font-mono cursor-pointer font-medium tracking-wide py-1 px-3 rounded-full transition"
+          class="cursor-pointer rounded-full px-3 py-1 font-mono font-medium tracking-wide transition"
           :class="selectedType === type ? 'bg-primary text-primary-content' : 'bg-neutral text-neutral-content'"
           @click="selectType(type)"
         >
@@ -15,15 +15,15 @@
         </button>
       </div>
 
-      <div class="flex flex-wrap gap-4 items-center text-base-content/85">
+      <div class="flex flex-wrap items-center gap-4 text-base-content/85">
         <div
-          v-for="(entry, index) in entries" :key="entry.title" class="border border-base-300 px-4 py-2 lg:py-4 transition hover:border-primary hover:drop-shadow hover:drop-shadow-primary hover:opacity-100 hover:blur-none bg-base-100/90 group
-cursor-pointer" :class="selectedType && selectedType !== entry.type ? 'opacity-45 blur-xs' : ''"
+          v-for="(entry, index) in entries" :key="entry.title" class="group cursor-pointer border border-base-300 bg-base-100/90 px-4 py-2 transition hover:border-primary hover:opacity-100 hover:blur-none hover:drop-shadow hover:drop-shadow-primary
+lg:py-4" :class="selectedType && selectedType !== entry.type ? 'opacity-45 blur-xs' : ''"
           @click="selectType(entry.type)"
         >
-          <div class="flex gap-4 items-center">
+          <div class="flex items-center gap-4">
             <Icon
-              class="transition size-6 lg:size-8 flex-none"
+              class="size-6 flex-none transition lg:size-8"
               :class="(index % 2) === 0 ? 'group-hover:rotate-15' : 'group-hover:-rotate-15'" :name="entry.icon"
               :title="entry.title"
             />
@@ -31,7 +31,7 @@ cursor-pointer" :class="selectedType && selectedType !== entry.type ? 'opacity-4
               <div class="font-medium lg:text-lg">
                 {{ entry.title }}
               </div>
-              <div class="text-xs font-mono">
+              <div class="font-mono text-xs">
                 #{{ entry.type }}
               </div>
             </div>
