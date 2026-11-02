@@ -58,3 +58,6 @@ playwright-report/
 blob-report/
 .cache/
 .auth/
+
+# git worktrees managed by `pnpm worktree`
+.claude/worktrees/

@@ -1,0 +1,21 @@
+{
+  "name": "@angelblanco/cli",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@angelblanco/tsconfig": "workspace:*",
+    "@types/node": "^26.6.5",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.11"
+  }
+}
