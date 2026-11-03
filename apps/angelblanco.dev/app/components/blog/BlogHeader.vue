@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="mt-5 text-2xl font-bold tracking-tight text-pretty md:text-3xl lg:text-5xl">
+    <h1 class="mt-5 text-4xl font-semibold tracking-normal text-pretty md:text-4xl">
       {{ post.title }}
     </h1>
-    <div class="my-2 text-sm font-medium ">
+    <div class="mt-2 mb-8 text-sm font-light opacity-60 ">
       {{ createdAt }} - <NuxtLinkLocale to="/about" class="hover:text-primary">
         {{ $t('blogAuthoredBy') }}
       </NuxtLinkLocale>
