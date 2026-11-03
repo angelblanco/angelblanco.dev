@@ -13,6 +13,10 @@
           <Icon name="heroicons:heart-solid" class="mx-1.5 inline-flex size-4 align-middle text-red-500 group-hover:text-primary" />
           <span>{{ t('on GitHub') }}</span>
         </a>
+        <div class="mt-1 text-xs font-light opacity-70">
+          <a :href="contentLicense.url" target="_blank" rel="license noopener" class="hover:text-primary" data-testid="content-license">{{ contentLicense.name }}</a>
+          <span class="ml-1">{{ contentLicense.since }}-{{ t('Present') }} © {{ t('Author') }}</span>
+        </div>
       </div>
 
       <div class="ml-auto flex gap-4 p-3">
@@ -26,5 +30,6 @@
 
 <script lang="ts" setup>
 const { socials, repoUrl } = useSocials();
+const contentLicense = useContentLicense();
 const { t } = useI18n();
 </script>
