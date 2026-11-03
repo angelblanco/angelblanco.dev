@@ -99,3 +99,7 @@ pnpm run test:e2e
 ```
 
 The E2E tests will also work if you launch the `pnpm dev` server, however in order to simulate github pages behaviour, `pnpm preview` is preferred.
+
+## License
+
+Code is licensed under [MIT](./LICENSE). Words and images, such as the blog posts in [apps/angelblanco.dev/content](./apps/angelblanco.dev/content/), are licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) ([full text](./CC-BY-NC-SA-4.0)).

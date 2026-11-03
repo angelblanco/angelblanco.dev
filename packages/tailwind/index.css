@@ -15,7 +15,7 @@
   --color-base-100: oklch(100% 0 0);
   --color-base-200: oklch(99% 0 0);
   --color-base-300: oklch(95% 0 0);
-  --color-base-content: oklch(21% 0.006 285.885);
+  --color-base-content: oklch(26% 0 0);
   --color-primary: oklch(71% 0.203 305.504);
   --color-primary-content: oklch(29% 0.149 302.717);
   --color-secondary: oklch(65% 0.241 354.308);
@@ -124,8 +124,18 @@
   min-height: calc(100dvh - 8.5rem);
 }
 
+.prose {
+  --tw-prose-body: var(--color-base-content);
+  --tw-prose-bullets: color-mix(in oklab, var(--color-base-content) 30%, #0000);
+  --tw-prose-counters: color-mix(in oklab, var(--color-base-content) 50%, #0000);
+  --tw-prose-quotes: var(--tw-prose-body);
+  --tw-prose-code: unset;
+  --tw-prose-pre-code: unset;
+  --tw-prose-pre-bg: unset;
+}
+
 .prose a {
-  @apply decoration-primary underline-offset-7 hover:decoration-3 transition-all;
+  @apply font-normal decoration-base-content/30 decoration-1 underline-offset-4 transition-colors hover:decoration-primary;
 }
 
 .prose h1 a,
@@ -135,12 +145,25 @@
 .prose h5 a,
 .prose h6 a {
   @apply no-underline hover:gradient-text;
+  font-weight: inherit;
 }
 
-.prose {
-  --tw-prose-code: unset;
-  --tw-prose-pre-code: unset;
-  --tw-prose-pre-bg: unset;
+.prose :where(code):not(pre > code) {
+  @apply rounded border-0 bg-base-content/8 px-1.5 py-0.5 font-medium text-base-content;
+  font-size: 0.875em;
+}
+
+.prose blockquote {
+  @apply font-normal not-italic;
+}
+
+.prose blockquote p:first-of-type::before,
+.prose blockquote p:last-of-type::after {
+  content: none;
+}
+
+.prose hr {
+  @apply mx-auto my-12 w-12;
 }
 
 /* Navbar scroll to content compensation */
