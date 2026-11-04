@@ -19,6 +19,7 @@
     "automd": "automd"
   },
   "dependencies": {
+    "@angelblanco/fonts": "workspace:*",
     "@angelblanco/tailwind": "workspace:*",
     "@iconify-json/simple-icons": "^1.2.100",
     "@iconify-json/vscode-icons": "^1.2.93",

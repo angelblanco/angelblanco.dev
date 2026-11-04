@@ -190,6 +190,9 @@ importers:
 
   apps/angelblanco.dev:
     dependencies:
+      '@angelblanco/fonts':
+        specifier: workspace:*
+        version: link:../../packages/fonts
       '@angelblanco/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind

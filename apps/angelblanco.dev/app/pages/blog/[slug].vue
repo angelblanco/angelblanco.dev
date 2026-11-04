@@ -35,6 +35,7 @@ const alternativeLocale = computed(() => alternativePost.value ? otherLocale.val
 useLocalizedSeo({
   title: computed(() => post.value?.title),
   description: computed(() => post.value?.description),
+  cta: 'ogCtaArticle',
 });
 
 useSeoMeta({

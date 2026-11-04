@@ -1,120 +1,71 @@
+<!-- eslint-disable tailwindcss/no-custom-classname -->
 <template>
-  <div :style="containerStyle">
-    <div :style="innerContainerStyle">
-      <div :style="contentContainerStyle">
-        <div>
-          <h1 :style="titleStyle">
-            {{ title }}
-          </h1>
-          <p v-if="description" :style="descriptionStyle">
-            {{ truncateDescription }}
-          </p>
-        </div>
-        <p :style="footerStyle">
-          angelblanco.dev
-        </p>
-      </div>
+  <section class="og" :data-len="titleSize">
+    <span class="stars" />
+    <span class="grid" />
 
-      <img
-        :src="profileImage"
-        alt=""
-        :style="imageStyle"
-      >
-    </div>
-  </div>
+    <header class="brand">
+      <span class="dot" />
+      <span class="name">
+        <span class="wordmark">angelblanco.dev</span>
+        <span v-if="section" class="section" data-testid="og-section">/{{ section }}</span>
+      </span>
+    </header>
+
+    <main class="copy">
+      <h1 class="title" data-testid="og-title">
+        {{ title }}
+      </h1>
+      <p v-if="description" class="desc" data-testid="og-description">
+        {{ description }}
+      </p>
+      <span v-if="ctaLabel" class="cta" data-testid="og-cta">
+        {{ ctaLabel }}<span class="arrow">→</span>
+      </span>
+    </main>
+
+    <figure class="photo">
+      <img :src="photo" alt="Ángel Blanco" data-testid="og-photo">
+    </figure>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import profileImage from '~/assets/images/ablanco-profile-og.webp?inline';
+import { geistMono600, interVariable } from '@angelblanco/fonts/og';
+import photo from '~/assets/images/ablanco.webp?inline';
+import styles from './PortfolioOgImage.css?raw';
 
 const props = defineProps<{
-  title?: string;
+  title: string;
   description?: string;
+  cta?: string;
+  section?: string;
 }>();
 
-// Calculate font size based on title length
-function getFontSize() {
-  if (!props.title)
-    return '80px';
+const titleSize = computed(() => {
   const length = props.title.length;
-  if (length > 70)
-    return '60px';
-  if (length > 50)
-    return '70px';
-  return '80px';
-}
-
-const truncateDescription = computed(() => {
-  if (!props.description)
-    return '';
-  return props.description.length > 50
-    ? `${props.description.substring(0, 50)}...`
-    : props.description;
+  if (length <= 22)
+    return 's';
+  if (length <= 40)
+    return 'm';
+  if (length <= 56)
+    return 'l';
+  if (length <= 68)
+    return 'xl';
+  return 'xxl';
 });
 
-const containerStyle = {
-  height: '100%',
-  width: '100%',
-  display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
-  backgroundColor: '#f9fafb',
-};
+const ctaLabel = computed(() => props.cta?.replace(/\s*→\s*$/, '') ?? '');
 
-const innerContainerStyle = {
-  display: 'flex',
-  alignItems: 'flex-start',
-  justifyContent: 'flex-start',
-  height: '100%',
-  width: '100%',
-  position: 'relative' as const,
-};
-
-const contentContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  width: '100%',
-  height: '100%',
-};
-
-const titleStyle = {
-  fontSize: getFontSize(),
-  padding: '80px',
-  paddingTop: '80px',
-  fontWeight: '900',
-  textAlign: 'left',
-  margin: '0',
-};
-
-const descriptionStyle = {
-  fontSize: '32px',
-  padding: '0 80px',
-  fontWeight: '400',
-  textAlign: 'left',
-  marginTop: '0',
-  marginBottom: '40px',
-  color: '#6b7280',
-};
-
-const footerStyle = {
-  fontSize: '3rem',
-  paddingBottom: '40px',
-  paddingLeft: '80px',
-  paddingRight: '80px',
-  fontWeight: '700',
-  marginBottom: '0',
-  color: '#ccc',
-};
-
-const imageStyle = {
-  position: 'absolute' as const,
-  bottom: '40px',
-  right: '80px',
-  width: '120px',
-  height: '120px',
-  borderRadius: '50%',
-  objectFit: 'cover' as const,
-};
+useHead({
+  style: [
+    {
+      key: 'portfolio-og-image',
+      innerHTML: `
+@font-face { font-family: 'OG Inter'; font-weight: 100 900; src: url('${interVariable}') format('woff2'); }
+@font-face { font-family: 'OG Geist Mono'; font-weight: 600; src: url('${geistMono600}') format('woff2'); }
+${styles}`,
+    },
+  ],
+});
 </script>

@@ -25,6 +25,7 @@ const route = useRoute();
 useLocalizedSeo({
   title: 'Blog',
   description: 'BlogDescription',
+  cta: 'ogCtaBlog',
 });
 
 const { queryBlogCollection } = useBlog();

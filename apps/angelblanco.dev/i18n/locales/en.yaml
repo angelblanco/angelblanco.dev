@@ -44,6 +44,11 @@ blogAlternativeLink: También puedes ver este artículo en castellano
 blogAuthoredBy: by Ángel L. Blanco
 Other entries: Other entries
 Show more: Show more
+ogCtaDefault: Discover more
+ogCtaArticle: Read article
+ogCtaBlog: Browse articles
+ogCtaProjects: See projects
+ogCtaAbout: Meet me
 angelBlancoDevDescription: |
   The repository for this website. You can check the complete source code or fork the repo to develop your own portfolio.
   It includes a complete Turborepo setup with Nuxt.js, ready to be deployed to your own domain using GitHub Actions.

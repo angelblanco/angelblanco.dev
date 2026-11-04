@@ -38,6 +38,7 @@ const { t } = useI18n();
 useLocalizedSeo({
   title: 'Projects',
   description: 'ProjectsDescription',
+  cta: 'ogCtaProjects',
 });
 
 function formatRepoDates(repo: ProjectRepo) {
