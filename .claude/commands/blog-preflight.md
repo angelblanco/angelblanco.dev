@@ -1,6 +1,6 @@
 ---
 description: Run comprehensive blog post quality checks using specialized agents in interactive checkpoints
-allowed-tools: Bash(git *), Read, Task
+allowed-tools: Bash(git *), Bash(pnpm automd), Bash(pnpm lint:fix), Read, Agent
 model: sonnet
 ---
 
@@ -18,7 +18,7 @@ This workflow runs 6 specialized agents across 4 interactive checkpoints:
 ## Step 1: Detect Modified Blog Posts
 
 **Current branch**: !`git branch --show-current`
-**Modified blog files**: !`git diff --name-only master...HEAD | grep -E 'content/(es/)?blog/.*\.md$' || echo "No blog posts modified"`
+**Modified blog files** (committed, uncommitted and untracked): !`{ git diff --name-only master...HEAD; git diff --name-only HEAD; git ls-files --others --exclude-standard; } | sort -u | grep -E 'content/(es/)?blog/.*\.md$' || echo "No blog posts modified"`
 
 If NO blog posts are modified:
 
@@ -31,7 +31,7 @@ If blog posts ARE found:
 - Identify EN/ES pairs
 - Proceed to Checkpoint 1
 
-## Step 2: CHECKPOINT 1 - Typo Fixing (Parallel, Auto-fix)
+## Step 2: CHECKPOINT 1 - Typo Fixing (Sequential, Auto-fix)
 
 **Goal**: Automatically fix spelling, grammar, and punctuation errors.
 
@@ -39,11 +39,13 @@ If blog posts ARE found:
 
 ```
 Run the blog-typo-fixer agent on all modified blog posts (both EN and ES versions).
+Include the source files referenced by their automd blocks, so typos in embedded scripts are fixed at the source.
 Process all files in a single agent call for efficiency.
 ```
 
 **After agent completes**:
 
+- If any automd source file changed, run `pnpm automd` in `apps/angelblanco.dev` to regenerate the embedded copies
 - Display summary of fixes made
 - Ask user: "Checkpoint 1 complete. Typos have been auto-fixed. Ready to proceed to Checkpoint 2 (Technical, SEO, and Link Review)? [yes/no]"
 - If no: STOP and inform user they can run individual agents manually
@@ -61,7 +63,7 @@ Run these THREE agents in PARALLEL on all modified blog posts:
 2. blog-seo-optimizer - Optimize SEO elements (hybrid: auto-fix + report)
 3. blog-link-verifier - Verify external links and documentation
 
-IMPORTANT: You MUST invoke these agents in parallel using a single message with multiple Task tool calls.
+IMPORTANT: You MUST invoke these agents in parallel using a single message with multiple Agent tool calls.
 ```
 
 **After agents complete**:
@@ -178,7 +180,7 @@ After all checkpoints complete, provide:
 3. Run `pnpm lint:fix` to ensure code blocks are properly formatted
 4. Test any modified code examples
 5. When ready: `/commit` to stage changes
-6. When ready: `/create-pr` to create pull request
+6. When ready: `/pr` to create pull request
 
 ## Quality Assessment
 
@@ -190,7 +192,7 @@ After all checkpoints complete, provide:
 
 ### Agent Invocation
 
-- **Parallel execution**: Use a single message with multiple Task tool calls for Checkpoint 2
+- **Parallel execution**: Use a single message with multiple Agent tool calls for Checkpoint 2
 - **Sequential execution**: Run one agent at a time for Checkpoints 1, 3, 4
 - **Explicit agent names**: Use exact agent names (blog-typo-fixer, blog-technical-reviewer, etc.)
 
