@@ -18,7 +18,7 @@
         }" @click="doCopy"
       >
         <Icon
-          :name="copiedState === 'success' ? 'heroicons-outline:clipboard-document-check' : 'heroicons-outline:clipboard-document'"
+          :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'"
           class="size-5"
         />
       </button>
@@ -36,7 +36,7 @@
           }" @click="doCopy"
         >
           <Icon
-            :name="copiedState === 'success' ? 'heroicons-outline:clipboard-document-check' : 'heroicons-outline:clipboard-document'"
+            :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'"
             class="size-5"
           />
         </button>

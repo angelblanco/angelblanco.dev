@@ -1,17 +1,16 @@
 <template>
   <div class="relative">
     <ClientOnly>
-      <button id="locale-switcher" class="btn btn-square btn-ghost" :class="isOpen ? 'btn-active' : ''" @click="handleClick">
+      <button id="locale-switcher" class="inline-flex size-10 cursor-pointer items-center justify-center rounded-field transition-colors hover:bg-base-300" :class="{ 'text-primary': isOpen }" @click="handleClick">
         <Icon
-          name="heroicons:language"
-          class="fill-current"
+          name="tabler:language"
           :class="iconSize"
         />
       </button>
     </ClientOnly>
     <OnClickOutside v-if="isOpen" @trigger="isOpen = false">
       <div class="absolute top-11 right-1/2 z-2 translate-x-1/2 rounded border border-base-300 bg-base-100 p-2 text-sm">
-        <NuxtLink v-for="option in options" :key="option.locale" :to="$switchLocalePath(option.locale)" class="block px-4 py-2 hover:bg-base-200" active-class="bg-primary text-primary-content hover:bg-primary" :data-lang="option.locale" @click="isOpen = false">
+        <NuxtLink v-for="option in options" :key="option.locale" :to="$switchLocalePath(option.locale)" class="block px-4 py-2 hover:bg-base-300" active-class="bg-primary text-primary-content hover:bg-primary" :data-lang="option.locale" @click="isOpen = false">
           {{ option.title }}
         </NuxtLink>
       </div>

@@ -20,7 +20,7 @@
               <span v-for="tag in latestPost.tags" :key="tag">#{{ tag }}</span>
             </div>
           </div>
-          <Icon name="heroicons:chevron-right" class="size-6 flex-none" />
+          <Icon name="tabler:chevron-right" class="size-6 flex-none" />
         </div>
       </div>
     </NuxtLinkLocale>
@@ -44,7 +44,7 @@
           {{ dayjs(post.date).format('LL') }}
         </div>
       </div>
-      <Icon name="heroicons:chevron-right" class="size-4 flex-none" />
+      <Icon name="tabler:chevron-right" class="size-4 flex-none" />
     </NuxtLinkLocale>
   </div>
   <div class="mx-auto flex max-w-ui justify-end">

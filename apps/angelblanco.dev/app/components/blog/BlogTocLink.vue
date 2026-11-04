@@ -1,7 +1,7 @@
 <template>
   <div :class="{ 'mt-2': notFirstInGroup === true }">
     <a :href="href" :class="linkClass" class="flex items-center gap-2 p-1 text-sm text-base-content/70 hover:bg-primary/10 hover:text-base-content md:text-base  lg:p-2">
-      <Icon v-if="firstLevel" name="heroicons:arrow-turn-up-right" class="size-5 text-primary" /><span class=" font-medium">{{ tocLink.text }}</span>
+      <Icon v-if="firstLevel" name="tabler:corner-down-right" class="size-5 text-primary" /><span class=" font-medium">{{ tocLink.text }}</span>
     </a>
   </div>
   <div v-if="tocLink.children" class="pl-4">

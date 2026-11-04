@@ -7,7 +7,7 @@
   >
     <div class="p-4">
       <div class="flex items-start gap-3">
-        <Icon name="mdi:github" class="size-8 shrink-0 text-base-content/80" />
+        <Icon name="simple-icons:github" class="size-8 shrink-0 text-base-content/80" />
         <div class="min-w-0 flex-1">
           <div class="font-semibold text-base-content transition-colors group-hover:text-primary">
             {{ repoName }}
@@ -16,7 +16,7 @@
             {{ description }}
           </div>
           <div class="mt-2 flex items-center gap-1 text-xs text-base-content/50">
-            <Icon name="heroicons-outline:link" class="size-3" />
+            <Icon name="tabler:link" class="size-3" />
             github.com/{{ repo }}
           </div>
         </div>

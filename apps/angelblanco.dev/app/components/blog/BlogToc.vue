@@ -1,7 +1,7 @@
 <template>
   <div v-if="toc.links.length > 0" class="cursor-pointer border border-primary/40 bg-primary/5 px-4 pt-2" :class="{ 'pb-4': expanded }">
     <div class="flex items-center gap-2 pb-2 text-sm font-medium tracking-wide text-primary-content md:text-base dark:text-base-content" @click="toggle">
-      <Icon name="i-heroicons:bars-3-bottom-left" class="size-5" />  <span>{{ t('On this page') }} </span>
+      <Icon name="tabler:list-tree" class="size-5" />  <span>{{ t('On this page') }} </span>
     </div>
 
     <div v-if="expanded" class="border border-primary/40 bg-base-100 p-2 lg:p-4">
