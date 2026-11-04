@@ -11,7 +11,7 @@
 
     <div v-if="alternativeLocale" class="mb-4 text-secondary">
       <SwitchLocalePathLink class="flex items-center gap-1 bg-secondary/10 p-1 text-xs font-bold dark:font-medium" :locale="alternativeLocale">
-        <Icon name="i-heroicons:language" class="size-4" /> <span>{{ $t('blogAlternativeLink') }}</span>
+        <Icon name="tabler:language" class="size-4" /> <span>{{ $t('blogAlternativeLink') }}</span>
       </SwitchLocalePathLink>
     </div>
     <BlogToc v-if="post.body.toc" :toc="post.body.toc" />

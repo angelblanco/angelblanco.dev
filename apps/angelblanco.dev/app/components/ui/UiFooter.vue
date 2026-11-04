@@ -10,7 +10,7 @@
         </div>
         <a :href="repoUrl" target="_blank" class="group mt-1 block items-center gap-1 text-xs font-light hover:text-primary">
           <span>{{ t('Hosted and Open Source with') }}</span>
-          <Icon name="heroicons:heart-solid" class="mx-1.5 inline-flex size-4 align-middle text-red-500 group-hover:text-primary" />
+          <Icon name="tabler:heart-filled" class="mx-1.5 inline-flex size-4 align-middle text-red-500 group-hover:text-primary" />
           <span>{{ t('on GitHub') }}</span>
         </a>
         <div class="mt-1 text-xs font-light opacity-70">

@@ -1,15 +1,13 @@
 <template>
   <ClientOnly>
-    <label id="theme-switcher" class="btn swap btn-square swap-rotate btn-ghost" @click="toggleTheme">
+    <label id="theme-switcher" class="group swap size-10 swap-rotate cursor-pointer rounded-field transition-colors hover:bg-base-300" @click="toggleTheme">
       <Icon
-        name="heroicons:sun"
-        class="fill-current"
-        :class="[lightTheme ? 'swap-on' : 'swap-off', iconSize]"
+        name="tabler:sun"
+        :class="[lightTheme ? 'swap-on' : 'swap-off motion-safe:group-hover:rotate-12', iconSize]"
       />
       <Icon
-        name="heroicons:moon"
-        class="fill-current"
-        :class="[lightTheme ? 'swap-off' : 'swap-on', iconSize]"
+        name="tabler:moon-stars"
+        :class="[lightTheme ? 'swap-off motion-safe:group-hover:-rotate-12' : 'swap-on', iconSize]"
       />
     </label>
   </ClientOnly>

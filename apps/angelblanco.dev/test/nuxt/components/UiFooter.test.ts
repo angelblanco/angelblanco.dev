@@ -18,4 +18,10 @@ describe('components: UiFooter', () => {
 
     expect(wrapper.text()).toContain('2025-Present © Author');
   });
+
+  it('should render the filled tabler heart', async () => {
+    const wrapper = await mountSuspended(UiFooter);
+
+    expect(wrapper.find('.i-tabler\\:heart-filled').exists()).toBe(true);
+  });
 });
