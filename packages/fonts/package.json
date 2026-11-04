@@ -2,7 +2,13 @@
   "name": "@angelblanco/fonts",
   "version": "0.0.0",
   "private": true,
-  "exports": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./og": {
+      "types": "./og.d.ts",
+      "default": "./og.js"
+    }
+  },
   "scripts": {
     "lint": "eslint",
     "lint:fix": "eslint --fix"

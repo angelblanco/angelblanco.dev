@@ -46,6 +46,11 @@ blogAlternativeLink: You can also check this article in English.
 blogAuthoredBy: escrito por Ángel L. Blanco
 Other entries: Otras entradas
 Show more: Mostrar más
+ogCtaDefault: Descubre más
+ogCtaArticle: Leer artículo
+ogCtaBlog: Ver artículos
+ogCtaProjects: Ver proyectos
+ogCtaAbout: Conóceme
 angelBlancoDevDescription: |
   Repositorio que alberga esta página web. Puedes consultar el código fuente completo o crear un fork para desarrollar tu propio portfolio.
   Incluye turborepo completo con Nuxt JS preparado para ser desplegado en Github Actions en tu propio dominio.

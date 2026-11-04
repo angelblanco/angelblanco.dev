@@ -1,10 +1,12 @@
 type MayBeTransKeyOrRef = string | Ref | ComputedRef;
 
-export default function useLocalizedSeo({ title, description }: {
+export default function useLocalizedSeo({ title, description, cta = 'ogCtaDefault' }: {
   title: MayBeTransKeyOrRef;
   description: MayBeTransKeyOrRef;
+  cta?: MayBeTransKeyOrRef;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
+  const route = useRoute();
 
   function transOrNot(translation: MayBeTransKeyOrRef): string {
     if (typeof translation === 'string') {
@@ -25,6 +27,8 @@ export default function useLocalizedSeo({ title, description }: {
   defineOgImage('PortfolioOgImage', {
     title: transOrNot(title),
     description: transOrNot(description),
+    cta: transOrNot(cta),
+    section: route.path.split('/').find(segment => segment && segment !== locale.value),
   }, [
     // Primary image for og:image and twitter:image (1200x600)
     { key: 'og', width: 1200, height: 600 },
