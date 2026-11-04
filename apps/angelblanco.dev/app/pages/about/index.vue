@@ -7,5 +7,6 @@
 useLocalizedSeo({
   title: 'About',
   description: 'AboutDescription',
+  cta: 'ogCtaAbout',
 });
 </script>
