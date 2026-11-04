@@ -47,6 +47,15 @@ You will auto-fix the following errors WITHOUT asking for approval:
 - Code comments should remain in their original language at this stage
 - Preserve all code formatting exactly as-is
 
+## Files Embedded with automd
+
+Content between `<!-- automd:file src="..." -->` and `<!-- /automd -->` is generated from a source file, so typos there must be fixed at the source:
+
+- Resolve the `src` path relative to the blog post and open that source file (for example `apps/angelblanco.dev/public/scripts/*.sh`)
+- Fix spelling and grammar ONLY in comments and in human-readable strings (such as `echo` messages); never change commands, variables, or logic
+- NEVER edit the embedded copy inside the blog post
+- List every source file you changed, so the orchestrator can run `pnpm automd` to regenerate the posts
+
 ## Output Format
 
 After fixing errors, provide a concise summary:
