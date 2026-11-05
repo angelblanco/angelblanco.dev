@@ -1,13 +1,13 @@
 <template>
   <div class="mx-auto min-h-screen-content max-w-ui p-4">
-    <div class="mb-2 text-4xl font-bold">
+    <div class="mb-2 slide-enter text-4xl font-bold">
       {{ $t('Projects') }}
     </div>
-    <div class="mb-8 border-b border-base-300 pb-4">
+    <div class="mb-8 slide-enter border-b border-base-300 pb-4 [--enter-stage:1]">
       {{ $t('ProjectsDescription') }}
     </div>
 
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div class="grid slide-enter-content grid-cols-1 gap-6 [--enter-step:90ms] lg:grid-cols-2">
       <div v-for="repo in projectRepos" :key="repo.name" class="border border-base-300 bg-base-100 p-4">
         <div class="flex flex-wrap gap-2">
           <a class="text-2xl font-bold hover:text-primary" :href="repo.url" target="_blank">{{ repo.name }}</a>
