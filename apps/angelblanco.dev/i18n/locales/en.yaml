@@ -72,3 +72,7 @@ angelBlancoV1Description: |
   A SEO engine was built from scratch, including opengraph image generation with Playwright and automatic sitemap generation.
 sinceDate: since
 toDate: to
+codeCopy: Copy code
+codeCopied: Code copied to the clipboard
+codeCopyFailed: The code could not be copied
+codeGroupLabel: Code alternatives
