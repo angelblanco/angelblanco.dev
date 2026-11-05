@@ -1,14 +1,15 @@
 <template>
-  <div :class="cn('relative size-full overflow-hidden', props.containerClass)">
-    <Motion
-      ref="containerRef"
-      as="div"
-      :initial="{ opacity: 0 }"
-      :animate="{ opacity: 1 }"
-      class="absolute inset-0 z-0 flex size-full items-center justify-center bg-transparent"
+  <div ref="containerRef" :class="cn('relative size-full overflow-hidden', props.containerClass)">
+    <div
+      data-testid="hero-vortex"
+      :data-state="state"
+      :class="cn(
+        'absolute inset-0 z-0 transition-opacity duration-300 motion-reduce:transition-none',
+        state === 'idle' ? 'opacity-0' : 'opacity-100',
+      )"
     >
-      <canvas ref="canvasRef" />
-    </Motion>
+      <canvas ref="canvasRef" class="block size-full" aria-hidden="true" />
+    </div>
 
     <div :class="cn('relative z-10', props.class)">
       <slot />
@@ -17,9 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { Motion } from 'motion-v';
 import { createNoise3D } from 'simplex-noise';
-import { onMounted, onUnmounted } from 'vue';
 import { cn } from '@/lib/utils';
 
 interface VortexProps {
@@ -33,6 +32,8 @@ interface VortexProps {
   baseRadius?: number;
   rangeRadius?: number;
 }
+
+type VortexState = 'idle' | 'static' | 'running' | 'paused';
 
 const props = withDefaults(defineProps<VortexProps>(), {
   particleCount: 700,
@@ -53,205 +54,190 @@ const NOISE_STEPS = 3;
 const X_OFF = 0.00125;
 const Y_OFF = 0.00125;
 const Z_OFF = 0.0005;
+const FPS_LIMIT = 60;
+const RESIZE_DEBOUNCE_MS = 150;
 
-const tick = ref<number>(0);
-const animationFrame = ref<number | null>(null);
-const particleProps = shallowRef<Float32Array | null>(null);
-const center = ref<[number, number]>([0, 0]);
-const ctx = shallowRef<CanvasRenderingContext2D | null>(null);
-
-const canvasRef = useTemplateRef<HTMLCanvasElement | null>('canvasRef');
-const containerRef = useTemplateRef<HTMLElement | null>('containerRef');
+const containerRef = useTemplateRef<HTMLElement>('containerRef');
+const canvasRef = useTemplateRef<HTMLCanvasElement>('canvasRef');
 const { base100: backgroundColor } = useAppColors();
 
-const particleCache = {
-  x: 0,
-  y: 0,
-  vx: 0,
-  vy: 0,
-  life: 0,
-  ttl: 0,
-  speed: 0,
-  radius: 0,
-  hue: 0,
-};
+const prefersReducedMotion = usePreferredReducedMotion();
+const isElementVisible = useElementVisibility(containerRef);
+const documentVisibility = useDocumentVisibility();
+
+const isReady = ref(false);
+const isReduced = computed(() => prefersReducedMotion.value === 'reduce');
+const shouldAnimate = computed(() =>
+  isReady.value
+  && !isReduced.value
+  && isElementVisible.value
+  && documentVisibility.value === 'visible',
+);
 
 const noise3D = createNoise3D();
+let ctx: CanvasRenderingContext2D | null = null;
+let particles = new Float32Array(0);
+let width = 0;
+let height = 0;
+let tick = 0;
+let isDisposed = false;
+
+const { pause, resume, isActive } = useRafFn(draw, { immediate: false, fpsLimit: FPS_LIMIT });
+
+const state = computed<VortexState>(() => {
+  if (!isReady.value)
+    return 'idle';
+  if (isReduced.value)
+    return 'static';
+  return isActive.value ? 'running' : 'paused';
+});
 
 function rand(n: number) {
   return n * Math.random();
 }
-function randRange(n: number): number {
-  return n - rand(2 * n);
-}
+
 function fadeInOut(t: number, m: number): number {
   const hm = 0.5 * m;
   return Math.abs(((t + hm) % m) - hm) / hm;
 }
+
 function lerp(n1: number, n2: number, speed: number): number {
   return (1 - speed) * n1 + speed * n2;
 }
 
-function initParticle(i: number) {
-  if (!particleProps.value || !canvasRef.value)
-    return;
+function initParticle(i: number, isSeeding = false) {
+  const top = Math.max(0, 0.5 * height - props.rangeY);
+  const bottom = Math.min(height, 0.5 * height + props.rangeY);
+  const ttl = BASE_TTL + rand(RANGE_TTL);
+  const life = rand(isSeeding ? ttl : 0);
 
-  const canvas = canvasRef.value;
-  particleCache.x = rand(canvas.width);
-  particleCache.y = center.value[1] + randRange(props.rangeY);
-  particleCache.vx = 0;
-  particleCache.vy = 0;
-  particleCache.life = 0;
-  particleCache.ttl = BASE_TTL + rand(RANGE_TTL);
-  particleCache.speed = props.baseSpeed + rand(props.rangeSpeed);
-  particleCache.radius = props.baseRadius + rand(props.rangeRadius);
-  particleCache.hue = props.baseHue + rand(RANGE_HUE);
-
-  particleProps.value.set(
+  particles.set(
     [
-      particleCache.x,
-      particleCache.y,
-      particleCache.vx,
-      particleCache.vy,
-      particleCache.life,
-      particleCache.ttl,
-      particleCache.speed,
-      particleCache.radius,
-      particleCache.hue,
+      rand(width),
+      top + rand(bottom - top),
+      0,
+      0,
+      life,
+      ttl,
+      props.baseSpeed + rand(props.rangeSpeed),
+      props.baseRadius + rand(props.rangeRadius),
+      props.baseHue + rand(RANGE_HUE),
     ],
     i,
   );
 }
 
-function updateParticle(i: number) {
-  if (!particleProps.value || !canvasRef.value || !ctx.value)
-    return;
+function updateParticle(context: CanvasRenderingContext2D, i: number) {
+  const x = particles[i] ?? 0;
+  const y = particles[i + 1] ?? 0;
+  const vx = particles[i + 2] ?? 0;
+  const vy = particles[i + 3] ?? 0;
+  const life = particles[i + 4] ?? 0;
+  const ttl = particles[i + 5] ?? 0;
+  const speed = particles[i + 6] ?? 0;
+  const radius = particles[i + 7] ?? 0;
+  const hue = particles[i + 8] ?? 0;
 
-  const canvas = canvasRef.value;
-  const particlePropsValue = particleProps.value;
-  const context = ctx.value;
+  const n = noise3D(x * X_OFF, y * Y_OFF, tick * Z_OFF) * NOISE_STEPS * TAU;
+  const nextVx = lerp(vx, Math.cos(n), 0.5);
+  const nextVy = lerp(vy, Math.sin(n), 0.5);
+  const nextX = x + nextVx * speed;
+  const nextY = y + nextVy * speed;
 
-  particleCache.x = particlePropsValue[i] ?? 0;
-  particleCache.y = particlePropsValue[i + 1] ?? 0;
-  particleCache.vx = particlePropsValue[i + 2] ?? 0;
-  particleCache.vy = particlePropsValue[i + 3] ?? 0;
-  particleCache.life = particlePropsValue[i + 4] ?? 0;
-  particleCache.ttl = particlePropsValue[i + 5] ?? 0;
-  particleCache.speed = particlePropsValue[i + 6] ?? 0;
-  particleCache.radius = particlePropsValue[i + 7] ?? 0;
-  particleCache.hue = particlePropsValue[i + 8] ?? 0;
-
-  const n
-    = noise3D(particleCache.x * X_OFF, particleCache.y * Y_OFF, tick.value * Z_OFF)
-      * NOISE_STEPS
-      * TAU;
-
-  const nextVx = lerp(particleCache.vx, Math.cos(n), 0.5);
-  const nextVy = lerp(particleCache.vy, Math.sin(n), 0.5);
-  const nextX = particleCache.x + nextVx * particleCache.speed;
-  const nextY = particleCache.y + nextVy * particleCache.speed;
-
-  context.save();
-  context.lineCap = 'round';
-  context.lineWidth = particleCache.radius;
-  context.strokeStyle = `hsla(${particleCache.hue},100%,60%,${fadeInOut(
-    particleCache.life,
-    particleCache.ttl,
-  )})`;
+  context.lineWidth = radius;
+  context.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
   context.beginPath();
-  context.moveTo(particleCache.x, particleCache.y);
+  context.moveTo(x, y);
   context.lineTo(nextX, nextY);
   context.stroke();
-  context.restore();
 
-  particlePropsValue[i] = nextX;
-  particlePropsValue[i + 1] = nextY;
-  particlePropsValue[i + 2] = nextVx;
-  particlePropsValue[i + 3] = nextVy;
-  particlePropsValue[i + 4] = particleCache.life + 1;
+  particles[i] = nextX;
+  particles[i + 1] = nextY;
+  particles[i + 2] = nextVx;
+  particles[i + 3] = nextVy;
+  particles[i + 4] = life + 1;
 
-  if (
-    nextX > canvas.width
-    || nextX < 0
-    || nextY > canvas.height
-    || nextY < 0
-    || particleCache.life > particleCache.ttl
-  ) {
+  if (nextX > width || nextX < 0 || nextY > height || nextY < 0 || life > ttl)
     initParticle(i);
-  }
 }
 
 function draw() {
-  if (!canvasRef.value || !ctx.value || !particleProps.value)
+  if (!ctx)
     return;
 
+  tick++;
+  ctx.fillStyle = backgroundColor.value;
+  ctx.fillRect(0, 0, width, height);
+  ctx.lineCap = 'round';
+
+  for (let i = 0; i < particles.length; i += PARTICLE_PROP_COUNT)
+    updateParticle(ctx, i);
+}
+
+function setupCanvas(): boolean {
   const canvas = canvasRef.value;
-  const context = ctx.value;
+  const container = containerRef.value;
+  if (!canvas || !container)
+    return false;
 
-  tick.value++;
+  ctx ??= canvas.getContext('2d');
+  if (!ctx)
+    return false;
 
-  context.fillStyle = backgroundColor.value;
-  context.fillRect(0, 0, canvas.width, canvas.height);
+  const ratio = vortexPixelRatio(window.devicePixelRatio);
+  width = container.clientWidth;
+  height = container.clientHeight;
+  canvas.width = Math.round(width * ratio);
+  canvas.height = Math.round(height * ratio);
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-  for (let i = 0; i < particleProps.value.length; i += PARTICLE_PROP_COUNT) {
-    updateParticle(i);
-  }
+  const count = vortexParticleCount(props.particleCount, width, height, navigator.hardwareConcurrency);
+  particles = new Float32Array(count * PARTICLE_PROP_COUNT);
+  for (let i = 0; i < particles.length; i += PARTICLE_PROP_COUNT)
+    initParticle(i, true);
 
-  animationFrame.value = requestAnimationFrame(draw);
+  return true;
+}
+
+function start() {
+  if (isDisposed || !setupCanvas())
+    return;
+
+  draw();
+  isReady.value = true;
 }
 
 const handleResize = useDebounceFn(() => {
-  if (!canvasRef.value)
+  const container = containerRef.value;
+  if (!isReady.value || !container)
+    return;
+  if (container.clientWidth === width && container.clientHeight === height)
     return;
 
-  const canvas = canvasRef.value;
-  const { innerWidth, innerHeight } = window;
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-  center.value = [0.5 * canvas.width, 0.5 * canvas.height];
-}, 150);
-
-onMounted(() => {
-  const canvas = canvasRef.value;
-  if (!canvas)
-    return;
-
-  ctx.value = canvas.getContext('2d');
-  if (!ctx.value)
-    return;
-
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  center.value = [0.5 * canvas.width, 0.5 * canvas.height];
-
-  const particlePropsLength = props.particleCount * PARTICLE_PROP_COUNT;
-  particleProps.value = new Float32Array(particlePropsLength);
-
-  for (let i = 0; i < particlePropsLength; i += PARTICLE_PROP_COUNT) {
-    initParticle(i);
-  }
-
+  setupCanvas();
   draw();
-  window.addEventListener('resize', handleResize);
+}, RESIZE_DEBOUNCE_MS);
+
+useResizeObserver(containerRef, handleResize);
+
+watch(shouldAnimate, (value) => {
+  if (value)
+    resume();
+  else
+    pause();
 });
 
-onUnmounted(() => {
-  if (animationFrame.value) {
-    cancelAnimationFrame(animationFrame.value);
-  }
-  window.removeEventListener('resize', handleResize);
-
-  ctx.value = null;
-  particleProps.value = null;
+watch(backgroundColor, () => {
+  if (isReady.value && !isActive.value)
+    draw();
 });
 
-watch(
-  backgroundColor,
-  () => {
-    if (!ctx.value || !canvasRef.value)
-      return;
+onMounted(() => onNuxtReady(start));
 
-    ctx.value.fillStyle = backgroundColor.value;
-  },
-);
+onBeforeUnmount(() => {
+  isDisposed = true;
+  pause();
+  ctx = null;
+  particles = new Float32Array(0);
+});
 </script>
