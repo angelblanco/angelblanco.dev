@@ -112,4 +112,12 @@ describe('components: UiNavBar', () => {
     expect(document.getElementById('ui-nav-bar-menu')).toBeNull();
     expect(document.activeElement).toBe(toggle.element);
   });
+
+  it('should append a trailing slash to internal links', async () => {
+    const wrapper = await mountSuspended(UiNavBar);
+    const hrefs = wrapper.findAll('a').map(link => link.attributes('href'));
+
+    expect(hrefs).toEqual(expect.arrayContaining(['/', '/blog/', '/projects/', '/about/']));
+    expect(hrefs.filter(href => href?.startsWith('/') && !href.endsWith('/'))).toEqual([]);
+  });
 });

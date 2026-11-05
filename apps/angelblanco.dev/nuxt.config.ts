@@ -58,6 +58,12 @@ export default defineNuxtConfig({
     trailingSlash: true,
   },
 
+  linkChecker: {
+    failOnError: true,
+    // Accented heading anchors are percent-encoded (é -> %C3%A9), which this rule reports as uppercase.
+    skipInspections: ['no-uppercase-chars'],
+  },
+
   i18n: {
     baseUrl: 'https://angelblanco.dev',
     locales: [
@@ -80,6 +86,14 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'github_pages',
+  },
+
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'append',
+      },
+    },
   },
 
   compatibilityDate: '2025-09-20',

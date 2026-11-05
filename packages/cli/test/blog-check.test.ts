@@ -109,7 +109,7 @@ describe('checkPost', () => {
   });
 
   it('validates internal links, anchors and automd sources', () => {
-    const post = es('\n## El script\n\n[a](/blog/hello) [b](/es/blog/0002.install-node) [c](#el-script) [d](#missing)\n\n<!-- automd:file src="../x.sh" -->\n', frontmatter);
+    const post = es('\n## El script\n\n[a](/blog/hello/) [b](/es/blog/0002.install-node/) [c](#el-script) [d](#missing) [e](/es/blog/hello#el-script) [f](/es/blog/hello/#el-script)\n\n<!-- automd:file src="../x.sh" -->\n', frontmatter);
     const issues = checkPost(post, {
       ...context,
       fileExists: () => false,
@@ -118,9 +118,10 @@ describe('checkPost', () => {
     expect(messages(issues)).toEqual([
       'automd block has no closing `<!-- /automd -->`',
       'automd source not found: ../x.sh',
-      'ES posts must link to /es/blog/…, got /blog/hello',
+      'ES posts must link to /es/blog/…, got /blog/hello/',
       'No post with route 0002.install-node (drop the numeric prefix of the file name)',
       'No heading matches anchor #missing',
+      'Internal links need a trailing slash: /es/blog/hello#el-script',
     ]);
   });
 

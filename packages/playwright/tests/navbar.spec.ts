@@ -83,17 +83,17 @@ for (const locale of locales) {
 
     await ensureNavbarIsOpen(page, mustHaveToggle);
     await getLink(trans.blog).click();
-    await page.waitForURL(localizedPath(locale, '/blog'));
+    await page.waitForURL(localizedPath(locale, '/blog/'));
 
     await page.goto(locale.path);
     await ensureNavbarIsOpen(page, mustHaveToggle);
     await getLink(trans.projects).click();
-    await page.waitForURL(localizedPath(locale, '/projects'));
+    await page.waitForURL(localizedPath(locale, '/projects/'));
 
     await page.goto(locale.path);
     await ensureNavbarIsOpen(page, mustHaveToggle);
     await getLink(trans.about).click();
-    await page.waitForURL(localizedPath(locale, '/about'));
+    await page.waitForURL(localizedPath(locale, '/about/'));
   });
 
   test(`theme switcher works in locale: ${locale.code}`, async ({ page }) => {
@@ -115,7 +115,7 @@ test('locale switcher works', async ({ page }) => {
   await page.locator('#locale-switcher').click();
   await page.locator('[data-lang="es"]').click();
 
-  await expect(page).toHaveURL('/es');
+  await expect(page).toHaveURL('/es/');
 
   await page.locator('#locale-switcher').click();
   await page.locator('[data-lang="en"]').click();

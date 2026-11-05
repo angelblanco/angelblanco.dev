@@ -128,10 +128,12 @@ export function checkPost(post: Post, context: CheckContext): Issue[] {
       continue;
     }
 
-    const internal = /^\/(?:es\/)?blog\/([^#?]+)/.exec(link.url);
+    const internal = /^\/(?:es\/)?blog\/([^#?/]+)(\/?)/.exec(link.url);
 
     if (!internal)
       continue;
+    if (!internal[2])
+      add(link.line, 'error', `Internal links need a trailing slash: ${link.url}`);
     if (!link.url.startsWith(blogPrefix))
       add(link.line, 'error', `${post.lang.toUpperCase()} posts must link to ${blogPrefix}…, got ${link.url}`);
     if (!context.slugs.has(internal[1]!))
