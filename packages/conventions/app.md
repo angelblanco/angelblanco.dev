@@ -9,6 +9,7 @@
 '@nuxtjs/i18n',
 '@vueuse/nuxt',
 '@nuxt/image',
+'@nuxt/fonts',
 ```
 
 - Separate page components following the same structure as the pages one. Always include the preffix in the file name and the folders.

@@ -36,7 +36,6 @@ This is a Turborepo monorepo. Here is a brief overview of the packages and appli
 - **`packages/cli`**: Monorepo tooling written in TypeScript and run directly by Node (no build step), such as the `pnpm worktree` commands.
 - **`packages/conventions`**: Contains markdown documents outlining the conventions for this monorepo.
 - **`packages/eslint`**: A shared ESLint configuration for ensuring consistent code style.
-- **`packages/fonts`**: A package for managing and importing the fonts used in the project.
 - **`packages/tailwind`**: Shared Tailwind CSS configuration and styles.
 - **`packages/tsconfig`**: Shared TypeScript configurations for the monorepo.
 
