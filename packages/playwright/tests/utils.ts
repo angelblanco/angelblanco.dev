@@ -68,6 +68,36 @@ export async function expectSeoIsConfigured(page: Page) {
   await expectMetaName(page, 'twitter:image');
 }
 
+export const siteUrl = 'https://angelblanco.dev';
+
+export function absoluteUrl(locale: Locale, path?: string) {
+  return `${siteUrl}${trimEnd(localizedPath(locale, path), '/')}/`;
+}
+
+export async function readJsonLd(page: Page): Promise<Record<string, any>[]> {
+  const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+
+  return scripts.flatMap(script => JSON.parse(script)['@graph'] ?? []);
+}
+
+export function findSchemaNode(graph: Record<string, any>[], type: string) {
+  return graph.find(node => [node['@type']].flat().includes(type));
+}
+
+export async function expectLocalizedHeadLinks(page: Page, locale: Locale, path: string) {
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', absoluteUrl(locale, path));
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', absoluteUrl(locale, path));
+
+  for (const [hreflang, code] of [
+    ['x-default', 'en'],
+    ['en-US', 'en'],
+    ['es-ES', 'es'],
+  ] as const) {
+    const href = absoluteUrl(locales.find(l => l.code === code)!, path);
+    await expect(page.locator(`link[rel="alternate"][hreflang="${hreflang}"]`)).toHaveAttribute('href', href);
+  }
+}
+
 export async function ensureNavbarIsOpen(page: Page, isMobile: boolean, ensureOpen: boolean = true) {
   if (!isMobile)
     return;
