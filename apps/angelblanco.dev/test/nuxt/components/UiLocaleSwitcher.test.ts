@@ -1,5 +1,6 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime';
 import { describe, expect, it } from 'vitest';
+import { nextTick } from 'vue';
 import { UiLocaleSwitcher } from '#components';
 
 describe('components: UiLocaleSwitcher', () => {
@@ -21,6 +22,53 @@ describe('components: UiLocaleSwitcher', () => {
     await button.trigger('click');
 
     expect(button.classes()).toContain('text-primary');
+    wrapper.unmount();
+  });
+
+  it('should expose the toggle as a labelled disclosure button', async () => {
+    const wrapper = await mountSuspended(UiLocaleSwitcher, { attachTo: document.body });
+    const button = wrapper.get('#locale-switcher');
+
+    expect(button.attributes('type')).toBe('button');
+    expect(button.attributes('aria-label')).toBe('a11yLanguage');
+    expect(button.attributes('aria-controls')).toBe('locale-switcher-menu');
+    expect(button.attributes('aria-expanded')).toBe('false');
+
+    await button.trigger('click');
+
+    expect(button.attributes('aria-expanded')).toBe('true');
+    expect(wrapper.find('#locale-switcher-menu').exists()).toBe(true);
+
+    await button.trigger('click');
+
+    expect(button.attributes('aria-expanded')).toBe('false');
+    expect(wrapper.find('#locale-switcher-menu').exists()).toBe(false);
+    wrapper.unmount();
+  });
+
+  it('should name each language in its own language', async () => {
+    const wrapper = await mountSuspended(UiLocaleSwitcher, { attachTo: document.body });
+
+    await wrapper.get('#locale-switcher').trigger('click');
+
+    const english = wrapper.get('[data-lang="en"]');
+    const spanish = wrapper.get('[data-lang="es"]');
+
+    expect(english.attributes()).toMatchObject({ 'lang': 'en', 'hreflang': 'en', 'aria-label': 'English' });
+    expect(spanish.attributes()).toMatchObject({ 'lang': 'es', 'hreflang': 'es', 'aria-label': 'Español' });
+    wrapper.unmount();
+  });
+
+  it('should close with Escape and return focus to the toggle', async () => {
+    const wrapper = await mountSuspended(UiLocaleSwitcher, { attachTo: document.body });
+    const button = wrapper.get('#locale-switcher');
+
+    await button.trigger('click');
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await nextTick();
+
+    expect(button.attributes('aria-expanded')).toBe('false');
+    expect(document.activeElement).toBe(button.element);
     wrapper.unmount();
   });
 });

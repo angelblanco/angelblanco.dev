@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex border-t border-base-300 bg-base-100">
+  <footer class="flex border-t border-base-300 bg-base-100">
     <div class="mx-auto flex max-w-ui flex-1 items-center gap-2">
       <div class="border-r border-base-300 p-3 text-xs md:text-sm">
         <div class="tracking-wide">
@@ -8,7 +8,7 @@
             {{ t('Author') }}
           </NuxtLinkLocale>
         </div>
-        <a :href="repoUrl" target="_blank" class="group mt-1 block items-center gap-1 text-xs font-light hover:text-primary">
+        <a :href="repoUrl" target="_blank" rel="noopener" class="group mt-1 block items-center gap-1 text-xs font-light hover:text-primary">
           <span>{{ t('Hosted and Open Source with') }}</span>
           <Icon name="tabler:heart-filled" class="mx-1.5 inline-flex size-4 align-middle text-red-500 group-hover:text-primary" />
           <span>{{ t('on GitHub') }}</span>
@@ -20,12 +20,12 @@
       </div>
 
       <div class="ml-auto flex gap-4 p-3">
-        <a v-for="social in socials" :key="social.name" class="btn btn-square btn-ghost btn-sm" :href="social.url" __target="blank" :title="social.name">
+        <a v-for="social in socials" :key="social.name" class="btn btn-square btn-ghost btn-sm" :href="social.url" :title="social.name" :aria-label="social.name">
           <Icon :name="social.icon" class="size-6" />
         </a>
       </div>
     </div>
-  </nav>
+  </footer>
 </template>
 
 <script lang="ts" setup>

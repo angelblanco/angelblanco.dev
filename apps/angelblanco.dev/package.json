@@ -27,7 +27,6 @@
     "@nuxt/content": "^3.16.2",
     "@nuxt/image": "^2.2.1",
     "@tailwindcss/vite": "^4.3.4",
-    "@vueuse/components": "^14.4.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.23",
     "motion-v": "2.8.0",

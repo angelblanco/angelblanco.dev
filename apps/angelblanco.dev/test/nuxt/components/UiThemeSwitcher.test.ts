@@ -21,4 +21,19 @@ describe('components: UiThemeSwitcher', () => {
     expect(visible.classes().some(name => /^motion-safe:group-hover:-?rotate-12$/.test(name))).toBe(true);
     expect(hidden.classes().some(name => name.includes('rotate-12'))).toBe(false);
   });
+
+  it('should be a labelled toggle button that reports the dark theme state', async () => {
+    const wrapper = await mountSuspended(UiThemeSwitcher);
+    const button = wrapper.get('#theme-switcher');
+    const pressed = button.attributes('aria-pressed');
+
+    expect(button.element.tagName).toBe('BUTTON');
+    expect(button.attributes('type')).toBe('button');
+    expect(button.attributes('aria-label')).toBe('a11yDarkTheme');
+    expect(['true', 'false']).toContain(pressed);
+
+    await button.trigger('click');
+
+    expect(button.attributes('aria-pressed')).not.toBe(pressed);
+  });
 });
