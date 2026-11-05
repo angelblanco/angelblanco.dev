@@ -293,6 +293,43 @@ To embed a code file, use the following syntax in your markdown. The file path m
 - Showing example code that's tested and maintained elsewhere or in this repo itself. Try not to copy code from the blog, if you can use automd instead.
 - Keeping blog content in sync with actual code
 
+## Code Block Features
+
+### Code Block Annotations
+
+Code blocks are highlighted with Shiki and support its notation comments. Use them to point the reader at the lines that matter. They are removed from the rendered code and from the copy button (removed `--` lines are not copied at all):
+
+- `// [!code ++]` and `// [!code --]`: added and removed lines of a diff
+- `// [!code highlight]`: highlight a line
+- `// [!code focus]`: blur every other line until the reader hovers the block
+- `// [!code error]` and `// [!code warning]`: mark a line as an error or a warning
+
+Use the comment syntax of the language (`#` in bash and YAML, `<!-- -->` in HTML). In the Spanish version keep the notation as-is.
+
+### Code Groups
+
+Use the `code-group` MDC component to show alternatives of the same step, such as the install command of each package manager. Each fenced block becomes a tab labelled with its file name (the text between brackets), and npm, pnpm, yarn, bun and deno get their icon. Tabs are keyboard accessible.
+
+````markdown
+::code-group
+
+```bash [pnpm]
+pnpm add -D @angelblanco/eslint-config
+```
+
+```bash [npm]
+npm install -D @angelblanco/eslint-config
+```
+
+```bash [bun]
+bun add -d @angelblanco/eslint-config
+```
+
+::
+````
+
+Only group real alternatives. Steps that must all be run belong in separate code blocks.
+
 ## Writing and Editing Workflow
 
 ### Creating a New Blog Post
