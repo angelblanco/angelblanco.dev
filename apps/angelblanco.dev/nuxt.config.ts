@@ -87,6 +87,9 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'github_pages',
+    prerender: {
+      routes: ['/api/search/en.json', '/api/search/es.json'],
+    },
   },
 
   experimental: {
