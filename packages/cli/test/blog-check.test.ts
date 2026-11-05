@@ -5,6 +5,7 @@ import { headingAnchor, parsePost } from '../src/blog/parse.ts';
 
 const frontmatter = `---
 title: Install Node.js with apt
+description: Install Node.js with apt from the NodeSource repository so that sudo apt upgrade keeps it patched, with a global npm prefix and pnpm ready to use.
 tags:
   - nodejs
 date: 2026-11-05
@@ -34,11 +35,11 @@ describe('parsePost', () => {
 
     expect(post.frontmatter.tags).toEqual(['nodejs']);
     expect(post.headings).toEqual([
-      { line: 8, level: 2, text: 'Setup' },
+      { line: 9, level: 2, text: 'Setup' },
     ]);
     expect(post.links).toEqual([
       {
-        line: 10,
+        line: 11,
         image: false,
         text: 'Node.js',
         url: 'https://nodejs.org/',
@@ -46,7 +47,7 @@ describe('parsePost', () => {
     ]);
     expect(post.codeBlocks).toEqual([
       {
-        line: 12,
+        line: 13,
         lang: 'bash',
         content: ['# Update', 'sudo apt update'],
         generated: false,
@@ -61,7 +62,7 @@ describe('parsePost', () => {
     expect(post.links).toEqual([]);
     expect(post.codeBlocks[0]!.generated).toBe(true);
     expect(post.automd).toEqual([
-      { line: 7, src: '../../public/x.sh', closed: true },
+      { line: 8, src: '../../public/x.sh', closed: true },
     ]);
   });
 
@@ -82,10 +83,21 @@ describe('checkPost', () => {
 
     expect(messages(checkPost(post, context))).toEqual([
       '`title` must be a string of at least 10 characters',
+      '`description` is missing, the first paragraph will be used as meta description',
       '`tags` must have at least one tag',
       '`date` must be YYYY-MM-DD',
       '`toc` must be a boolean',
     ]);
+  });
+
+  it.each([
+    ['description: 42', '`description` must be a string'],
+    ['description: Too short', '`description` has 9 characters, aim for 140-160'],
+    [`description: ${'a'.repeat(161)}`, '`description` has 161 characters, aim for 140-160'],
+  ])('validates the description (%s)', (line, message) => {
+    const post = en('', frontmatter.replace(/^description: .*$/m, line));
+
+    expect(messages(checkPost(post, context))).toEqual([message]);
   });
 
   it('flags H1, Title Case and skipped heading levels', () => {
@@ -161,7 +173,7 @@ describe('checkPair', () => {
     ]);
 
     expect(messages(checkPair(en('```bash\n# Update\nls\n```\n'), es('```bash\n# Update\nls -la\n```\n')))).toEqual([
-      'Code differs from EN block at line 7',
+      'Code differs from EN block at line 8',
       'Comment not translated: # Update',
     ]);
   });
