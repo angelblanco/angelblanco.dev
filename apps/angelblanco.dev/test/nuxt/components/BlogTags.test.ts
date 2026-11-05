@@ -12,6 +12,6 @@ describe('components: BlogTags', () => {
     const links = wrapper.findAll('a');
 
     expect(links.map(link => link.text())).toEqual(['#nuxt', '#vue']);
-    expect(links.map(link => link.attributes('href'))).toEqual(['/blog/tags/nuxt', '/blog/tags/vue']);
+    expect(links.map(link => link.attributes('href'))).toEqual(['/blog/tags/nuxt/', '/blog/tags/vue/']);
   });
 });

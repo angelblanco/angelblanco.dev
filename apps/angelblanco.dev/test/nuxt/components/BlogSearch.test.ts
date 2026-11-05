@@ -44,7 +44,7 @@ describe('components: BlogSearch', () => {
     const wrapper = await mountSuspended(BlogSearch);
     const button = wrapper.get('[data-testid="blog-search-button"]');
 
-    expect(button.attributes('aria-label')).toBe('searchOpen');
+    expect(button.attributes('aria-label')).toBe('Search the blog');
     expect(button.attributes('aria-keyshortcuts')).toBe('Meta+K Control+K');
     expect(wrapper.find('dialog').exists()).toBe(false);
   });
@@ -71,7 +71,7 @@ describe('components: BlogSearch', () => {
     await waitFor(() => expect(wrapper.find('input').exists()).toBe(true));
     await wrapper.get('input').setValue('kubernetes');
 
-    await waitFor(() => expect(wrapper.text()).toContain('searchNoResults'));
+    await waitFor(() => expect(wrapper.text()).toContain('No results for “kubernetes”'));
     expect(wrapper.findAll('[role="option"]')).toHaveLength(0);
   });
 });

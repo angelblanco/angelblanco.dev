@@ -42,8 +42,8 @@ describe('components: BlogPostMeta', () => {
       },
     });
 
-    expect(withReadingTime.text()).toContain('blogReadingTime');
+    expect(withReadingTime.text()).toContain('4 min read');
     expect(withReadingTime.find('.i-tabler\\:clock').exists()).toBe(true);
-    expect(withoutReadingTime.text()).not.toContain('blogReadingTime');
+    expect(withoutReadingTime.text()).not.toContain('4 min read');
   });
 });

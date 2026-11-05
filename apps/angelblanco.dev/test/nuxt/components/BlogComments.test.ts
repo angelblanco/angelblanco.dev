@@ -37,6 +37,6 @@ describe('components: BlogComments', () => {
     });
 
     expect(wrapper.find('#blog-comments').exists()).toBe(true);
-    expect(wrapper.get('h2').text()).toBe('blogComments');
+    expect(wrapper.get('h2').text()).toBe('Comments');
   });
 });
