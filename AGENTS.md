@@ -70,6 +70,7 @@ Worktrees are nested in `.claude/worktrees/<name>` and managed only through `pnp
 - **Env files:** Every checkout needs `apps/angelblanco.dev/.env` and `packages/playwright/.env` (same content, with `NUXT_PORT` and `E2E_PORT`). E2E tests fail on purpose without them; run `pnpm worktree env` to generate them.
 - **Ports:** Never hardcode or override ports. The main checkout uses `3000` (dev) and `4000` (E2E); each worktree gets `3000+N` and `4000+N`, stored in `.claude/worktrees/worktrees.json` and in its `.env` files. Check them with `pnpm worktree list`.
 - **Remove:** `pnpm worktree remove <name>` (add `-d` to delete the branch). Never delete the folder by hand; if it happens, run `pnpm worktree prune`.
+- **Worktree log:** Every worktree keeps a `worktree.log` file at its root as its throwaway memory. It is git-ignored (`*.log`) and disappears with the worktree. Write in it the prompt or task that started the work, a dated log of progress, every decision taken (and why), open questions and the next steps, so any later session can resume that worktree on its own. Read it before starting work in a worktree and update it as you go, not only at the end.
 
 ## My Workflow
 
