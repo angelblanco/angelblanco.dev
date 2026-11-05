@@ -55,6 +55,12 @@ This project has a set of well-defined conventions that I will strictly follow. 
 
 **Note:** When a new convention file is added to the `packages/conventions` directory, I must add a short summary of it to this section.
 
+## Skills
+
+Project skills live in `.claude/skills/<name>/SKILL.md` and follow the format of [angelblanco/skills](https://github.com/angelblanco/skills).
+
+- **`blog`:** write, update, translate and review blog posts. It validates them with `pnpm blog check [slug] [--links] [--all]`.
+
 ## Git Worktrees
 
 Worktrees are nested in `.claude/worktrees/<name>` and managed only through `pnpm worktree`. See the [Git Worktree Conventions](./packages/conventions/worktrees.md) for details.

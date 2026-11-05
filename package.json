@@ -23,6 +23,7 @@
     "preview": "pnpm build && npx serve apps/angelblanco.dev/.output/public",
     "fresh": "bash ./fresh.sh",
     "worktree": "node packages/cli/src/index.ts worktree",
+    "blog": "node packages/cli/src/index.ts blog",
     "ai:flash": "gemini -m gemini-2.5-flash",
     "ai:commit": "pnpm ai:flash --prompt-interactive \"/git:commit\""
   },

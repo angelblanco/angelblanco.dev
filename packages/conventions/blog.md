@@ -46,6 +46,7 @@ tags:
 date: YYYY-MM-DD
 image: /path/to/optional/image.jpg # Optional if the user provides one
 toc: true # Optional, enables table of contents
+updatedAt: YYYY-MM-DD # Optional, last substantive update
 ---
 ```
 
@@ -56,6 +57,8 @@ toc: true # Optional, enables table of contents
 - **date**: ISO format (YYYY-MM-DD), typically the publication date
 - **image**: Optional Open Graph image for social sharing
 - **toc**: Optional boolean to enable table of contents
+- **updatedAt**: Optional ISO date of the last substantive update. Keep `date` unchanged
+- `tags`, `date`, `updatedAt`, `image` and `toc` must be identical in both languages
 
 ## Writing Style and Tone
 
@@ -162,7 +165,7 @@ Use common English technical terms when they are industry standard in the Spanis
 
 #### Spanish-Specific Rules
 
-- **Code comments MUST be translated to Spanish**
+- **Code comments MUST be translated to Spanish**, except in code embedded with `automd`, which is shared with the English version
 
 Example:
 
@@ -265,7 +268,7 @@ npm install
 
 ## Embedding File Content with `automd`
 
-To automatically embed and synchronize file content within a blog post, use the `automd` `file` generator. This is useful for keeping code examples or scripts up-to-date, if we are referencing code of this repository itself. `automd` blocks MUST NOT be modified by anyone.
+To automatically embed and synchronize file content within a blog post, use the `automd` `file` generator. This is useful for keeping code examples or scripts up-to-date, if we are referencing code of this repository itself. The embedded content of `automd` blocks MUST NOT be edited by hand: fix the source file and run `pnpm automd` in `apps/angelblanco.dev`.
 
 ### Usage
 
@@ -316,14 +319,15 @@ When proofreading and editing existing posts:
    - Grammatical errors
    - Inconsistent terminology
 3. **Preserve the author's voice**: Don't rewrite for style if grammatically correct
-4. **Don't alter structure**: Keep paragraphs and sections in their original order
+4. **Don't alter structure**: Keep paragraphs and sections in their original order, except to restore content missing from one language
 5. **Leave frontmatter unchanged**: Only fix clear typos in string values
-6. **Don't modify code blocks**: Keep all code examples as-is
+6. **Don't modify code blocks**: Keep all code examples as-is, unless a command is wrong or a block is missing from one language
 
 ## Content Quality Checklist
 
 Before publishing a blog post, ensure:
 
+- [ ] `pnpm blog check <slug> --links` reports no errors.
 - [ ] Linter passes. Run `pnpm lint:fix` to ensure properly linted code blocks.
 - [ ] Both English and Spanish versions exist
 - [ ] Frontmatter is complete and valid
@@ -352,7 +356,7 @@ Before publishing a blog post, ensure:
 ### Spanish (Castilian, es-ES)
 
 - Use español de España spelling and conventions
-- Use "vosotros" forms when appropriate (informal plural)
+- Address the reader as "tú" (not "usted" or "vosotros")
 - Follow RAE (Real Academia Española) grammar rules
 - Use inverted question and exclamation marks (¿?, ¡!)
 
@@ -360,7 +364,7 @@ Before publishing a blog post, ensure:
 
 ### Good Blog Post Example
 
-See `apps/angelblanco.dev/content/blog/0002.install-node-24-on-ubuntu-24.md` for a well-structured example that demonstrates:
+See the newest post in `apps/angelblanco.dev/content/blog/` (highest `NNNN`) for a well-structured example that demonstrates:
 
 - Clear introduction with context
 - Practical code examples
