@@ -1,5 +1,5 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
-import { defineSchemaOrgSchema } from 'nuxt-schema-org/content';
+import { defineSchemaOrgSchema } from '@nuxtjs/seo/content';
 
 export function blogSchema() {
   return z.object({

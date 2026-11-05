@@ -57,7 +57,7 @@ For tests in the `nuxt` suite, we have access to powerful helpers:
 
   Mocks shared by every test in the `nuxt` suite live in `test/nuxt/setup.ts`, registered via the project's `setupFiles`. `useI18n` is already mocked there: `t` returns the translation key and `setLocale` updates `locale` synchronously, so locale-dependent composables can be tested without loading real messages.
 
-  Real locale messages are **not** available in the `nuxt` suite. `@nuxt/test-utils` builds with `ssr: false`, but Nitro forces it back on because the app enables `experimental.componentIslands`; `@nuxtjs/i18n` then stubs its client loaders and expects a server route to deliver the messages. `vitest.config.ts` reports `__IS_SSR__: 'false'` so the runtime stops fetching that route, which leaves the stubbed loaders resolving empty. Assert on translation keys, not translated text.
+  Real locale messages are **not** available in the `nuxt` suite. `@nuxt/test-utils` builds with `ssr: false`, but Nitro forces it back on because the app has a server component (`AboutBriefResume.server.vue`), which turns on component islands; `@nuxtjs/i18n` then stubs its client loaders and expects a server route to deliver the messages. `vitest.config.ts` reports `__IS_SSR__: 'false'` so the runtime stops fetching that route, which leaves the stubbed loaders resolving empty. Assert on translation keys, not translated text.
 
 ## End-to-End Testing (`e2e` suite)
 

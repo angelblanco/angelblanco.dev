@@ -1,7 +1,9 @@
 <template>
   <div>
     <UiNavBar />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <UiFooter />
   </div>
 </template>

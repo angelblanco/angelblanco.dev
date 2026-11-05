@@ -24,10 +24,9 @@ You can find all modules in [apps/angelblanco.dev/nuxt.config.ts](./apps/angelbl
 - `@nuxtjs/seo`: Nuxt SEO is configured with all modules in reasonable detail. For `og:image`, I use the Chromium renderer with Playwright; otherwise, it won't work on WSL.
 - `@nuxt/icon`: Icon sets are installed in [apps/angelblanco.dev/package.json](./apps/angelblanco.dev/package.json).
 - `@vueuse/nuxt`: Used for click outside and other utilities.
-- `@nuxt/content` and `@nuxtjs/mdc`: For Markdown content management throughout the app.
+- `@nuxt/content`: For Markdown content management throughout the app.
 - `@nuxt/test-utils/module`: For unit and Nuxt testing. For E2E testing, [Playwright](https://playwright.dev/) is used under [packages/playwright](./packages/playwright/).
 - `@nuxt/scripts`: For GA support.
-- `@pinia/nuxt`
 - `@nuxt/image`
 
 ## Project structure

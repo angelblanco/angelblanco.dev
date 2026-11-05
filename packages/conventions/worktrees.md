@@ -20,6 +20,7 @@ pnpm worktree remove my-feature -d      # delete the worktree and its branch, re
 3. **Each worktree owns its ports.** Never hardcode ports or override `NUXT_PORT`/`E2E_PORT` manually; the registry assigns them.
 4. **Every checkout needs its `.env` files.** Playwright fails on purpose when `packages/playwright/.env` or `E2E_PORT` is missing. Run `pnpm worktree env` to (re)generate them.
 5. **Remove worktrees with `pnpm worktree remove`.** Deleting the folder by hand leaves a stale registry entry; clean it with `pnpm worktree prune`.
+6. **Keep a `worktree.log` in every worktree.** It is the throwaway memory of the worktree (git-ignored by `*.log`): the starting prompt, a dated progress log, decisions with their reasons, open questions and next steps. Read it before resuming a worktree in a new session and keep it updated while working.
 
 ## How it works
 

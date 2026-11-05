@@ -1,20 +1,16 @@
 import tailwindcss from '@tailwindcss/vite';
-import { definePerson } from 'nuxt-schema-org/schema';
 import useSocials from './app/composables/useSocials';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: [
-    '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/icon',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/seo',
-    'nuxt-schema-org',
     '@nuxt/content',
-    '@nuxtjs/mdc',
     '@nuxt/test-utils/module',
     '@nuxt/scripts',
   ],
@@ -62,6 +58,12 @@ export default defineNuxtConfig({
     trailingSlash: true,
   },
 
+  linkChecker: {
+    failOnError: true,
+    // Accented heading anchors are percent-encoded (é -> %C3%A9), which this rule reports as uppercase.
+    skipInspections: ['no-uppercase-chars'],
+  },
+
   i18n: {
     baseUrl: 'https://angelblanco.dev',
     locales: [
@@ -72,17 +74,26 @@ export default defineNuxtConfig({
   },
 
   schemaOrg: {
-    identity: definePerson({
+    identity: {
+      type: 'Person',
       name: 'Ángel Blanco',
       image: '/ablanco_2025_profile.webp',
       description: 'Software engineer',
       url: 'angelblanco.dev',
       sameAs: useSocials().socials.map(s => s.url),
-    }),
+    },
   },
 
   nitro: {
     preset: 'github_pages',
+  },
+
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'append',
+      },
+    },
   },
 
   compatibilityDate: '2025-09-20',
@@ -133,6 +144,9 @@ export default defineNuxtConfig({
   },
 
   content: {
+    experimental: {
+      sqliteConnector: 'native',
+    },
     build: {
       markdown: {
         highlight: {
@@ -158,10 +172,6 @@ export default defineNuxtConfig({
     registry: {
       trigger: 'onNuxtReady',
     },
-  },
-
-  experimental: {
-    componentIslands: true, // For MDC translation to work
   },
 
 });
