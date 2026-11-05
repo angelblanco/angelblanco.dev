@@ -198,7 +198,7 @@ export default defineNuxtConfig({
 
   scripts: {
     registry: {
-      trigger: 'onNuxtReady',
+      cloudflareWebAnalytics: { proxy: false },
     },
   },
 
