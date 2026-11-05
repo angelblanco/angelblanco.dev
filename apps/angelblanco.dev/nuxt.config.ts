@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
+import { readingTime } from './app/utils/readingTime';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -156,6 +157,13 @@ export default defineNuxtConfig({
           },
         },
       },
+    },
+  },
+
+  hooks: {
+    'content:file:afterParse': ({ file, content, collection }) => {
+      if (collection.name.startsWith('blog_'))
+        content.readingTime = readingTime(file.body);
     },
   },
 

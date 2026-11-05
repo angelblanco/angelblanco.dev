@@ -70,3 +70,19 @@ angelBlancoV1Description: |
   A SEO engine was built from scratch, including opengraph image generation with Playwright and automatic sitemap generation.
 sinceDate: since
 toDate: to
+blogReadingTime: '{minutes} min read'
+blogTags: Tags
+blogAllPosts: All posts
+blogTagTitle: 'Posts tagged #{tag}'
+blogTagDescription: "Articles about {tag} on Ángel Blanco's full-stack engineering blog"
+blogRelatedPosts: Related posts
+blogComments: Comments
+searchOpen: Search the blog
+searchPlaceholder: Search posts…
+searchLoading: Loading…
+searchError: The search index could not be loaded.
+searchNoResults: 'No results for “{query}”'
+searchResults: Search results
+searchClose: Close
+searchHintNavigate: to navigate
+searchHintOpen: to open

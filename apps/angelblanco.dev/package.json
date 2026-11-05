@@ -28,7 +28,6 @@
     "@nuxt/image": "^2.2.1",
     "@tailwindcss/vite": "^4.3.4",
     "clsx": "^2.1.1",
-    "dayjs": "^1.11.23",
     "motion-v": "2.8.0",
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^3.7.0",
