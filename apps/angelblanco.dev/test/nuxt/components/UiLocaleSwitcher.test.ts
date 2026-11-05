@@ -17,11 +17,12 @@ describe('components: UiLocaleSwitcher', () => {
     const wrapper = await mountSuspended(UiLocaleSwitcher, { attachTo: document.body });
     const button = wrapper.get('#locale-switcher');
 
-    expect(button.classes()).not.toContain('text-primary');
+    expect(button.classes()).not.toContain('text-primary-content');
+    expect(button.classes()).not.toContain('dark:text-primary');
 
     await button.trigger('click');
 
-    expect(button.classes()).toContain('text-primary');
+    expect(button.classes()).toEqual(expect.arrayContaining(['text-primary-content', 'dark:text-primary']));
     wrapper.unmount();
   });
 

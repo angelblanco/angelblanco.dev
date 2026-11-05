@@ -9,7 +9,7 @@
         </div>
 
         <div class="hidden flex-1 justify-center gap-8 text-sm font-semibold md:flex">
-          <NuxtLinkLocale v-for="menuEntry in menuEntries" :key="menuEntry.to" :to="menuEntry.to" class="rounded-field p-2 transition-colors hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary" active-class="text-primary">
+          <NuxtLinkLocale v-for="menuEntry in menuEntries" :key="menuEntry.to" :to="menuEntry.to" class="rounded-field p-2 transition-colors hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary" active-class="text-primary-content dark:text-primary">
             {{ menuEntry.label }}
           </NuxtLinkLocale>
         </div>
@@ -26,7 +26,7 @@
           ref="toggle"
           type="button"
           class="swap size-10 swap-rotate cursor-pointer rounded-field transition-colors hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary md:hidden"
-          :class="{ 'text-primary': isMenuOpen }"
+          :class="{ 'text-primary-content dark:text-primary': isMenuOpen }"
           :aria-label="t('a11yMenu')"
           :aria-expanded="isMenuOpen"
           aria-controls="ui-nav-bar-menu"
@@ -41,7 +41,7 @@
     <div v-if="isMenuOpen" id="ui-nav-bar-menu" class="fixed inset-0 top-16 z-50 overflow-y-auto border-t border-base-300 bg-base-100 shadow-sm md:hidden">
       <div class="divide-y divide-base-300">
         <div v-for="menuEntry in menuEntries" :key="menuEntry.to" class="p-2">
-          <NuxtLinkLocale class="flex items-center gap-3 rounded p-4 font-medium transition-colors hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary" :to="menuEntry.to" active-class="text-primary" @click="closeMenu()">
+          <NuxtLinkLocale class="flex items-center gap-3 rounded p-4 font-medium transition-colors hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary" :to="menuEntry.to" active-class="text-primary-content dark:text-primary" @click="closeMenu()">
             <Icon :name="menuEntry.icon" class="size-5 shrink-0" />
             <span>{{ menuEntry.label }}</span>
           </NuxtLinkLocale>

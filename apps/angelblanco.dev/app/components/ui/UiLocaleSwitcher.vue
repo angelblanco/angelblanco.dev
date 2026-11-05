@@ -6,7 +6,7 @@
         ref="toggle"
         type="button"
         class="inline-flex size-10 cursor-pointer items-center justify-center rounded-field transition-colors hover:bg-base-300 focus-visible:outline-2 focus-visible:outline-primary"
-        :class="{ 'text-primary': isOpen }"
+        :class="{ 'text-primary-content dark:text-primary': isOpen }"
         :aria-label="t('a11yLanguage')"
         :aria-expanded="isOpen"
         aria-controls="locale-switcher-menu"

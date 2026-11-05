@@ -43,11 +43,12 @@ describe('components: UiNavBar', () => {
     const wrapper = await mountSuspended(UiNavBar, { attachTo: document.body });
     const toggle = wrapper.get('#ui-navbar-toggle');
 
-    expect(toggle.classes()).not.toContain('text-primary');
+    expect(toggle.classes()).not.toContain('text-primary-content');
+    expect(toggle.classes()).not.toContain('dark:text-primary');
 
     await toggle.trigger('click');
 
-    expect(toggle.classes()).toContain('text-primary');
+    expect(toggle.classes()).toEqual(expect.arrayContaining(['text-primary-content', 'dark:text-primary']));
   });
 
   it('should render the mobile menu entries with tabler icons', async () => {
