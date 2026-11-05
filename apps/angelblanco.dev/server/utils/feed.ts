@@ -35,6 +35,20 @@ const feedMeta: Record<FeedLocale, FeedMeta> = {
 
 const authorName = 'Ángel Blanco';
 
+const timeZone = 'Europe/Madrid';
+
+const offsetFormat = new Intl.DateTimeFormat('en-US', { timeZone, timeZoneName: 'longOffset' });
+
+export function startOfDayInMadrid(date: string): Date {
+  const utcMidnight = new Date(`${date}T00:00:00Z`);
+  const offset = offsetFormat.formatToParts(utcMidnight)
+    .find(part => part.type === 'timeZoneName')
+    ?.value
+    .replace('GMT', '') || 'Z';
+
+  return new Date(`${date}T00:00:00${offset}`);
+}
+
 const voidTags = new Set([
   'br',
   'hr',
@@ -199,8 +213,8 @@ export function buildBlogFeed({ locale, siteUrl, posts }: {
   const entries = posts
     .map(post => ({
       post,
-      published: new Date(post.date),
-      updated: new Date(post.updatedAt ?? post.date),
+      published: startOfDayInMadrid(post.date),
+      updated: startOfDayInMadrid(post.updatedAt ?? post.date),
     }))
     .toSorted((a, b) => b.published.getTime() - a.published.getTime());
   const lastUpdate = entries.reduce<Date | undefined>(
@@ -241,7 +255,6 @@ export function buildBlogFeed({ locale, siteUrl, posts }: {
         ? renderMinimarkToHtml(post.body, { siteUrl: site, pageUrl: link })
         : undefined,
       category: post.tags.map(tag => ({ name: tag, term: tag })),
-      author: [author],
     });
   }
 

@@ -1,7 +1,7 @@
 import type { MinimarkTree } from '@nuxt/content';
 import type { FeedPost } from '../../../server/utils/feed';
 import { describe, expect, it } from 'vitest';
-import { absoluteUrl, buildBlogFeed, renderMinimarkToHtml } from '../../../server/utils/feed';
+import { absoluteUrl, buildBlogFeed, renderMinimarkToHtml, startOfDayInMadrid } from '../../../server/utils/feed';
 import { feedPath, feedRoutes } from '../../../shared/utils/feeds';
 
 const siteUrl = 'https://angelblanco.dev';
@@ -51,6 +51,21 @@ describe('feed paths', () => {
       '/es/feed.xml',
       '/es/atom.xml',
     ]);
+  });
+});
+
+describe('startOfDayInMadrid', () => {
+  it('should use the winter offset', () => {
+    expect(startOfDayInMadrid('2026-11-05').toISOString()).toBe('2026-11-04T23:00:00.000Z');
+  });
+
+  it('should use the summer offset', () => {
+    expect(startOfDayInMadrid('2025-05-05').toISOString()).toBe('2025-05-04T22:00:00.000Z');
+  });
+
+  it('should keep the offset in force at midnight on daylight saving days', () => {
+    expect(startOfDayInMadrid('2026-03-29').toISOString()).toBe('2026-03-28T23:00:00.000Z');
+    expect(startOfDayInMadrid('2026-10-25').toISOString()).toBe('2026-10-24T22:00:00.000Z');
   });
 });
 
@@ -180,19 +195,17 @@ describe('buildBlogFeed', () => {
 
     expect(latest).toMatchObject({
       link: 'https://angelblanco.dev/blog/install-node-26/',
-      published: new Date('2026-11-05'),
-      date: new Date('2026-11-06'),
+      published: new Date('2026-11-04T23:00:00Z'),
+      date: new Date('2026-11-05T23:00:00Z'),
       description: 'Install Node.js with apt',
       category: [
         { name: 'nodejs', term: 'nodejs' },
         { name: 'ubuntu', term: 'ubuntu' },
       ],
-      author: [
-        { name: 'Ángel Blanco', link: 'https://angelblanco.dev/about/' },
-      ],
     });
+    expect(latest?.author).toBeUndefined();
     expect(latest?.content).toBeUndefined();
-    expect(oldest?.date).toEqual(new Date('2025-05-05'));
+    expect(oldest?.date).toEqual(new Date('2025-05-04T22:00:00Z'));
     expect(oldest?.content).toBe('<p>Hello <strong>world</strong></p>');
   });
 
@@ -204,8 +217,9 @@ describe('buildBlogFeed', () => {
     expect(rss).toContain('<language>en-US</language>');
     expect(rss).toContain('<atom:link href="https://angelblanco.dev/feed.xml" rel="self" type="application/rss+xml"/>');
     expect(rss).toContain('<guid isPermaLink="true">https://angelblanco.dev/blog/install-node-26/</guid>');
-    expect(rss).toContain('<pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>');
-    expect(rss).toContain('<lastBuildDate>Fri, 06 Nov 2026 00:00:00 GMT</lastBuildDate>');
+    expect(rss).toContain('<pubDate>Wed, 04 Nov 2026 23:00:00 GMT</pubDate>');
+    expect(rss).toContain('<lastBuildDate>Thu, 05 Nov 2026 23:00:00 GMT</lastBuildDate>');
+    expect(rss).not.toContain('<author>');
     expect(rss).toContain('<category>nodejs</category>');
     expect(rss).toContain('<content:encoded><![CDATA[<p>Hello <strong>world</strong></p>]]></content:encoded>');
   });
@@ -216,8 +230,10 @@ describe('buildBlogFeed', () => {
     expect(atom).toContain('<feed xmlns="http://www.w3.org/2005/Atom">');
     expect(atom).toContain('<id>https://angelblanco.dev/blog/</id>');
     expect(atom).toContain('<link rel="self" href="https://angelblanco.dev/atom.xml"/>');
-    expect(atom).toContain('<published>2026-11-05T00:00:00.000Z</published>');
-    expect(atom).toContain('<updated>2026-11-06T00:00:00.000Z</updated>');
+    expect(atom).toContain('<published>2026-11-04T23:00:00.000Z</published>');
+    expect(atom).toContain('<updated>2026-11-05T23:00:00.000Z</updated>');
+    expect(atom.match(/<author>/g)).toHaveLength(1);
+    expect(atom).toContain('<name>Ángel Blanco</name>');
     expect(atom).toContain('<category label="nodejs" term="nodejs"/>');
   });
 
