@@ -33,6 +33,11 @@ export default function useLocalizedSeo({ title, description, cta = 'ogCtaDefaul
     // Primary image for og:image and twitter:image (1200x600)
     { key: 'og', width: 1200, height: 600 },
     // Additional square image for WhatsApp (800x800)
-    { key: 'whatsapp', width: 800, height: 800 },
+    {
+      key: 'whatsapp',
+      width: 800,
+      height: 800,
+      props: { square: true },
+    },
   ]);
 }

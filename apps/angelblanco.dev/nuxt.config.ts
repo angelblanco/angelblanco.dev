@@ -12,6 +12,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
+    // Storybook has no Nitro to serve the font files, so .storybook/preview.ts imports Fontsource instead.
+    ...(process.env.STORYBOOK === 'true'
+      ? []
+      : ['@nuxt/fonts']),
     '@nuxtjs/seo',
     '@nuxt/content',
     '@nuxt/test-utils/module',
@@ -74,6 +78,8 @@ export default defineNuxtConfig({
     skipInspections: ['no-uppercase-chars'],
   },
 
+  skewProtection: false,
+
   i18n: {
     baseUrl: 'https://angelblanco.dev',
     locales: [
@@ -96,8 +102,11 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'github_pages',
+    static: true,
     prerender: {
+      crawlLinks: true,
       routes: [
+        '/',
         ...feedRoutes(),
         '/api/search/en.json',
         '/api/search/es.json',
@@ -129,17 +138,27 @@ export default defineNuxtConfig({
     dataValue: 'theme',
   },
 
+  fonts: {
+    families: [
+      {
+        name: 'Inter Variable',
+        provider: 'npm',
+        weights: ['100 900'],
+        styles: ['normal'],
+      },
+      {
+        name: 'Geist Mono',
+        provider: 'npm',
+        weights: [400, 600],
+        styles: ['normal'],
+      },
+    ],
+  },
+
   ogImage: {
+    zeroRuntime: true,
     buildCache: {
       base: '.cache/og-image',
-    },
-    compatibility: {
-      dev: {
-        browser: 'playwright',
-      },
-      prerender: {
-        browser: 'playwright',
-      },
     },
   },
 

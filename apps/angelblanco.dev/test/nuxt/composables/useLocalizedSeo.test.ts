@@ -29,7 +29,12 @@ describe('composables: useLocalizedSeo', () => {
       expect.objectContaining({ title: 'Blog', description: 'BlogDescription' }),
       [
         { key: 'og', width: 1200, height: 600 },
-        { key: 'whatsapp', width: 800, height: 800 },
+        {
+          key: 'whatsapp',
+          width: 800,
+          height: 800,
+          props: { square: true },
+        },
       ],
     );
   });
