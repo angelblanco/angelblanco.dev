@@ -35,7 +35,7 @@ describe('components: UiFooter', () => {
     const wrapper = await mountSuspended(UiFooter);
     const links = wrapper.findAll('a.btn-square');
 
-    expect(links.map(link => link.attributes('aria-label'))).toEqual(['GitHub', 'X', 'LinkedIn']);
+    expect(links.map(link => link.attributes('aria-label'))).toEqual(['feedRss', 'GitHub', 'X', 'LinkedIn']);
     for (const link of links)
       expect(link.attributes('__target')).toBeUndefined();
   });
@@ -46,5 +46,14 @@ describe('components: UiFooter', () => {
 
     expect(link.attributes('target')).toBe('_blank');
     expect(link.attributes('rel')).toContain('noopener');
+  });
+
+  it('should link the rss feed of the current locale', async () => {
+    const wrapper = await mountSuspended(UiFooter);
+    const link = wrapper.get('[data-testid="rss-feed"]');
+
+    expect(link.attributes('href')).toBe('/feed.xml');
+    expect(link.attributes('aria-label')).toBe('feedRss');
+    expect(link.find('.i-tabler\\:rss').exists()).toBe(true);
   });
 });

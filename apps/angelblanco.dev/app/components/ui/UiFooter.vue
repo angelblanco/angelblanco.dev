@@ -20,6 +20,9 @@
       </div>
 
       <div class="ml-auto flex gap-4 p-3">
+        <a class="btn btn-square btn-ghost btn-sm" :href="rssPath" :title="t('feedRss')" :aria-label="t('feedRss')" data-testid="rss-feed">
+          <Icon name="tabler:rss" class="size-6" />
+        </a>
         <a v-for="social in socials" :key="social.name" class="btn btn-square btn-ghost btn-sm" :href="social.url" :title="social.name" :aria-label="social.name">
           <Icon :name="social.icon" class="size-6" />
         </a>
@@ -31,5 +34,6 @@
 <script lang="ts" setup>
 const { socials, repoUrl } = useSocials();
 const contentLicense = useContentLicense();
+const { rssPath } = useFeeds();
 const { t } = useI18n();
 </script>

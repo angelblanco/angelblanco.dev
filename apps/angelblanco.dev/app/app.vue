@@ -7,4 +7,6 @@
 
 <script setup lang="ts">
 import '@angelblanco/fonts';
+
+useFeeds().useFeedLinks();
 </script>
