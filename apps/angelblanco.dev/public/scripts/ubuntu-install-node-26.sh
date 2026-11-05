@@ -10,9 +10,9 @@
 # Usage:
 #   curl -fsSL https://angelblanco.dev/scripts/ubuntu-install-node-26.sh | bash
 #
-# This file sets up the installation of Node.js and several package managers.
-# Normally you will call it from your non-root user, elevated permissions
-# will be granted with sudo.
+# This script installs Node.js and several package managers.
+# Run it as your non-root user: it asks for elevated permissions
+# with sudo when needed.
 #
 
 set -e
@@ -50,12 +50,12 @@ if ! confirm_action "Install Node.js version $NODE_VERSION?"; then
     exit 0
 fi
 
-echo "Installing deps needed for installing nodejs..."
+echo "Installing the dependencies needed to install Node.js..."
 
 sudo apt update
 sudo apt install -y $DEPS
 
-echo "Installing nodejs"
+echo "Installing Node.js..."
 curl -fsSL https://deb.nodesource.com/setup_$NODE_VERSION.x -o $TMP_DIR/nodesource_setup.sh
 sudo -E bash $TMP_DIR/nodesource_setup.sh
 
@@ -63,7 +63,7 @@ sudo apt-get install -y nodejs
 
 mkdir -p ~/.npm-global
 npm config set prefix $NPM_PREFIX
-echo "Npm prefix set to $NPM_PREFIX"
+echo "npm prefix set to $NPM_PREFIX"
 
 echo "Node.js installation completed."
 echo "Node version: "
@@ -81,6 +81,7 @@ echo ""
 
 if confirm_action "Install Bun?"; then
     echo "Installing Bun..."
+    sudo apt install -y unzip
     curl -fsSL https://bun.sh/install | bash
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
@@ -91,7 +92,7 @@ fi
 echo ""
 echo "Installation process finished."
 echo ""
-echo "You probably want to add global npm bin directory to your path on your .bashrc or .zshrc, to do so, include this line"
+echo "Add the global npm bin directory to your PATH by adding this line to your .bashrc or .zshrc:"
 echo 'export PATH=~/.npm-global/bin:$PATH'
 echo ""
 echo "Node.js now comes from apt, so keep it patched with:"

@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 import process from 'node:process';
 import { Command } from 'commander';
+import { checkUrls } from './blog/links.ts';
+import { allSlugs, changedSlugs, checkSlugs, resolveSlug } from './blog/posts.ts';
 import { listWorktrees, pruneRegistry, removeWorktreeEntry, setupWorktree, syncEnv } from './worktree/commands.ts';
+import { topLevel } from './worktree/git.ts';
 
 const program = new Command('ab').description('angelblanco.dev monorepo tooling');
 const worktree = program.command('worktree').description(`Manage git worktrees nested in .claude/worktrees`);
@@ -79,6 +82,77 @@ worktree
     console.log(removed.length
       ? `Pruned: ${removed.join(', ')}`
       : 'Nothing to prune.');
+  });
+
+const blog = program.command('blog').description('Blog post tooling');
+
+blog
+  .command('check')
+  .description('Validate bilingual blog posts: frontmatter, EN/ES parity, headings, code fences, links and automd')
+  .argument('[posts...]', 'post slugs or paths (default: posts changed against master)')
+  .option('-a, --all', 'check every post')
+  .option('-l, --links', 'also request every external link')
+  .action(async (inputs: string[], options: { all?: boolean; links?: boolean }) => {
+    const root = topLevel(process.cwd());
+    const slugs = options.all
+      ? allSlugs(root)
+      : inputs.length
+        ? inputs.map(input => resolveSlug(root, input))
+        : changedSlugs(root);
+
+    if (!slugs.length) {
+      console.log('No blog posts changed against master. Pass slugs or --all.');
+      return;
+    }
+
+    const { posts, issues } = checkSlugs(root, [
+      ...new Set(slugs),
+    ]);
+
+    if (options.links) {
+      const lines = new Map<string, string>();
+
+      for (const post of posts) {
+        for (const link of post.links) {
+          if (/^https?:\/\//.test(link.url) && !lines.has(link.url))
+            lines.set(link.url, `${post.file}:${link.line}`);
+        }
+      }
+
+      for (const result of await checkUrls([
+        ...lines.keys(),
+      ])) {
+        const [file, line] = lines.get(result.url)!.split(':');
+        const issue = {
+          file: file!,
+          line: Number(line),
+        };
+
+        if (result.error)
+          issues.push({ ...issue, level: 'error', message: `${result.url} failed: ${result.error}` });
+        else if (result.status === 403 || result.status === 429)
+          issues.push({ ...issue, level: 'warn', message: `${result.url} returned ${result.status}, it may block automated requests: open it in a browser` });
+        else if (result.status! >= 400)
+          issues.push({ ...issue, level: 'error', message: `${result.url} returned ${result.status}` });
+        else if (result.finalUrl)
+          issues.push({ ...issue, level: 'warn', message: `${result.url} redirects to ${result.finalUrl}` });
+      }
+    }
+
+    issues.sort((a, b) => a.file.localeCompare(b.file) || a.line - b.line);
+
+    for (const issue of issues) {
+      console.log(`${issue.level === 'error'
+        ? 'ERROR'
+        : 'WARN '} ${issue.file}:${issue.line} ${issue.message}`);
+    }
+
+    const errors = issues.filter(issue => issue.level === 'error').length;
+
+    console.log(`\nChecked ${slugs.length} post(s): ${errors} error(s), ${issues.length - errors} warning(s).`);
+
+    if (errors)
+      process.exitCode = 1;
   });
 
 try {
