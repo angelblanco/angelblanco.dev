@@ -22,20 +22,21 @@ const {
   queryBlogPostSummaries,
 } = useBlog();
 const switchLocalePath = useSwitchLocalePath();
-const alternativePath = switchLocalePath(otherLocale.value);
+const path = withoutTrailingSlash(route.path);
+const alternativePath = withoutTrailingSlash(switchLocalePath(otherLocale.value));
 
 const [{ data: post }, { data: alternativePost }, { data: posts }] = await Promise.all([
   useAsyncData(
-    `${locale.value}-main-${blogCollection.value}-${route.path}`,
-    () => queryBlogCollection().path(route.path).first(),
+    `${locale.value}-main-${blogCollection.value}-${path}`,
+    () => queryBlogCollection().path(path).first(),
   ),
   useAsyncData(
     `${locale.value}-alternative-${alternativeBlogCollection.value}-${alternativePath}`,
     () => queryAlternativeBlogCollection().path(alternativePath).first(),
   ),
   useAsyncData(
-    `${blogCollection.value}-related-${route.path}`,
-    () => queryBlogPostSummaries().where('path', '<>', route.path).all(),
+    `${blogCollection.value}-related-${path}`,
+    () => queryBlogPostSummaries().where('path', '<>', path).all(),
   ),
 ]);
 
@@ -44,6 +45,12 @@ if (event && !post.value)
   setResponseStatus(event, 404);
 
 const alternativeLocale = computed(() => alternativePost.value ? otherLocale.value : null);
+
+if (post.value) {
+  useBlogPostSeo(post.value, alternativeLocale.value
+    ? [locale.value, alternativeLocale.value]
+    : [locale.value]);
+}
 
 useLocalizedSeo({
   title: computed(() => post.value?.title),

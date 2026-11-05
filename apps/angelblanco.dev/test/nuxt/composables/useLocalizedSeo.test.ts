@@ -7,6 +7,11 @@ vi.stubGlobal('defineOgImage', defineOgImage);
 const route = vi.hoisted(() => ({ path: '/' }));
 mockNuxtImport('useRoute', () => () => route);
 
+const { useSchemaOrgMock } = vi.hoisted(() => ({
+  useSchemaOrgMock: vi.fn(),
+}));
+mockNuxtImport('useSchemaOrg', () => useSchemaOrgMock);
+
 function ogImageProps() {
   return defineOgImage.mock.lastCall?.[1];
 }
@@ -14,6 +19,7 @@ function ogImageProps() {
 describe('composables: useLocalizedSeo', () => {
   beforeEach(() => {
     defineOgImage.mockClear();
+    useSchemaOrgMock.mockClear();
   });
 
   afterEach(() => {
@@ -32,6 +38,17 @@ describe('composables: useLocalizedSeo', () => {
         { key: 'whatsapp', width: 800, height: 800 },
       ],
     );
+  });
+
+  it('should use the page description in the WebPage schema', () => {
+    useLocalizedSeo({
+      title: ref('My post'),
+      description: ref('About my post'),
+    });
+
+    const [webPage] = useSchemaOrgMock.mock.lastCall![0];
+
+    expect(webPage.description()).toBe('About my post');
   });
 
   it('should pass the default cta key to t', () => {

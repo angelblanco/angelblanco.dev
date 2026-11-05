@@ -81,6 +81,10 @@ export default defineNuxtConfig({
       { code: 'es', language: 'es-ES', file: 'es.yaml' },
     ],
     defaultLocale: 'en',
+    trailingSlash: true,
+    experimental: {
+      strictSeo: true,
+    },
   },
 
   schemaOrg: {
@@ -89,7 +93,7 @@ export default defineNuxtConfig({
       name: 'Ángel Blanco',
       image: '/ablanco_2025_profile.webp',
       description: 'Software engineer',
-      url: 'angelblanco.dev',
+      url: 'https://angelblanco.dev',
       sameAs: useSocials().socials.map(s => s.url),
     },
   },

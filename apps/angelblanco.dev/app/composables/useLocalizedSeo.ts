@@ -24,6 +24,12 @@ export default function useLocalizedSeo({ title, description, cta = 'ogCtaDefaul
     description: () => transOrNot(description),
   });
 
+  useSchemaOrg([
+    defineWebPage({
+      description: () => transOrNot(description),
+    }),
+  ]);
+
   defineOgImage('PortfolioOgImage', {
     title: transOrNot(title),
     description: transOrNot(description),
