@@ -30,8 +30,9 @@ const [{ data: post }, { data: alternativePost }] = await Promise.all([
   ),
 ]);
 
-if (!post.value)
-  setResponseStatus(useRequestEvent(), 404);
+const event = useRequestEvent();
+if (event && !post.value)
+  setResponseStatus(event, 404);
 
 const alternativeLocale = computed(() => alternativePost.value ? otherLocale.value : null);
 
