@@ -62,7 +62,7 @@ Keep it short and actionable. Leave out sections that have nothing to report.
 - Major, EN L88 / ES L91: `npm config set prefix` must run before installing global packages, but the post installs pnpm first. Swap steps 3 and 4.
 
 **Not verified**
-- The Bun install script URL returned 403 to the checker but opens in a browser.
+- npmjs.com returned 403 to the checker (bot protection), but the package exists in the registry.
 
 `pnpm blog check 0004 --links`: 0 errors, 1 warning (explained above).
 ```

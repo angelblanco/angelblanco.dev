@@ -130,6 +130,8 @@ blog
 
         if (result.error)
           issues.push({ ...issue, level: 'error', message: `${result.url} failed: ${result.error}` });
+        else if (result.status === 403 || result.status === 429)
+          issues.push({ ...issue, level: 'warn', message: `${result.url} returned ${result.status}, it may block automated requests: open it in a browser` });
         else if (result.status! >= 400)
           issues.push({ ...issue, level: 'error', message: `${result.url} returned ${result.status}` });
         else if (result.finalUrl)
