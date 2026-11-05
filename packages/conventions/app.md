@@ -4,13 +4,11 @@
 
 ```
 '@nuxt/content',
-'@pinia/nuxt',
 '@nuxtjs/color-mode',
 '@nuxt/icon',
 '@nuxtjs/i18n',
 '@vueuse/nuxt',
 '@nuxt/image',
-'@nuxtjs/mdc',
 ```
 
 - Separate page components following the same structure as the pages one. Always include the preffix in the file name and the folders.
