@@ -8,7 +8,6 @@
     </div>
 
     <BlogRelated :post="post" />
-    <BlogComments :term="commentsTerm" />
   </div>
 </template>
 
@@ -36,8 +35,6 @@ const [{ data: post }, { data: alternativePost }] = await Promise.all([
 const event = useRequestEvent();
 if (event && !post.value)
   setResponseStatus(event, 404);
-
-const commentsTerm = computed(() => (post.value?.path ?? route.path).replace(new RegExp(`^/${locale.value}/`), '/'));
 
 const alternativeLocale = computed(() => alternativePost.value ? otherLocale.value : null);
 
