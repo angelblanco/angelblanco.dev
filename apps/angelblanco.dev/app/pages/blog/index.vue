@@ -1,9 +1,9 @@
 <template>
   <div class="mx-auto min-h-screen-content max-w-post p-4">
-    <div class="space-y-24">
+    <div class="slide-enter-content space-y-24">
       <div v-for="post in posts" :key="post.id">
         <NuxtLink class="group block transition" :to="post.path">
-          <div class="text-4xl font-bold tracking-tight text-pretty group-hover:gradient-text">
+          <div class="text-4xl font-bold tracking-tight text-balance group-hover:gradient-text">
             {{ post.title }}
           </div>
           <div class="mb-3 text-sm opacity-75">

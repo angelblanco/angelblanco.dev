@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mt-5 text-4xl font-semibold tracking-normal text-pretty md:text-4xl">
+    <h1 class="mt-5 text-4xl font-semibold tracking-normal text-balance md:text-4xl">
       {{ post.title }}
     </h1>
     <div class="mt-2 mb-8 text-sm font-light opacity-60 ">
