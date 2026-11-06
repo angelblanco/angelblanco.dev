@@ -15,3 +15,12 @@ export function relatedPosts<T extends TaggedPost>(current: TaggedPost, posts: T
     .slice(0, limit)
     .map(({ post }) => post);
 }
+
+export function relatedPostsGridClass(count: number): string {
+  if (count >= 3)
+    return 'sm:grid-cols-3';
+
+  return count === 2
+    ? 'sm:grid-cols-2'
+    : '';
+}

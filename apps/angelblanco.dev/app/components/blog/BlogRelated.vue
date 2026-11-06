@@ -3,7 +3,7 @@
     <h2 id="blog-related-title" class="mb-6 font-mono text-sm font-medium tracking-wide text-base-content/60 uppercase">
       {{ $t('blogRelatedPosts') }}
     </h2>
-    <ul class="grid gap-6 sm:grid-cols-3">
+    <ul class="grid gap-6" :class="relatedPostsGridClass(related.length)">
       <li v-for="item in related" :key="item.id" class="group relative border-t-2 border-base-300 pt-3 transition-colors hover:border-primary">
         <BlogPostMeta :post="item" class="mb-1 text-xs text-base-content/60" />
         <h3 class="leading-snug font-semibold text-pretty">

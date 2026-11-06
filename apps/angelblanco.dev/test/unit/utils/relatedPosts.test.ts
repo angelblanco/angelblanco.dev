@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { relatedPosts } from '../../../app/utils/relatedPosts';
+import { relatedPosts, relatedPostsGridClass } from '../../../app/utils/relatedPosts';
 
 const current = {
   path: '/blog/current',
@@ -54,5 +54,13 @@ describe('utils: relatedPosts', () => {
       ...current,
       tags: ['rust'],
     }, posts)).toEqual([]);
+  });
+});
+
+describe('utils: relatedPostsGridClass', () => {
+  it('should only use as many columns as related posts', () => {
+    expect(relatedPostsGridClass(1)).toBe('');
+    expect(relatedPostsGridClass(2)).toBe('sm:grid-cols-2');
+    expect(relatedPostsGridClass(3)).toBe('sm:grid-cols-3');
   });
 });
