@@ -10,11 +10,11 @@
     >
       <Icon
         name="tabler:sun"
-        :class="[lightTheme ? 'swap-on' : 'swap-off motion-safe:group-hover:rotate-12', iconSize]"
+        :class="[lightTheme ? 'swap-on' : 'swap-off', iconSize]"
       />
       <Icon
         name="tabler:moon-stars"
-        :class="[lightTheme ? 'swap-off motion-safe:group-hover:-rotate-12' : 'swap-on', iconSize]"
+        :class="[lightTheme ? 'swap-off' : 'swap-on', iconSize]"
       />
     </button>
   </ClientOnly>
@@ -27,12 +27,7 @@ const { iconSize = 'size-8' } = defineProps<{
 
 const { t } = useI18n();
 const colorMode = useColorMode();
-
-function toggleTheme() {
-  colorMode.preference = colorMode.value === 'light'
-    ? 'dark'
-    : 'light';
-}
+const { toggleTheme } = useThemeTransition();
 
 const lightTheme = computed(() => colorMode.value === 'light');
 </script>

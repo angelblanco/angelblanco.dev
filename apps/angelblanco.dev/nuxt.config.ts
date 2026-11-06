@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
+import { readingTime } from './app/utils/readingTime';
 import { feedRoutes } from './shared/utils/feeds';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -88,7 +89,11 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github_pages',
     prerender: {
-      routes: feedRoutes(),
+      routes: [
+        ...feedRoutes(),
+        '/api/search/en.json',
+        '/api/search/es.json',
+      ],
     },
   },
 
@@ -158,8 +163,16 @@ export default defineNuxtConfig({
             default: 'catppuccin-latte',
             dark: 'catppuccin-mocha',
           },
+          langs: ['php'],
         },
       },
+    },
+  },
+
+  hooks: {
+    'content:file:afterParse': ({ file, content, collection }) => {
+      if (collection.name.startsWith('blog_'))
+        content.readingTime = readingTime(file.body);
     },
   },
 

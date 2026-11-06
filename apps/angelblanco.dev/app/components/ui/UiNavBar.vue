@@ -14,6 +14,7 @@
           </NuxtLinkLocale>
         </div>
 
+        <BlogSearch :icon-size="iconSize" @click="closeMenu()" />
         <UiThemeSwitcher :icon-size="iconSize" @click="closeMenu()" />
         <UiLocaleSwitcher :icon-size="iconSize" @click="closeMenu()" />
 

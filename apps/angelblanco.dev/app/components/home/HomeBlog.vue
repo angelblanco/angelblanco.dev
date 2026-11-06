@@ -12,9 +12,7 @@
             <div class="text-lg font-bold">
               {{ latestPost.title }}
             </div>
-            <div class="text-xs text-base-content/70">
-              {{ dayjs(latestPost.date).format('LL') }}
-            </div>
+            <BlogPostMeta :post="latestPost" class="text-xs text-base-content/70" />
 
             <div class="mt-2 flex flex-wrap gap-1 font-mono text-xs font-medium">
               <span v-for="tag in latestPost.tags" :key="tag">#{{ tag }}</span>
@@ -40,9 +38,7 @@
         <div class="text-sm font-bold">
           {{ post.title }}
         </div>
-        <div class="text-xs text-base-content/70">
-          {{ dayjs(post.date).format('LL') }}
-        </div>
+        <BlogPostMeta :post="post" class="text-xs text-base-content/70" />
       </div>
       <Icon name="tabler:chevron-right" class="size-4 flex-none" />
     </NuxtLinkLocale>
@@ -59,23 +55,17 @@
 
 <script lang="ts" setup>
 const route = useRoute();
-const { queryBlogCollection } = useBlog();
+const { queryBlogPostSummaries } = useBlog();
 
 const MAX_OTHER_POSTS_COUNT = 8;
 
-function queryHomeBlog() {
-  return queryBlogCollection()
-    .select('path', 'title', 'description', 'date', 'id', 'tags')
-    .order('date', 'DESC');
-}
-
 const { data: latestPost } = await useAsyncData(
   `${route.path}` + `_latest`,
-  () => queryHomeBlog().first(),
+  () => queryBlogPostSummaries().first(),
 );
 
 const { data: otherPosts } = await useAsyncData(
   `${route.path}_other`,
-  () => queryHomeBlog().skip(1).limit(MAX_OTHER_POSTS_COUNT).all(),
+  () => queryBlogPostSummaries().skip(1).limit(MAX_OTHER_POSTS_COUNT).all(),
 );
 </script>

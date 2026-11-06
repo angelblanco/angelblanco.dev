@@ -7,7 +7,7 @@ License: Licencia
 About: Sobre mí
 AboutDescription: Mi carrera profesional y mis intereses
 Blog: Blog
-BlogDescription: Últimas entradas del blog de ingeniería informática full-stack
+BlogDescription: Notas prácticas e ideas sobre desarrollo web, herramientas e infraestructura
 Projects: Proyectos
 ProjectsDescription: Aquí puedes encontrar una selección de proyectos en los que he trabajado a lo largo de los años.
 Contact: Contacto
@@ -75,3 +75,23 @@ angelBlancoV1Description: |
   Implementé una serie de utilidades para gestionar el SEO, incluyendo generación de imágenes open graph con Playwright y generación automática del sitemap.
 sinceDate: desde
 toDate: a
+blogReadingTime: '{minutes} min de lectura'
+blogTags: Etiquetas
+blogAllPosts: Todos los artículos
+blogTagTitle: 'Artículos sobre #{tag}'
+blogTagDescription: 'Artículos sobre {tag} de Ángel Blanco: notas prácticas sobre desarrollo web, herramientas e infraestructura'
+blogRelatedPosts: Artículos relacionados
+searchOpen: Buscar en el blog
+searchPlaceholder: Buscar artículos…
+searchLoading: Cargando…
+searchError: No se ha podido cargar el índice de búsqueda.
+searchNoResults: 'Sin resultados para «{query}»'
+searchResults: Resultados de búsqueda
+searchClose: Cerrar
+searchHintNavigate: para moverte
+searchHintOpen: para abrir
+blogTaggedPrefix: Artículos sobre
+blogArticleCount: 'ningún artículo | {count} artículo | {count} artículos'
+blogTopics: Temas
+blogTopicsDescription: Todo sobre lo que escribo, empezando por lo que más escribo
+blogAllTopics: Todos los temas
