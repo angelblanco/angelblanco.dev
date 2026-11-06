@@ -27,12 +27,7 @@ const { iconSize = 'size-8' } = defineProps<{
 
 const { t } = useI18n();
 const colorMode = useColorMode();
-
-function toggleTheme() {
-  colorMode.preference = colorMode.value === 'light'
-    ? 'dark'
-    : 'light';
-}
+const { toggleTheme } = useThemeTransition();
 
 const lightTheme = computed(() => colorMode.value === 'light');
 </script>
