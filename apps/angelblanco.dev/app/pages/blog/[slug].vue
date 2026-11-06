@@ -6,6 +6,8 @@
     <div class="prose max-w-none">
       <ContentRenderer :value="post" />
     </div>
+
+    <BlogRelated :post="post" />
   </div>
 </template>
 
