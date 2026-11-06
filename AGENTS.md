@@ -26,11 +26,13 @@ For checking test coverage, you can use:
 pnpm test:coverage
 ```
 
+`pnpm test` in `apps/angelblanco.dev` also runs every Storybook story's play function. To browse the components in isolation, run `pnpm storybook` (dev server) or `pnpm build:storybook` (static build, also run in CI).
+
 ## Repository Structure
 
 This is a Turborepo monorepo. Here is a brief overview of the packages and applications:
 
-- **`apps/angelblanco.dev`**: The main Nuxt application, which is my personal website and blog.
+- **`apps/angelblanco.dev`**: The main Nuxt application, which is my personal website and blog. Its Storybook config lives in `apps/angelblanco.dev/.storybook`.
 - **`packages/cli`**: Monorepo tooling written in TypeScript and run directly by Node (no build step), such as the `pnpm worktree` commands.
 - **`packages/conventions`**: Contains markdown documents outlining the conventions for this monorepo.
 - **`packages/eslint`**: A shared ESLint configuration for ensuring consistent code style.
@@ -49,9 +51,10 @@ This project has a set of well-defined conventions that I will strictly follow. 
     - **Spanish:** `apps/angelblanco.dev/i18n/locales/es.yaml`
 - **[Blog Post Conventions](./packages/conventions/blog.md):** This guide covers the standards for writing and editing blog posts, including tone, style, language synchronization, SEO best practices, bilingual content requirements, and how to use `automd` to embed file content.
 - **[Contributing Conventions](./packages/conventions/contributing.md):** This document outlines the conventions for contributing to the monorepo, including commit message standards, pull request guidelines, and git workflow best practices.
-- **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit and component testing strategies.
+- **[Nuxt Testing Conventions](./packages/conventions/nuxt-testing.md):** This document outlines the conventions for testing Nuxt applications, including unit and component testing strategies and the Storybook stories smoke test.
 - **[Playwright E2E Testing Conventions](./packages/conventions/playwright-testing.md):** This guide covers the standards for writing Playwright E2E tests, emphasizing iteration over all locales and themes and the use of shared utility functions.
 - **[Git Worktree Conventions](./packages/conventions/worktrees.md):** This guide explains how to create, list and remove nested git worktrees with `pnpm worktree`, how each worktree gets its own dev and E2E ports through `.env` files, and how port conflicts are handled.
+- **[Storybook Conventions](./packages/conventions/storybook.md):** How Storybook runs standalone in `apps/angelblanco.dev` with `@storybook-vue/nuxt`, where stories and fixtures live, how to write CSF3 stories whose play functions also run in Vitest, the theme/locale globals, the `optimizeDeps` rule for CommonJS dependencies, what cannot be storied, its port and the upgrade path.
 
 **Note:** When a new convention file is added to the `packages/conventions` directory, I must add a short summary of it to this section.
 
@@ -68,7 +71,7 @@ Worktrees are nested in `.claude/worktrees/<name>` and managed only through `pnp
 - **Create:** `pnpm worktree setup <name>` creates the worktree on branch `<name>` from `master`, assigns its ports and installs dependencies. Then work inside `.claude/worktrees/<name>`.
 - **Adopt:** If a worktree was created another way (for example with your built-in worktree tool), run `pnpm worktree setup <name>` from the main checkout before running `pnpm dev` or E2E tests in it.
 - **Env files:** Every checkout needs `apps/angelblanco.dev/.env` and `packages/playwright/.env` (same content, with `NUXT_PORT` and `E2E_PORT`). E2E tests fail on purpose without them; run `pnpm worktree env` to generate them.
-- **Ports:** Never hardcode or override ports. The main checkout uses `3000` (dev) and `4000` (E2E); each worktree gets `3000+N` and `4000+N`, stored in `.claude/worktrees/worktrees.json` and in its `.env` files. Check them with `pnpm worktree list`.
+- **Ports:** Never hardcode or override ports. The main checkout uses `3000` (dev) and `4000` (E2E); each worktree gets `3000+N` and `4000+N`, stored in `.claude/worktrees/worktrees.json` and in its `.env` files. Check them with `pnpm worktree list`. `pnpm storybook` derives its port as `NUXT_PORT + 3006` (`6006`, `6006+N`) unless `STORYBOOK_PORT` is set.
 - **Remove:** `pnpm worktree remove <name>` (add `-d` to delete the branch). Never delete the folder by hand; if it happens, run `pnpm worktree prune`.
 - **Worktree log:** Every worktree keeps a `worktree.log` file at its root as its throwaway memory. It is git-ignored (`*.log`) and disappears with the worktree. Write in it the prompt or task that started the work, a dated log of progress, every decision taken (and why), open questions and the next steps, so any later session can resume that worktree on its own. Read it before starting work in a worktree and update it as you go, not only at the end.
 

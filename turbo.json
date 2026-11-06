@@ -6,6 +6,11 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".nuxt/**", ".output/**", "dist/**"]
     },
+    "build:storybook": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["storybook-static/**"]
+    },
     "generate": {
       "dependsOn": ["^generate"],
       "outputs": [
@@ -25,6 +30,11 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "storybook": {
+      "cache": false,
+      "persistent": true,
+      "passThroughEnv": ["STORYBOOK_PORT"]
     },
     "test": {
       "outputs": []

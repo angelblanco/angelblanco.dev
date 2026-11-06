@@ -23,6 +23,9 @@ export default defineConfig({
           include: ['test/nuxt/**/*.{test,spec}.ts'],
           setupFiles: ['test/nuxt/setup.ts'],
           environment: 'nuxt',
+          css: {
+            include: [/\.css\?raw$/],
+          },
         },
       }),
     ],

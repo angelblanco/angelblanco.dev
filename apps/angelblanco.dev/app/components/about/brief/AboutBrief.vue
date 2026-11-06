@@ -1,8 +1,8 @@
 <template>
   <div class="relative w-full overflow-hidden">
     <AboutBriefBackground
-      :squares="squares"
-      class-name="z-0 skew-y-12 [mask-image:radial-gradient(400px_circle_at_center,white,transparent)] "
+      :squares="aboutBriefSquares"
+      :class-name="aboutBriefBackgroundClass"
     />
 
     <div class="relative z-1">
@@ -11,8 +11,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const squares: [number, number][] = [
+<script lang="ts">
+export const aboutBriefSquares: [number, number][] = [
   [4, 4],
   [5, 1],
   [8, 2],
@@ -27,5 +27,9 @@ const squares: [number, number][] = [
   [15, 10],
 ];
 
+export const aboutBriefBackgroundClass = 'z-0 skew-y-12 [mask-image:radial-gradient(400px_circle_at_center,white,transparent)] ';
+</script>
+
+<script setup lang="ts">
 const { locale } = useI18n();
 </script>

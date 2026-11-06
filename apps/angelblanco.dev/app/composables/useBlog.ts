@@ -4,6 +4,8 @@ type BlogCollections = 'blog_es' | 'blog_en';
 
 export type BlogCollectionItem = BlogEnCollectionItem;
 
+export type HomeBlogPost = Pick<BlogCollectionItem, 'id' | 'path' | 'title' | 'description' | 'date' | 'tags'>;
+
 export default function useBlog() {
   const { locale, alternativeLocale } = useLocale();
 

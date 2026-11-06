@@ -10,9 +10,10 @@
 
 ## Folder Structure
 
-- Place reusable components in the `apps/angelblanco.dev/components` folder.
+- Place reusable components in the `apps/angelblanco.dev/app/components` folder.
 - Nuxt autoimports are enabled, components and composables don't need to be imported.
 - Keep shared configurations in the `packages/tsconfig` and `packages/tailwind` folders.
+- Storybook stories live next to their component as `<Component>.stories.ts`, and their shared fixtures in `apps/angelblanco.dev/.storybook/fixtures`, never in `app/components`. See [Storybook Conventions](./storybook.md).
 
 ## Vue Component Guidelines
 

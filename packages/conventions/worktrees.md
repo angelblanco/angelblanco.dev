@@ -52,14 +52,15 @@ The tooling lives in [`packages/cli`](../cli) and runs TypeScript directly with 
 
 Each worktree gets an incremental **slot** `N`:
 
-| Checkout        | Slot | Dev (`pnpm dev`) | E2E (Playwright) |
-| --------------- | ---- | ---------------- | ---------------- |
-| Main            | 0    | 3000             | 4000             |
-| First worktree  | 1    | 3001             | 4001             |
-| Second worktree | 2    | 3002             | 4002             |
+| Checkout        | Slot | Dev (`pnpm dev`) | E2E (Playwright) | Storybook (`pnpm storybook`) |
+| --------------- | ---- | ---------------- | ---------------- | ---------------------------- |
+| Main            | 0    | 3000             | 4000             | 6006                         |
+| First worktree  | 1    | 3001             | 4001             | 6007                         |
+| Second worktree | 2    | 3002             | 4002             | 6008                         |
 
 - `setup` picks the lowest slot that is not registered and whose two ports are free right now.
 - Slots released by `remove` are reused.
+- The Storybook port is not registered: `.storybook/dev.sh` derives it as `NUXT_PORT + 3006`, unless `STORYBOOK_PORT` is set. See [Storybook Conventions](./storybook.md#ports).
 
 ### Environment files
 
@@ -67,7 +68,7 @@ The ports reach each tool through a `.env` file next to its `package.json`. Both
 
 | File                        | Read by                                                                           |
 | --------------------------- | --------------------------------------------------------------------------------- |
-| `apps/angelblanco.dev/.env` | `nuxt dev`, natively (`NUXT_PORT`)                                                |
+| `apps/angelblanco.dev/.env` | `nuxt dev`, natively (`NUXT_PORT`), and `.storybook/dev.sh` (`NUXT_PORT`)         |
 | `packages/playwright/.env`  | `playwright.config.ts` with `process.loadEnvFile` and `runServer.sh` (`E2E_PORT`) |
 
 - `setup` writes them for a new worktree and `pnpm worktree env` rewrites them for the checkout you are in: base ports in the main checkout, registered ports in a worktree.
@@ -79,6 +80,7 @@ The ports reach each tool through a `.env` file next to its `package.json`. Both
 
 - **Dev server:** `pnpm dev` is plain `nuxt dev`. If its port is unexpectedly busy, Nuxt warns (`Port 3001 is in use, using port 3005 instead`) and moves to another free port. Check the owner with `pnpm worktree list`.
 - **E2E server:** `runServer.sh` serves the build with `serve --no-port-switching`, so it fails instead of moving to another port.
+- **Storybook:** `pnpm storybook` runs `storybook dev --exact-port`, so it also fails instead of moving to another port.
 
 ### Caches
 
