@@ -10,11 +10,11 @@
     >
       <Icon
         name="tabler:sun"
-        :class="[lightTheme ? 'swap-on' : 'swap-off motion-safe:group-hover:rotate-12', iconSize]"
+        :class="[lightTheme ? 'swap-on' : 'swap-off', iconSize]"
       />
       <Icon
         name="tabler:moon-stars"
-        :class="[lightTheme ? 'swap-off motion-safe:group-hover:-rotate-12' : 'swap-on', iconSize]"
+        :class="[lightTheme ? 'swap-off' : 'swap-on', iconSize]"
       />
     </button>
   </ClientOnly>
