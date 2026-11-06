@@ -23,16 +23,12 @@ const { iconSize = 'size-5' } = defineProps<{
 
 const open = ref(false);
 const activated = ref(false);
-const shortcut = ref('Ctrl K');
+const { isAppleUserAgent } = useNavigatorUserAgent();
+const shortcut = computed(() => isAppleUserAgent.value ? '⌘ K' : 'Ctrl K');
 
 watch(open, (value) => {
   if (value)
     activated.value = true;
-});
-
-onMounted(() => {
-  if (/Mac|iPhone|iPad/.test(navigator.userAgent))
-    shortcut.value = '⌘ K';
 });
 
 useEventListener('keydown', (event: KeyboardEvent) => {
