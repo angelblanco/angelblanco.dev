@@ -77,6 +77,14 @@ for (const locale of locales) {
     });
   }
 
+  test(`it highlights php without the opening tag on: ${locale.code}`, async ({ page }) => {
+    await page.goto(localizedPath(locale, '/blog/apt-install-php-85-on-ubuntu-26'));
+
+    const firstLine = page.locator('[data-code-block]').filter({ hasText: '$slug' }).locator('.line').first();
+    await expect(firstLine.locator('span')).toHaveCount(3);
+    await expect(firstLine.locator('span').nth(1)).toHaveText('=');
+  });
+
   test(`it only slides content in when motion is allowed on: ${locale.code}`, async ({ page }) => {
     const firstParagraph = page.locator('.prose .slide-enter-content > p').first();
 

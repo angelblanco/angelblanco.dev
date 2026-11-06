@@ -158,6 +158,7 @@ export default defineNuxtConfig({
             default: 'catppuccin-latte',
             dark: 'catppuccin-mocha',
           },
+          langs: ['php'],
         },
       },
     },
