@@ -12,9 +12,7 @@
             <div class="text-lg font-bold">
               {{ latestPost.title }}
             </div>
-            <div class="text-xs text-base-content/70">
-              {{ dayjs(latestPost.date).format('LL') }}
-            </div>
+            <BlogPostMeta :post="latestPost" class="text-xs text-base-content/70" />
 
             <div class="mt-2 flex flex-wrap gap-1 font-mono text-xs font-medium">
               <span v-for="tag in latestPost.tags" :key="tag">#{{ tag }}</span>
@@ -41,9 +39,7 @@
           <div class="text-sm font-bold">
             {{ post.title }}
           </div>
-          <div class="text-xs text-base-content/70">
-            {{ dayjs(post.date).format('LL') }}
-          </div>
+          <BlogPostMeta :post="post" class="text-xs text-base-content/70" />
         </div>
         <Icon name="tabler:chevron-right" class="size-4 flex-none" />
       </NuxtLinkLocale>
@@ -61,7 +57,7 @@
 
 <script lang="ts" setup>
 const { latestPost, otherPosts } = defineProps<{
-  latestPost: HomeBlogPost | null;
-  otherPosts: HomeBlogPost[];
+  latestPost: BlogPostSummary | null;
+  otherPosts: BlogPostSummary[];
 }>();
 </script>

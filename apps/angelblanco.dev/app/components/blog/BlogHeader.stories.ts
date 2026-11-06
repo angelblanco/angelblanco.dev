@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook-vue/nuxt';
 import { expect, within } from 'storybook/test';
 import { h } from 'vue';
 import { articleBody, articleHeadingIds } from '../../../.storybook/fixtures/article';
-import { emptyTocFixture, postFixture, realHomeBlogPosts, tocFixture } from '../../../.storybook/fixtures/blog';
+import { emptyTocFixture, postFixture, realBlogPostSummaries, tocFixture } from '../../../.storybook/fixtures/blog';
 import UiContentWrapper from '../ui/UiContentWrapper.vue';
 import BlogHeader from './BlogHeader.vue';
 
-const eslintPost = realHomeBlogPosts[2]!;
+const eslintPost = realBlogPostSummaries[2]!;
 
 const tocIds = tocFixture.links.flatMap(link => [
   link,

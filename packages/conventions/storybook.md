@@ -39,7 +39,7 @@ Storybook 10 runs **standalone** with the community framework [`@storybook-vue/n
 
 - Each story file is `<Component>.stories.ts` **next to its component** (`app/components/**` or `app/layouts/**`).
 - Shared fixtures live in `apps/angelblanco.dev/.storybook/fixtures/`, **never in `app/components`**: Nuxt would scan them as components, and the icon client bundle scan would ship their icon names to production.
-- Fixtures use real data (front matter and headings of real posts, real `en.yaml` copy), typed with the app types (e.g. `HomeBlogPost`, `Toc`).
+- Fixtures use real data (front matter and headings of real posts, real `en.yaml` copy), typed with the app types (e.g. `BlogPostSummary`, `Toc`).
 - `nuxt.config.ts` keeps stories out of the app: `**/*.stories.ts`, `.storybook` and `storybook-static` are excluded from the icon client bundle scan, and a story file inside `app/layouts` is never registered as a layout.
 - `storybook-static` is git-ignored (root and app `.gitignore`) and removed by `pnpm fresh`.
 

@@ -13,13 +13,12 @@ describe('components: UiThemeSwitcher', () => {
     expect(switcher.find('.i-tabler\\:moon-stars').exists()).toBe(true);
   });
 
-  it('should only tilt the visible icon on hover when motion is allowed', async () => {
+  it('should not tilt the icons on hover', async () => {
     const wrapper = await mountSuspended(UiThemeSwitcher);
-    const visible = wrapper.get('#theme-switcher .swap-off');
-    const hidden = wrapper.get('#theme-switcher .swap-on');
+    const icons = wrapper.findAll('#theme-switcher .swap-on, #theme-switcher .swap-off');
 
-    expect(visible.classes().some(name => /^motion-safe:group-hover:-?rotate-12$/.test(name))).toBe(true);
-    expect(hidden.classes().some(name => name.includes('rotate-12'))).toBe(false);
+    expect(icons).toHaveLength(2);
+    expect(icons.flatMap(icon => icon.classes()).some(name => name.includes('rotate-12'))).toBe(false);
   });
 
   it('should be a labelled toggle button that reports the dark theme state', async () => {

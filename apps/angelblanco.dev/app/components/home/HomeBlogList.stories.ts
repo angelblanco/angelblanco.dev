@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook-vue/nuxt';
 import { expect, within } from 'storybook/test';
-import { homeBlogPosts, realHomeBlogPosts } from '../../../.storybook/fixtures/blog';
+import { homeBlogPosts, realBlogPostSummaries } from '../../../.storybook/fixtures/blog';
 import HomeBlogList from './HomeBlogList.vue';
 
-const [latestPost, ...otherPosts] = realHomeBlogPosts;
+const [latestPost, ...otherPosts] = realBlogPostSummaries;
 
 const allOtherPosts = homeBlogPosts.slice(1);
 

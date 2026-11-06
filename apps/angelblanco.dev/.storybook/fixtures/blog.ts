@@ -1,5 +1,5 @@
 import type { Toc } from '@nuxt/content';
-import type { BlogCollectionItem, HomeBlogPost } from '~/composables/useBlog';
+import type { BlogCollectionItem, BlogPostSummary } from '~/composables/useBlog';
 
 export const flatTocFixture: Toc = {
   title: '',
@@ -37,7 +37,7 @@ export const tocFixture: Toc = {
 
 export const emptyTocFixture: Toc = { ...flatTocFixture, links: [] };
 
-export const realHomeBlogPosts: HomeBlogPost[] = [
+export const realBlogPostSummaries: BlogPostSummary[] = [
   {
     id: 'blog_en/blog/0005.apt-install-php-85-on-ubuntu-26.md',
     path: '/blog/apt-install-php-85-on-ubuntu-26',
@@ -113,13 +113,13 @@ export const realHomeBlogPosts: HomeBlogPost[] = [
   },
 ];
 
-export const homeBlogPosts: HomeBlogPost[] = [
-  ...realHomeBlogPosts,
-  ...realHomeBlogPosts.slice(1).map(post => ({ ...post, id: `${post.id}-clone` })),
+export const homeBlogPosts: BlogPostSummary[] = [
+  ...realBlogPostSummaries,
+  ...realBlogPostSummaries.slice(1).map(post => ({ ...post, id: `${post.id}-clone` })),
 ];
 
 export const postFixture = {
-  ...realHomeBlogPosts[0],
+  ...realBlogPostSummaries[0],
   stem: 'blog/0005.apt-install-php-85-on-ubuntu-26',
   extension: 'md',
   meta: {},
