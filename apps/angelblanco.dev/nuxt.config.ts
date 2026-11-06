@@ -1,5 +1,6 @@
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
+import { feedRoutes } from './shared/utils/feeds';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -86,6 +87,9 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'github_pages',
+    prerender: {
+      routes: feedRoutes(),
+    },
   },
 
   experimental: {
