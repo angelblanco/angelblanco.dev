@@ -1,6 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
 import { readingTime } from './app/utils/readingTime';
+import { feedRoutes } from './shared/utils/feeds';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -88,7 +89,11 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github_pages',
     prerender: {
-      routes: ['/api/search/en.json', '/api/search/es.json'],
+      routes: [
+        ...feedRoutes(),
+        '/api/search/en.json',
+        '/api/search/es.json',
+      ],
     },
   },
 
