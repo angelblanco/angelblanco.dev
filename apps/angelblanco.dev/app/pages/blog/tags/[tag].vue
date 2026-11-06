@@ -1,17 +1,18 @@
 <template>
   <UiPageNotFound v-if="!posts?.length" />
   <div v-else class="mx-auto min-h-screen-content max-w-post p-4">
-    <BlogIndexHeader>
-      <template #title>
-        {{ $t('blogTagTitle', { tag }) }}
-      </template>
-      <template #description>
-        <NuxtLinkLocale to="/blog" class="inline-flex items-center gap-1 text-sm text-primary hover:underline">
-          <Icon name="tabler:arrow-left" class="size-4" />
-          {{ $t('blogAllPosts') }}
-        </NuxtLinkLocale>
-      </template>
-    </BlogIndexHeader>
+    <header class="mt-5 mb-10">
+      <BlogBackLink to="/blog/tags">
+        {{ $t('blogAllTopics') }}
+      </BlogBackLink>
+      <h1 class="font-mono text-5xl font-bold tracking-tighter wrap-break-word sm:text-7xl lg:ml-[-1ch]">
+        <span class="sr-only">{{ `${$t('blogTaggedPrefix')} ` }}</span>
+        <span class="font-light text-primary">#</span>{{ tag }}
+      </h1>
+      <p class="mt-3 font-mono text-sm text-base-content/60">
+        {{ $t('blogArticleCount', posts.length) }}
+      </p>
+    </header>
     <BlogPostList :posts="posts" />
   </div>
 </template>

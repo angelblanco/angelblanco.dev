@@ -7,7 +7,7 @@ License: Licencia
 About: Sobre mí
 AboutDescription: Mi carrera profesional y mis intereses
 Blog: Blog
-BlogDescription: Últimas entradas del blog de ingeniería informática full-stack
+BlogDescription: Notas prácticas sobre desarrollo web, herramientas e infraestructura, del backend al navegador
 Projects: Proyectos
 ProjectsDescription: Aquí puedes encontrar una selección de proyectos en los que he trabajado a lo largo de los años.
 Contact: Contacto
@@ -79,9 +79,8 @@ blogReadingTime: '{minutes} min de lectura'
 blogTags: Etiquetas
 blogAllPosts: Todos los artículos
 blogTagTitle: 'Artículos sobre #{tag}'
-blogTagDescription: 'Artículos sobre {tag} en el blog de ingeniería full-stack de Ángel Blanco'
+blogTagDescription: 'Artículos sobre {tag} de Ángel Blanco: notas prácticas sobre desarrollo web, herramientas e infraestructura'
 blogRelatedPosts: Artículos relacionados
-blogComments: Comentarios
 searchOpen: Buscar en el blog
 searchPlaceholder: Buscar artículos…
 searchLoading: Cargando…
@@ -91,3 +90,8 @@ searchResults: Resultados de búsqueda
 searchClose: Cerrar
 searchHintNavigate: para moverte
 searchHintOpen: para abrir
+blogTaggedPrefix: Artículos sobre
+blogArticleCount: 'ningún artículo | {count} artículo | {count} artículos'
+blogTopics: Temas
+blogTopicsDescription: Todo sobre lo que escribo, empezando por lo que más escribo
+blogAllTopics: Todos los temas

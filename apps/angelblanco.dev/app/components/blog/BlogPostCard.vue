@@ -1,11 +1,11 @@
 <template>
   <article class="group relative -mx-4 border-y border-base-300 bg-base-200 px-4 py-5 transition hover:border-primary/60 hover:shadow-lg sm:mx-0 sm:border-x sm:p-6">
     <BlogPostMeta :post="post" class="mb-2 text-xs text-base-content/70" />
-    <component :is="headingTag" class="text-2xl font-bold tracking-tight text-pretty">
+    <h2 class="text-2xl font-bold tracking-tight text-pretty">
       <NuxtLink :to="post.path" class="group-hover:gradient-text after:absolute after:inset-0">
         {{ post.title }}
       </NuxtLink>
-    </component>
+    </h2>
     <p v-if="post.description" class="mt-3 leading-7 text-pretty text-base-content/80">
       {{ post.description }}
     </p>
@@ -14,8 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-const { headingTag = 'h2' } = defineProps<{
+defineProps<{
   post: BlogPostSummary;
-  headingTag?: 'h2' | 'h3';
 }>();
 </script>

@@ -18,7 +18,5 @@ const { queryBlogPostSummaries } = useBlog();
 
 const { data: posts } = await useAsyncData(route.path, () => queryBlogPostSummaries().all());
 
-const tags = computed(() => [
-  ...new Set(posts.value?.flatMap(post => post.tags)),
-].sort());
+const tags = computed(() => tagCounts(posts.value ?? []));
 </script>
