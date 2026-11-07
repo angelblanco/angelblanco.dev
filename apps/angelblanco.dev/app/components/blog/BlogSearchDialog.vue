@@ -6,7 +6,7 @@
     :aria-label="$t('searchOpen')"
     @close="open = false"
   >
-    <div class="relative modal-box flex h-dvh max-h-dvh w-full max-w-none flex-col overflow-hidden rounded-none p-0 pt-[env(safe-area-inset-top)] shadow-2xl ring-1 ring-base-content/10 sm:h-auto sm:max-h-[min(42rem,85dvh)] sm:max-w-2xl sm:rounded-box sm:pt-0">
+    <div ref="box" class="relative modal-box flex h-dvh max-h-dvh w-full max-w-none flex-col overflow-hidden rounded-none p-0 pt-[env(safe-area-inset-top)] shadow-2xl ring-1 ring-base-content/10 sm:h-auto sm:max-h-[min(42rem,85dvh)] sm:max-w-2xl sm:rounded-box sm:pt-0">
       <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary to-transparent opacity-70" aria-hidden="true" />
 
       <div class="flex flex-none items-center gap-3 border-b border-base-300 px-4 py-2">
@@ -88,7 +88,7 @@
         </button>
       </div>
 
-      <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
+      <div ref="list" class="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
         <p v-if="status === 'pending' || status === 'idle'" class="flex items-center gap-2 p-4 text-sm text-base-content/70">
           <span class="loading loading-sm loading-dots" aria-hidden="true" />
           {{ $t('searchLoading') }}
@@ -239,6 +239,8 @@ const { locale } = useI18n();
 const localePath = useLocalePath();
 const dialog = useTemplateRef('dialog');
 const input = useTemplateRef('input');
+const box = useTemplateRef('box');
+const list = useTemplateRef('list');
 const query = ref('');
 const selectedTags = ref<string[]>([]);
 const activeIndex = ref(0);
@@ -356,10 +358,15 @@ async function select(index: number) {
   await navigateTo(option.to);
 }
 
-function sync(value: boolean) {
+async function sync(value: boolean) {
   if (value && !dialog.value?.open) {
+    query.value = '';
+    selectedTags.value = [];
+    await nextTick();
+    box.value?.scrollTo(0, 0);
+    list.value?.scrollTo(0, 0);
     dialog.value?.showModal();
-    input.value?.select();
+    input.value?.focus();
   }
   else if (!value && dialog.value?.open) {
     dialog.value.close();

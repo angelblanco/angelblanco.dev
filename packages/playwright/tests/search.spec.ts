@@ -15,6 +15,7 @@ const translations = {
     result: 'Create your own ESLint config',
     noResults: 'No results for “kubernetes”',
     php: 'Install PHP 8.5 with apt on Ubuntu 26.04',
+    cancel: 'Cancel',
   },
   es: {
     button: 'Buscar en el blog',
@@ -23,6 +24,7 @@ const translations = {
     result: 'Crea tu propia configuración de ESLint',
     noResults: 'Sin resultados para «kubernetes»',
     php: 'Instalar PHP 8.5 con apt en Ubuntu 26.04',
+    cancel: 'Cancelar',
   },
 };
 
@@ -110,5 +112,32 @@ for (const locale of locales) {
     expect(box?.width).toBe(width);
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
     await expect(dialog.getByTestId('blog-search-post').first()).toBeVisible();
+  });
+
+  test(`it starts a fresh search when reopened on mobile on: ${locale.code}`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(localizedPath(locale, '/blog'));
+    await expect(page.locator('#theme-switcher')).toBeVisible();
+
+    const button = page.getByRole('button', { name: t.button });
+    const dialog = page.getByTestId('blog-search-dialog');
+    const input = page.getByPlaceholder(t.placeholder);
+    const cancel = dialog.getByRole('button', { name: t.cancel });
+    const results = dialog.locator('.overflow-y-auto');
+
+    await button.click();
+    await input.fill('ubuntu');
+    await expect(dialog.getByTestId('blog-search-post').first()).toBeVisible();
+    await results.evaluate(element => element.scrollTo(0, element.scrollHeight));
+    await cancel.click();
+    await expect(dialog).toBeHidden();
+
+    await button.click();
+    await expect(input).toHaveValue('');
+    await expect(cancel).toBeInViewport();
+    expect(await results.evaluate(element => element.scrollTop)).toBe(0);
+
+    await cancel.click();
+    await expect(dialog).toBeHidden();
   });
 }
