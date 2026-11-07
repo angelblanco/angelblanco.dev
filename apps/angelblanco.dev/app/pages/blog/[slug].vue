@@ -7,6 +7,8 @@
     <div class="prose max-w-none">
       <ContentRenderer :value="post" class="slide-enter-content" />
     </div>
+
+    <BlogRelated :post="post" />
   </div>
 </template>
 

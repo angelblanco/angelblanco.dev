@@ -1,0 +1,20 @@
+<template>
+  <article class="group relative -mx-4 border-y border-base-300 bg-base-200 px-4 py-5 transition hover:border-primary/60 hover:shadow-lg sm:mx-0 sm:border-x sm:p-6">
+    <BlogPostMeta :post="post" class="mb-2 text-xs text-base-content/70" />
+    <h2 class="text-2xl font-bold tracking-tight text-pretty">
+      <NuxtLink :to="post.path" class="group-hover:gradient-text after:absolute after:inset-0">
+        {{ post.title }}
+      </NuxtLink>
+    </h2>
+    <p v-if="post.description" class="mt-3 leading-7 text-pretty text-base-content/80">
+      {{ post.description }}
+    </p>
+    <BlogTags :tags="post.tags" class="mt-4" />
+  </article>
+</template>
+
+<script lang="ts" setup>
+defineProps<{
+  post: BlogPostSummary;
+}>();
+</script>

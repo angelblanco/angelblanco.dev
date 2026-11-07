@@ -245,3 +245,17 @@
     --enter-stage: 10;
   }
 }
+
+html.theme-transition * {
+  view-transition-name: none !important;
+}
+
+html.theme-transition::view-transition-old(root),
+html.theme-transition::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.theme-transition::view-transition-new(root) {
+  z-index: 9999;
+}

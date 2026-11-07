@@ -1,21 +1,7 @@
 <template>
   <div class="mx-auto min-h-screen-content max-w-post p-4">
-    <div class="slide-enter-content space-y-24">
-      <div v-for="post in posts" :key="post.id">
-        <NuxtLink class="group block transition" :to="post.path">
-          <div class="text-4xl font-bold tracking-tight text-balance group-hover:gradient-text">
-            {{ post.title }}
-          </div>
-          <div class="mb-3 text-sm opacity-75">
-            {{ dayjs(post.date).format('LL') }}
-          </div>
-        </NuxtLink>
-
-        <div class="mb-4 text-lg leading-8 text-pretty">
-          {{ post.description }}
-        </div>
-      </div>
-    </div>
+    <BlogIndexHeader :tags="tags" />
+    <BlogPostList v-if="posts" class="slide-enter-content" :posts="posts" />
   </div>
 </template>
 
@@ -28,15 +14,9 @@ useLocalizedSeo({
   cta: 'ogCtaBlog',
 });
 
-const { queryBlogCollection } = useBlog();
+const { queryBlogPostSummaries } = useBlog();
 
-const { data: posts } = await useAsyncData(
-  route.path,
-  () => {
-    return queryBlogCollection()
-      .select('path', 'title', 'description', 'date', 'id')
-      .order('date', 'DESC')
-      .all();
-  },
-);
+const { data: posts } = await useAsyncData(route.path, () => queryBlogPostSummaries().all());
+
+const tags = computed(() => tagCounts(posts.value ?? []));
 </script>

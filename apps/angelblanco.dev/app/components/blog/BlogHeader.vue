@@ -3,11 +3,13 @@
     <h1 class="mt-5 text-4xl font-semibold tracking-normal text-balance md:text-4xl">
       {{ post.title }}
     </h1>
-    <div class="mt-2 mb-8 text-sm font-light opacity-60 ">
-      {{ createdAt }} - <NuxtLinkLocale to="/about" class="hover:text-primary">
+    <BlogPostMeta :post="post" class="mt-2 text-sm font-light text-base-content/60">
+      <span aria-hidden="true">·</span>
+      <NuxtLinkLocale to="/about" class="hover:text-primary">
         {{ $t('blogAuthoredBy') }}
       </NuxtLinkLocale>
-    </div>
+    </BlogPostMeta>
+    <BlogTags :tags="post.tags" class="mt-3 mb-8" />
 
     <div v-if="alternativeLocale" class="mb-4 text-secondary">
       <SwitchLocalePathLink class="flex items-center gap-1 bg-secondary/10 p-1 text-xs font-bold dark:font-medium" :locale="alternativeLocale">
@@ -19,10 +21,8 @@
 </template>
 
 <script lang="ts" setup>
-const { post, alternativeLocale } = defineProps<{
+defineProps<{
   post: BlogCollectionItem;
   alternativeLocale?: 'es' | 'en' | null;
 }>();
-
-const createdAt = computed(() => dayjs(post.date).format('LL'));
 </script>

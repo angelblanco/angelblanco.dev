@@ -7,7 +7,7 @@ License: License
 About: About Me
 AboutDescription: My professional career and interests
 Blog: Blog
-BlogDescription: Latest blog entries of the full-stack engineering blog
+BlogDescription: Hands-on notes & ideas on web development, tooling and infrastructure
 Projects: Projects
 ProjectsDescription: Here you can find a selection of projects I've worked on throughout my career.
 Contact: Contact
@@ -76,3 +76,23 @@ codeCopy: Copy code
 codeCopied: Code copied to the clipboard
 codeCopyFailed: The code could not be copied
 codeGroupLabel: Code alternatives
+blogReadingTime: '{minutes} min read'
+blogTags: Tags
+blogAllPosts: All posts
+blogTagTitle: 'Posts tagged #{tag}'
+blogTagDescription: 'Articles about {tag} by Ángel Blanco: hands-on notes on web development, tooling and infrastructure'
+blogRelatedPosts: Related posts
+searchOpen: Search the blog
+searchPlaceholder: Search posts…
+searchLoading: Loading…
+searchError: The search index could not be loaded.
+searchNoResults: 'No results for “{query}”'
+searchResults: Search results
+searchClose: Close
+searchHintNavigate: to navigate
+searchHintOpen: to open
+blogTaggedPrefix: Posts tagged
+blogArticleCount: 'no articles | {count} article | {count} articles'
+blogTopics: Topics
+blogTopicsDescription: Everything I write about, starting with what I write about most
+blogAllTopics: All topics

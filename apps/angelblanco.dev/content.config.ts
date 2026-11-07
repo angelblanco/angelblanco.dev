@@ -9,6 +9,7 @@ export function blogSchema() {
     updatedAt: z.string().date().optional(),
     image: z.string().optional(),
     toc: z.boolean().optional(),
+    readingTime: z.number().int().positive().optional(),
     schemaOrg: defineSchemaOrgSchema(),
   });
 }
