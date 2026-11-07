@@ -81,14 +81,25 @@ blogTagTitle: 'Posts tagged #{tag}'
 blogTagDescription: 'Articles about {tag} by Ángel Blanco: hands-on notes on web development, tooling and infrastructure'
 blogRelatedPosts: Related posts
 searchOpen: Search the blog
-searchPlaceholder: Search posts…
+searchPlaceholder: 'Search posts, sections or #tags…'
 searchLoading: Loading…
 searchError: The search index could not be loaded.
 searchNoResults: 'No results for “{query}”'
+searchNoResultsHint: Try other words or remove some tag filters.
 searchResults: Search results
+searchResultCount: 'no results | {count} result | {count} results'
 searchClose: Close
+searchCancel: Cancel
+searchClear: Clear search
+searchClearFilters: Clear filters
+searchRecent: Recent posts
+searchPosts: Posts
+searchFilterTags: Filter by tag
+searchRemoveTag: 'Remove #{tag}'
 searchHintNavigate: to navigate
 searchHintOpen: to open
+searchHintTags: topics
+searchHintRemoveTag: remove tag
 blogTaggedPrefix: Posts tagged
 blogArticleCount: 'no articles | {count} article | {count} articles'
 blogTopics: Topics

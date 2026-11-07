@@ -15,7 +15,7 @@
     <LazyBlogSearchDialog
       v-if="activated"
       v-model:open="open"
-      :sections="sections ?? []"
+      :data="data ?? undefined"
       :status="status"
     />
   </div>
@@ -30,7 +30,7 @@ const open = ref(false);
 const activated = ref(false);
 const { locale } = useI18n();
 
-const { data: sections, status, execute } = useLazyFetch(() => `/api/search/${locale.value}.json`, {
+const { data, status, execute } = useLazyFetch<BlogSearchData>(() => `/api/search/${locale.value}.json`, {
   server: false,
   immediate: false,
 });

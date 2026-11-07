@@ -1,9 +1,9 @@
 import type { VueWrapper } from '@vue/test-utils';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { BlogHeader, BlogIndexHeader, BlogRelated, BlogSearchDialog, BlogTagCloud, BlogTags, GithubRepoPreview, HomeBlogList } from '#components';
 import { blogTagCounts, homeBlogPosts, postFixture, realBlogPostSummaries } from '../../../.storybook/fixtures/blog';
-import { searchSectionsFixture } from '../../../.storybook/fixtures/search';
+import { searchFixture } from '../../../.storybook/fixtures/search';
 
 const lowContrastClasses = ['text-primary', 'text-base-content/50', 'text-base-content/60'];
 
@@ -55,11 +55,18 @@ describe('text contrast on the light theme', () => {
 
   it('highlights the active search result with the dark primary token', async () => {
     const wrapper = await mountSuspended(BlogSearchDialog, {
-      props: { open: true, sections: searchSectionsFixture, status: 'success' },
+      props: { open: true, data: searchFixture, status: 'success' },
     });
     await wrapper.get('input').setValue('composer');
+    await vi.waitFor(() => expect(wrapper.find('[data-testid="blog-search-section"]').exists()).toBe(true));
 
-    expect(wrapper.get('[aria-selected="true"] .font-semibold').classes()).toEqual(expect.arrayContaining(['text-primary-content', 'dark:text-primary']));
+    expect(wrapper.get('[aria-selected="true"] .font-semibold').classes()).toEqual(expect.arrayContaining(['group-aria-selected:text-primary-content', 'dark:group-aria-selected:text-primary']));
+    expect(lowContrastElements(wrapper)).toEqual([]);
+
+    await wrapper.get('input').setValue('#ub');
+    await vi.waitFor(() => expect(wrapper.find('[data-testid="blog-search-topic"]').exists()).toBe(true));
+
+    expect(wrapper.get('[data-testid="blog-search-topic"]').classes()).toEqual(expect.arrayContaining(['aria-selected:text-primary-content', 'dark:aria-selected:text-primary']));
     expect(lowContrastElements(wrapper)).toEqual([]);
   });
 
