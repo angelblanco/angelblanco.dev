@@ -33,7 +33,7 @@ How Ángel writes. These rules apply to both languages; [core-spanish](core-span
 
 - Introduce code with one sentence that says what it does ("Then add the NodeSource repository for Node.js 26:").
 - After code, explain only the non-obvious why (what the apt pin is for, or why `sudo -E`). Don't narrate the code back.
-- Use one command block per step in step-by-step guides, with numbered headings ("#### 1. Install Node.js and npm").
+- Use one command block per step in step-by-step guides, with numbered H3 headings ("### 1. Install Node.js and npm") under their H2 section ("## The step-by-step guide").
 - Offer the shortcut first ("The easy way") and the manual steps after.
 - Link the first meaningful mention of each tool to its official docs, and only once. Weave links into the sentence: "install it with its [standalone script](…)", never "click [here](…)".
 

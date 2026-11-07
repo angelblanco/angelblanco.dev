@@ -93,22 +93,24 @@ The tone should be **professional yet approachable and engaging**. Think of it a
 
 ### Markdown Title Conventions
 
+The post title (frontmatter `title`) is the page's only H1. Body sections start at H2 (`##`) and their subsections (numbered steps) are H3 (`###`); never skip a level, as screen readers and axe (`heading-order`) expect H1 > H2 > H3. The table of contents lists H2 and H3. `pnpm blog check` warns on skipped levels.
+
 Use normal sentence casing for titles, NOT Title Case:
 
 ```markdown
 ✅ CORRECT:
 
-### The easy way
+## The easy way
 
-### What about NVM?
+## What about NVM?
 
-### Configure npm's global prefix
+### 3. Configure npm's global prefix
 
 ❌ INCORRECT:
 
 ### The Easy Way
 
-### What About NVM?
+## What About NVM?
 
 ### Configure Npm's Global Prefix
 ```

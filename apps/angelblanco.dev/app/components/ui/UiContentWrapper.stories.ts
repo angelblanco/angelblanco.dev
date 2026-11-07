@@ -26,7 +26,13 @@ export const Default: Story = {
     await expect(root).not.toHaveClass('max-w-none');
 
     for (const id of articleHeadingIds)
-      await expect(root.querySelector(`:is(h3, h4)#${id}`)).not.toBeNull();
+      await expect(root.querySelector(`:is(h2, h3)#${id}`)).not.toBeNull();
+
+    const levels = [
+      ...root.querySelectorAll('h2, h3, h4, h5, h6'),
+    ].map(heading => Number(heading.tagName[1]));
+    await expect(levels[0]).toBe(2);
+    await expect(levels.every((level, i) => i === 0 || level <= levels[i - 1]! + 1)).toBe(true);
 
     await expect(within(canvas.getByRole('table')).getAllByRole('columnheader')).toHaveLength(4);
     await expect(canvas.getAllByRole('list')).toHaveLength(1);
@@ -47,7 +53,7 @@ export const FullWidth: Story = {
     const root = canvasElement.querySelector('.prose');
 
     await expect(root).toHaveClass('prose', 'max-w-none');
-    await expect(root?.querySelector('h3')).not.toBeNull();
+    await expect(root?.querySelector('h2')).not.toBeNull();
   },
 };
 

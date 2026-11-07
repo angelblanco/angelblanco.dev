@@ -86,7 +86,7 @@ export function checkPost(post: Post, context: CheckContext): Issue[] {
   for (const heading of post.headings) {
     if (heading.level === 1)
       add(heading.line, 'error', 'Do not use H1 in the body, the title comes from the frontmatter');
-    else if (heading.level > previous + 1 && previous > 1)
+    else if (heading.level > previous + 1)
       add(heading.line, 'warn', `Heading jumps from H${previous} to H${heading.level}`);
     if (isTitleCase(heading.text))
       add(heading.line, 'warn', `Heading looks like Title Case, use sentence case: "${heading.text}"`);
