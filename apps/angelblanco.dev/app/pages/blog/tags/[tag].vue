@@ -9,7 +9,7 @@
         <span class="sr-only">{{ `${$t('blogTaggedPrefix')} ` }}</span>
         <span class="font-light text-primary">#</span>{{ tag }}
       </h1>
-      <p class="mt-3 font-mono text-sm text-base-content/60">
+      <p class="mt-3 font-mono text-sm text-base-content/70">
         {{ $t('blogArticleCount', posts.length) }}
       </p>
     </header>

@@ -54,4 +54,20 @@ for (const locale of locales) {
       expect(await canvasFrame(page)).toBe(frame);
     });
   }
+
+  test(`hero photo stays inside the card on a 320px wide screen in locale: ${locale.code}`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.goto(locale.path);
+
+    const spill = await page.getByRole('img', { name: 'Me', exact: true }).evaluate((image) => {
+      const card = image.closest('a')!.parentElement!;
+      const border = Number.parseFloat(getComputedStyle(card).borderRightWidth);
+      const cardBox = card.getBoundingClientRect();
+      const imageBox = image.getBoundingClientRect();
+
+      return Math.max(imageBox.right - (cardBox.right - border), (cardBox.left + border) - imageBox.left);
+    });
+
+    expect(spill).toBeLessThanOrEqual(0);
+  });
 }

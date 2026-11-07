@@ -55,8 +55,27 @@ describe('components: UiLocaleSwitcher', () => {
     const english = wrapper.get('[data-lang="en"]');
     const spanish = wrapper.get('[data-lang="es"]');
 
-    expect(english.attributes()).toMatchObject({ 'lang': 'en', 'hreflang': 'en', 'aria-label': 'English' });
-    expect(spanish.attributes()).toMatchObject({ 'lang': 'es', 'hreflang': 'es', 'aria-label': 'Español' });
+    expect(english.attributes()).toMatchObject({ lang: 'en', hreflang: 'en' });
+    expect(spanish.attributes()).toMatchObject({ lang: 'es', hreflang: 'es' });
+    expect(english.get('.sr-only').text()).toBe('English');
+    expect(spanish.get('.sr-only').text()).toBe('Español');
+    wrapper.unmount();
+  });
+
+  it('should keep the visible code inside the accessible name of each language link', async () => {
+    const wrapper = await mountSuspended(UiLocaleSwitcher, { attachTo: document.body });
+
+    await wrapper.get('#locale-switcher').trigger('click');
+
+    for (const [locale, code, name] of [
+      ['en', 'EN', 'English'],
+      ['es', 'ES', 'Español'],
+    ]) {
+      const link = wrapper.get(`[data-lang="${locale}"]`);
+
+      expect(link.attributes('aria-label')).toBeUndefined();
+      expect(link.text()).toBe(`${code} ${name}`);
+    }
     wrapper.unmount();
   });
 

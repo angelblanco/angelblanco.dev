@@ -7,7 +7,7 @@
       <ContentRenderer :value="post" />
     </div>
 
-    <BlogRelated :post="post" />
+    <BlogRelated :post="post" :posts="posts ?? []" />
   </div>
 </template>
 
@@ -19,16 +19,23 @@ const {
   alternativeBlogCollection,
   queryBlogCollection,
   queryAlternativeBlogCollection,
+  queryBlogPostSummaries,
 } = useBlog();
+const switchLocalePath = useSwitchLocalePath();
+const alternativePath = switchLocalePath(otherLocale.value);
 
-const [{ data: post }, { data: alternativePost }] = await Promise.all([
+const [{ data: post }, { data: alternativePost }, { data: posts }] = await Promise.all([
   useAsyncData(
     `${locale.value}-main-${blogCollection.value}-${route.path}`,
     () => queryBlogCollection().path(route.path).first(),
   ),
   useAsyncData(
-    `${locale.value}-alternative-${alternativeBlogCollection.value}-${route.path}`,
-    () => queryAlternativeBlogCollection().path(route.path).first(),
+    `${locale.value}-alternative-${alternativeBlogCollection.value}-${alternativePath}`,
+    () => queryAlternativeBlogCollection().path(alternativePath).first(),
+  ),
+  useAsyncData(
+    `${blogCollection.value}-related-${route.path}`,
+    () => queryBlogPostSummaries().where('path', '<>', route.path).all(),
   ),
 ]);
 

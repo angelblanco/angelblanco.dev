@@ -1,9 +1,9 @@
 <template>
   <div
-    class="m-3 mb-4 flex flex-nowrap items-center justify-center gap-6 border-4 border-base-content bg-base-200/85 p-12 lg:mb-6 lg:gap-8 lg:border-8"
+    class="m-3 mb-4 flex flex-nowrap items-center justify-center gap-6 border-4 border-base-content bg-base-200/85 p-12 max-[375px]:px-6 lg:mb-6 lg:gap-8 lg:border-8"
   >
     <div class="flex-1">
-      <h1 class="mb-6 font-mono text-5xl font-bold tracking-tight lg:text-8xl">
+      <h1 class="mb-6 font-mono text-5xl font-bold tracking-tight max-[375px]:text-4xl lg:text-8xl">
         {{ $t('Hello.') }}
       </h1>
 

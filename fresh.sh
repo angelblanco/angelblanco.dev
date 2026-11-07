@@ -11,5 +11,6 @@ rm -rf */**/node_modules
 rm -rf */**/.nuxt
 rm -rf */**/.turbo
 rm -rf */**/.output
+rm -rf */**/storybook-static
 
 pnpm install

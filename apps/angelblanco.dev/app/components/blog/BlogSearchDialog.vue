@@ -35,13 +35,13 @@
       </div>
 
       <div class="max-h-[60dvh] overflow-y-auto p-2" aria-live="polite">
-        <p v-if="status === 'pending'" class="p-4 text-sm text-base-content/60">
+        <p v-if="status === 'pending'" class="p-4 text-sm text-base-content/70">
           {{ $t('searchLoading') }}
         </p>
         <p v-else-if="status === 'error'" class="p-4 text-sm text-error">
           {{ $t('searchError') }}
         </p>
-        <p v-else-if="query.trim() && !results.length" class="p-4 text-sm text-base-content/60">
+        <p v-else-if="query.trim() && !results.length" class="p-4 text-sm text-base-content/70">
           {{ $t('searchNoResults', { query: query.trim() }) }}
         </p>
         <ul v-show="results.length" id="blog-search-results" role="listbox" :aria-label="$t('searchResults')">
@@ -56,10 +56,10 @@
             @click="select(index)"
             @mousemove="activeIndex = index"
           >
-            <div v-if="result.titles.length" class="truncate text-xs text-base-content/60">
+            <div v-if="result.titles.length" class="truncate text-xs text-base-content/70">
               {{ result.titles.join(' › ') }}
             </div>
-            <div class="font-semibold" :class="{ 'text-primary': index === activeIndex }">
+            <div class="font-semibold" :class="{ 'text-primary-content dark:text-primary': index === activeIndex }">
               {{ result.title }}
             </div>
             <div v-if="result.snippet" class="line-clamp-2 text-sm text-base-content/70">
@@ -69,7 +69,7 @@
         </ul>
       </div>
 
-      <div class="hidden items-center gap-4 border-t border-base-300 px-4 py-2 text-xs text-base-content/60 sm:flex">
+      <div class="hidden items-center gap-4 border-t border-base-300 px-4 py-2 text-xs text-base-content/70 sm:flex">
         <span><kbd class="kbd kbd-xs">↑</kbd> <kbd class="kbd kbd-xs">↓</kbd> {{ $t('searchHintNavigate') }}</span>
         <span><kbd class="kbd kbd-xs">↵</kbd> {{ $t('searchHintOpen') }}</span>
       </div>
@@ -83,17 +83,21 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncDataRequestStatus } from '#app';
+
+const { sections, status } = defineProps<{
+  sections: SearchSection[];
+  status: AsyncDataRequestStatus;
+}>();
+
 const open = defineModel<boolean>('open', { required: true });
 
-const { locale } = useI18n();
 const dialog = useTemplateRef('dialog');
 const input = useTemplateRef('input');
 const query = ref('');
 const activeIndex = ref(0);
 
-const { data: sections, status } = useLazyFetch(() => `/api/search/${locale.value}.json`, { server: false });
-
-const results = computed(() => searchSections(sections.value ?? [], query.value));
+const results = computed(() => searchSections(sections, query.value));
 
 watch(results, () => {
   activeIndex.value = 0;
