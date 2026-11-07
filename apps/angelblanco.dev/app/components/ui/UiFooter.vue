@@ -1,7 +1,7 @@
 <template>
-  <footer class="flex border-t border-base-300 bg-base-100">
-    <div class="mx-auto flex max-w-ui flex-1 items-center gap-2">
-      <div class="border-r border-base-300 p-3 text-xs md:text-sm">
+  <footer class="border-t border-base-300 bg-base-100">
+    <div class="mx-auto flex max-w-ui flex-1 flex-wrap items-center justify-center gap-2">
+      <div class="border-base-300 p-3 text-xs md:border-r md:text-sm">
         <div class="tracking-wide">
           <span class="mr-1">{{ t('Personal website of') }} </span>
           <NuxtLinkLocale to="/about" class="font-semibold hover:text-primary">
@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div class="ml-auto flex gap-4 p-3">
+      <div class="flex gap-4 p-3 md:ml-auto">
         <a class="btn btn-square btn-ghost btn-sm" :href="rssPath" :title="t('feedRss')" :aria-label="t('feedRss')" data-testid="rss-feed">
           <Icon name="tabler:rss" class="size-6" />
         </a>
