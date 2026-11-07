@@ -5,6 +5,9 @@ import { articleBody, articleHeadingIds } from '../../../.storybook/fixtures/art
 import { emptyTocFixture, postFixture, realBlogPostSummaries, tocFixture } from '../../../.storybook/fixtures/blog';
 import UiContentWrapper from '../ui/UiContentWrapper.vue';
 import BlogHeader from './BlogHeader.vue';
+import BlogPostMeta from './BlogPostMeta.vue';
+import BlogTags from './BlogTags.vue';
+import BlogToc from './BlogToc.vue';
 
 const eslintPost = realBlogPostSummaries[2]!;
 
@@ -16,6 +19,7 @@ const tocIds = tocFixture.links.flatMap(link => [
 const meta = {
   title: 'Blog/Header',
   component: BlogHeader,
+  subcomponents: { BlogPostMeta, BlogTags, BlogToc },
   args: { post: postFixture, alternativeLocale: 'es' },
 } satisfies Meta<typeof BlogHeader>;
 
@@ -29,8 +33,18 @@ export const Default: Story = {
 
     await expect(canvas.getByRole('heading', { level: 1 }).textContent?.trim()).toBe(postFixture.title);
     await expect(canvasElement.querySelector('a[href*="/about"]')).not.toBeNull();
+    await expect(canvasElement.querySelectorAll('.text-secondary a')).toHaveLength(1);
     await expect(canvasElement.querySelector('.text-secondary a')).toHaveClass('bg-secondary/10', 'dark:font-medium');
-    await expect(canvasElement.querySelector('.cursor-pointer')).not.toBeNull();
+    await expect(canvasElement.querySelectorAll('.cursor-pointer')).toHaveLength(1);
+    await expect(canvasElement.querySelector('time')).toHaveAttribute('datetime', `${postFixture.date}T00:00:00.000Z`);
+    await expect(canvasElement.querySelector('.i-tabler\\:clock')).not.toBeNull();
+
+    const tagLinks = within(canvas.getByRole('list')).getAllByRole('link');
+
+    await expect(tagLinks).toHaveLength(postFixture.tags.length);
+    for (const [index, tag] of postFixture.tags.entries()) {
+      await expect(tagLinks[index]).toHaveAttribute('href', expect.stringMatching(new RegExp(`/blog/tags/${tag}/?$`)));
+    }
   },
 };
 
@@ -57,7 +71,13 @@ export const EmptyToc: Story = {
 
 export const LongTitle: Story = {
   args: {
-    post: { ...postFixture, title: eslintPost.title, date: eslintPost.date },
+    post: {
+      ...postFixture,
+      title: eslintPost.title,
+      date: eslintPost.date,
+      readingTime: eslintPost.readingTime,
+      tags: eslintPost.tags,
+    },
   },
   play: async ({ canvasElement }) => {
     const heading = within(canvasElement).getByRole('heading', { level: 1 });
