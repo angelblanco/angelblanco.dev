@@ -57,6 +57,14 @@ export const Default: Story = {
     await expect(repoLink).toHaveAttribute('rel', expect.stringContaining('noopener'));
     await expect(repoLink).toHaveAttribute('aria-label');
 
+    const searchButtons = within(canvas.getByRole('banner')).getAllByTestId('blog-search-button');
+
+    await expect(searchButtons).toHaveLength(1);
+    await expect(searchButtons[0]).toHaveAttribute('type', 'button');
+    await expect(searchButtons[0]).toHaveAttribute('aria-haspopup', 'dialog');
+    await expect(searchButtons[0]).toHaveAttribute('aria-keyshortcuts', 'Meta+K Control+K');
+    await expect(canvasElement.querySelector('dialog')).toBeNull();
+
     await expect(toggle).toHaveAttribute('type', 'button');
     await expect(toggle).toHaveAttribute('aria-label');
     await expect(toggle).toHaveAttribute('aria-controls', 'ui-nav-bar-menu');

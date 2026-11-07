@@ -23,15 +23,15 @@ Storybook 10 runs **standalone** with the community framework [`@storybook-vue/n
 - **Separate build dir.** The Storybook CLI sets `STORYBOOK=true` for `dev` and `build`, and `nuxt.config.ts` then uses `buildDir: 'node_modules/.cache/storybook/.nuxt'`, so Storybook never overwrites the `.nuxt` folder of `pnpm dev`, `pnpm build` or `pnpm typecheck`.
 - **Pinned versions.** `storybook`, every `@storybook/*` package and `eslint-plugin-storybook` share one exact version (10.6.5), enforced by `overrides` in `pnpm-workspace.yaml`. `@storybook-vue/nuxt` is pinned to 10.0.3, the first release that works with Nuxt 4.6, Vite 8 and pnpm workspaces. Upgrade them together.
 
-| File                              | Purpose                                                                                                                                                                                                                                                                     |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `.storybook/main.ts`              | Framework, story glob (`../app/**/*.stories.ts`), addons (`addon-docs`, `addon-a11y`), `public/` as static dir, the color-mode helper and the Shiki and docs canvas styles (docs canvases get the theme's `base-100` background), `__IS_SSR__: 'false'` and `optimizeDeps`. |
-| `.storybook/annotations.ts`       | Theme and locale toolbar globals, the global decorator, and `a11y.test: 'todo'`. Shared by Storybook and the Vitest smoke test.                                                                                                                                             |
-| `.storybook/preview.ts`           | Spreads `annotations.ts` and adds the global `autodocs` tag (Storybook reads it statically from this file), loads the fonts and runs `serializeNuxtApps()` (browser only).                                                                                                  |
-| `.storybook/serializeNuxtApps.ts` | Runs the per-canvas Nuxt app setups one at a time (see [Upgrade path](#upgrade-path)).                                                                                                                                                                                      |
-| `.storybook/dev.sh`               | Resolves the port and starts `storybook dev`.                                                                                                                                                                                                                               |
-| `.storybook/fixtures/*.ts`        | Static data shared by stories: `blog.ts` (posts, TOCs), `article.ts` (one post body quoted from post 0005, used by `UI/ContentWrapper` and `Blog/Header`) and `shiki.ts` (Shiki token palette and a `ProsePre` block helper).                                               |
-| `test/nuxt/stories.test.ts`       | Portable stories smoke test.                                                                                                                                                                                                                                                |
+| File                              | Purpose                                                                                                                                                                                                                                                                                                         |
+| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.storybook/main.ts`              | Framework, story glob (`../app/**/*.stories.ts`), addons (`addon-docs`, `addon-a11y`), `public/` as static dir, the color-mode helper and the Shiki and docs canvas styles (docs canvases get the theme's `base-100` background), `__IS_SSR__: 'false'` and `optimizeDeps`.                                     |
+| `.storybook/annotations.ts`       | Theme and locale toolbar globals, the global decorator, and `a11y.test: 'todo'`. Shared by Storybook and the Vitest smoke test.                                                                                                                                                                                 |
+| `.storybook/preview.ts`           | Spreads `annotations.ts` and adds the global `autodocs` tag (Storybook reads it statically from this file), loads the fonts and runs `serializeNuxtApps()` (browser only).                                                                                                                                      |
+| `.storybook/serializeNuxtApps.ts` | Runs the per-canvas Nuxt app setups one at a time (see [Upgrade path](#upgrade-path)).                                                                                                                                                                                                                          |
+| `.storybook/dev.sh`               | Resolves the port and starts `storybook dev`.                                                                                                                                                                                                                                                                   |
+| `.storybook/fixtures/*.ts`        | Static data shared by stories: `blog.ts` (posts with reading times and tags, `blogTagCounts`, TOCs), `article.ts` (one post body quoted from post 0005, used by `UI/ContentWrapper` and `Blog/Header`), `search.ts` (search index sections) and `shiki.ts` (Shiki token palette and a `ProsePre` block helper). |
+| `test/nuxt/stories.test.ts`       | Portable stories smoke test.                                                                                                                                                                                                                                                                                    |
 
 `.storybook/main.ts` is type checked by `pnpm typecheck` (through `.nuxt/tsconfig.node.json`), and `preview.ts` and the fixtures through the app `tsconfig`. ESLint applies `eslint-plugin-storybook`'s `flat/recommended` config.
 
@@ -78,7 +78,7 @@ Storybook 10 runs **standalone** with the community framework [`@storybook-vue/n
    - Slots or composition: `render: args => ({ setup: () => () => h(Component, args, { default: () => h(...) }) })`.
    - Wrapper decorators: `story => ({ setup: () => () => h('div', { class: 'h-48' }, h(story())) })`.
 
-3. **Static data only.** Use fixtures from `.storybook/fixtures` or local constants. No MSW, no `mockNuxtImport` and no framework mocking APIs (not released in 10.0.3). Components that fetch data are split into a container and a presentational component, and only the presentational one gets stories (`HomeBlog.vue` queries content and renders `HomeBlogList.vue`, which takes `latestPost` and `otherPosts` as props).
+3. **Static data only.** Use fixtures from `.storybook/fixtures` or local constants. No MSW, no `mockNuxtImport` and no framework mocking APIs (not released in 10.0.3). Components that fetch data are split into a container and a presentational component, and only the presentational one gets stories (`HomeBlog.vue` queries content and renders `HomeBlogList.vue`, which takes `latestPost` and `otherPosts` as props; `pages/blog/[slug].vue` passes the post summaries to `BlogRelated`, and `BlogSearch.vue` fetches the search index for `BlogSearchDialog`).
 
 4. **Icons.** Stories may only use icon names that the app already uses. Stories are excluded from the icon client bundle scan, so a new name is not in the bundle (see [What Cannot Be Storied](#what-cannot-be-storied)), and removing the exclusion would ship it to production.
 
@@ -87,9 +87,14 @@ Storybook 10 runs **standalone** with the community framework [`@storybook-vue/n
    - Merge interaction stories that end in the same visual state as `Default` into `Default`'s play function.
    - Add `parameters.docs.description.story` when a story only differs from another after its play function runs, because play functions do not run on docs pages.
 
-6. **Code style.** No explanation comments, `interface` over object `type`, sorted imports (`pnpm lint:fix`).
+6. **Modals and empty states.**
+   - Stories of components that open a native `<dialog>` with `showModal()` (`BlogSearchDialog`) set `parameters.docs.story.inline = false`, so each modal stays inside its own docs iframe instead of covering the whole docs page.
+   - Presentational components that render nothing in their empty state (`BlogRelated` with no related posts) get no empty story: the smoke test requires non-empty HTML.
+   - Slot-only wrappers with no props or logic get no story, since their parents' stories already render them: `UiCenterContainer` (inside `UI/PageNotFound` and `Layouts/Default`) and `layouts/empty.vue` (a bare `<div>` around the page).
 
-7. **Done means** `pnpm --filter @angelblanco/web lint`, `typecheck`, `test` and `build:storybook` pass, and the story renders without errors in `pnpm storybook`, both on its canvas and on its docs page.
+7. **Code style.** No explanation comments, `interface` over object `type`, sorted imports (`pnpm lint:fix`).
+
+8. **Done means** `pnpm --filter @angelblanco/web lint`, `typecheck`, `test` and `build:storybook` pass, and the story renders without errors in `pnpm storybook`, both on its canvas and on its docs page.
 
 ## Theme, Locale and Viewport
 
@@ -183,6 +188,7 @@ These warnings appear on every run and are harmless:
 - `[NUXT_B7002] Some vite.optimizeDeps.include entries could not be resolved: @nuxtjs/mdc > ...` (Nuxt's own list; ours in `main.ts` uses the resolvable `@nuxt/content > @nuxtjs/mdc > ...` form).
 - `` `vue-docgen-api` is deprecated and will be removed in the next major ``.
 - `One or more extensionless imports detected: "./shared/utils/feeds"`.
+- In `pnpm storybook`, the browser console forwards hundreds of `[unhead]` warnings (`twitter:*` meta deprecations, missing meta description, large inline style). Stories render no page head, so they do not apply.
 - Node `DEP0205` (`module.register()`), Vite's chunk size warning, `Found 2 warnings while optimizing generated CSS`, `[PLUGIN_TIMINGS]` and, in dev, the `server.hmr.*` deprecation.
 
 Any other warning or a red error overlay is a real problem.

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook-vue/nuxt';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
+import { THEME_TRANSITION_CLASS } from '../../composables/useThemeTransition';
 import UiThemeSwitcher from './UiThemeSwitcher.vue';
 
 const meta = {
@@ -30,7 +31,22 @@ async function expectSwap(button: HTMLElement, pressed: string) {
     : 'swap-on');
 }
 
+async function toggleAndSettle(button: HTMLElement, pressed: string) {
+  await userEvent.click(button);
+  await waitFor(async () => {
+    await expectSwap(button, pressed);
+    await expect(document.documentElement).not.toHaveClass(THEME_TRANSITION_CLASS);
+  });
+}
+
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'The circular reveal from the button plays only in browsers with View Transitions and without `prefers-reduced-motion`; elsewhere the theme switches at once. On this page the toggle changes the theme of the whole docs page.',
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByRole('button');
@@ -47,10 +63,8 @@ export const Default: Story = {
       await expect(icon).toHaveClass('size-8');
 
     await expectSwap(button, pressed);
-    await userEvent.click(button);
-    await waitFor(() => expectSwap(button, toggled));
-    await userEvent.click(button);
-    await waitFor(() => expectSwap(button, pressed));
+    await toggleAndSettle(button, toggled);
+    await toggleAndSettle(button, pressed);
   },
 };
 
