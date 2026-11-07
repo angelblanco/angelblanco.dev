@@ -82,14 +82,25 @@ blogTagTitle: 'Artículos sobre #{tag}'
 blogTagDescription: 'Artículos sobre {tag} de Ángel Blanco: notas prácticas sobre desarrollo web, herramientas e infraestructura'
 blogRelatedPosts: Artículos relacionados
 searchOpen: Buscar en el blog
-searchPlaceholder: Buscar artículos…
+searchPlaceholder: 'Busca artículos, secciones o #etiquetas…'
 searchLoading: Cargando…
 searchError: No se ha podido cargar el índice de búsqueda.
 searchNoResults: 'Sin resultados para «{query}»'
+searchNoResultsHint: Prueba con otras palabras o quita algún filtro de etiquetas.
 searchResults: Resultados de búsqueda
+searchResultCount: 'ningún resultado | {count} resultado | {count} resultados'
 searchClose: Cerrar
+searchCancel: Cancelar
+searchClear: Borrar búsqueda
+searchClearFilters: Quitar filtros
+searchRecent: Artículos recientes
+searchPosts: Artículos
+searchFilterTags: Filtrar por etiqueta
+searchRemoveTag: 'Quitar #{tag}'
 searchHintNavigate: para moverte
 searchHintOpen: para abrir
+searchHintTags: temas
+searchHintRemoveTag: quitar etiqueta
 blogTaggedPrefix: Artículos sobre
 blogArticleCount: 'ningún artículo | {count} artículo | {count} artículos'
 blogTopics: Temas
