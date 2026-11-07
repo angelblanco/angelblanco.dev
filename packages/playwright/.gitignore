@@ -6,3 +6,6 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Visual snapshots are machine dependent and generated locally on the first run
+*-snapshots/

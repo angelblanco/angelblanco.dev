@@ -82,7 +82,7 @@ for (const locale of locales) {
     - Use helper functions from `utils.ts` where appropriate.
 4.  **Run and Verify:**
     - Execute the tests using `pnpm test:e2e` from within the `packages/playwright` directory.
-    - To update snapshots, run `pnpm test:e2e --update-snapshots`.
+    - Visual snapshots (`*-snapshots/`) are git-ignored because they depend on the machine. The first run creates the missing ones (`updateSnapshots: 'missing'`) and later runs compare against them. To refresh them after an intended UI change, run `pnpm test:e2e --update-snapshots`.
     - If a test run fails, inform the user and let the user decide if you must continue with fixes or not.
 
 By following these guidelines, we ensure our E2E test suite is clean, efficient, and provides comprehensive coverage for our application.
