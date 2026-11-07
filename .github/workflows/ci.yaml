@@ -43,3 +43,6 @@ jobs:
 
       - name: Nuxt Build
         run: pnpm build
+
+      - name: Storybook Build
+        run: pnpm build:storybook

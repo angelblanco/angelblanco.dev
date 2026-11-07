@@ -1,3 +1,4 @@
+import process from 'node:process';
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
 import { readingTime } from './app/utils/readingTime';
@@ -17,9 +18,16 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
   ],
 
+  ...(process.env.STORYBOOK === 'true'
+    ? { buildDir: 'node_modules/.cache/storybook/.nuxt' }
+    : {}),
+
   typescript: {
     tsConfig: {
-      include: ['../test/**/*'],
+      include: ['../test/**/*', '../.storybook/preview.ts', '../.storybook/fixtures/**/*'],
+    },
+    nodeTsConfig: {
+      include: ['../.storybook/main.ts'],
     },
   },
 
@@ -147,6 +155,9 @@ export default defineNuxtConfig({
           '.data',
           '.nuxt',
           '.turbo',
+          '.storybook',
+          'storybook-static',
+          '**/*.stories.ts',
         ],
       },
     },

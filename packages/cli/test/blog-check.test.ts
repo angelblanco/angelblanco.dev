@@ -98,6 +98,14 @@ describe('checkPost', () => {
     ]);
   });
 
+  it('flags posts whose first section skips H2', () => {
+    const post = en('\n### The easy way\n\n#### 1. Install Node.js\n');
+
+    expect(messages(checkPost(post, context))).toEqual([
+      'Heading jumps from H1 to H3',
+    ]);
+  });
+
   it('flags code fences without language, images without alt and vague link text', () => {
     const post = en('\n```\nls\n```\n\n![](/a.png)\n\nRead it [here](https://a.dev).\n');
 

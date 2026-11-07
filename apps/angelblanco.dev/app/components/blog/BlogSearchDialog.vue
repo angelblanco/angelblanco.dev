@@ -30,7 +30,7 @@
             type="text"
             enterkeyhint="search"
             role="combobox"
-            class="h-12 min-w-[10ch] flex-1 bg-transparent text-base outline-none placeholder:text-base-content/50 sm:text-lg"
+            class="h-12 min-w-[10ch] flex-1 bg-transparent text-base outline-none placeholder:text-base-content/60 sm:text-lg"
             autocomplete="off"
             autocapitalize="off"
             spellcheck="false"
@@ -84,12 +84,12 @@
           :aria-label="`#${tag}, ${$t('blogArticleCount', count)}`"
           @click="toggleTag(tag)"
         >
-          #{{ tag }}<sup class="ml-0.5 text-[0.7em] opacity-60">{{ count }}</sup>
+          #{{ tag }}<sup class="ml-0.5 text-[0.7em] opacity-70">{{ count }}</sup>
         </button>
       </div>
 
       <div class="min-h-0 flex-1 overflow-y-auto overscroll-contain p-2">
-        <p v-if="status === 'pending' || status === 'idle'" class="flex items-center gap-2 p-4 text-sm text-base-content/60">
+        <p v-if="status === 'pending' || status === 'idle'" class="flex items-center gap-2 p-4 text-sm text-base-content/70">
           <span class="loading loading-sm loading-dots" aria-hidden="true" />
           {{ $t('searchLoading') }}
         </p>
@@ -101,7 +101,7 @@
           <p class="font-medium">
             {{ $t('searchNoResults', { query: query.trim() || selectedTags.map(tag => `#${tag}`).join(' ') }) }}
           </p>
-          <p class="text-sm text-base-content/60">
+          <p class="text-sm text-base-content/70">
             {{ $t('searchNoResultsHint') }}
           </p>
           <button v-if="selectedTags.length" type="button" class="btn mt-2 btn-outline btn-sm" @click="selectedTags = []">
@@ -117,7 +117,7 @@
           :aria-label="$t('searchResults')"
         >
           <li v-if="results.hits.length" role="presentation">
-            <p id="blog-search-group-posts" class="px-3 pt-1 pb-2 text-xs font-semibold tracking-wider text-base-content/50 uppercase">
+            <p id="blog-search-group-posts" class="px-3 pt-1 pb-2 text-xs font-semibold tracking-wider text-base-content/70 uppercase">
               {{ isRecent ? $t('searchRecent') : $t('searchPosts') }}
             </p>
             <ul role="group" aria-labelledby="blog-search-group-posts" class="space-y-1">
@@ -132,19 +132,19 @@
                   @mousemove="activeIndex = indexOf(post.path)"
                 >
                   <span
-                    class="grid size-10 flex-none place-items-center rounded-field border border-base-300 text-base-content/60 transition-colors group-aria-selected:border-primary group-aria-selected:bg-primary group-aria-selected:text-primary-content"
+                    class="grid size-10 flex-none place-items-center rounded-field border border-base-300 text-base-content/70 transition-colors group-aria-selected:border-primary group-aria-selected:bg-primary group-aria-selected:text-primary-content"
                     :class="{ 'opacity-60': !matched }"
                   >
                     <Icon name="tabler:file-text" class="size-5" />
                   </span>
                   <div class="min-w-0 flex-1">
-                    <p class="font-semibold text-balance group-aria-selected:text-primary">
+                    <p class="font-semibold text-balance group-aria-selected:text-primary-content dark:group-aria-selected:text-primary">
                       <BlogSearchHighlight :text="post.title" :terms="results.terms" />
                     </p>
                     <p v-if="postSnippet(post)" class="mt-0.5 line-clamp-2 text-sm text-base-content/70">
                       <BlogSearchHighlight :text="postSnippet(post)" :terms="results.terms" />
                     </p>
-                    <BlogPostMeta :post="post" class="mt-1.5 text-xs text-base-content/60">
+                    <BlogPostMeta :post="post" class="mt-1.5 text-xs text-base-content/70">
                       <span class="hidden truncate font-mono sm:inline">
                         <span aria-hidden="true" class="mr-2">·</span>{{ post.tags.map(tag => `#${tag}`).join(' ') }}
                       </span>
@@ -163,12 +163,12 @@
                   @click="select(indexOf(section.id))"
                   @mousemove="activeIndex = indexOf(section.id)"
                 >
-                  <Icon name="tabler:hash" class="mt-0.5 size-4 flex-none text-base-content/50 group-aria-selected:text-primary" />
+                  <Icon name="tabler:hash" class="mt-0.5 size-4 flex-none text-base-content/70 group-aria-selected:text-primary-content dark:group-aria-selected:text-primary" />
                   <div class="min-w-0 flex-1">
-                    <p v-if="breadcrumb(section, post)" class="truncate text-xs text-base-content/50">
+                    <p v-if="breadcrumb(section, post)" class="truncate text-xs text-base-content/70">
                       {{ breadcrumb(section, post) }}
                     </p>
-                    <p class="text-sm font-medium group-aria-selected:text-primary">
+                    <p class="text-sm font-medium group-aria-selected:text-primary-content dark:group-aria-selected:text-primary">
                       <BlogSearchHighlight :text="section.title" :terms="results.terms" />
                     </p>
                     <p class="line-clamp-2 text-sm text-base-content/70">
@@ -181,7 +181,7 @@
           </li>
 
           <li v-if="results.tags.length" role="presentation">
-            <p id="blog-search-group-topics" class="px-3 pt-1 pb-2 text-xs font-semibold tracking-wider text-base-content/50 uppercase">
+            <p id="blog-search-group-topics" class="px-3 pt-1 pb-2 text-xs font-semibold tracking-wider text-base-content/70 uppercase">
               {{ $t('blogTopics') }}
             </p>
             <ul role="group" aria-labelledby="blog-search-group-topics" class="space-y-1 font-mono">
@@ -192,22 +192,22 @@
                 role="option"
                 :aria-selected="indexOf(`tag:${tag}`) === activeIndex"
                 data-testid="blog-search-topic"
-                class="group flex cursor-pointer items-baseline gap-3 rounded-field px-3 py-2.5 transition-colors aria-selected:bg-primary/10 aria-selected:text-primary aria-selected:ring-1 aria-selected:ring-primary/30 dark:aria-selected:bg-primary/20"
+                class="group flex cursor-pointer items-baseline gap-3 rounded-field px-3 py-2.5 transition-colors aria-selected:bg-primary/10 aria-selected:text-primary-content aria-selected:ring-1 aria-selected:ring-primary/30 dark:aria-selected:bg-primary/20 dark:aria-selected:text-primary"
                 @click="select(indexOf(`tag:${tag}`))"
                 @mousemove="activeIndex = indexOf(`tag:${tag}`)"
               >
                 <span class="text-lg font-semibold">
-                  <span class="font-light text-primary">#</span><BlogSearchHighlight :text="tag" :terms="results.terms" />
+                  <span class="font-light text-primary-content dark:text-primary">#</span><BlogSearchHighlight :text="tag" :terms="results.terms" />
                 </span>
                 <span class="flex-1 border-b border-dotted border-base-content/25 group-aria-selected:border-primary/50" aria-hidden="true" />
-                <span class="text-sm text-base-content/60 group-aria-selected:text-primary">{{ $t('blogArticleCount', count) }}</span>
+                <span class="text-sm text-base-content/70 group-aria-selected:text-primary-content dark:group-aria-selected:text-primary">{{ $t('blogArticleCount', count) }}</span>
               </li>
             </ul>
           </li>
         </ul>
       </div>
 
-      <div class="flex flex-none items-center gap-4 border-t border-base-300 bg-base-200/50 px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-xs text-base-content/60">
+      <div class="flex flex-none items-center gap-4 border-t border-base-300 bg-base-200/50 px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-xs text-base-content/70">
         <span class="hidden items-center gap-1 sm:inline-flex"><kbd class="kbd kbd-xs">↑</kbd><kbd class="kbd kbd-xs">↓</kbd> {{ $t('searchHintNavigate') }}</span>
         <span class="hidden items-center gap-1 sm:inline-flex"><kbd class="kbd kbd-xs">↵</kbd> {{ $t('searchHintOpen') }}</span>
         <span class="hidden items-center gap-1 sm:inline-flex"><kbd class="kbd kbd-xs">#</kbd> {{ $t('searchHintTags') }}</span>
@@ -226,6 +226,13 @@
 </template>
 
 <script lang="ts" setup>
+import type { AsyncDataRequestStatus } from '#app';
+
+const { data, status } = defineProps<{
+  data?: BlogSearchData;
+  status: AsyncDataRequestStatus;
+}>();
+
 const open = defineModel<boolean>('open', { required: true });
 
 const { locale } = useI18n();
@@ -238,11 +245,9 @@ const activeIndex = ref(0);
 
 const emptyResults: BlogSearchResults = { terms: [], tags: [], hits: [] };
 
-const { data, status } = useLazyFetch<BlogSearchData>(() => `/api/search/${locale.value}.json`, { server: false });
-
 const index = computedAsync(
-  () => data.value
-    ? createBlogSearchIndex(data.value, locale.value === 'es'
+  () => data
+    ? createBlogSearchIndex(data, locale.value === 'es'
         ? 'spanish'
         : 'english')
     : undefined,

@@ -15,7 +15,7 @@
           <div v-if="description" class="mt-1 text-sm text-base-content/70">
             {{ description }}
           </div>
-          <div class="mt-2 flex items-center gap-1 text-xs text-base-content/50">
+          <div class="mt-2 flex items-center gap-1 text-xs text-base-content/70">
             <Icon name="tabler:link" class="size-3" />
             github.com/{{ repo }}
           </div>

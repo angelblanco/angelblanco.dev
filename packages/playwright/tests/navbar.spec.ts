@@ -96,6 +96,17 @@ for (const locale of locales) {
     await page.waitForURL(localizedPath(locale, '/about/'));
   });
 
+  test(`navbar fits a 320px wide screen in locale: ${locale.code}`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.goto(locale.path);
+
+    const trans = getLocalizedTranslations(locale, NAVBAR_A11Y_TRANS);
+    const nav = page.getByRole('navigation', { name: trans.navigation });
+
+    await expect(page.getByRole('button', { name: trans.menu })).toBeInViewport({ ratio: 1 });
+    expect(await nav.evaluate(element => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(0);
+  });
+
   test(`theme switcher works in locale: ${locale.code}`, async ({ page }) => {
     await page.goto(locale.path);
     await ensureTheme(page, 'light');

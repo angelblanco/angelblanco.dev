@@ -4,7 +4,7 @@
       <NuxtLinkLocale
         :to="`/blog/tags/${tag}`"
         class="relative z-10 text-base-content/70 transition-colors hover:text-primary"
-        active-class="text-primary"
+        active-class="text-primary-content dark:text-primary"
       >
         #{{ tag }}
       </NuxtLinkLocale>

@@ -5,9 +5,9 @@
         :to="`/blog/tags/${tag}`"
         :aria-label="`#${tag}, ${$t('blogArticleCount', count)}`"
         class="text-base-content/80 transition-colors hover:text-primary"
-        active-class="text-primary"
+        active-class="text-primary-content dark:text-primary"
       >
-        #{{ tag }}<sup class="ml-0.5 text-[0.7em] text-base-content/50">{{ count }}</sup>
+        #{{ tag }}<sup class="ml-0.5 text-[0.7em] text-base-content/70">{{ count }}</sup>
       </NuxtLinkLocale>
     </li>
   </ul>

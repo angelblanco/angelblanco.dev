@@ -1,0 +1,188 @@
+import type { BlogSearchData } from '#shared/types/blogSearch';
+
+export const searchFixture: BlogSearchData = {
+  posts: [
+    {
+      path: '/blog/lint-tailwind-css-v4-with-eslint',
+      title: '@angelblanco/eslint-config 3.0 is out, now with Tailwind CSS',
+      description: '@angelblanco/eslint-config 3.0 is available on npm: optional Tailwind CSS v4 linting, @antfu/eslint-config v10 and ESLint 10.',
+      tags: [
+        'eslint',
+        'tailwindcss',
+        'tooling',
+        'npm',
+      ],
+      date: '2026-11-07',
+      readingTime: 2,
+      content: '@angelblanco/eslint-config 3.0 is available on npm: optional Tailwind CSS v4 linting, @antfu/eslint-config v10 and ESLint 10. @angelblanco/eslint-config 3.0 is available on npm. You can now lint your Tailwind CSS classes. When I started this blog and created my own ESLint config in 2025, there was no ESLint plugin for Tailwind CSS v4 yet. In November 2026 I\'m updating my open source repositories, and eslint-plugin-tailwindcss is finally ready. It\'s impressive how much the stack you use can change in a year, but I\'ll write about that in upcoming posts.',
+    },
+    {
+      path: '/blog/apt-install-php-85-on-ubuntu-26',
+      title: 'Install PHP 8.5 with apt on Ubuntu 26.04',
+      description: 'Install PHP 8.5 and Composer on Ubuntu 26.04 LTS with apt from Ondřej Surý\'s packages.sury.org repository, and keep them patched with apt upgrade.',
+      tags: [
+        'php',
+        'ubuntu',
+        'composer',
+        'bash',
+      ],
+      date: '2026-11-06',
+      readingTime: 11,
+      content: 'Install PHP 8.5 and Composer on Ubuntu 26.04 LTS with apt from Ondřej Surý\'s packages.sury.org repository, and keep them patched with apt upgrade. Yesterday I posted how to install Node.js 26 with apt so the operating system keeps it patched after October\'s security releases. Today it\'s PHP\'s turn, for the same reason: security breaches keep coming, and PHP has had its fair share. On September 24, PHP 8.5.11 fixed more than ten CVEs in OpenSSL, FPM, SOAP, Phar, and the HTTP stream wrapper, including a heap buffer overflow and a TLS hostname verification bypass. On October 21, PHP 8.5.12 went further: an emergency release for two critical vulnerabilities (CVE-2026-109618 and CVE-2026-109619, CVSS 9.2) that allow unauthenticated remote code execution. In php.net\'s own words, "updating is the only safe choice". The 8.4, 8.3, and 8.2 branches got the same fixes. Here\'s the catch: Ubuntu 26.04 LTS (Resolute Raccoon) ships PHP 8.5 in its archive, but it freezes the version at release time and backports the fixes it considers important. At the time of writing, apt gives you PHP 8.5.4 with patches on top, while php.net is already at 8.5.12. To be fair, Ubuntu\'s security team handles the urgent stuff well: it shipped the October RCE fixes the same day as php.net. But the September batch took 25 days to land, and upstream\'s regular bug fixes rarely make it at all. If you want the full upstream release, the easiest way is still to let the operating system handle it. Install PHP with apt from Ondřej Surý\'s repository, the same packages that have powered PHP on Debian and Ubuntu for more than a decade, and let sudo apt upgrade take care of the rest.',
+    },
+    {
+      path: '/blog/apt-install-node-26-on-ubuntu-26',
+      title: 'Install Node.js 26 with apt on Ubuntu 26.04',
+      description: 'On October 21, 2026, Node.js released security patches for ten vulnerabilities affecting its supported versions, four of them rated high, including a remote code execution issue. Unsupported versions, such as Node.js 20 and 25, won\'t be updated.',
+      tags: [
+        'nodejs',
+        'ubuntu',
+        'javascript',
+        'bash',
+      ],
+      date: '2026-11-05',
+      readingTime: 7,
+      content: 'On October 21, 2026, Node.js released security patches for ten vulnerabilities affecting its supported versions, four of them rated high, including a remote code execution issue. Unsupported versions, such as Node.js 20 and 25, won\'t be updated. Keeping Node.js up to date isn\'t optional: it\'s worth spending some time on it, both on your personal computer and on your server. The easiest way is to let the operating system handle those updates for you. To do that, install Node.js with apt from the NodeSource repository and let sudo apt upgrade take care of the rest. Now that Node.js 26 (Lithium) has been LTS since October 28, 2026 and Ubuntu 26.04 LTS (Resolute Raccoon) has been out for months, it\'s a good time to get it properly installed. The recipe is the same as in my Node.js 24 on Ubuntu 24 guide.',
+    },
+    {
+      path: '/blog/create-your-eslint-config',
+      title: 'Create your own ESLint config and share it across projects',
+      description: 'If you\'ve ever worked on multiple projects, you know the pain of copying ESLint configurations between repositories. Every time you set up a new project, you either start from scratch or copy the eslint.config.js file from your last one. There\'s a better way: publish your own shareable ESLint config package.',
+      tags: [
+        'eslint',
+        'typescript',
+        'vue',
+        'tooling',
+        'npm',
+      ],
+      date: '2025-11-02',
+      readingTime: 3,
+      content: 'If you\'ve ever worked on multiple projects, you know the pain of copying ESLint configurations between repositories. Every time you set up a new project, you either start from scratch or copy the eslint.config.js file from your last one. There\'s a better way: publish your own shareable ESLint config package.',
+    },
+    {
+      path: '/blog/install-node-24-on-ubuntu-24',
+      title: 'Install Node.js 24 on Ubuntu 24.04',
+      description: 'Getting Node.js 24 running on Ubuntu 24 should be a straightforward process. While Ubuntu comes with a version of Node.js in its default repositories, you might want to use Node.js 24, which became LTS on October 28, 2025 and is supported until April 2028. For a new setup, install Node.js 26 on Ubuntu 26.04 instead. This guide offers two simple methods to get you set up quickly.',
+      tags: [
+        'nodejs',
+        'ubuntu',
+        'javascript',
+        'bash',
+      ],
+      date: '2025-10-12',
+      readingTime: 6,
+      content: 'Getting Node.js 24 running on Ubuntu 24 should be a straightforward process. While Ubuntu comes with a version of Node.js in its default repositories, you might want to use Node.js 24, which became LTS on October 28, 2025 and is supported until April 2028. For a new setup, install Node.js 26 on Ubuntu 26.04 instead. This guide offers two simple methods to get you set up quickly. We\'ll cover a one-liner script that automates everything, including setting up a proper global prefix for npm and enabling Yarn and pnpm via Corepack. For those who prefer manual control, we\'ll also walk through each step in detail.',
+    },
+    {
+      path: '/blog/hello',
+      title: 'From Svelte to Nuxt: Rebuilding my portfolio in 2025',
+      description: 'It\'s 2025, and I\'ve just rolled out a complete rebuild of my personal website. I\'ve migrated from a Svelte and Sapper stack to Nuxt, Tailwind CSS and a Turborepo monorepo. It wasn\'t a cosmetic update but a full rewrite, driven by five years of changes in the frontend landscape and by the wish to use the same tools at home as at work.',
+      tags: [
+        'nuxt',
+        'vue',
+        'svelte',
+        'turborepo',
+        'tailwindcss',
+      ],
+      date: '2025-09-27',
+      readingTime: 4,
+      content: 'It\'s 2025, and I\'ve just rolled out a complete rebuild of my personal website. I\'ve migrated from a Svelte and Sapper stack to Nuxt, Tailwind CSS and a Turborepo monorepo. It wasn\'t a cosmetic update but a full rewrite, driven by five years of changes in the frontend landscape and by the wish to use the same tools at home as at work.',
+    },
+  ],
+  sections: [
+    {
+      id: '/blog/hello#whats-next',
+      postPath: '/blog/hello',
+      title: 'What\'s next?',
+      titles: [
+        'From Svelte to Nuxt: Rebuilding my portfolio in 2025',
+      ],
+      content: 'I want to write more, share some ideas I\'ve been thinking about for a long time, and maybe start contributing to an open source project. Thanks for reading. See you around.',
+      level: 2,
+    },
+    {
+      id: '/blog/create-your-eslint-config#my-config-angelblancoeslint-config',
+      postPath: '/blog/create-your-eslint-config',
+      title: 'My config: @angelblanco/eslint-config',
+      titles: [
+        'Create your own ESLint config and share it across projects',
+      ],
+      content: 'My configuration, @angelblanco/eslint-config, is available on npm, and the source code is on GitHub:',
+      level: 2,
+    },
+    {
+      id: '/blog/apt-install-node-26-on-ubuntu-26#the-easy-way',
+      postPath: '/blog/apt-install-node-26-on-ubuntu-26',
+      title: 'The easy way',
+      titles: [
+        'Install Node.js 26 with apt on Ubuntu 26.04',
+      ],
+      content: 'As before, you can install everything with a single command. The script installs Node.js 26 from NodeSource, configures a global npm prefix (so you don\'t need sudo for global packages), and can optionally install pnpm and Bun. The script asks for confirmation at each major step. As always, read the script before you pipe it into bash. Running random scripts from the internet is a fun hobby until it isn\'t. If you don\'t have curl installed:',
+      level: 3,
+    },
+    {
+      id: '/blog/apt-install-node-26-on-ubuntu-26#_4-install-pnpm',
+      postPath: '/blog/apt-install-node-26-on-ubuntu-26',
+      title: '4. Install pnpm',
+      titles: [
+        'Install Node.js 26 with apt on Ubuntu 26.04',
+        'The step-by-step guide',
+      ],
+      content: 'Since Corepack is no longer included, install pnpm with its standalone script: The installer adds pnpm to your PATH in your shell config, so open a new terminal (or source your config file) before you run pnpm --version. From then on, pnpm self-update keeps it up to date.',
+      level: 4,
+    },
+    {
+      id: '/blog/apt-install-php-85-on-ubuntu-26#whats-new-in-php-85',
+      postPath: '/blog/apt-install-php-85-on-ubuntu-26',
+      title: 'What\'s new in PHP 8.5',
+      titles: [
+        'Install PHP 8.5 with apt on Ubuntu 26.04',
+      ],
+      content: 'If you\'re coming from PHP 8.4 or older, here are a few reasons to upgrade beyond security. The release announcement has the full list, but my favorites are: The pipe operator, to chain callables from left to right without temporary variables. clone() with properties, which turns the "with-er" pattern for readonly classes into one line. The #[\\NoDiscard] attribute, which warns when someone ignores a return value that matters. A native URI extension, with URL parsing that follows RFC 3986 and WHATWG, no more parse_url() surprises. array_first() and array_last(). Finally. Here\'s the pipe operator turning a title into a slug:',
+      level: 3,
+    },
+    {
+      id: '/blog/apt-install-php-85-on-ubuntu-26#the-easy-way',
+      postPath: '/blog/apt-install-php-85-on-ubuntu-26',
+      title: 'The easy way',
+      titles: [
+        'Install PHP 8.5 with apt on Ubuntu 26.04',
+      ],
+      content: 'As usual, you can install everything with a single command. The script adds the Sury repository, installs PHP 8.5 with the most common extensions, makes it the default php, and optionally installs Composer. The script asks for confirmation at each major step. As always, read the script before you pipe it into bash. Trusting random URLs with sudo is a great way to learn about incident response. If you don\'t have curl installed:',
+      level: 3,
+    },
+    {
+      id: '/blog/apt-install-php-85-on-ubuntu-26#_1-install-the-prerequisites',
+      postPath: '/blog/apt-install-php-85-on-ubuntu-26',
+      title: '1. Install the prerequisites',
+      titles: [
+        'Install PHP 8.5 with apt on Ubuntu 26.04',
+        'The step-by-step guide',
+      ],
+      content: 'PHP doesn\'t need unzip, but Composer uses it to extract packages much faster than its PHP fallback.',
+      level: 4,
+    },
+    {
+      id: '/blog/apt-install-php-85-on-ubuntu-26#_5-make-php-85-the-default',
+      postPath: '/blog/apt-install-php-85-on-ubuntu-26',
+      title: '5. Make PHP 8.5 the default',
+      titles: [
+        'Install PHP 8.5 with apt on Ubuntu 26.04',
+        'The step-by-step guide',
+      ],
+      content: 'The php command is managed by update-alternatives, so you can choose which version answers to it:',
+      level: 4,
+    },
+    {
+      id: '/blog/apt-install-php-85-on-ubuntu-26#_6-install-composer',
+      postPath: '/blog/apt-install-php-85-on-ubuntu-26',
+      title: '6. Install Composer',
+      titles: [
+        'Install PHP 8.5 with apt on Ubuntu 26.04',
+        'The step-by-step guide',
+      ],
+      content: 'The official installer publishes a SHA-384 checksum, so verify it before running anything: Using install instead of mv makes root the owner of the binary, which matters because you\'ll run sudo composer self-update later.',
+      level: 4,
+    },
+  ],
+};

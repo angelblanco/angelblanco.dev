@@ -12,19 +12,17 @@ We follow the [Vue testing philosophy](https://vue-test-utils.vuejs.org/guide/#w
 
 ## Test Suites
 
-Our `apps/angelblanco.dev/vitest.config.ts` is configured with three distinct test projects, each serving a specific purpose:
+Our `apps/angelblanco.dev/vitest.config.ts` is configured with two test projects, each serving a specific purpose:
 
 1.  **`unit`**: For simple unit tests that do not require a Nuxt runtime environment.
     - **Location**: `test/unit/**/*.test.ts`
     - **Environment**: `node`
 
-2.  **`nuxt`**: For component tests and unit tests that depend on the Nuxt runtime (e.g., auto-imported components, composables like `useAppConfig`).
+2.  **`nuxt`**: For component tests and unit tests that depend on the Nuxt runtime (e.g., auto-imported components, composables like `useAppConfig`), and for the Storybook stories smoke test.
     - **Location**: `test/nuxt/**/*.test.ts`
     - **Environment**: `nuxt` (powered by `happy-dom`)
 
-3.  **`e2e`**: For end-to-end tests that simulate user interactions in a browser.
-    - **Location**: `test/e2e/**/*.test.ts`
-    - **Environment**: `node` (using Playwright)
+E2E tests are not a Vitest project: they run with Playwright in `packages/playwright` (see [Playwright E2E Testing Conventions](./playwright-testing.md)).
 
 ## Unit & Component Testing (`unit` and `nuxt` suites)
 
@@ -59,27 +57,18 @@ For tests in the `nuxt` suite, we have access to powerful helpers:
 
   Real locale messages are **not** available in the `nuxt` suite. `@nuxt/test-utils` builds with `ssr: false`, but Nitro forces it back on because the app has a server component (`AboutBriefResume.server.vue`), which turns on component islands; `@nuxtjs/i18n` then stubs its client loaders and expects a server route to deliver the messages. `vitest.config.ts` reports `__IS_SSR__: 'false'` so the runtime stops fetching that route, which leaves the stubbed loaders resolving empty. Assert on translation keys, not translated text.
 
-## End-to-End Testing (`e2e` suite)
+## Stories Smoke Test
 
-E2E tests validate complete user flows. We use `playwright-core` orchestrated by `@nuxt/test-utils` within Vitest.
+`test/nuxt/stories.test.ts` mounts every Storybook story tagged `test` (all stories except those tagged `!test`) with `composeStories` and `mountSuspended`, checks that it renders, and runs its `play` function. A story whose play function breaks fails `pnpm test`.
 
-The `setup` function from `@nuxt/test-utils/e2e` handles building the app, starting a server, and launching a browser instance.
+- Play functions never assert on translated text: this suite returns translation keys while Storybook renders real text. Assert on roles, attributes and classes instead.
+- The global decorator from `.storybook/annotations.ts` runs here with the default globals (light, English). Stories that set `globals` (theme, locale, viewport) are tagged `!test`, because real messages, color mode and viewports only exist in the browser.
 
-```typescript
-import { $fetch, setup } from '@nuxt/test-utils/e2e';
-import { describe, expect, test } from 'vitest';
+See [Storybook Conventions](./storybook.md) for the authoring and play function rules.
 
-describe('My E2E Test', async () => {
-  await setup({
-    // test context options
-  });
+## End-to-End Testing
 
-  test('my test', async () => {
-    const html = await $fetch('/');
-    expect(html).toContain('Welcome to Nuxt');
-  });
-});
-```
+E2E tests validate complete user flows against the static build with Playwright. They live in `packages/playwright` and follow the [Playwright E2E Testing Conventions](./playwright-testing.md).
 
 ## Running Tests
 

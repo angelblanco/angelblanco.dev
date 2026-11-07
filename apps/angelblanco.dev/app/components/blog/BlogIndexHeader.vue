@@ -13,7 +13,7 @@
     </p>
     <template v-if="tags?.length">
       <BlogTagCloud :tags="tags" class="mt-6" />
-      <NuxtLinkLocale to="/blog/tags" class="mt-4 inline-flex items-center gap-1 text-sm text-primary hover:underline">
+      <NuxtLinkLocale to="/blog/tags" class="mt-4 inline-flex items-center gap-1 text-sm text-primary-content hover:underline dark:text-primary">
         {{ $t('blogAllTopics') }}
         <Icon name="tabler:arrow-right" class="size-4" />
       </NuxtLinkLocale>
