@@ -1,9 +1,9 @@
 <template>
   <header class="sticky top-0 z-30">
     <nav id="ui-nav-bar" class="bg-base-100" :aria-label="t('a11yMainNavigation')" :data-is-open="isMenuOpen ? 'true' : 'false'">
-      <div class="mx-auto flex max-w-ui flex-1 items-center gap-2 p-4">
+      <div class="mx-auto flex max-w-ui flex-1 items-center gap-2 p-4 max-[375px]:gap-1 max-[375px]:px-2">
         <div class="grow md:grow-0">
-          <NuxtLinkLocale data-testid="ui-navbar-link" to="/" class="btn btn-ghost p-2 font-mono text-lg lg:text-xl" @click="closeMenu()">
+          <NuxtLinkLocale data-testid="ui-navbar-link" to="/" class="btn btn-ghost p-2 font-mono text-lg max-[375px]:text-base lg:text-xl" @click="closeMenu()">
             angelblanco.dev
           </NuxtLinkLocale>
         </div>

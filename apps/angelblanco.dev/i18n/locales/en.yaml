@@ -26,6 +26,8 @@ a11yMainNavigation: Main navigation
 a11yMenu: Menu
 a11yGitHubRepo: Source code on GitHub
 a11yLanguage: Change language
+a11yCodeBlock: Code block
+a11yCodeBlockNamed: 'Code block: {name}'
 a11yDarkTheme: Dark theme
 aboutResumeTitle: VP of Engineering - Full Stack Architect
 aboutResumeMd: "\

@@ -48,7 +48,7 @@
   <div class="mx-auto flex max-w-ui justify-end">
     <NuxtLinkLocale
       to="/blog"
-      class="px-2 text-sm font-medium tracking-wide text-primary hover:underline lg:p-0"
+      class="px-2 text-sm font-medium tracking-wide text-primary-content hover:underline lg:p-0 dark:text-primary"
     >
       {{ $t('Show more') }}
     </NuxtLinkLocale>

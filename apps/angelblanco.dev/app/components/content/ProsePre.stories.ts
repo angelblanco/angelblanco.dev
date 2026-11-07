@@ -186,6 +186,15 @@ function snippet(lines: Line[], args: Story['args']): Story {
   };
 }
 
+async function expectBadgeAboveCode(canvasElement: HTMLElement, language: string) {
+  const badge = within(canvasElement).getByText(language, { selector: 'div' });
+  const pre = canvasElement.querySelector('pre');
+  const firstLine = canvasElement.querySelector('pre code .line');
+
+  await expect(pre).not.toContainElement(badge);
+  await expect(badge.getBoundingClientRect().bottom).toBeLessThanOrEqual(firstLine!.getBoundingClientRect().top);
+}
+
 function stubClipboard(write: () => Promise<void>, execCommand: () => boolean) {
   Object.defineProperty(navigator, 'clipboard', {
     configurable: true,
@@ -222,7 +231,7 @@ export const Default: Story = {
     await expect(canvasElement.querySelector('pre')).toHaveClass('shiki');
     await expect(canvasElement.querySelectorAll('pre code .line')).toHaveLength(aptLines.length);
     await expect(canvasElement.querySelector('.bg-base-200')).toBeNull();
-    await expect(canvasElement.querySelector('.absolute')?.textContent).toContain('bash');
+    await expectBadgeAboveCode(canvasElement, 'bash');
     await expect(canvas.getByRole('button', { hidden: true })).toBeInTheDocument();
   },
 };
@@ -234,7 +243,7 @@ export const WithFilename: Story = {
 
     await expect(canvas.getByText('ubuntu-install-node-26.sh')).toBeInTheDocument();
     await expect(canvasElement.querySelector('.bg-base-200')).not.toBeNull();
-    await expect(canvasElement.querySelector('.absolute')).toBeNull();
+    await expect(canvas.queryByText('bash', { selector: 'div' })).toBeNull();
     await expect(canvas.getAllByRole('button', { hidden: true })).toHaveLength(1);
     await expect(canvasElement.querySelectorAll('.bg-base-200 .size-5')).toHaveLength(1);
   },
@@ -261,6 +270,15 @@ export const LongLine: Story = {
   play: async ({ canvasElement }) => {
     await expect(canvasElement.querySelectorAll('pre code .line')).toHaveLength(1);
     await expect(within(canvasElement).getByRole('button', { hidden: true })).toBeInTheDocument();
+    await expectBadgeAboveCode(canvasElement, 'bash');
+
+    const group = within(canvasElement).getByRole('group');
+
+    await expect(group.tagName).toBe('PRE');
+    await expect(group).toHaveAttribute('tabindex', '0');
+    await expect(group).toHaveAccessibleName();
+    group.focus();
+    await expect(group).toHaveFocus();
   },
 };
 

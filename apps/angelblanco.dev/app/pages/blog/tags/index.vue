@@ -20,7 +20,7 @@
             <span class="font-light text-primary">#</span>{{ tag }}
           </span>
           <span class="flex-1 border-b border-dotted border-base-content/25 group-hover:border-primary/50" aria-hidden="true" />
-          <span class="text-sm text-base-content/60 group-hover:text-primary">{{ $t('blogArticleCount', count) }}</span>
+          <span class="text-sm text-base-content/70 group-hover:text-primary">{{ $t('blogArticleCount', count) }}</span>
         </NuxtLinkLocale>
       </li>
     </ol>

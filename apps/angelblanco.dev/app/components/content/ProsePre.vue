@@ -24,25 +24,29 @@
       </button>
     </div>
 
-    <div class="relative">
-      <div v-if="!showHeader" class="absolute top-2 right-2 transition">
-        <div class="p-2 font-mono text-sm text-base-content/70 group-hover:hidden">
-          {{ language }}
-        </div>
-        <button
-          v-if="isCopyable" class="btn hidden btn-square items-center gap-1 transition btn-sm group-hover:flex" :class="{
-            'btn-success': copiedState === 'success',
-            'btn-error': copiedState === 'error',
-          }" @click="doCopy"
-        >
-          <Icon
-            :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'"
-            class="size-5"
-          />
-        </button>
+    <div v-if="showBadge" class="flex h-10 justify-end px-2 pt-2">
+      <div class="px-2 font-mono text-sm/8 text-base-content/70 group-hover:hidden">
+        {{ language }}
       </div>
-      <pre :class="cls" class="m-0! rounded-none! bg-base-100 p-6! leading-5.5!"><slot /></pre>
+      <button
+        v-if="isCopyable" class="btn hidden btn-square items-center gap-1 transition btn-sm group-hover:flex" :class="{
+          'btn-success': copiedState === 'success',
+          'btn-error': copiedState === 'error',
+        }" @click="doCopy"
+      >
+        <Icon
+          :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'"
+          class="size-5"
+        />
+      </button>
     </div>
+    <pre
+      :class="[cls, { 'pt-0!': showBadge }]"
+      class="m-0! rounded-none! bg-base-100 p-6! leading-5.5! focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary"
+      tabindex="0"
+      role="group"
+      :aria-label="ariaLabel"
+    ><slot /></pre>
   </div>
 </template>
 
@@ -65,7 +69,17 @@ const codeText = computed(() => props.code ?? '');
 
 const showHeader = computed(() => !!props.filename);
 const isCopyable = computed(() => !!codeText.value?.trim());
+const showBadge = computed(() => !showHeader.value && (!!props.language || isCopyable.value));
 const copiedState = ref<'idle' | 'success' | 'error'>('idle');
+
+const { t } = useI18n();
+const ariaLabel = computed(() => {
+  const name = props.filename || props.language;
+
+  return name
+    ? t('a11yCodeBlockNamed', { name })
+    : t('a11yCodeBlock');
+});
 
 const { copy } = useClipboard();
 

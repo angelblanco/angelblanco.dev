@@ -63,12 +63,17 @@ export const Open: Story = {
     await expect(button).toHaveClass('text-primary-content', 'dark:text-primary');
     await expect(menu(canvasElement)).not.toBeNull();
 
-    for (const locale of ['en', 'es']) {
-      const link = canvasElement.querySelector(`[data-lang="${locale}"]`);
+    for (const [locale, code, name] of [
+      ['en', 'EN', 'English'],
+      ['es', 'ES', 'Español'],
+    ] as const) {
+      const link = canvas.getByRole('link', { name: `${code} ${name}` });
 
+      await expect(link).toHaveAttribute('data-lang', locale);
       await expect(link).toHaveAttribute('hreflang', locale);
       await expect(link).toHaveAttribute('lang', locale);
-      await expect(link).toHaveAttribute('aria-label');
+      await expect(link).not.toHaveAttribute('aria-label');
+      await expect(link.querySelector('.sr-only')).toHaveTextContent(name);
     }
   },
 };

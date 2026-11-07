@@ -26,6 +26,8 @@ a11yMainNavigation: Navegación principal
 a11yMenu: Menú
 a11yGitHubRepo: Código fuente en GitHub
 a11yLanguage: Cambiar idioma
+a11yCodeBlock: Bloque de código
+a11yCodeBlockNamed: 'Bloque de código: {name}'
 a11yDarkTheme: Tema oscuro
 # Keep this in English as requested by the user.
 aboutResumeTitle: VP of Engineering - Full Stack Architect

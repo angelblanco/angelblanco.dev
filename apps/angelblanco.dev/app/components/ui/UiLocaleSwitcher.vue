@@ -27,11 +27,10 @@
         active-class="bg-primary text-primary-content hover:bg-primary"
         :lang="option.locale"
         :hreflang="option.locale"
-        :aria-label="option.name"
         :data-lang="option.locale"
         @click="close"
       >
-        {{ option.title }}
+        {{ option.title }}<span class="sr-only">{{ ` ${option.name}` }}</span>
       </NuxtLink>
     </div>
   </div>
