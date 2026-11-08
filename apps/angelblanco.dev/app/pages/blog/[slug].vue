@@ -22,7 +22,7 @@ const {
   queryBlogPostSummaries,
 } = useBlog();
 const switchLocalePath = useSwitchLocalePath();
-const alternativePath = switchLocalePath(otherLocale.value);
+const alternativePath = switchLocalePath(otherLocale.value).split('?')[0]!;
 
 const [{ data: post }, { data: alternativePost }, { data: posts }] = await Promise.all([
   useAsyncData(

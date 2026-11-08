@@ -172,8 +172,8 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: {
-            default: 'catppuccin-latte',
-            dark: 'catppuccin-mocha',
+            default: 'github-light',
+            dark: 'github-dark',
           },
           langs: ['php'],
         },

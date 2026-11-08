@@ -1,1 +1,139 @@
 @import '@angelblanco/tailwind';
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer/switzer-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer/switzer-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer/switzer-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-fallback: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
+  --ink: #111113;
+  --grey: #6e6e73;
+  --hair: #ececee;
+}
+
+[data-theme='dark'] {
+  --ink: var(--color-base-content);
+  --grey: color-mix(in oklab, var(--color-base-content) 60%, transparent);
+  --hair: var(--color-base-300);
+}
+
+html[data-font='switzer'] {
+  --font-sans: 'Switzer', var(--font-fallback);
+  --font-body: var(--font-sans);
+}
+html[data-font='geist'] {
+  --font-sans: 'Geist Variable', var(--font-fallback);
+  --font-body: var(--font-sans);
+}
+html[data-font='inter'] body {
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.prose {
+  --tw-prose-body: var(--ink);
+  --tw-prose-headings: var(--ink);
+  --tw-prose-bold: var(--ink);
+  --tw-prose-links: var(--ink);
+  --tw-prose-hr: var(--hair);
+  --tw-prose-th-borders: var(--hair);
+  --tw-prose-td-borders: var(--hair);
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.prose :where(p) {
+  margin-block: 16px;
+  text-wrap: pretty;
+}
+
+.prose :where(h2) {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-top: 44px;
+  margin-bottom: 8px;
+  text-wrap: balance;
+}
+
+.prose :where(h3) {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 500;
+  margin-top: 32px;
+  margin-bottom: 4px;
+}
+
+.prose :where(strong) {
+  font-weight: 500;
+}
+
+.prose a:not(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a) {
+  text-decoration: none;
+  background: linear-gradient(var(--hair), var(--hair)) 0 100% / 100% 1px no-repeat;
+  transition:
+    color 0.18s,
+    background-size 0.18s;
+}
+
+.prose a:hover:not(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a) {
+  color: var(--color-primary);
+  background-image: linear-gradient(currentColor, currentColor);
+}
+
+.prose :where(code):not(pre > code) {
+  background: none;
+  padding: 0;
+  font-size: 0.875em;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.prose :where(code):not(pre > code)::before,
+.prose :where(code):not(pre > code)::after {
+  content: none;
+}
+
+.prose :where(table) {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.prose :where(li) {
+  margin-block: 0;
+}
+
+.prose :where(li + li) {
+  margin-top: 6px;
+}
+
+.prose :where(blockquote) {
+  font-style: normal;
+  font-weight: 400;
+  border-inline-start-color: var(--hair);
+  color: var(--grey);
+}

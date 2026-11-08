@@ -90,7 +90,7 @@
 
   /* Controlls the max-width of UI elements */
   --container-ui: 60rem;
-  --container-post: 45rem;
+  --container-post: 40rem;
 }
 
 .animate-spin-slow {
