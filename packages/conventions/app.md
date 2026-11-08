@@ -12,6 +12,8 @@
 '@nuxt/fonts',
 ```
 
+- Fonts live in `packages/fonts`: the site imports `@angelblanco/fonts` in `app.vue`; `@nuxt/fonts` only feeds the OG images through `nuxtFontsConfig()`, so do not add font families to `nuxt.config.ts` directly.
+
 - Separate page components following the same structure as the pages one. Always include the preffix in the file name and the folders.
 
 ```

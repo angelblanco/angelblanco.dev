@@ -1,4 +1,5 @@
 import process from 'node:process';
+import { nuxtFontsConfig } from '@angelblanco/fonts/nuxt';
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
 import { readingTime } from './app/utils/readingTime';
@@ -12,7 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
-    // Storybook has no Nitro to serve the font files, so .storybook/preview.ts imports Fontsource instead.
+    // Only for the OG images; the site loads its fonts from @angelblanco/fonts.
     ...(process.env.STORYBOOK === 'true'
       ? []
       : ['@nuxt/fonts']),
@@ -138,22 +139,7 @@ export default defineNuxtConfig({
     dataValue: 'theme',
   },
 
-  fonts: {
-    families: [
-      {
-        name: 'Inter Variable',
-        provider: 'npm',
-        weights: ['100 900'],
-        styles: ['normal'],
-      },
-      {
-        name: 'Geist Mono',
-        provider: 'npm',
-        weights: [400, 600],
-        styles: ['normal'],
-      },
-    ],
-  },
+  fonts: nuxtFontsConfig(),
 
   ogImage: {
     zeroRuntime: true,
