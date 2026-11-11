@@ -6,6 +6,7 @@ import { allSlugs, BLOG_DIRS, checkSlugs, resolveSlug } from '../src/blog/posts.
 
 const post = `---
 title: A valid blog post
+description: A valid description for a blog post that is long enough to be shown in search results and social cards without being cut off by any of them today.
 tags: [test]
 date: 2026-11-05
 ---
