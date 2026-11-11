@@ -51,6 +51,7 @@ export default function useLocalizedSeo({ title, description, cta = 'ogCtaDefaul
       width: 800,
       height: 800,
       alt,
+      props: { square: true },
     },
   ]);
 
