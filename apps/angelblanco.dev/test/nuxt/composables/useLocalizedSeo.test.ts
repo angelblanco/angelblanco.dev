@@ -1,7 +1,7 @@
 import { mockNuxtImport } from '@nuxt/test-utils/runtime';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-const defineOgImage = vi.fn();
+const defineOgImage = vi.fn<(...args: any[]) => string[]>(() => []);
 vi.stubGlobal('defineOgImage', defineOgImage);
 
 const route = vi.hoisted(() => ({ path: '/' }));
@@ -34,10 +34,28 @@ describe('composables: useLocalizedSeo', () => {
       'PortfolioOgImage',
       expect.objectContaining({ title: 'Blog', description: 'BlogDescription' }),
       [
-        { key: 'og', width: 1200, height: 600 },
-        { key: 'whatsapp', width: 800, height: 800 },
+        {
+          key: 'og',
+          width: 1200,
+          height: 600,
+          alt: 'Blog',
+        },
+        {
+          key: 'whatsapp',
+          width: 800,
+          height: 800,
+          alt: 'Blog',
+        },
       ],
     );
+  });
+
+  it('should return the og image paths', () => {
+    defineOgImage.mockReturnValueOnce(['/_og/s/og.png', '/_og/s/whatsapp.png']);
+
+    const { ogImages } = useLocalizedSeo({ title: 'Blog', description: 'BlogDescription' });
+
+    expect(ogImages).toEqual(['/_og/s/og.png', '/_og/s/whatsapp.png']);
   });
 
   it('should use the page description in the WebPage schema', () => {

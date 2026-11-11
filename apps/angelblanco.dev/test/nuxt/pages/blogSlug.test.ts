@@ -25,7 +25,7 @@ mockNuxtImport('queryCollection', () => (collection: string) => {
   return query;
 });
 
-mockNuxtImport('useLocalizedSeo', () => () => {});
+mockNuxtImport('useLocalizedSeo', () => () => ({ ogImages: [] }));
 
 async function mountPost(route: string) {
   const { default: BlogSlugPage } = await import('~/pages/blog/[slug].vue');

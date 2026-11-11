@@ -48,8 +48,11 @@ export async function hideCanvas(page: Page) {
 }
 
 async function expectMetaProperty(page: Page, property: string) {
-  const locator = page.locator(`meta[property='${property}']`);
-  await expect(locator).toHaveAttribute('content', /.+/);
+  const locators = await page.locator(`meta[property='${property}']`).all();
+
+  expect(locators.length).toBeGreaterThan(0);
+  for (const locator of locators)
+    await expect(locator).toHaveAttribute('content', /.+/);
 }
 
 async function expectMetaName(page: Page, name: string) {
@@ -63,9 +66,11 @@ export async function expectSeoIsConfigured(page: Page) {
   await expectMetaProperty(page, 'og:title');
   await expectMetaProperty(page, 'og:description');
   await expectMetaProperty(page, 'og:image');
+  await expectMetaProperty(page, 'og:image:alt');
   await expectMetaProperty(page, 'og:url');
   await expectMetaName(page, 'twitter:card');
   await expectMetaName(page, 'twitter:image');
+  await expectMetaName(page, 'twitter:image:alt');
 }
 
 export const siteUrl = 'https://angelblanco.dev';
