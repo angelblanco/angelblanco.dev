@@ -5,11 +5,7 @@
   "private": true,
   "exports": {
     ".": "./index.js",
-    "./nuxt": {
-      "types": "./nuxt.d.ts",
-      "default": "./nuxt.js"
-    },
-    "./og.css": "./og.css"
+    "./nuxt": "./nuxt.ts"
   },
   "scripts": {
     "lint": "eslint",

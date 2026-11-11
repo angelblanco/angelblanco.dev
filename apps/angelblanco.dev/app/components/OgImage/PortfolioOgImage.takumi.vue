@@ -203,7 +203,7 @@ const styles = computed<Record<string, CSSProperties>>(() => {
   z-index: 2;
   display: flex;
   align-items: center;
-  font-family: 'Geist Mono', monospace;
+  font-family: 'Geist Mono SemiBold', 'Geist Mono', monospace;
   font-weight: 600;
   letter-spacing: -0.01em;
   white-space: nowrap;

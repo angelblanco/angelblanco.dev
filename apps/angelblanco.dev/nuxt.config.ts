@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
-    // Only for the OG images; the site loads its fonts from @angelblanco/fonts.
+    // Storybook has no Nitro to serve them: it imports @angelblanco/fonts instead.
     ...(process.env.STORYBOOK === 'true'
       ? []
       : ['@nuxt/fonts']),
