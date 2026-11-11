@@ -10,6 +10,7 @@ export function blogSchema(name: string) {
     image: z.string().optional(),
     toc: z.boolean().optional(),
     readingTime: z.number().int().positive().optional(),
+    wordCount: z.number().int().positive().optional(),
     schemaOrg: defineSchemaOrgSchema(),
     sitemap: defineSitemapSchema({
       z,

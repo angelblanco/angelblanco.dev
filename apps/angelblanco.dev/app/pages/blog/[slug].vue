@@ -46,17 +46,17 @@ if (event && !post.value)
 
 const alternativeLocale = computed(() => alternativePost.value ? otherLocale.value : null);
 
-if (post.value) {
-  useBlogPostSeo(post.value, alternativeLocale.value
-    ? [locale.value, alternativeLocale.value]
-    : [locale.value]);
-}
-
-useLocalizedSeo({
+const { ogImages } = useLocalizedSeo({
   title: computed(() => post.value?.title),
   description: computed(() => post.value?.description),
   cta: 'ogCtaArticle',
 });
+
+if (post.value) {
+  useBlogPostSeo(post.value, alternativeLocale.value
+    ? [locale.value, alternativeLocale.value]
+    : [locale.value], ogImages);
+}
 
 useSeoMeta({
   ...post.value?.seo || {},

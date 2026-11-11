@@ -10,13 +10,24 @@ export function postSlug(path: string): string {
   return withoutTrailingSlash(path).split('/').pop() ?? '';
 }
 
-export default function useBlogPostSeo(post: BlogCollectionItem, translatedLocales: LocaleCode[]) {
+export function toIsoDateTime(date: string): string {
+  return /^\d{4}-\d{2}-\d{2}$/.test(date)
+    ? `${date}T00:00:00Z`
+    : date;
+}
+
+export default function useBlogPostSeo(post: BlogCollectionItem, translatedLocales: LocaleCode[], ogImages: string[] = []) {
+  const { t } = useI18n();
   const setI18nParams = useSetI18nParams();
   const localePath = useLocalePath();
   const authorUrl = withSiteUrl(localePath('/about'), { absolute: true });
 
   const slug = postSlug(post.path);
-  const dateModified = post.updatedAt ?? post.date;
+  const datePublished = toIsoDateTime(post.date);
+  const dateModified = toIsoDateTime(post.updatedAt ?? post.date);
+  const images = (post.image
+    ? [post.image]
+    : ogImages).map(image => withSiteUrl(image, { absolute: true }).value);
 
   setI18nParams(Object.fromEntries(translatedLocales.map(code => [
     code,
@@ -25,10 +36,16 @@ export default function useBlogPostSeo(post: BlogCollectionItem, translatedLocal
 
   useSeoMeta({
     ogType: 'article',
-    articlePublishedTime: post.date,
+    articlePublishedTime: datePublished,
     articleModifiedTime: dateModified,
     articleAuthor: () => [authorUrl.value],
     articleTag: post.tags,
+    ...(post.readingTime
+      ? {
+          twitterLabel1: t('blogReadingTimeLabel'),
+          twitterData1: t('blogReadingTime', { minutes: post.readingTime }),
+        }
+      : {}),
   });
 
   useSchemaOrg([
@@ -36,11 +53,19 @@ export default function useBlogPostSeo(post: BlogCollectionItem, translatedLocal
       '@type': 'BlogPosting',
       'headline': post.title,
       'description': post.description,
-      'datePublished': post.date,
+      datePublished,
       dateModified,
       'keywords': post.tags,
-      ...(post.image
-        ? { image: post.image }
+      ...(post.wordCount
+        ? {
+            wordCount: Number(post.wordCount),
+          }
+        : {}),
+      ...(post.readingTime
+        ? { timeRequired: `PT${Number(post.readingTime)}M` }
+        : {}),
+      ...(images.length
+        ? { image: images }
         : {}),
     }),
   ]);

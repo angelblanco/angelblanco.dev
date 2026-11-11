@@ -33,9 +33,16 @@ function metaProperties(): Record<string, string[]> {
 
 let scope: EffectScope | undefined;
 
-function setup(post: BlogCollectionItem, locales: ('en' | 'es')[]) {
+function setup(post: BlogCollectionItem, locales: ('en' | 'es')[], ogImages: string[] = []) {
   scope = effectScope();
-  scope.run(() => useBlogPostSeo(post, locales));
+  scope.run(() => useBlogPostSeo(post, locales, ogImages));
+}
+
+function metaNames(): Record<string, string> {
+  return Object.fromEntries([
+    ...document.head.querySelectorAll<HTMLMetaElement>('meta[name]'),
+  ]
+    .map(meta => [meta.name, meta.content]));
 }
 
 function article() {
@@ -67,6 +74,13 @@ describe('composables: useBlogPostSeo', () => {
     expect(withoutTrailingSlash(path)).toBe(expected);
   });
 
+  it.each([
+    ['2025-10-12', '2025-10-12T00:00:00Z'],
+    ['2025-10-12T08:30:00+02:00', '2025-10-12T08:30:00+02:00'],
+  ])('should turn %s into an ISO date time', (date, expected) => {
+    expect(toIsoDateTime(date)).toBe(expected);
+  });
+
   it('should only set the i18n params of the translated locales', () => {
     setup(makePost(), ['es']);
 
@@ -89,8 +103,8 @@ describe('composables: useBlogPostSeo', () => {
 
     await vi.waitFor(() => expect(metaProperties()).toMatchObject({
       'og:type': ['article'],
-      'article:published_time': ['2025-10-12'],
-      'article:modified_time': ['2025-10-12'],
+      'article:published_time': ['2025-10-12T00:00:00Z'],
+      'article:modified_time': ['2025-10-12T00:00:00Z'],
       'article:tag': ['nodejs', 'ubuntu'],
       'article:author': [
         expect.stringMatching(/\/about\/?$/),
@@ -102,8 +116,17 @@ describe('composables: useBlogPostSeo', () => {
     setup(makePost({ updatedAt: '2026-11-05' }), ['es']);
 
     await vi.waitFor(() => expect(metaProperties()).toMatchObject({
-      'article:published_time': ['2025-10-12'],
-      'article:modified_time': ['2026-11-05'],
+      'article:published_time': ['2025-10-12T00:00:00Z'],
+      'article:modified_time': ['2026-11-05T00:00:00Z'],
+    }));
+  });
+
+  it('should add the reading time as a twitter label', async () => {
+    setup(makePost({ readingTime: 4 }), ['es']);
+
+    await vi.waitFor(() => expect(metaNames()).toMatchObject({
+      'twitter:label1': 'blogReadingTimeLabel',
+      'twitter:data1': 'blogReadingTime',
     }));
   });
 
@@ -114,16 +137,34 @@ describe('composables: useBlogPostSeo', () => {
       '@type': 'BlogPosting',
       'headline': 'Instalar Node.js con apt',
       'description': 'Instala Node.js con apt',
-      'datePublished': '2025-10-12',
-      'dateModified': '2026-11-05',
+      'datePublished': '2025-10-12T00:00:00Z',
+      'dateModified': '2026-11-05T00:00:00Z',
       'keywords': ['nodejs', 'ubuntu'],
     });
     expect(article()).not.toHaveProperty('image');
+    expect(article()).not.toHaveProperty('wordCount');
+    expect(article()).not.toHaveProperty('timeRequired');
   });
 
-  it('should add the post image when there is one', () => {
-    setup(makePost({ image: '/images/post.png' }), ['es']);
+  it('should add the word count and the time required as numbers', () => {
+    setup(makePost({ wordCount: '812', readingTime: '5' } as unknown as Partial<BlogCollectionItem>), ['es']);
 
-    expect(article()).toMatchObject({ image: '/images/post.png' });
+    expect(article()).toMatchObject({ wordCount: 812, timeRequired: 'PT5M' });
+  });
+
+  it('should use every og image as BlogPosting image', () => {
+    setup(makePost(), ['es'], ['/_og/s/og.png', '/_og/s/whatsapp.png']);
+
+    expect(article()).toMatchObject({
+      image: ['https://angelblanco.dev/_og/s/og.png', 'https://angelblanco.dev/_og/s/whatsapp.png'],
+    });
+  });
+
+  it('should prefer the post image over the og images', () => {
+    setup(makePost({ image: '/images/post.png' }), ['es'], ['/_og/s/og.png']);
+
+    expect(article()).toMatchObject({
+      image: ['https://angelblanco.dev/images/post.png'],
+    });
   });
 });
