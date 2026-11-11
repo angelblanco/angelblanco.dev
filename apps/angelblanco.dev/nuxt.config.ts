@@ -1,7 +1,7 @@
 import process from 'node:process';
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
-import { readingTime } from './app/utils/readingTime';
+import { countWords, readingTime } from './app/utils/readingTime';
 import { feedRoutes } from './shared/utils/feeds';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -81,6 +81,10 @@ export default defineNuxtConfig({
       { code: 'es', language: 'es-ES', file: 'es.yaml' },
     ],
     defaultLocale: 'en',
+    trailingSlash: true,
+    experimental: {
+      strictSeo: true,
+    },
   },
 
   schemaOrg: {
@@ -89,7 +93,7 @@ export default defineNuxtConfig({
       name: 'Ángel Blanco',
       image: '/ablanco_2025_profile.webp',
       description: 'Software engineer',
-      url: 'angelblanco.dev',
+      url: 'https://angelblanco.dev',
       sameAs: useSocials().socials.map(s => s.url),
     },
   },
@@ -106,6 +110,7 @@ export default defineNuxtConfig({
   },
 
   experimental: {
+    viewTransition: true,
     defaults: {
       nuxtLink: {
         trailingSlash: 'append',
@@ -182,8 +187,10 @@ export default defineNuxtConfig({
 
   hooks: {
     'content:file:afterParse': ({ file, content, collection }) => {
-      if (collection.name.startsWith('blog_'))
+      if (collection.name.startsWith('blog_')) {
         content.readingTime = readingTime(file.body);
+        content.wordCount = countWords(file.body);
+      }
     },
   },
 

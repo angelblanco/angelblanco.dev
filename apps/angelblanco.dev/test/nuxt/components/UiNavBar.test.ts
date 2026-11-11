@@ -114,14 +114,15 @@ describe('components: UiNavBar', () => {
     expect(document.activeElement).toBe(toggle.element);
   });
 
-  it('should tighten the bar spacing and logo size below 375px only', async () => {
+  it('should use compact bar spacing on small screens and tighten the logo below 375px', async () => {
     const wrapper = await mountSuspended(UiNavBar);
     const bar = wrapper.get('nav#ui-nav-bar > div');
     const logo = wrapper.get('[data-testid="ui-navbar-link"]');
 
     expect(bar.classes()).toEqual(expect.arrayContaining([
       'gap-2',
-      'p-4',
+      'p-2',
+      'lg:p-4',
       'max-[375px]:gap-1',
       'max-[375px]:px-2',
     ]));

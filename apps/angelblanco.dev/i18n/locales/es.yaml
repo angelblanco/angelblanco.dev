@@ -78,6 +78,7 @@ angelBlancoV1Description: |
 sinceDate: desde
 toDate: a
 blogReadingTime: '{minutes} min de lectura'
+blogReadingTimeLabel: Tiempo de lectura
 blogTags: Etiquetas
 blogAllPosts: Todos los artículos
 blogTagTitle: 'Artículos sobre #{tag}'

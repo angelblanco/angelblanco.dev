@@ -157,7 +157,7 @@ describe('components: BlogSearch', () => {
 
     await input.trigger('keydown', { key: 'Enter' });
 
-    await waitFor(() => expect(useRouter().currentRoute.value.path).toBe('/blog/tags/typescript'));
+    await waitFor(() => expect(useRouter().currentRoute.value.path).toBe('/blog/tags/typescript/'));
     expect(wrapper.findAll('[data-testid="blog-search-active-tag"]')).toHaveLength(0);
   });
 
@@ -169,5 +169,24 @@ describe('components: BlogSearch', () => {
     await waitFor(() => expect(wrapper.find('[data-testid="blog-search-empty"]').exists()).toBe(true));
     expect(wrapper.text()).toContain('No results for “kubernetes”');
     expect(wrapper.findAll('[role="option"]')).toHaveLength(0);
+  });
+
+  it('starts a fresh search every time it opens', async () => {
+    const wrapper = await openSearch();
+    const toggle = () => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
+
+    await wrapper.findAll('[data-testid="blog-search-tag-filter"]')[0]!.trigger('click');
+    await wrapper.get('input').setValue('eslint');
+    await waitFor(() => expect(wrapper.findAll('[data-testid="blog-search-active-tag"]')).toHaveLength(1));
+
+    toggle();
+    await waitFor(() => expect(wrapper.get('dialog').element.open).toBe(false));
+
+    toggle();
+    await waitFor(() => expect(wrapper.findAll('[data-testid="blog-search-post"]')).toHaveLength(2));
+    expect(wrapper.get('dialog').element.open).toBe(true);
+    expect((wrapper.get('input').element as HTMLInputElement).value).toBe('');
+    expect(wrapper.findAll('[data-testid="blog-search-active-tag"]')).toHaveLength(0);
+    expect(wrapper.get('.overflow-y-auto').element.scrollTop).toBe(0);
   });
 });

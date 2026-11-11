@@ -20,18 +20,40 @@
 <script lang="ts" setup>
 const route = useRoute();
 const { t } = useI18n();
-const { queryBlogPostSummaries } = useBlog();
+const { locale, alternativeLocale } = useLocale();
+const { queryBlogPostSummaries, queryAlternativeBlogCollection } = useBlog();
+const setI18nParams = useSetI18nParams();
 
 const tag = computed(() => String(route.params.tag));
+const tagFilter = computed(() => `%"${tag.value}"%`);
 
-const { data: posts } = await useAsyncData(
-  route.path,
-  () => queryBlogPostSummaries().where('tags', 'LIKE', `%"${tag.value}"%`).all(),
-);
+const [{ data: posts }, { data: alternativeCount }] = await Promise.all([
+  useAsyncData(
+    route.path,
+    () => queryBlogPostSummaries().where('tags', 'LIKE', tagFilter.value).all(),
+  ),
+  useAsyncData(
+    `${alternativeLocale.value}-tag-count-${tag.value}`,
+    () => queryAlternativeBlogCollection().where('tags', 'LIKE', tagFilter.value).count(),
+  ),
+]);
+
+setI18nParams({
+  [locale.value]: { tag: tag.value },
+  ...(alternativeCount.value
+    ? {
+        [alternativeLocale.value]: { tag: tag.value },
+      }
+    : {}),
+});
 
 useLocalizedSeo({
   title: computed(() => t('blogTagTitle', { tag: tag.value })),
   description: computed(() => t('blogTagDescription', { tag: tag.value })),
   cta: 'ogCtaBlog',
 });
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'CollectionPage' }),
+]);
 </script>
