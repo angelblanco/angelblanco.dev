@@ -75,6 +75,7 @@ angelBlancoV1Description: |
 sinceDate: since
 toDate: to
 blogReadingTime: '{minutes} min read'
+blogReadingTimeLabel: Reading time
 blogTags: Tags
 blogAllPosts: All posts
 blogTagTitle: 'Posts tagged #{tag}'

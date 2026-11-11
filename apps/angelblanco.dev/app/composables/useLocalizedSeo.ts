@@ -24,20 +24,36 @@ export default function useLocalizedSeo({ title, description, cta = 'ogCtaDefaul
     description: () => transOrNot(description),
   });
 
-  defineOgImage('PortfolioOgImage', {
+  useSchemaOrg([
+    defineWebPage({
+      description: () => transOrNot(description),
+    }),
+  ]);
+
+  const alt = transOrNot(title);
+
+  const ogImages = defineOgImage('PortfolioOgImage', {
     title: transOrNot(title),
     description: transOrNot(description),
     cta: transOrNot(cta),
     section: route.path.split('/').find(segment => segment && segment !== locale.value),
   }, [
     // Primary image for og:image and twitter:image (1200x600)
-    { key: 'og', width: 1200, height: 600 },
+    {
+      key: 'og',
+      width: 1200,
+      height: 600,
+      alt,
+    },
     // Additional square image for WhatsApp (800x800)
     {
       key: 'whatsapp',
       width: 800,
       height: 800,
+      alt,
       props: { square: true },
     },
   ]);
+
+  return { ogImages };
 }

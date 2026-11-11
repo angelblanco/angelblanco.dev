@@ -48,8 +48,11 @@ export async function hideCanvas(page: Page) {
 }
 
 async function expectMetaProperty(page: Page, property: string) {
-  const locator = page.locator(`meta[property='${property}']`);
-  await expect(locator).toHaveAttribute('content', /.+/);
+  const locators = await page.locator(`meta[property='${property}']`).all();
+
+  expect(locators.length).toBeGreaterThan(0);
+  for (const locator of locators)
+    await expect(locator).toHaveAttribute('content', /.+/);
 }
 
 async function expectMetaName(page: Page, name: string) {
@@ -63,9 +66,41 @@ export async function expectSeoIsConfigured(page: Page) {
   await expectMetaProperty(page, 'og:title');
   await expectMetaProperty(page, 'og:description');
   await expectMetaProperty(page, 'og:image');
+  await expectMetaProperty(page, 'og:image:alt');
   await expectMetaProperty(page, 'og:url');
   await expectMetaName(page, 'twitter:card');
   await expectMetaName(page, 'twitter:image');
+  await expectMetaName(page, 'twitter:image:alt');
+}
+
+export const siteUrl = 'https://angelblanco.dev';
+
+export function absoluteUrl(locale: Locale, path?: string) {
+  return `${siteUrl}${trimEnd(localizedPath(locale, path), '/')}/`;
+}
+
+export async function readJsonLd(page: Page): Promise<Record<string, any>[]> {
+  const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+
+  return scripts.flatMap(script => JSON.parse(script)['@graph'] ?? []);
+}
+
+export function findSchemaNode(graph: Record<string, any>[], type: string) {
+  return graph.find(node => [node['@type']].flat().includes(type));
+}
+
+export async function expectLocalizedHeadLinks(page: Page, locale: Locale, path: string) {
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', absoluteUrl(locale, path));
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', absoluteUrl(locale, path));
+
+  for (const [hreflang, code] of [
+    ['x-default', 'en'],
+    ['en-US', 'en'],
+    ['es-ES', 'es'],
+  ] as const) {
+    const href = absoluteUrl(locales.find(l => l.code === code)!, path);
+    await expect(page.locator(`link[rel="alternate"][hreflang="${hreflang}"]`)).toHaveAttribute('href', href);
+  }
 }
 
 export async function ensureNavbarIsOpen(page: Page, isMobile: boolean, ensureOpen: boolean = true) {
