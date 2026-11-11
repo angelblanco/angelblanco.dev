@@ -45,6 +45,7 @@ describe('composables: useLocalizedSeo', () => {
           width: 800,
           height: 800,
           alt: 'Blog',
+          props: { square: true },
         },
       ],
     );
