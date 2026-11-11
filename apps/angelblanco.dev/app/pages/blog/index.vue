@@ -14,6 +14,10 @@ useLocalizedSeo({
   cta: 'ogCtaBlog',
 });
 
+useSchemaOrg([
+  defineWebPage({ '@type': 'CollectionPage' }),
+]);
+
 const { queryBlogPostSummaries } = useBlog();
 
 const { data: posts } = await useAsyncData(route.path, () => queryBlogPostSummaries().all());
