@@ -40,4 +40,8 @@ useLocalizedSeo({
   description: 'blogTopicsDescription',
   cta: 'ogCtaBlog',
 });
+
+useSchemaOrg([
+  defineWebPage({ '@type': 'CollectionPage' }),
+]);
 </script>

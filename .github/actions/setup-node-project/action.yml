@@ -18,8 +18,3 @@ runs:
     - name: Install
       run: pnpm install
       shell: bash
-
-    - name: Install Playwright
-      run: pnpm exec playwright install --with-deps --only-shell
-      shell: bash
-      working-directory: apps/angelblanco.dev

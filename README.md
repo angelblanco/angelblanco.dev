@@ -22,12 +22,13 @@ You can find all modules in [apps/angelblanco.dev/nuxt.config.ts](./apps/angelbl
 
 - `@nuxtjs/i18n`: The web page supports internationalization in both Spanish and English.
 - `@nuxtjs/color-mode`: Theme management integrated with Daisy UI.
-- `@nuxtjs/seo`: Nuxt SEO is configured with all modules in reasonable detail. For `og:image`, I use the Chromium renderer with Playwright; otherwise, it won't work on WSL.
+- `@nuxtjs/seo`: Nuxt SEO is configured with all modules in reasonable detail. The `og:image` files are rendered with [Takumi](https://takumi.kane.tw/) while prerendering, so no browser is needed.
+- `@nuxt/fonts`: Loads the fonts of [packages/fonts](./packages/fonts/) on the web page and feeds them to the `og:image` renderer.
 - `@nuxt/icon`: Icon sets are installed in [apps/angelblanco.dev/package.json](./apps/angelblanco.dev/package.json).
 - `@vueuse/nuxt`: Used for click outside and other utilities.
 - `@nuxt/content`: For Markdown content management throughout the app.
 - `@nuxt/test-utils/module`: For unit and Nuxt testing. For E2E testing, [Playwright](https://playwright.dev/) is used under [packages/playwright](./packages/playwright/).
-- `@nuxt/scripts`: For GA support.
+- `@nuxt/scripts`: Loads Google Analytics after hydration when `NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID` is set at build time.
 - `@nuxt/image`
 
 ## Project structure
@@ -38,7 +39,7 @@ You can find all modules in [apps/angelblanco.dev/nuxt.config.ts](./apps/angelbl
   - `conventions`: Guidance for LLM agents.
   - `tsconfig`: Base shared `tsconfig.json` configurations for TypeScript projects.
   - `eslint`: Custom ESLint configuration shared across the monorepo.
-  - `fonts`: Defines a CSS for font management with the required fonts as dependencies.
+  - `fonts`: The fonts as dependencies, the `@nuxt/fonts` configuration and the import that loads them in Storybook.
   - `tailwind`: Tailwind 4 CSS file with Daisy UI integration.
   - `playwright`: E2E tests with different browser integrations.
 
@@ -56,10 +57,10 @@ Clone the repo and run:
 pnpm install
 ```
 
-If you don't have [Playwright](https://playwright.dev/) installed, you will need to install it at least the first time:
+To run the E2E tests, you need to install the [Playwright](https://playwright.dev/) browsers at least the first time:
 
 ```bash
-cd apps/angelblanco.dev
+cd packages/playwright
 pnpm exec playwright install --with-deps
 ```
 

@@ -39,6 +39,7 @@ Every blog post must include YAML frontmatter at the top of the file. The schema
 ```yaml
 ---
 title: Your Post Title
+description: One or two sentences for search results and social cards
 tags:
   - tag1
   - tag2
@@ -53,6 +54,7 @@ updatedAt: YYYY-MM-DD # Optional, last substantive update
 ### Frontmatter Requirements
 
 - **title**: Minimum 10 characters, descriptive and SEO-optimized
+- **description**: Meta description for search results, social cards and structured data. Aim for 140-160 characters, include the main keyword and write it for each language. Without it, the first paragraph is used
 - **tags**: At least 1 tag, use relevant technology keywords
 - **date**: ISO format (YYYY-MM-DD), typically the publication date
 - **image**: Optional Open Graph image for social sharing
@@ -202,7 +204,7 @@ To improve SEO and provide value to readers, always link to official documentati
 ### SEO Best Practices
 
 - Use descriptive titles with relevant keywords
-- Include meta descriptions (via frontmatter or first paragraph)
+- Write a `description` in the frontmatter of both languages (140-160 characters); the first paragraph is only a fallback
 - Use proper heading hierarchy (H1 → H2 → H3)
 - Add alt text to images
 - Use internal links to other blog posts when relevant
@@ -334,6 +336,7 @@ Before publishing a blog post, ensure:
 - [ ] Both English and Spanish versions exist
 - [ ] Frontmatter is complete and valid
 - [ ] Title is descriptive and SEO-optimized (min 10 characters)
+- [ ] Description is set in both languages (140-160 characters)
 - [ ] At least one tag is assigned
 - [ ] Date is in ISO format (YYYY-MM-DD)
 - [ ] Headings use normal casing, not Title Case

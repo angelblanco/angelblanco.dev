@@ -16,6 +16,7 @@ export interface CheckContext {
 }
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const DESCRIPTION_LENGTH = { min: 140, max: 160 };
 const VAGUE_LINK_TEXT = new Set([
   'here',
   'click here',
@@ -66,12 +67,18 @@ export function checkPost(post: Post, context: CheckContext): Issue[] {
       message,
     });
   };
-  const { title, tags, date, updatedAt, toc } = post.frontmatter;
+  const { title, description, tags, date, updatedAt, toc } = post.frontmatter;
 
   if (post.frontmatterError)
     add(1, 'error', `Invalid frontmatter: ${post.frontmatterError}`);
   if (typeof title !== 'string' || title.length < 10)
     add(1, 'error', '`title` must be a string of at least 10 characters');
+  if (description === undefined)
+    add(1, 'warn', '`description` is missing, the first paragraph will be used as meta description');
+  else if (typeof description !== 'string')
+    add(1, 'error', '`description` must be a string');
+  else if (description.length < DESCRIPTION_LENGTH.min || description.length > DESCRIPTION_LENGTH.max)
+    add(1, 'warn', `\`description\` has ${description.length} characters, aim for ${DESCRIPTION_LENGTH.min}-${DESCRIPTION_LENGTH.max}`);
   if (!Array.isArray(tags) || tags.length === 0)
     add(1, 'error', '`tags` must have at least one tag');
   if (!isDate(date))

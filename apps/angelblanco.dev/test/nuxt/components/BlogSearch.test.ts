@@ -157,7 +157,7 @@ describe('components: BlogSearch', () => {
 
     await input.trigger('keydown', { key: 'Enter' });
 
-    await waitFor(() => expect(useRouter().currentRoute.value.path).toBe('/blog/tags/typescript'));
+    await waitFor(() => expect(useRouter().currentRoute.value.path).toBe('/blog/tags/typescript/'));
     expect(wrapper.findAll('[data-testid="blog-search-active-tag"]')).toHaveLength(0);
   });
 

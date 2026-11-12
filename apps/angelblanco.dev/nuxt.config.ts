@@ -1,7 +1,8 @@
 import process from 'node:process';
+import { nuxtFontsConfig } from '@angelblanco/fonts/nuxt';
 import tailwindcss from '@tailwindcss/vite';
 import useSocials from './app/composables/useSocials';
-import { readingTime } from './app/utils/readingTime';
+import { countWords, readingTime } from './app/utils/readingTime';
 import { feedRoutes } from './shared/utils/feeds';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -12,6 +13,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@nuxt/image',
+    // Storybook has no Nitro to serve them: it imports @angelblanco/fonts instead.
+    ...(process.env.STORYBOOK === 'true'
+      ? []
+      : ['@nuxt/fonts']),
     '@nuxtjs/seo',
     '@nuxt/content',
     '@nuxt/test-utils/module',
@@ -74,6 +79,8 @@ export default defineNuxtConfig({
     skipInspections: ['no-uppercase-chars'],
   },
 
+  skewProtection: false,
+
   i18n: {
     baseUrl: 'https://angelblanco.dev',
     locales: [
@@ -81,6 +88,10 @@ export default defineNuxtConfig({
       { code: 'es', language: 'es-ES', file: 'es.yaml' },
     ],
     defaultLocale: 'en',
+    trailingSlash: true,
+    experimental: {
+      strictSeo: true,
+    },
   },
 
   schemaOrg: {
@@ -89,15 +100,18 @@ export default defineNuxtConfig({
       name: 'Ángel Blanco',
       image: '/ablanco_2025_profile.webp',
       description: 'Software engineer',
-      url: 'angelblanco.dev',
+      url: 'https://angelblanco.dev',
       sameAs: useSocials().socials.map(s => s.url),
     },
   },
 
   nitro: {
     preset: 'github_pages',
+    static: true,
     prerender: {
+      crawlLinks: true,
       routes: [
+        '/',
         ...feedRoutes(),
         '/api/search/en.json',
         '/api/search/es.json',
@@ -129,17 +143,12 @@ export default defineNuxtConfig({
     dataValue: 'theme',
   },
 
+  fonts: nuxtFontsConfig(),
+
   ogImage: {
+    zeroRuntime: true,
     buildCache: {
       base: '.cache/og-image',
-    },
-    compatibility: {
-      dev: {
-        browser: 'playwright',
-      },
-      prerender: {
-        browser: 'playwright',
-      },
     },
   },
 
@@ -183,8 +192,10 @@ export default defineNuxtConfig({
 
   hooks: {
     'content:file:afterParse': ({ file, content, collection }) => {
-      if (collection.name.startsWith('blog_'))
+      if (collection.name.startsWith('blog_')) {
         content.readingTime = readingTime(file.body);
+        content.wordCount = countWords(file.body);
+      }
     },
   },
 
@@ -199,7 +210,9 @@ export default defineNuxtConfig({
 
   scripts: {
     registry: {
-      trigger: 'onNuxtReady',
+      googleAnalytics: process.env.NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID
+        ? { trigger: 'onNuxtReady', proxy: false }
+        : false,
     },
   },
 
