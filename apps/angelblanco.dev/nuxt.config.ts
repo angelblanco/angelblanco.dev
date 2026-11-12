@@ -105,6 +105,13 @@ export default defineNuxtConfig({
     },
   },
 
+  // @nuxt/image switches to ipxStatic on static Nitro builds, which has no /_ipx handler in dev.
+  $development: {
+    nitro: {
+      static: false,
+    },
+  },
+
   nitro: {
     preset: 'github_pages',
     static: true,
