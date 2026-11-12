@@ -11,15 +11,7 @@
     </BlogPostMeta>
     <BlogTags :tags="post.tags" class="mt-3 mb-8" />
 
-    <div v-if="alternativeLocale" class="mb-4 text-secondary">
-      <NuxtLink
-        :to="$switchLocalePath(alternativeLocale)"
-        :hreflang="alternativeLocale"
-        class="flex items-center gap-1 bg-secondary/10 p-1 text-xs font-bold dark:font-medium"
-      >
-        <Icon name="tabler:language" class="size-4" /> <span>{{ $t('blogAlternativeLink') }}</span>
-      </NuxtLink>
-    </div>
+    <BlogAlternativeLocaleLink v-if="alternativeLocale" :locale="alternativeLocale" />
     <BlogToc v-if="post.body.toc" :toc="post.body.toc" />
   </div>
 </template>

@@ -11,6 +11,13 @@ describe('fonts: nuxtFontsConfig', () => {
     expect(config.npm.remote).toBe(false);
   });
 
+  it('uses Geist Variable as the site sans family', () => {
+    expect(config.families.find(family => family.name === 'Geist Variable')).toMatchObject({
+      provider: 'npm',
+      weights: ['100 900'],
+    });
+  });
+
   it('keeps the 600 weight out of the site family', () => {
     expect(config.families.find(family => family.name === 'Geist Mono')).toMatchObject({
       provider: 'npm',
@@ -25,7 +32,7 @@ describe('fonts: nuxtFontsConfig', () => {
     expect(existsSync(fileURLToPath(semiBold!.src!))).toBe(true);
   });
 
-  it.each(['@fontsource-variable/inter', '@fontsource/geist-mono'])('resolves %s from the fonts package', (pkg) => {
+  it.each(['@fontsource-variable/geist', '@fontsource/geist-mono'])('resolves %s from the fonts package', (pkg) => {
     expect(existsSync(join(config.npm.resolve(pkg), 'package.json'))).toBe(true);
   });
 });

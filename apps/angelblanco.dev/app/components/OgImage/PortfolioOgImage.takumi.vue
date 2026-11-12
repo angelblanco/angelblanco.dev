@@ -158,7 +158,7 @@ const styles = computed<Record<string, CSSProperties>>(() => {
   width: 100%;
   height: 100%;
   color: #f8fafc;
-  font-family: 'Inter Variable', sans-serif;
+  font-family: 'Geist Variable', sans-serif;
   background-color: #030712;
 }
 

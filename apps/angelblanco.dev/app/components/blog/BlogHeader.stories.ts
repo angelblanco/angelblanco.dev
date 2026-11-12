@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook-vue/nuxt';
-import { expect, within } from 'storybook/test';
+import { expect, waitFor, within } from 'storybook/test';
 import { h } from 'vue';
 import { articleBody, articleHeadingIds } from '../../../.storybook/fixtures/article';
 import { emptyTocFixture, postFixture, realBlogPostSummaries, tocFixture } from '../../../.storybook/fixtures/blog';
+import { withNavigatorLanguage } from '../../../.storybook/fixtures/navigator';
 import UiContentWrapper from '../ui/UiContentWrapper.vue';
+import BlogAlternativeLocaleLink from './BlogAlternativeLocaleLink.vue';
 import BlogHeader from './BlogHeader.vue';
 import BlogPostMeta from './BlogPostMeta.vue';
 import BlogTags from './BlogTags.vue';
@@ -19,8 +21,16 @@ const tocIds = tocFixture.links.flatMap(link => [
 const meta = {
   title: 'Blog/Header',
   component: BlogHeader,
-  subcomponents: { BlogPostMeta, BlogTags, BlogToc },
+  subcomponents: {
+    BlogAlternativeLocaleLink,
+    BlogPostMeta,
+    BlogTags,
+    BlogToc,
+  },
   args: { post: postFixture, alternativeLocale: 'es' },
+  decorators: [
+    withNavigatorLanguage('es-ES'),
+  ],
 } satisfies Meta<typeof BlogHeader>;
 
 export default meta;
@@ -33,9 +43,9 @@ export const Default: Story = {
 
     await expect(canvas.getByRole('heading', { level: 1 }).textContent?.trim()).toBe(postFixture.title);
     await expect(canvasElement.querySelector('a[href*="/about"]')).not.toBeNull();
-    await expect(canvasElement.querySelectorAll('.text-secondary a')).toHaveLength(1);
+    await waitFor(() => expect(canvasElement.querySelectorAll('.text-secondary a')).toHaveLength(1));
     await expect(canvasElement.querySelector('.text-secondary a')).toHaveClass('bg-secondary/10', 'dark:font-medium');
-    await expect(canvasElement.querySelectorAll('.cursor-pointer')).toHaveLength(1);
+    await expect(canvasElement.querySelectorAll('button[aria-expanded]')).toHaveLength(1);
     await expect(canvasElement.querySelector('time')).toHaveAttribute('datetime', `${postFixture.date}T00:00:00.000Z`);
     await expect(canvasElement.querySelector('.i-tabler\\:clock')).not.toBeNull();
 
@@ -56,6 +66,16 @@ export const WithoutAlternativeLocale: Story = {
   },
 };
 
+export const EnglishBrowser: Story = {
+  decorators: [
+    withNavigatorLanguage('en-US'),
+  ],
+  play: async ({ canvasElement }) => {
+    await expect(within(canvasElement).getByRole('heading', { level: 1 })).toBeInTheDocument();
+    await expect(canvasElement.querySelector('.text-secondary')).toBeNull();
+  },
+};
+
 export const EmptyToc: Story = {
   args: {
     post: {
@@ -65,7 +85,7 @@ export const EmptyToc: Story = {
   },
   play: async ({ canvasElement }) => {
     await expect(within(canvasElement).getByRole('heading', { level: 1 })).toBeInTheDocument();
-    await expect(canvasElement.querySelector('.cursor-pointer')).toBeNull();
+    await expect(canvasElement.querySelector('button[aria-expanded]')).toBeNull();
   },
 };
 

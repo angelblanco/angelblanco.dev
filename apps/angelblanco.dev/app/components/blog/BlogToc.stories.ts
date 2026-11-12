@@ -8,7 +8,7 @@ const nestedTocLinks = tocFixture.links.flatMap(link => link.children ?? []);
 const tocLinkCount = tocFixture.links.length + nestedTocLinks.length;
 
 function getToggle(canvasElement: HTMLElement): HTMLElement {
-  const toggle = canvasElement.querySelector<HTMLElement>('.cursor-pointer > div');
+  const toggle = canvasElement.querySelector<HTMLElement>('button[aria-expanded]');
   if (!toggle)
     throw new Error('BlogToc toggle not found');
   return toggle;
@@ -31,10 +31,11 @@ export const Default: Story = {
     const toggle = getToggle(canvasElement);
 
     await expect(canvas.queryAllByRole('link')).toHaveLength(0);
-    await expect(canvasElement.querySelector('.cursor-pointer')).not.toHaveClass('pb-4');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
 
     await userEvent.click(toggle);
     await expect(await canvas.findAllByRole('link')).toHaveLength(tocLinkCount);
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
 
     await userEvent.click(toggle);
     await expect(canvas.queryAllByRole('link')).toHaveLength(0);
@@ -52,15 +53,14 @@ export const Expanded: Story = {
     const links = await within(canvasElement).findAllByRole('link');
     const nestedLinks = canvasElement.querySelectorAll('.pl-4 a');
 
-    await expect(canvasElement.querySelector('.cursor-pointer')).toHaveClass('pb-4');
     await expect(links).toHaveLength(tocLinkCount);
     await expect(links[0]).toHaveAttribute('href', `#${tocFixture.links[0]!.id}`);
-    await expect(links[0]).toHaveClass('font-semibold');
-    await expect(links[0]!.parentElement).not.toHaveClass('mt-2');
-    await expect(links[1]!.parentElement).toHaveClass('mt-2');
+    await expect(links[0]).toHaveClass('text-base-content');
+    await expect(links[0]!.parentElement).not.toHaveClass('mt-1');
+    await expect(links[1]!.parentElement).toHaveClass('mt-1');
     await expect(nestedLinks).toHaveLength(nestedTocLinks.length);
     await expect(nestedLinks[0]).toHaveAttribute('href', `#${nestedTocLinks[0]!.id}`);
-    await expect(nestedLinks[0]).not.toHaveClass('font-semibold');
+    await expect(nestedLinks[0]).toHaveClass('text-base-content/70');
   },
 };
 
@@ -78,7 +78,7 @@ export const Flat: Story = {
     await expect(links).toHaveLength(flatTocFixture.links.length);
     for (const link of links) {
       await expect(link.getAttribute('href')).toMatch(/^#/);
-      await expect(link).toHaveClass('font-semibold');
+      await expect(link).toHaveClass('text-base-content');
     }
     await expect(canvasElement.querySelector('.pl-4')).toBeNull();
   },
@@ -93,7 +93,7 @@ export const Empty: Story = {
   },
   play: async ({ canvasElement }) => {
     await expect(canvasElement.querySelector('a')).toBeNull();
-    await expect(canvasElement.querySelector('.cursor-pointer')).toBeNull();
+    await expect(canvasElement.querySelector('button')).toBeNull();
   },
 };
 

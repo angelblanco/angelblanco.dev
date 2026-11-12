@@ -1,7 +1,7 @@
 <template>
-  <div :class="{ 'mt-2': notFirstInGroup === true }">
-    <a :href="href" :class="linkClass" class="flex items-center gap-2 p-1 text-sm text-base-content/70 hover:bg-primary/10 hover:text-base-content md:text-base  lg:p-2">
-      <Icon v-if="firstLevel" name="tabler:corner-down-right" class="size-5 text-primary" /><span class=" font-medium">{{ tocLink.text }}</span>
+  <div :class="{ 'mt-1': notFirstInGroup === true }">
+    <a :href="href" class="block py-0.5 text-[13px]/5 transition-colors hover:text-base-content" :class="firstLevel ? 'text-base-content' : 'text-base-content/70'">
+      {{ tocLink.text }}
     </a>
   </div>
   <div v-if="tocLink.children" class="pl-4">
@@ -19,8 +19,4 @@ const { tocLink, firstLevel, notFirstInGroup } = defineProps<{
 }>();
 
 const href = computed(() => `#${tocLink.id}`);
-
-const linkClass = computed(() => {
-  return firstLevel ? 'font-semibold lg:font-bold dark:font-medium tracking-wide' : '';
-});
 </script>

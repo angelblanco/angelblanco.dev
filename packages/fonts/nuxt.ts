@@ -12,7 +12,7 @@ export function nuxtFontsConfig() {
     },
     families: [
       {
-        name: 'Inter Variable',
+        name: 'Geist Variable',
         provider: 'npm',
         weights: ['100 900'],
         styles: ['normal' as const],

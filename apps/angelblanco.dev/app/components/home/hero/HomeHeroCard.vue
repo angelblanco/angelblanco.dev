@@ -20,7 +20,16 @@
     </div>
 
     <NuxtLinkLocale to="/about" class="shrink-0" :aria-label="$t('Me')">
-      <img src="~/assets/images/ablanco.webp" alt="Me" class="size-24 rotate-15 shadow-lg transition hover:rotate-0 md:size-42 lg:size-64">
+      <NuxtImg
+        src="/ablanco.webp"
+        alt="Me"
+        :width="256"
+        :height="256"
+        sizes="96px md:168px lg:256px"
+        densities="x1 x2"
+        placeholder
+        class="size-24 rotate-15 shadow-lg transition hover:rotate-0 md:size-42 lg:size-64"
+      />
     </NuxtLinkLocale>
   </div>
 </template>
