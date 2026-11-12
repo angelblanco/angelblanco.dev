@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'mt-1': notFirstInGroup === true }">
-    <a :href="href" class="block py-0.5 text-[13px]/5 text-(--grey) transition-colors hover:text-(--ink)" :class="{ 'text-(--ink)': firstLevel }">
+    <a :href="href" class="block py-0.5 text-[13px]/5 transition-colors hover:text-base-content" :class="firstLevel ? 'text-base-content' : 'text-base-content/70'">
       {{ tocLink.text }}
     </a>
   </div>

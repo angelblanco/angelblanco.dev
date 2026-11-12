@@ -37,12 +37,17 @@ describe('pages: blog/[slug]', () => {
     posts.clear();
     queriedPaths.length = 0;
     clearNuxtData();
+    Reflect.deleteProperty(navigator, 'language');
     await useI18n().setLocale('en');
   });
 
   it('should query the spanish collection with the spanish path of an english post', async () => {
     posts.set('blog_en:/blog/hello', { ...postFixture, path: '/blog/hello' });
     posts.set('blog_es:/es/blog/hello', { ...postFixture, path: '/es/blog/hello' });
+    Object.defineProperty(navigator, 'language', {
+      configurable: true,
+      get: () => 'es-ES',
+    });
 
     const wrapper = await mountPost('/blog/hello/');
 
