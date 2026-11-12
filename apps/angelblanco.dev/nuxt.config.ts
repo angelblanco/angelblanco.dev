@@ -101,15 +101,6 @@ export default defineNuxtConfig({
         ...feedRoutes(),
         '/api/search/en.json',
         '/api/search/es.json',
-        // The /about photo renders inside a server island, which the prerender crawler never visits.
-        ...[
-          'q_40&blur_1&s_16x16',
-          's_336x336',
-          's_384x384',
-          's_672x672',
-          's_768x768',
-        ]
-          .map(modifiers => `/_ipx/${modifiers}/ablanco_2025_profile.webp`),
       ],
     },
   },

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook-vue/nuxt';
 import { expect, within } from 'storybook/test';
 import { h } from 'vue';
+import { NuxtImg } from '#components';
 import { useI18n } from '#imports';
 import { aboutBriefBackgroundClass, aboutBriefSquares } from './AboutBrief.vue';
 import AboutBriefBackground from './AboutBriefBackground.vue';
@@ -23,7 +24,16 @@ const meta = {
       return () => h('div', { class: 'relative w-full overflow-hidden' }, [
         h(AboutBriefBackground, { squares: aboutBriefSquares, className: aboutBriefBackgroundClass }),
         h('div', { class: 'relative z-1' }, [
-          h(AboutBriefResume, { locale: locale.value }),
+          h(AboutBriefResume, { locale: locale.value }, {
+            photo: () => h(NuxtImg, {
+              src: '/ablanco_2025_profile.webp',
+              alt: 'Ángel Blanco',
+              width: 384,
+              height: 384,
+              placeholder: true,
+              class: 'w-full max-w-84 md:max-w-full',
+            }),
+          }),
         ]),
       ]);
     },

@@ -15,16 +15,7 @@
       </div>
       <div class="order-first flex flex-col items-center md:order-last md:col-span-2">
         <div class="border-8 border-base-200 bg-base-200 shadow-2xl">
-          <UiImage
-            src="/ablanco_2025_profile.webp"
-            alt="Ángel Blanco"
-            :width="384"
-            :height="384"
-            sizes="336px md:384px"
-            densities="x1 x2"
-            fetchpriority="high"
-            class="w-full max-w-84 md:max-w-full"
-          />
+          <slot name="photo" />
           <div class="p-2 text-center text-sm text-base-content/80">
             {{ $t('aboutCaption') }}
           </div>

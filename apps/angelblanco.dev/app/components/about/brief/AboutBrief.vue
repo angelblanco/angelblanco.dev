@@ -6,7 +6,20 @@
     />
 
     <div class="relative z-1">
-      <AboutBriefResume :locale="locale" />
+      <AboutBriefResume :locale="locale">
+        <template #photo>
+          <NuxtImg
+            src="/ablanco_2025_profile.webp"
+            alt="Ángel Blanco"
+            :width="384"
+            :height="384"
+            sizes="336px md:384px"
+            densities="x1 x2"
+            placeholder
+            class="w-full max-w-84 md:max-w-full"
+          />
+        </template>
+      </AboutBriefResume>
     </div>
   </div>
 </template>
