@@ -23,7 +23,6 @@ const config: StorybookConfig = {
   core: { disableTelemetry: true } as StorybookConfig['core'],
   previewHead: head => `${head}${colorModeHelper}${previewStyles}`,
   viteFinal: viteConfig => mergeConfig(viteConfig, {
-    define: { __IS_SSR__: 'false' },
     optimizeDeps: {
       include: [
         'dayjs',

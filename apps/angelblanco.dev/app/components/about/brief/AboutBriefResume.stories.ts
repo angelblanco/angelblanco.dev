@@ -1,26 +1,11 @@
 import type { Meta, StoryObj } from '@storybook-vue/nuxt';
 import { expect, within } from 'storybook/test';
-import { h } from 'vue';
-import { NuxtImg } from '#components';
-import AboutBriefResume from './AboutBriefResume.server.vue';
+import AboutBriefResume from './AboutBriefResume.vue';
 
 const meta = {
   title: 'About/BriefResume',
   component: AboutBriefResume,
-  args: { locale: 'en' },
   parameters: { layout: 'fullscreen' },
-  render: args => ({
-    setup: () => () => h(AboutBriefResume, args, {
-      photo: () => h(NuxtImg, {
-        src: '/ablanco_2025_profile.webp',
-        alt: 'Ángel Blanco',
-        width: 384,
-        height: 384,
-        placeholder: true,
-        class: 'w-full max-w-84 md:max-w-full',
-      }),
-    }),
-  }),
 } satisfies Meta<typeof AboutBriefResume>;
 
 export default meta;
