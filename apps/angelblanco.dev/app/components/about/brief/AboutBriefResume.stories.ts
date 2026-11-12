@@ -19,7 +19,7 @@ export const Default: Story = {
     const links = await canvas.findAllByRole('link');
     const hrefs = links.map(link => link.getAttribute('href') ?? '');
 
-    await expect(canvasElement.querySelector('img[src="/ablanco_2025_profile.webp"]')).not.toBeNull();
+    await expect(canvasElement.querySelector('img[alt="Ángel Blanco"]')?.getAttribute('src')).toContain('ablanco_2025_profile.webp');
     await expect(hrefs.some(href => href.startsWith('https://github.com/angelblanco'))).toBe(true);
     await expect(hrefs.some(href => href.startsWith('https://www.linkedin.com/in/angelblanco-dev'))).toBe(true);
     await expect(canvasElement.querySelector('.md-bold-styled')).not.toBeNull();
