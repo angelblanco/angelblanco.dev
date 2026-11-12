@@ -28,7 +28,7 @@ You can find all modules in [apps/angelblanco.dev/nuxt.config.ts](./apps/angelbl
 - `@vueuse/nuxt`: Used for click outside and other utilities.
 - `@nuxt/content`: For Markdown content management throughout the app.
 - `@nuxt/test-utils/module`: For unit and Nuxt testing. For E2E testing, [Playwright](https://playwright.dev/) is used under [packages/playwright](./packages/playwright/).
-- `@nuxt/scripts`: For GA support.
+- `@nuxt/scripts`: Loads Google Analytics after hydration when `NUXT_PUBLIC_SCRIPTS_GOOGLE_ANALYTICS_ID` is set at build time.
 - `@nuxt/image`
 
 ## Project structure
