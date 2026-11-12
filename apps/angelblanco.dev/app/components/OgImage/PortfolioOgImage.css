@@ -17,7 +17,7 @@
   height: 100%;
   padding: 52px 56px 52px 64px;
   color: var(--ink);
-  font-family: 'OG Inter', 'Inter Variable', system-ui, sans-serif;
+  font-family: 'OG Geist', 'Geist Variable', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   background:
     radial-gradient(55% 85% at 85% 45%, oklch(45% 0.2 330 / 0.5), transparent 70%),

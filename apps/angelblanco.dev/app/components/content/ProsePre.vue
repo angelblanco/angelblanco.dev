@@ -1,27 +1,48 @@
 <template>
-  <div class="group my-8 border-y border-(--hair) text-(--ink)">
+  <div class="group mb-4 overflow-hidden rounded border border-base-content/10 bg-base-100 text-base-content">
+    <!-- Header -->
     <div
-      v-if="filename || language || isCopyable"
-      class="flex h-7 items-center justify-between font-mono text-[11px]/[13px] tracking-wide text-(--grey)"
+      v-if="showHeader"
+      class="flex items-center justify-between border-b border-base-content/10 bg-base-200 p-2"
     >
-      <span class="flex items-center gap-1.5">
-        <Icon v-if="languageIcon" :name="languageIcon" class="size-3.5 opacity-70" />
-        <span>{{ filename || language }}</span>
-      </span>
+      <div class="flex h-8 items-center gap-2 text-base-content/80">
+        <Icon v-if="languageIcon" :name="languageIcon" class="size-5" />
+        <span v-if="filename" class="text-sm font-medium tracking-wider">{{ filename }}</span>
+      </div>
 
+      <!-- Copy Button -->
       <button
-        v-if="isCopyable"
-        type="button"
-        class="flex cursor-pointer items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100 hover:text-(--ink) focus-visible:opacity-100"
-        :class="{ 'text-success': copiedState === 'success', 'text-error': copiedState === 'error' }"
-        @click="doCopy"
+        v-if="isCopyable" class="btn hidden btn-square items-center gap-1 border border-base-content/10 transition btn-sm group-hover:flex" :class="{
+          'btn-success': copiedState === 'success',
+          'btn-error': copiedState === 'error',
+        }" @click="doCopy"
       >
-        <Icon :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'" class="size-3.5" />
+        <Icon
+          :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'"
+          class="size-5"
+        />
+      </button>
+    </div>
+
+    <div v-if="showBadge" class="flex h-10 justify-end px-2 pt-2">
+      <div class="px-2 font-mono text-sm/8 text-base-content/70 group-hover:hidden">
+        {{ language }}
+      </div>
+      <button
+        v-if="isCopyable" class="btn hidden btn-square items-center gap-1 transition btn-sm group-hover:flex" :class="{
+          'btn-success': copiedState === 'success',
+          'btn-error': copiedState === 'error',
+        }" @click="doCopy"
+      >
+        <Icon
+          :name="copiedState === 'success' ? 'tabler:copy-check' : 'tabler:copy'"
+          class="size-5"
+        />
       </button>
     </div>
     <pre
-      :class="cls"
-      class="m-0! rounded-none! bg-transparent! px-0! pt-1! pb-4! text-[13px]! leading-5! focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      :class="[cls, { 'pt-0!': showBadge }]"
+      class="m-0! rounded-none! bg-base-100 p-6! leading-5.5! focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-primary"
       tabindex="0"
       role="group"
       :aria-label="ariaLabel"
@@ -46,7 +67,9 @@ const props = defineProps<CodeBlockProps>();
 const cls = computed(() => props.class ?? '');
 const codeText = computed(() => props.code ?? '');
 
+const showHeader = computed(() => !!props.filename);
 const isCopyable = computed(() => !!codeText.value?.trim());
+const showBadge = computed(() => !showHeader.value && (!!props.language || isCopyable.value));
 const copiedState = ref<'idle' | 'success' | 'error'>('idle');
 
 const { t } = useI18n();

@@ -211,9 +211,6 @@ importers:
       '@angelblanco/tailwind':
         specifier: workspace:*
         version: link:../../packages/tailwind
-      '@fontsource-variable/geist':
-        specifier: ^5.3.0
-        version: 5.3.0
       '@iconify-json/simple-icons':
         specifier: ^1.2.101
         version: 1.2.101
@@ -350,7 +347,7 @@ importers:
 
   packages/fonts:
     dependencies:
-      '@fontsource-variable/inter':
+      '@fontsource-variable/geist':
         specifier: ^5.3.0
         version: 5.3.0
       '@fontsource/geist-mono':
@@ -1106,9 +1103,6 @@ packages:
 
   '@fontsource-variable/geist@5.3.0':
     resolution: {integrity: sha512-j0m+vLQuG5XAYoHtGCVu0spvlGreR3EzpECUVzkFmI1mTVnAO38l/NEPDCFgZ177JxzYJCLSmTQibIiYPilGrA==}
-
-  '@fontsource-variable/inter@5.3.0':
-    resolution: {integrity: sha512-OupL48va4JNofb97w6NYeF9S7W/kHNKM0Er8Dem5nqi4jeOLrVJDoE8tZEpnMJmtkvNbB1EIPPwHcdkF6b1oUA==}
 
   '@fontsource/geist-mono@5.3.0':
     resolution: {integrity: sha512-UtJ1BBBCVpMYdIcW7nEB45UAoAw5M53ZXs2t0ciPW+IokuAAIc56M8+kW5tXbRJCTpDw4XTtU7proT6NdQAHTg==}
@@ -8554,8 +8548,6 @@ snapshots:
   '@fingerprintjs/botd@2.0.0': {}
 
   '@fontsource-variable/geist@5.3.0': {}
-
-  '@fontsource-variable/inter@5.3.0': {}
 
   '@fontsource/geist-mono@5.3.0': {}
 

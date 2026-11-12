@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { geistMono600, interVariable } from '@angelblanco/fonts/og';
+import { geistMono600, geistVariable } from '@angelblanco/fonts/og';
 import photo from '~/assets/images/ablanco.webp?inline';
 import styles from './PortfolioOgImage.css?raw';
 
@@ -62,7 +62,7 @@ useHead({
     {
       key: 'portfolio-og-image',
       innerHTML: `
-@font-face { font-family: 'OG Inter'; font-weight: 100 900; src: url('${interVariable}') format('woff2'); }
+@font-face { font-family: 'OG Geist'; font-weight: 100 900; src: url('${geistVariable}') format('woff2'); }
 @font-face { font-family: 'OG Geist Mono'; font-weight: 600; src: url('${geistMono600}') format('woff2'); }
 ${styles}`,
     },
